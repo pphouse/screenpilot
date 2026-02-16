@@ -269,7 +269,7 @@ class TaskPlanner:
         if self.history:
             recent = self.history[-10:]  # Keep last 10 actions for context
             history_str = "\n".join(
-                f"Step {i+1}: {h['action_type']} - {h.get('reasoning', '')}"
+                f"Step {i + 1}: {h['action_type']} - {h.get('reasoning', '')}"
                 for i, h in enumerate(recent)
             )
         else:
@@ -296,7 +296,9 @@ class TaskPlanner:
 
     def create_plan(self, goal: str, screenshot: Screenshot) -> Plan:
         """Create a full plan for completing a task (multi-step)."""
-        system = PLANNER_SYSTEM_PROMPT + """
+        system = (
+            PLANNER_SYSTEM_PROMPT
+            + """
 
 SPECIAL MODE: Instead of returning a single action, create a FULL PLAN with multiple steps.
 
@@ -308,6 +310,7 @@ Return JSON:
     ...
   ]
 }"""
+        )
         user = f"## Task\n{goal}\n\nCreate a full plan with all steps needed."
 
         response = self._call_llm(screenshot, system, user)

@@ -66,7 +66,9 @@ class ScreenCapture:
         self.config = config or CaptureConfig()
         self._sct = mss.mss()
 
-    def capture(self, monitor: int | None = None, region: tuple[int, int, int, int] | None = None) -> Screenshot:
+    def capture(
+        self, monitor: int | None = None, region: tuple[int, int, int, int] | None = None
+    ) -> Screenshot:
         """Capture a screenshot.
 
         Args:

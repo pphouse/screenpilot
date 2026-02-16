@@ -1,7 +1,5 @@
 """Tests for vision module (unit tests that don't require display)."""
 
-from unittest.mock import MagicMock, patch
-
 from PIL import Image
 
 from screenpilot.vision.analyzer import ScreenState, UIElement

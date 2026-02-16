@@ -211,9 +211,7 @@ class ActionExecutor:
     def _drag(self, action: Action) -> ActionResult:
         """Drag from current position to target."""
         if action.x is None or action.y is None:
-            return ActionResult(
-                success=False, action=action, error="Drag requires target x and y"
-            )
+            return ActionResult(success=False, action=action, error="Drag requires target x and y")
 
         end_x = action.metadata.get("end_x", action.x + 100)
         end_y = action.metadata.get("end_y", action.y + 100)

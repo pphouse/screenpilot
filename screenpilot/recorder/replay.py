@@ -151,7 +151,11 @@ class WorkflowReplayer:
             return action
 
         # Only adapt click-type actions
-        if action.action_type not in (ActionType.CLICK, ActionType.DOUBLE_CLICK, ActionType.RIGHT_CLICK):
+        if action.action_type not in (
+            ActionType.CLICK,
+            ActionType.DOUBLE_CLICK,
+            ActionType.RIGHT_CLICK,
+        ):
             return action
 
         try:

@@ -13,7 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from screenpilot import __version__
-from screenpilot.agent import ScreenPilotAgent, StepResult, TaskResult
+from screenpilot.agent import ScreenPilotAgent, StepResult
 from screenpilot.config import ScreenPilotConfig
 from screenpilot.planner.planner import Action, ActionType
 from screenpilot.vision.capture import ScreenCapture
@@ -202,14 +202,16 @@ def create_app(config: ScreenPilotConfig | None = None) -> FastAPI:
                 task_info["current_step"] = step.step_number
                 asyncio.get_event_loop().call_soon_threadsafe(
                     asyncio.ensure_future,
-                    broadcast_ws({
-                        "type": "step",
-                        "task_id": task_id,
-                        "step": step.step_number,
-                        "action": step.action.action_type.value,
-                        "success": step.action_result.success,
-                        "reasoning": step.action.reasoning,
-                    }),
+                    broadcast_ws(
+                        {
+                            "type": "step",
+                            "task_id": task_id,
+                            "step": step.step_number,
+                            "action": step.action.action_type.value,
+                            "success": step.action_result.success,
+                            "reasoning": step.action.reasoning,
+                        }
+                    ),
                 )
 
             agent.on_step(on_step)
@@ -217,13 +219,15 @@ def create_app(config: ScreenPilotConfig | None = None) -> FastAPI:
             result = await loop.run_in_executor(None, agent.run, req.goal, req.max_steps)
             task_info["status"] = "completed" if result.success else "failed"
             task_info["result"] = result
-            await broadcast_ws({
-                "type": "task_complete",
-                "task_id": task_id,
-                "success": result.success,
-                "steps": result.num_steps,
-                "time": result.total_time,
-            })
+            await broadcast_ws(
+                {
+                    "type": "task_complete",
+                    "task_id": task_id,
+                    "success": result.success,
+                    "steps": result.num_steps,
+                    "time": result.total_time,
+                }
+            )
 
         asyncio.create_task(run_task())
 

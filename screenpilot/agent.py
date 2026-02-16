@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 import time
 from dataclasses import dataclass, field
-from typing import Any, Callable
+from typing import Callable
 
 from screenpilot.config import ScreenPilotConfig
 from screenpilot.executor.executor import ActionExecutor, ActionResult
@@ -159,7 +159,9 @@ class ScreenPilotAgent:
                 step_result = StepResult(
                     step_number=step_num,
                     action=action,
-                    action_result=ActionResult(success=False, action=action, error=action.reasoning),
+                    action_result=ActionResult(
+                        success=False, action=action, error=action.reasoning
+                    ),
                     screenshot_before=screenshot,
                     timestamp=time.time(),
                 )
@@ -183,7 +185,9 @@ class ScreenPilotAgent:
                         if element:
                             action.x = element.center[0]
                             action.y = element.center[1]
-                            logger.info("Resolved '%s' to (%d, %d)", action.target, action.x, action.y)
+                            logger.info(
+                                "Resolved '%s' to (%d, %d)", action.target, action.x, action.y
+                            )
                         else:
                             logger.warning("Could not find element: %s", action.target)
                     except Exception as e:

@@ -149,7 +149,10 @@ class WorkflowRecorder:
             workflow_path = self._save_dir / self._workflow.name / "workflow.json"
             self._workflow.save(workflow_path)
 
-        logger.info("Recording stopped: %d events captured", len(self._workflow.events) if self._workflow else 0)
+        logger.info(
+            "Recording stopped: %d events captured",
+            len(self._workflow.events) if self._workflow else 0,
+        )
         return self._workflow
 
     def _take_screenshot(self) -> str | None:
@@ -159,7 +162,11 @@ class WorkflowRecorder:
         try:
             screenshot = self._capture.capture()
             self._screenshot_count += 1
-            path = self._save_dir / self._workflow.name / f"screenshot_{self._screenshot_count:04d}.png"
+            path = (
+                self._save_dir
+                / self._workflow.name
+                / f"screenshot_{self._screenshot_count:04d}.png"
+            )
             screenshot.save(str(path))
             return str(path)
         except Exception as e:

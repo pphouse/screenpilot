@@ -4,8 +4,6 @@ import os
 import sys
 from unittest.mock import MagicMock, patch
 
-import pytest
-
 # Ensure DISPLAY is set for pyautogui import on headless systems
 if "DISPLAY" not in os.environ:
     os.environ["DISPLAY"] = ":99"
@@ -16,7 +14,7 @@ mock_pyautogui.FAILSAFE = True
 mock_pyautogui.PAUSE = 0.05
 sys.modules.setdefault("pyautogui", mock_pyautogui)
 
-from screenpilot.executor.executor import ActionExecutor, ActionResult
+from screenpilot.executor.executor import ActionExecutor
 from screenpilot.planner.planner import Action, ActionType
 
 

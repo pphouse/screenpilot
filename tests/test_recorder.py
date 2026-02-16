@@ -1,6 +1,5 @@
 """Tests for workflow recorder (unit tests)."""
 
-import json
 import tempfile
 from pathlib import Path
 
