@@ -1,0 +1,98 @@
+{
+  "challenge_id": 23,
+  "name": "crypto_price (attempt 2)",
+  "difficulty": "medium",
+  "goal": "Look at the current Bitcoin price displayed on the page and scroll down to see the price chart",
+  "setup_url": "https://www.coingecko.com/en/coins/bitcoin",
+  "success": true,
+  "steps": 9,
+  "time": 60.2,
+  "error": null,
+  "video_path": "recordings/challenges/23_crypto_price_v2/recording.mp4",
+  "video_size_kb": 1733,
+  "speed": 3.0,
+  "attempt": 2,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the CoinGecko Bitcoin page is loaded. The current Bitcoin price is displayed as $68,757.41 at the top of the page. I can already see a price chart on the screen showing Bitcoin's price histo",
+      "success": true,
+      "timestamp": 8.1
+    },
+    {
+      "step": 2,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the CoinGecko Bitcoin page is loaded. The current Bitcoin price is displayed at the top as $68,757.41. I can already see a price chart on the screen showing Bitcoin's price history. The char",
+      "success": true,
+      "timestamp": 13.1
+    },
+    {
+      "step": 3,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Bitcoin price at the top of the page showing BTC $68,757.41 with a -0.1% (24h) change. I can also see a price chart is already visible on the screen showing historical price data from 20",
+      "success": true,
+      "timestamp": 19.5
+    },
+    {
+      "step": 4,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Bitcoin price at the top of the page showing BTC $68,757.41. I've been scrolling multiple times already, but I need to verify if I can see a price chart on the current screen. Looking at",
+      "success": true,
+      "timestamp": 29.6
+    },
+    {
+      "step": 5,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Bitcoin price at the top of the page showing BTC $68,757.41 with a -0.1% (24h) change. I've been scrolling multiple times already. Looking at the current screen, I can see some historica",
+      "success": true,
+      "timestamp": 35.9
+    },
+    {
+      "step": 6,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Bitcoin price at the top of the page showing BTC $68,757.41 with a -0.1% (24h) change. I've been scrolling down multiple times already. Looking at the current screen, I can see we're in ",
+      "success": true,
+      "timestamp": 42.7
+    },
+    {
+      "step": 7,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Bitcoin price at the top of the page showing BTC $68,757.41 with a -0.1% (24h) change. I've been scrolling multiple times but I need to check if I can see a price chart on the current sc",
+      "success": true,
+      "timestamp": 49.8
+    },
+    {
+      "step": 8,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Bitcoin price at the top of the page showing BTC $68,757.41 with a -0.1% (24h) change. I've been scrolling down multiple times but haven't reached the price chart yet. Looking at the cur",
+      "success": true,
+      "timestamp": 55.6
+    },
+    {
+      "step": 9,
+      "action": "done",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Bitcoin price at the top of the page showing BTC $68,757.41 with a -0.1% (24h) change. Looking at the screenshot, I can see there is already a price chart visible in the middle-right por",
+      "success": true,
+      "timestamp": 61.6
+    }
+  ]
+}

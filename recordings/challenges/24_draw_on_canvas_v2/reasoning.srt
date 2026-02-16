@@ -1,0 +1,15 @@
+1
+00:00:08,106 --> 00:00:13,522
+Step 1: drag (450, 450) [OK]\NI can see a Paint Tool (Kleki) interface with a white canvas area on the left side and a tool panel on the right. The ca
+
+2
+00:00:13,522 --> 00:00:19,248
+Step 2: drag (300, 600) [OK]\NI can see the Kleki Paint Tool interface with a white canvas on the left side. There is already a small diagonal line vi
+
+3
+00:00:19,248 --> 00:00:24,059
+Step 3: drag (600, 525) [OK]\NI can see the Kleki Paint Tool interface with a white canvas on the left side. There are already two black diagonal line
+
+4
+00:00:24,059 --> 00:00:28,059
+Step 4: done  [OK]\NI can see the Kleki Paint Tool interface with a white canvas on the left side that already has three diagonal lines draw

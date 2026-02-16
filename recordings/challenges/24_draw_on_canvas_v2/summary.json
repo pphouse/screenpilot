@@ -1,0 +1,53 @@
+{
+  "challenge_id": 24,
+  "name": "draw_on_canvas (attempt 2)",
+  "difficulty": "expert",
+  "goal": "Click and drag on the white canvas area to draw a simple line or shape",
+  "setup_url": "https://kleki.com/",
+  "success": true,
+  "steps": 4,
+  "time": 22.6,
+  "error": null,
+  "video_path": "recordings/challenges/24_draw_on_canvas_v2/recording.mp4",
+  "video_size_kb": 173,
+  "speed": 3.0,
+  "attempt": 2,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "drag",
+      "target": "",
+      "coords": "(450, 450)",
+      "reasoning": "I can see a Paint Tool (Kleki) interface with a white canvas area on the left side and a tool panel on the right. The canvas appears to be the large white area taking up most of the left portion of th",
+      "success": true,
+      "timestamp": 8.1
+    },
+    {
+      "step": 2,
+      "action": "drag",
+      "target": "",
+      "coords": "(300, 600)",
+      "reasoning": "I can see the Kleki Paint Tool interface with a white canvas on the left side. There is already a small diagonal line visible on the canvas (around coordinates 300-370). The task is to draw a simple l",
+      "success": true,
+      "timestamp": 13.5
+    },
+    {
+      "step": 3,
+      "action": "drag",
+      "target": "",
+      "coords": "(600, 525)",
+      "reasoning": "I can see the Kleki Paint Tool interface with a white canvas on the left side. There are already two black diagonal lines drawn on the canvas from previous drag actions. The task is to draw a simple l",
+      "success": true,
+      "timestamp": 19.2
+    },
+    {
+      "step": 4,
+      "action": "done",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Kleki Paint Tool interface with a white canvas on the left side that already has three diagonal lines drawn on it. The task is to draw a simple line or shape on the white canvas area. I ",
+      "success": true,
+      "timestamp": 24.1
+    }
+  ]
+}

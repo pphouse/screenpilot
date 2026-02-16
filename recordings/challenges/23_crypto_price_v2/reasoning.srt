@@ -1,0 +1,35 @@
+1
+00:00:08,082 --> 00:00:13,063
+Step 1: scroll  [OK]\NI can see the CoinGecko Bitcoin page is loaded. The current Bitcoin price is displayed as $68,757.41 at the top of the p
+
+2
+00:00:13,063 --> 00:00:19,528
+Step 2: scroll  [OK]\NI can see the CoinGecko Bitcoin page is loaded. The current Bitcoin price is displayed at the top as $68,757.41. I can a
+
+3
+00:00:19,528 --> 00:00:29,628
+Step 3: scroll  [OK]\NI can see the Bitcoin price at the top of the page showing BTC $68,757.41 with a -0.1% (24h) change. I can also see a pr
+
+4
+00:00:29,628 --> 00:00:35,930
+Step 4: scroll  [OK]\NI can see the Bitcoin price at the top of the page showing BTC $68,757.41. I've been scrolling multiple times already, b
+
+5
+00:00:35,930 --> 00:00:42,733
+Step 5: scroll  [OK]\NI can see the Bitcoin price at the top of the page showing BTC $68,757.41 with a -0.1% (24h) change. I've been scrolling
+
+6
+00:00:42,733 --> 00:00:49,817
+Step 6: scroll  [OK]\NI can see the Bitcoin price at the top of the page showing BTC $68,757.41 with a -0.1% (24h) change. I've been scrolling
+
+7
+00:00:49,817 --> 00:00:55,564
+Step 7: scroll  [OK]\NI can see the Bitcoin price at the top of the page showing BTC $68,757.41 with a -0.1% (24h) change. I've been scrolling
+
+8
+00:00:55,564 --> 00:01:01,646
+Step 8: scroll  [OK]\NI can see the Bitcoin price at the top of the page showing BTC $68,757.41 with a -0.1% (24h) change. I've been scrolling
+
+9
+00:01:01,646 --> 00:01:05,646
+Step 9: done  [OK]\NI can see the Bitcoin price at the top of the page showing BTC $68,757.41 with a -0.1% (24h) change. Looking at the scre

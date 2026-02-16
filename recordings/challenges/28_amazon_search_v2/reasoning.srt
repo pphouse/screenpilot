@@ -1,0 +1,47 @@
+1
+00:00:07,467 --> 00:00:12,197
+Step 1: wait  [OK]\NThe screen appears to be completely black with no visible UI elements, search box, or any other content. This could be a
+
+2
+00:00:12,197 --> 00:00:17,698
+Step 2: click (960, 540) [OK]\NThe screen is completely black with no visible UI elements. This could mean the page hasn't loaded yet, or the applicati
+
+3
+00:00:17,698 --> 00:00:22,671
+Step 3: key  [OK]\NThe screen is completely black, which suggests the page may not have loaded yet or there's an issue with the display. Si
+
+4
+00:00:22,671 --> 00:00:26,995
+Step 4: key  [OK]\NThe screen is completely black, which suggests the page may not have loaded yet or there's an issue with the display. Si
+
+5
+00:00:26,995 --> 00:00:31,141
+Step 5: key  [OK]\NThe screen is completely black, which suggests the page has not loaded or there is an issue with the display. Previous a
+
+6
+00:00:31,141 --> 00:00:34,870
+Step 6: key  [OK]\NThe screen is completely black, which indicates the page has not loaded or there is a display issue. I've tried pressing
+
+7
+00:00:34,870 --> 00:00:40,172
+Step 7: key  [OK]\NThe screen is completely black, which suggests the page has not loaded or there is a display issue. I've tried multiple 
+
+8
+00:00:40,172 --> 00:00:44,046
+Step 8: key  [OK]\NThe screen is completely black, which indicates that either the page hasn't loaded, the browser is not open, or there's 
+
+9
+00:00:44,046 --> 00:00:48,405
+Step 9: key  [OK]\NThe screen is completely black, which indicates that either the page hasn't loaded, the browser is not open, or there's 
+
+10
+00:00:48,405 --> 00:00:52,859
+Step 10: key  [OK]\NThe screen is completely black, which indicates that either the page hasn't loaded, the browser is not open, or there's 
+
+11
+00:00:52,859 --> 00:00:57,135
+Step 11: key  [OK]\NThe screen is completely black, which indicates that either the page hasn't loaded, the browser is not open, or there's 
+
+12
+00:00:57,135 --> 00:01:01,135
+Step 12: key  [OK]\NThe screen is completely black, which indicates that either the page hasn't loaded, the browser is not open, or there's 
