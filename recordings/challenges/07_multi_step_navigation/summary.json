@@ -1,0 +1,11 @@
+{
+  "challenge_id": 7,
+  "name": "multi_step_navigation",
+  "difficulty": "expert",
+  "success": true,
+  "steps": 8,
+  "time": 62.44517278671265,
+  "error": null,
+  "video_path": "recordings/challenges/07_multi_step_navigation/recording.mp4",
+  "video_size_kb": 870.1875
+}

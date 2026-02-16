@@ -1,0 +1,11 @@
+{
+  "challenge_id": 1,
+  "name": "click_issues_tab",
+  "difficulty": "easy",
+  "success": true,
+  "steps": 6,
+  "time": 43.29241132736206,
+  "error": null,
+  "video_path": "recordings/challenges/01_click_issues_tab/recording.mp4",
+  "video_size_kb": 382.9384765625
+}

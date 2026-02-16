@@ -1,0 +1,11 @@
+{
+  "challenge_id": 5,
+  "name": "open_file_in_repo",
+  "difficulty": "hard",
+  "success": true,
+  "steps": 17,
+  "time": 122.78627324104309,
+  "error": null,
+  "video_path": "recordings/challenges/05_open_file_in_repo/recording.mp4",
+  "video_size_kb": 2432.07421875
+}

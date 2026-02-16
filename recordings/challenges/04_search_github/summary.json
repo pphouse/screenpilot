@@ -1,0 +1,11 @@
+{
+  "challenge_id": 4,
+  "name": "search_github",
+  "difficulty": "medium",
+  "success": false,
+  "steps": 15,
+  "time": 80.84972953796387,
+  "error": "Max steps (15) reached without completing the task",
+  "video_path": "recordings/challenges/04_search_github/recording.mp4",
+  "video_size_kb": 1602.1669921875
+}

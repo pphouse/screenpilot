@@ -1,0 +1,11 @@
+{
+  "challenge_id": 6,
+  "name": "wikipedia_search",
+  "difficulty": "hard",
+  "success": true,
+  "steps": 8,
+  "time": 41.321189880371094,
+  "error": null,
+  "video_path": "recordings/challenges/06_wikipedia_search/recording.mp4",
+  "video_size_kb": 1739.6884765625
+}
