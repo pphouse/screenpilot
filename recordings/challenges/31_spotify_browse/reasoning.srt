@@ -1,0 +1,47 @@
+1
+00:00:06,298 --> 00:00:10,968
+Step 1: scroll  [OK]\NI can see the Spotify web player interface. The current view shows 'Trending songs', 'Popular artists', and 'Popular alb
+
+2
+00:00:10,968 --> 00:00:15,473
+Step 2: scroll  [OK]\NI can see the Spotify web player interface. The current view shows 'Popular artists', 'Popular albums and singles', and 
+
+3
+00:00:15,473 --> 00:00:20,391
+Step 3: scroll  [OK]\NI can see the Spotify web player interface. The current view shows 'Popular artists', 'Popular albums and singles', and 
+
+4
+00:00:20,391 --> 00:00:25,384
+Step 4: scroll  [OK]\NI can see the Spotify web player interface. The screen shows 'Popular artists', 'Popular albums and singles', and 'Popul
+
+5
+00:00:25,384 --> 00:00:33,709
+Step 5: scroll  [OK]\NI can see the Spotify web player interface. The screen shows 'Popular artists', 'Popular albums and singles', and 'Popul
+
+6
+00:00:33,709 --> 00:00:39,098
+Step 6: click (571, 735) [OK]\NI can see the Spotify web player interface. The screen shows 'Popular artists', 'Popular albums and singles', and 'Popul
+
+7
+00:00:39,098 --> 00:00:44,951
+Step 7: click (729, 180) [OK]\NI can see the Spotify web player is currently showing an album page for 'Attitude' by Mrs. GREEN APPLE. The screen shows
+
+8
+00:00:44,951 --> 00:00:52,150
+Step 8: scroll  [OK]\NLooking at the current screenshot, I can see the Spotify web player interface. The screen shows 'Trending songs' at the 
+
+9
+00:00:52,150 --> 00:00:57,868
+Step 9: scroll  [OK]\NLooking at the current screenshot, I can see the Spotify web player interface. The screen shows 'Trending songs' at the 
+
+10
+00:00:57,868 --> 00:01:05,216
+Step 10: scroll  [OK]\NLooking at the current screenshot, I can see the Spotify web player interface. The screen shows 'Trending songs' at the 
+
+11
+00:01:05,216 --> 00:01:10,367
+Step 11: click (727, 226) [OK]\NI can see the Spotify web player interface. The screen shows 'Trending songs' at the top, 'Popular artists' in the middl
+
+12
+00:01:10,367 --> 00:01:14,367
+Step 12: scroll  [OK]\NLooking at the current screenshot, I can see the Spotify web player interface. The screen shows 'Trending songs' at the 

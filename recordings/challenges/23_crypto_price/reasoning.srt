@@ -1,0 +1,15 @@
+1
+00:00:07,218 --> 00:00:12,446
+Step 1: scroll  [OK]\NI can see the Bitcoin price page on CoinGecko. The current BTC price is displayed at the top as $68,560.72 with a -0.3% 
+
+2
+00:00:12,446 --> 00:00:17,838
+Step 2: scroll  [OK]\NI can see the Bitcoin price page on CoinGecko. The current BTC price is displayed at the top as $68,560.72 with a -0.3% 
+
+3
+00:00:17,838 --> 00:00:25,810
+Step 3: scroll  [OK]\NI can see the Bitcoin price page on CoinGecko. The current BTC price is displayed at the top as $68,560.72 with a -0.3% 
+
+4
+00:00:25,810 --> 00:00:29,810
+Step 4: fail  [FAIL]\NI can see the current screen is showing Kleki Paint Tool, not a Bitcoin price page. The task history indicates I've been

@@ -1,0 +1,89 @@
+{
+  "challenge_id": 22,
+  "name": "google_maps_search",
+  "difficulty": "hard",
+  "goal": "Type \"Tokyo Tower\" in the search box and press Enter to find it on the map",
+  "setup_url": "https://www.google.com/maps",
+  "success": false,
+  "steps": 8,
+  "time": 39.5,
+  "error": "Looking at the current screenshot, I can see this is a CoinGecko page showing Bitcoin price information, not a Google Maps interface. The task history indicates I was supposed to be searching for 'Tokyo Tower' on Google Maps, but the current screen shows a cryptocurrency website. There is a search box in the top right area of the page (near the 'Search' text and '/' shortcut indicator). However, this search box is for searching cryptocurrencies on CoinGecko, not for searching locations on Google Maps. The task appears to have gone off track - I'm on the wrong website entirely. I should fail this task as I cannot complete a Google Maps search on a CoinGecko cryptocurrency page.",
+  "video_path": "recordings/challenges/22_google_maps_search/recording.mp4",
+  "video_size_kb": 1829,
+  "speed": 3.0,
+  "attempt": 1,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "click",
+      "target": "",
+      "coords": "(247, 183)",
+      "reasoning": "I can see a Google Maps interface in Japanese. There is a search box at the top left with placeholder text 'Google マップを検索する' (Search Google Maps). I need to click on this search box first, then type '",
+      "success": true,
+      "timestamp": 5.9
+    },
+    {
+      "step": 2,
+      "action": "click",
+      "target": "",
+      "coords": "(240, 183)",
+      "reasoning": "I can see a Google Maps interface in Japanese. There is a search box at the top left with placeholder text 'Google マップを検索する' (Search Google Maps). The previous action clicked at coordinates (247, 183)",
+      "success": true,
+      "timestamp": 12.2
+    },
+    {
+      "step": 3,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Google Maps interface with a search box at the top left that currently contains 'Tokyo Tower'. There is a dropdown showing search suggestions including 'Tokyo Tower', 'THE TOKYO TOWERS',",
+      "success": true,
+      "timestamp": 17.0
+    },
+    {
+      "step": 4,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Google Maps interface with a search box at the top left that currently shows 'Tokyo Tower'. The search box is visible and appears to be active. Looking at the previous task history, I've",
+      "success": true,
+      "timestamp": 20.9
+    },
+    {
+      "step": 5,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Google Maps interface with a search box at the top left. The search box currently shows '東京タワー' (Tokyo Tower in Japanese). Looking at the previous task history, I've already clicked on t",
+      "success": true,
+      "timestamp": 25.1
+    },
+    {
+      "step": 6,
+      "action": "type",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Google Maps interface with a search box at the top left. The search box appears to be active (there's a blue highlight around it). I need to type 'Tokyo Tower' into this search box. Look",
+      "success": true,
+      "timestamp": 29.9
+    },
+    {
+      "step": 7,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Google Maps interface with a search box at the top. The URL dropdown is currently open showing suggestions. I need to press Enter to search for 'Tokyo Tower' that was just typed in the s",
+      "success": true,
+      "timestamp": 33.8
+    },
+    {
+      "step": 8,
+      "action": "fail",
+      "target": "Cannot complete the task - currently on CoinGecko cryptocurrency website instead of Google Maps. The search functionality here is for cryptocurrencies, not for map locations like Tokyo Tower.",
+      "coords": "",
+      "reasoning": "Looking at the current screenshot, I can see this is a CoinGecko page showing Bitcoin price information, not a Google Maps interface. The task history indicates I was supposed to be searching for 'Tok",
+      "success": false,
+      "timestamp": 40.9
+    }
+  ]
+}

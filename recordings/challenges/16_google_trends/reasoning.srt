@@ -1,59 +1,15 @@
 1
-00:00:11,202 --> 00:00:16,755
-Step 1: click (414, 336) [OK]\NI can see the Google Trends page is open. I need to search for 'ChatGPT' to see its trend. Looking at the page, I can se
+00:00:09,578 --> 00:00:14,341
+Step 1: click (375, 180) [OK]\NI can see the Google Trends page is open. I need to search for 'ChatGPT' to see its trend. Looking at the page, I can se
 
 2
-00:00:16,755 --> 00:00:21,558
-Step 2: click (591, 336) [OK]\NI can see the Google Trends page is open. There is a search bar at the top of the trending topics list with placeholder 
+00:00:14,341 --> 00:00:18,117
+Step 2: type  [OK]\NI can see the Google Trends Explore page is loaded. There is a search input field with placeholder text 'Add a search te
 
 3
-00:00:21,558 --> 00:00:27,319
-Step 3: click (591, 336) [OK]\NI can see the Google Trends page is open. Looking at the screenshot, there is a search bar near the top of the page with
+00:00:18,117 --> 00:00:23,809
+Step 3: key  [OK]\NI can see the Google Trends Explore page with a search dropdown showing 'ChatGPT' suggestions. The text 'ChatGPT' has be
 
 4
-00:00:27,319 --> 00:00:35,711
-Step 4: click (591, 336) [OK]\NI can see the Google Trends page is open. Looking at the screenshot, I notice there is a search bar near the top of the 
-
-5
-00:00:35,711 --> 00:00:42,213
-Step 5: find_and_click (672, 349) [OK]\NI can see the Google Trends page is open. I notice there is a search bar at the top of the trending topics list with pla
-
-6
-00:00:42,213 --> 00:00:46,750
-Step 6: click (591, 336) [OK]\NI can see the Google Trends page is open. There is a search input field with placeholder text 'Search trends' near the t
-
-7
-00:00:46,750 --> 00:00:51,845
-Step 7: click (591, 336) [OK]\NI can see the Google Trends page is open. There is a search input field with placeholder text 'Search trends' near the t
-
-8
-00:00:51,845 --> 00:00:56,865
-Step 8: click (591, 336) [OK]\NI can see the Google Trends page is open. I notice there is a search input field with placeholder text 'Search trends' n
-
-9
-00:00:56,865 --> 00:01:02,082
-Step 9: click (591, 336) [OK]\NI can see the Google Trends page is open. I notice there is a search input field with placeholder text 'Search trends' n
-
-10
-00:01:02,082 --> 00:01:06,903
-Step 10: click (591, 336) [OK]\NI can see the Google Trends page is open. I notice there is a search input field with placeholder text 'Search trends' n
-
-11
-00:01:06,903 --> 00:01:11,188
-Step 11: click (591, 336) [OK]\NI can see the Google Trends page is open. I notice there is a search input field with placeholder text 'Search trends' n
-
-12
-00:01:11,188 --> 00:01:16,791
-Step 12: click (591, 336) [OK]\NI can see the Google Trends page is open. There is a search input field with placeholder text 'Search trends' near the t
-
-13
-00:01:16,791 --> 00:01:21,930
-Step 13: click (591, 336) [OK]\NI can see the Google Trends page is open. I notice there is a search input field near the top of the page with placehold
-
-14
-00:01:21,930 --> 00:01:27,555
-Step 14: click (591, 336) [OK]\NI can see the Google Trends page is open. I notice there is a search input field near the top of the page with placehold
-
-15
-00:01:27,555 --> 00:01:31,555
-Step 15: click (591, 336) [OK]\NI can see the Google Trends page is open with a search input field visible at the top of the trending list. The search b
+00:00:23,809 --> 00:00:27,809
+Step 4: done  [OK]\NLooking at the screenshot, I can see that the Google Trends page is already showing results for 'ChatGPT'. The search te

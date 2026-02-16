@@ -1,0 +1,59 @@
+1
+00:00:07,216 --> 00:00:12,764
+Step 1: click (697, 870) [OK]\NI need to make the first chess move by moving the e2 pawn to e4. Looking at the chess board, I can see the white pieces 
+
+2
+00:00:12,764 --> 00:00:17,972
+Step 2: click (700, 870) [OK]\NLooking at the chess board, I can see the white pieces at the bottom (row 1 and 2) and black pieces at the top (row 7 an
+
+3
+00:00:17,972 --> 00:00:25,166
+Step 3: click (700, 870) [OK]\NLooking at the current chess board, I can see the white pieces at the bottom (rows 1 and 2). The e2 pawn is the white pa
+
+4
+00:00:25,166 --> 00:00:31,986
+Step 4: click (697, 870) [OK]\NI can see a chess board on the screen. The white pieces are at the bottom (rows 1 and 2), and I need to move the e2 pawn
+
+5
+00:00:31,986 --> 00:00:40,038
+Step 5: click (697, 870) [OK]\NI can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7
+
+6
+00:00:40,038 --> 00:00:46,130
+Step 6: click (697, 870) [OK]\NI can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7
+
+7
+00:00:46,130 --> 00:00:58,509
+Step 7: click (697, 870) [OK]\NI can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7
+
+8
+00:00:58,509 --> 00:01:10,096
+Step 8: click (697, 870) [OK]\NI can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7
+
+9
+00:01:10,096 --> 00:01:20,812
+Step 9: click (697, 870) [OK]\NI can see a chess board on the screen. The white pieces are at the bottom (rows 1 and 2). I need to click on the e2 pawn
+
+10
+00:01:20,812 --> 00:01:39,146
+Step 10: click (697, 870) [OK]\NI can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7
+
+11
+00:01:39,146 --> 00:01:45,138
+Step 11: click (697, 870) [OK]\NI can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7
+
+12
+00:01:45,138 --> 00:01:53,315
+Step 12: click (700, 870) [OK]\NI can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7
+
+13
+00:01:53,315 --> 00:02:08,495
+Step 13: click (697, 870) [OK]\NI can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7
+
+14
+00:02:08,495 --> 00:02:14,758
+Step 14: find_and_click  [FAIL]\NI can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7
+
+15
+00:02:14,758 --> 00:02:18,758
+Step 15: click (700, 870) [OK]\NLooking at the chess board, I can see the white pieces are positioned at rows 1 and 2 at the bottom. The e2 pawn is the 

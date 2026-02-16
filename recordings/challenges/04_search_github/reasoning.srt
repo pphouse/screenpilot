@@ -1,0 +1,19 @@
+1
+00:00:06,828 --> 00:00:11,686
+Step 1: click (1555, 184) [OK]\NI can see the GitHub homepage with a search bar in the top right corner. The search bar has placeholder text 'Search or 
+
+2
+00:00:11,686 --> 00:00:17,121
+Step 2: type  [OK]\NI can see the GitHub homepage with a search bar at the top. The search bar is currently focused (there's a dropdown menu
+
+3
+00:00:17,121 --> 00:00:23,551
+Step 3: key  [OK]\NI can see the GitHub homepage with a search bar at the top. The search bar currently contains 'screenpilot' text. I can 
+
+4
+00:00:23,551 --> 00:00:28,081
+Step 4: key  [OK]\NLooking at the screenshot, I can see the GitHub homepage with a search bar in the top navigation area. The search bar ap
+
+5
+00:00:28,081 --> 00:00:32,081
+Step 5: done  [OK]\NLooking at the screenshot, I can see that the search has already been executed successfully. The URL shows 'github.com/s

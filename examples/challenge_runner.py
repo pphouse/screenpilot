@@ -228,17 +228,41 @@ def postprocess_video(
 # ---------------------------------------------------------------------------
 
 def navigate_chrome(url: str) -> None:
+    """Navigate Chrome to a URL, closing extra tabs first to avoid tab pile-up."""
+    # Activate Chrome window
     subprocess.run(
         ["xdotool", "search", "--onlyvisible", "--name", "Chrome", "windowactivate"],
         capture_output=True, timeout=5,
     )
     time.sleep(0.3)
+
+    # Close extra tabs (Ctrl+W) until only one remains, then navigate
+    # This prevents tab pile-up from previous challenges
+    for _ in range(10):
+        subprocess.run(["xdotool", "key", "ctrl+w"], capture_output=True, timeout=3)
+        time.sleep(0.3)
+        # Check if Chrome is still alive (it closes if last tab is closed)
+        result = subprocess.run(
+            ["xdotool", "search", "--onlyvisible", "--name", "Chrome"],
+            capture_output=True, timeout=3, text=True,
+        )
+        if not result.stdout.strip():
+            # Chrome closed - relaunch it
+            subprocess.Popen(
+                ["google-chrome", "--no-sandbox", "--disable-gpu",
+                 "--disable-dev-shm-usage", "--window-size=1920,1080",
+                 "--no-first-run", "--disable-default-apps", url],
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+            )
+            time.sleep(5)
+            return
+    # If we still have tabs, navigate in the current one
     subprocess.run(["xdotool", "key", "ctrl+l"], capture_output=True, timeout=5)
     time.sleep(0.3)
     subprocess.run(["xdotool", "type", "--clearmodifiers", url], capture_output=True, timeout=10)
     time.sleep(0.2)
     subprocess.run(["xdotool", "key", "Return"], capture_output=True, timeout=5)
-    time.sleep(3)
+    time.sleep(4)
 
 
 # ---------------------------------------------------------------------------

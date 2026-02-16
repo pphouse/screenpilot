@@ -1,0 +1,59 @@
+1
+00:00:05,928 --> 00:00:10,045
+Step 1: click (915, 175) [OK]\NI can see the YouTube homepage with a search box at the top center of the page. The search box is located in the header 
+
+2
+00:00:10,045 --> 00:00:14,772
+Step 2: click (897, 175) [OK]\NI can see the YouTube homepage with a search box at the top center. The search box is visible with placeholder text 'Sea
+
+3
+00:00:14,772 --> 00:00:19,326
+Step 3: click (895, 175) [OK]\NLooking at the screenshot, I can see the YouTube homepage with a search box at the top center of the page. The search bo
+
+4
+00:00:19,326 --> 00:00:24,883
+Step 4: click (895, 175) [OK]\NI can see the YouTube homepage with a search box at the top center of the page. The search box is located at approximate
+
+5
+00:00:24,883 --> 00:00:30,032
+Step 5: click (895, 175) [OK]\NI can see the YouTube homepage with a search box at the top center. The previous attempts have been clicking at coordina
+
+6
+00:00:30,032 --> 00:00:39,577
+Step 6: click (897, 175) [OK]\NI can see the YouTube homepage with a search box at the top center of the page. The previous attempts to click at coordi
+
+7
+00:00:39,577 --> 00:00:45,225
+Step 7: find_and_click (1189, 190) [OK]\NI can see the YouTube homepage with a search box at the top center of the page. The previous attempts have been clicking
+
+8
+00:00:45,225 --> 00:00:49,590
+Step 8: type  [OK]\NLooking at the screenshot, I can see the YouTube homepage with a search box at the top center. The previous actions show
+
+9
+00:00:49,590 --> 00:00:55,867
+Step 9: key  [OK]\NLooking at the screenshot, I can see the YouTube homepage with a search box at the top center. The task history shows th
+
+10
+00:00:55,867 --> 00:01:01,213
+Step 10: click (1212, 175) [OK]\NLooking at the screenshot, I can see the YouTube homepage. The task history shows that I've already typed 'screenpilot d
+
+11
+00:01:01,213 --> 00:01:06,569
+Step 11: click (915, 175) [OK]\NLooking at the screenshot, I can see the YouTube homepage with a search box at the top center. The task history shows mu
+
+12
+00:01:06,569 --> 00:01:14,760
+Step 12: click (897, 175) [OK]\NLooking at the screenshot, I can see the YouTube homepage with a search box at the top center of the page. The task hist
+
+13
+00:01:14,760 --> 00:01:21,998
+Step 13: find_and_click (1176, 189) [OK]\NLooking at the screenshot, I can see the YouTube homepage with a search box at the top center. The task history shows mu
+
+14
+00:01:21,998 --> 00:01:26,513
+Step 14: click (897, 175) [OK]\NLooking at the screenshot, I can see the YouTube homepage with a search box at the top center. The search box appears to
+
+15
+00:01:26,513 --> 00:01:30,513
+Step 15: click (895, 175) [OK]\NI can see the YouTube homepage with a search box at the top center. The search box has placeholder text 'Search' and is 

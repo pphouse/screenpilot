@@ -2,10 +2,151 @@
   "challenge_id": 10,
   "name": "youtube_search",
   "difficulty": "hard",
+  "goal": "Click the search box at the top, type \"screenpilot demo\", and press Enter to search",
+  "setup_url": "https://www.youtube.com",
   "success": false,
   "steps": 15,
-  "time": 88.57929992675781,
+  "time": 85.1,
   "error": "Max steps (15) reached without completing the task",
   "video_path": "recordings/challenges/10_youtube_search/recording.mp4",
-  "video_size_kb": 350.9453125
+  "video_size_kb": 651,
+  "speed": 3.0,
+  "attempt": 1,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "click",
+      "target": "",
+      "coords": "(915, 175)",
+      "reasoning": "I can see the YouTube homepage with a search box at the top center of the page. The search box is located in the header area, to the right of the YouTube logo. I need to click on this search box first",
+      "success": true,
+      "timestamp": 5.9
+    },
+    {
+      "step": 2,
+      "action": "click",
+      "target": "",
+      "coords": "(897, 175)",
+      "reasoning": "I can see the YouTube homepage with a search box at the top center. The search box is visible with placeholder text 'Search'. I need to click on it to focus it, then type 'screenpilot demo' and press ",
+      "success": true,
+      "timestamp": 10.0
+    },
+    {
+      "step": 3,
+      "action": "click",
+      "target": "",
+      "coords": "(895, 175)",
+      "reasoning": "Looking at the screenshot, I can see the YouTube homepage with a search box at the top center of the page. The search box is clearly visible with placeholder text 'Search'. The previous actions attemp",
+      "success": true,
+      "timestamp": 14.8
+    },
+    {
+      "step": 4,
+      "action": "click",
+      "target": "",
+      "coords": "(895, 175)",
+      "reasoning": "I can see the YouTube homepage with a search box at the top center of the page. The search box is located at approximately y=117 based on the visible UI. Previous attempts clicked at y=175, which is t",
+      "success": true,
+      "timestamp": 19.3
+    },
+    {
+      "step": 5,
+      "action": "click",
+      "target": "",
+      "coords": "(895, 175)",
+      "reasoning": "I can see the YouTube homepage with a search box at the top center. The previous attempts have been clicking at coordinates around (895-915, 175), but this hasn't worked. Looking at the screenshot mor",
+      "success": true,
+      "timestamp": 24.9
+    },
+    {
+      "step": 6,
+      "action": "click",
+      "target": "",
+      "coords": "(897, 175)",
+      "reasoning": "I can see the YouTube homepage with a search box at the top center of the page. The previous attempts to click at coordinates (895, 175) have failed repeatedly. I need to try a different approach. Loo",
+      "success": true,
+      "timestamp": 30.0
+    },
+    {
+      "step": 7,
+      "action": "find_and_click",
+      "target": "search box input field in the top navigation bar",
+      "coords": "(1189, 190)",
+      "reasoning": "I can see the YouTube homepage with a search box at the top center of the page. The previous attempts have been clicking at coordinates around (895-915, 175), but this appears to be clicking in the wr",
+      "success": true,
+      "timestamp": 39.6
+    },
+    {
+      "step": 8,
+      "action": "type",
+      "target": "",
+      "coords": "",
+      "reasoning": "Looking at the screenshot, I can see the YouTube homepage with a search box at the top center. The previous actions show multiple failed attempts to click at coordinates around (895-915, 175), and the",
+      "success": true,
+      "timestamp": 45.2
+    },
+    {
+      "step": 9,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "Looking at the screenshot, I can see the YouTube homepage with a search box at the top center. The task history shows that I've already typed 'screenpilot demo' into the search box (Step 8). Now I nee",
+      "success": true,
+      "timestamp": 49.6
+    },
+    {
+      "step": 10,
+      "action": "click",
+      "target": "",
+      "coords": "(1212, 175)",
+      "reasoning": "Looking at the screenshot, I can see the YouTube homepage. The task history shows that I've already typed 'screenpilot demo' in the search box and pressed Enter (Step 9: ActionType.KEY). However, the ",
+      "success": true,
+      "timestamp": 55.9
+    },
+    {
+      "step": 11,
+      "action": "click",
+      "target": "",
+      "coords": "(915, 175)",
+      "reasoning": "Looking at the screenshot, I can see the YouTube homepage with a search box at the top center. The task history shows multiple attempts to click on the search box and type 'screenpilot demo', followed",
+      "success": true,
+      "timestamp": 61.2
+    },
+    {
+      "step": 12,
+      "action": "click",
+      "target": "",
+      "coords": "(897, 175)",
+      "reasoning": "Looking at the screenshot, I can see the YouTube homepage with a search box at the top center of the page. The task history shows multiple failed attempts to click at various coordinates around (895-1",
+      "success": true,
+      "timestamp": 66.6
+    },
+    {
+      "step": 13,
+      "action": "find_and_click",
+      "target": "search input box with placeholder text 'Search' in the top navigation bar",
+      "coords": "(1176, 189)",
+      "reasoning": "Looking at the screenshot, I can see the YouTube homepage with a search box at the top center. The task history shows multiple failed click attempts at various coordinates around (895-1212, 175). The ",
+      "success": true,
+      "timestamp": 74.8
+    },
+    {
+      "step": 14,
+      "action": "click",
+      "target": "",
+      "coords": "(897, 175)",
+      "reasoning": "Looking at the screenshot, I can see the YouTube homepage with a search box at the top center. The search box appears to be at coordinates around (598, 117) based on the visible 'Search' placeholder t",
+      "success": true,
+      "timestamp": 82.0
+    },
+    {
+      "step": 15,
+      "action": "click",
+      "target": "",
+      "coords": "(895, 175)",
+      "reasoning": "I can see the YouTube homepage with a search box at the top center. The search box has placeholder text 'Search' and is located in the header area. Previous attempts to click at coordinates (897, 175)",
+      "success": true,
+      "timestamp": 86.5
+    }
+  ]
 }

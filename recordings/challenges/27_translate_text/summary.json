@@ -1,0 +1,71 @@
+{
+  "challenge_id": 27,
+  "name": "translate_text",
+  "difficulty": "medium",
+  "goal": "Type \"Hello, I am an AI that controls computers by looking at the screen\" in the source text box, then change the target language to Japanese",
+  "setup_url": "https://translate.google.com/",
+  "success": true,
+  "steps": 6,
+  "time": 37.7,
+  "error": null,
+  "video_path": "recordings/challenges/27_translate_text/recording.mp4",
+  "video_size_kb": 443,
+  "speed": 3.0,
+  "attempt": 1,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "click",
+      "target": "",
+      "coords": "(640, 390)",
+      "reasoning": "I can see the Google Translate interface. There is a text input box on the left side where I need to type the text. The input box appears to be the large white area below the language selection button",
+      "success": true,
+      "timestamp": 6.5
+    },
+    {
+      "step": 2,
+      "action": "type",
+      "target": "",
+      "coords": "",
+      "reasoning": "Looking at the screenshot, I can see the Google Translate interface. The previous action was a click at coordinates (640, 390), which appears to be in the middle of the screen. Now I need to type the ",
+      "success": true,
+      "timestamp": 13.6
+    },
+    {
+      "step": 3,
+      "action": "click",
+      "target": "",
+      "coords": "(1024, 303)",
+      "reasoning": "I can see the Google Translate interface with text already typed in the source box: 'Hello, I am an AI that controls computers by looking at the screen'. The text appears to be complete. The current t",
+      "success": true,
+      "timestamp": 17.9
+    },
+    {
+      "step": 4,
+      "action": "find_and_click",
+      "target": "Japanese language option in the dropdown menu",
+      "coords": "(895, 937)",
+      "reasoning": "I can see the Google Translate interface with a language selection dropdown open. The task requires me to: 1) Type the full text 'Hello, I am an AI that controls computers by looking at the screen' in",
+      "success": true,
+      "timestamp": 27.9
+    },
+    {
+      "step": 5,
+      "action": "find_and_click",
+      "target": "Japanese language option in the dropdown menu",
+      "coords": "(895, 936)",
+      "reasoning": "I can see the Google Translate interface with a language selection dropdown menu open. The task requires me to change the target language to Japanese. Looking at the dropdown menu, I can see 'Japanese",
+      "success": true,
+      "timestamp": 34.7
+    },
+    {
+      "step": 6,
+      "action": "done",
+      "target": "",
+      "coords": "",
+      "reasoning": "Looking at the screenshot, I can see that the text 'Hello, I am an AI that controls computers by looking at the screen' is already typed in the source text box on the left side. The target language on",
+      "success": true,
+      "timestamp": 39.2
+    }
+  ]
+}

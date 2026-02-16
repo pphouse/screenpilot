@@ -1,0 +1,152 @@
+{
+  "challenge_id": 26,
+  "name": "chess_first_move",
+  "difficulty": "expert",
+  "goal": "Make the first chess move by clicking on the e2 pawn (white pawn in front of the king), then clicking e4",
+  "setup_url": "https://www.chess.com/play/computer",
+  "success": false,
+  "steps": 15,
+  "time": 133.4,
+  "error": "Max steps (15) reached without completing the task",
+  "video_path": "recordings/challenges/26_chess_first_move/recording.mp4",
+  "video_size_kb": 885,
+  "speed": 3.0,
+  "attempt": 1,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "click",
+      "target": "",
+      "coords": "(697, 870)",
+      "reasoning": "I need to make the first chess move by moving the e2 pawn to e4. Looking at the chess board, I can see the white pieces at the bottom (row 1 and 2) and black pieces at the top (row 7 and 8). The e2 pa",
+      "success": true,
+      "timestamp": 7.2
+    },
+    {
+      "step": 2,
+      "action": "click",
+      "target": "",
+      "coords": "(700, 870)",
+      "reasoning": "Looking at the chess board, I can see the white pieces at the bottom (row 1 and 2) and black pieces at the top (row 7 and 8). The previous action was to click at coordinates (697, 870), which appears ",
+      "success": true,
+      "timestamp": 12.8
+    },
+    {
+      "step": 3,
+      "action": "click",
+      "target": "",
+      "coords": "(700, 870)",
+      "reasoning": "Looking at the current chess board, I can see the white pieces at the bottom (rows 1 and 2). The e2 pawn is the white pawn in the 5th column from the left in row 2. I need to click on this pawn first ",
+      "success": true,
+      "timestamp": 18.0
+    },
+    {
+      "step": 4,
+      "action": "click",
+      "target": "",
+      "coords": "(697, 870)",
+      "reasoning": "I can see a chess board on the screen. The white pieces are at the bottom (rows 1 and 2), and I need to move the e2 pawn to e4. Looking at the board, row 2 contains the white pawns, and the e2 pawn is",
+      "success": true,
+      "timestamp": 25.2
+    },
+    {
+      "step": 5,
+      "action": "click",
+      "target": "",
+      "coords": "(697, 870)",
+      "reasoning": "I can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7 and 8). The task history shows I've been clicking at coordinates around (697-70",
+      "success": true,
+      "timestamp": 32.0
+    },
+    {
+      "step": 6,
+      "action": "click",
+      "target": "",
+      "coords": "(697, 870)",
+      "reasoning": "I can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7 and 8). The task history shows I've been clicking at coordinates around (697, 8",
+      "success": true,
+      "timestamp": 40.0
+    },
+    {
+      "step": 7,
+      "action": "click",
+      "target": "",
+      "coords": "(697, 870)",
+      "reasoning": "I can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7 and 8). I need to move the e2 pawn to e4. Looking at the board, the e-file is t",
+      "success": true,
+      "timestamp": 46.1
+    },
+    {
+      "step": 8,
+      "action": "click",
+      "target": "",
+      "coords": "(697, 870)",
+      "reasoning": "I can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7 and 8). I need to move the e2 pawn to e4. Looking at the board, the e-file is t",
+      "success": true,
+      "timestamp": 58.5
+    },
+    {
+      "step": 9,
+      "action": "click",
+      "target": "",
+      "coords": "(697, 870)",
+      "reasoning": "I can see a chess board on the screen. The white pieces are at the bottom (rows 1 and 2). I need to click on the e2 pawn (the pawn in front of the white king) and then click on e4. Looking at the boar",
+      "success": true,
+      "timestamp": 70.1
+    },
+    {
+      "step": 10,
+      "action": "click",
+      "target": "",
+      "coords": "(697, 870)",
+      "reasoning": "I can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7 and 8). I need to move the e2 pawn to e4. Looking at the board, the e2 pawn is ",
+      "success": true,
+      "timestamp": 80.8
+    },
+    {
+      "step": 11,
+      "action": "click",
+      "target": "",
+      "coords": "(697, 870)",
+      "reasoning": "I can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7 and 8). I need to move the e2 pawn to e4. Looking at the board, the e-file is t",
+      "success": true,
+      "timestamp": 99.1
+    },
+    {
+      "step": 12,
+      "action": "click",
+      "target": "",
+      "coords": "(700, 870)",
+      "reasoning": "I can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7 and 8). I need to make the first move by clicking on the e2 pawn (the pawn in f",
+      "success": true,
+      "timestamp": 105.1
+    },
+    {
+      "step": 13,
+      "action": "click",
+      "target": "",
+      "coords": "(697, 870)",
+      "reasoning": "I can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7 and 8). The task is to make the first chess move by clicking on the e2 pawn (th",
+      "success": true,
+      "timestamp": 113.3
+    },
+    {
+      "step": 14,
+      "action": "find_and_click",
+      "target": "white pawn on e2 square, which is the pawn directly in front of the white king on the second row, fifth square from the left",
+      "coords": "",
+      "reasoning": "I can see a chess board on the screen with white pieces at the bottom (rows 1 and 2) and black pieces at the top (rows 7 and 8). The task history shows I've been clicking at coordinates around (697, 8",
+      "success": false,
+      "timestamp": 128.5
+    },
+    {
+      "step": 15,
+      "action": "click",
+      "target": "",
+      "coords": "(700, 870)",
+      "reasoning": "Looking at the chess board, I can see the white pieces are positioned at rows 1 and 2 at the bottom. The e2 pawn is the pawn in front of the white king (the king is on e1). I need to click on the e2 p",
+      "success": true,
+      "timestamp": 134.8
+    }
+  ]
+}

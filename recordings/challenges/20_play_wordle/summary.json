@@ -1,0 +1,71 @@
+{
+  "challenge_id": 20,
+  "name": "play_wordle",
+  "difficulty": "expert",
+  "goal": "This is the NYT Wordle game. Type \"CRANE\" and press Enter to make the first guess, then observe the result",
+  "setup_url": "https://www.nytimes.com/games/wordle/index.html",
+  "success": true,
+  "steps": 6,
+  "time": 29.9,
+  "error": null,
+  "video_path": "recordings/challenges/20_play_wordle/recording.mp4",
+  "video_size_kb": 515,
+  "speed": 3.0,
+  "attempt": 1,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "click",
+      "target": "",
+      "coords": "(1128, 724)",
+      "reasoning": "I can see the Wordle game page from the New York Times. The page shows the Wordle logo, a description 'Get 6 chances to guess a 5-letter word', and three buttons: 'Subscribe', 'Log in', and 'Play'. To",
+      "success": true,
+      "timestamp": 6.4
+    },
+    {
+      "step": 2,
+      "action": "click",
+      "target": "",
+      "coords": "(828, 568)",
+      "reasoning": "I can see the Wordle game interface with a 6x5 grid of empty tiles and a keyboard at the bottom. The keyboard shows letters Q, W, E, R, T, Y, U, I, O, P on the top row and A, S, D, F, G, H, J, K, L on",
+      "success": true,
+      "timestamp": 12.2
+    },
+    {
+      "step": 3,
+      "action": "click",
+      "target": "",
+      "coords": "(1197, 322)",
+      "reasoning": "I can see the Wordle game interface with a 'How To Play' modal dialog currently open. The modal is blocking the game board. I need to close this modal first by clicking the X button in the top-right c",
+      "success": true,
+      "timestamp": 16.5
+    },
+    {
+      "step": 4,
+      "action": "type",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Wordle game interface with an empty grid and a keyboard at the bottom. The previous actions were all clicks, but I need to type the word 'CRANE' to make the first guess. I should start t",
+      "success": true,
+      "timestamp": 20.4
+    },
+    {
+      "step": 5,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Wordle game interface with the letters 'CRANE' displayed in the top row of the grid. The keyboard is visible at the bottom of the screen. I have successfully typed 'CRANE' as instructed.",
+      "success": true,
+      "timestamp": 24.6
+    },
+    {
+      "step": 6,
+      "action": "done",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Wordle game interface with 'CANE' visible in the top row (C, A, N, E are shown in separate tiles). Looking at the task history, I typed 'CRANE' and pressed a key (likely Enter). The curr",
+      "success": true,
+      "timestamp": 31.4
+    }
+  ]
+}

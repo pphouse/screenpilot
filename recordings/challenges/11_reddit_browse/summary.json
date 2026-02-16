@@ -2,10 +2,25 @@
   "challenge_id": 11,
   "name": "reddit_browse",
   "difficulty": "medium",
+  "goal": "Scroll down to see more posts, then click on any post title to open it",
+  "setup_url": "https://old.reddit.com/r/programming",
   "success": false,
   "steps": 1,
-  "time": 5.887006521224976,
-  "error": "I can see a Reddit error page that says 'whoa there, pardner!' indicating that the request has been blocked due to a network policy. This is not a normal Reddit page with posts to scroll through. The page is showing an error message, not the programming subreddit content. Since there are no posts visible to scroll through or click on, I cannot complete the task as requested. The page appears to be blocked and doesn't show the expected content.",
+  "time": 7.3,
+  "error": "I can see a Reddit blocked page with the message 'whoa there, pardner!' and text explaining that the request has been blocked due to a network policy. This is not the normal Reddit browsing page with posts. The page is showing an error/block message rather than actual Reddit content. Since I cannot see any posts to scroll through or click on, I need to first try to get past this block page. However, this appears to be a network-level block that cannot be bypassed through normal user actions. The task asks me to scroll down to see more posts and click on a post title, but there are no posts visible on this blocked page. I should fail this task as it's impossible to complete given the current blocked state.",
   "video_path": "recordings/challenges/11_reddit_browse/recording.mp4",
-  "video_size_kb": 111.93359375
+  "video_size_kb": 113,
+  "speed": 3.0,
+  "attempt": 1,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "fail",
+      "target": "The page is blocked by a network policy and shows no Reddit posts to interact with. Cannot complete the task of scrolling and clicking on posts.",
+      "coords": "",
+      "reasoning": "I can see a Reddit blocked page with the message 'whoa there, pardner!' and text explaining that the request has been blocked due to a network policy. This is not the normal Reddit browsing page with ",
+      "success": false,
+      "timestamp": 8.8
+    }
+  ]
 }

@@ -1,0 +1,98 @@
+{
+  "challenge_id": 22,
+  "name": "google_maps_search (attempt 2)",
+  "difficulty": "hard",
+  "goal": "Type \"Tokyo Tower\" in the search box and press Enter to find it on the map",
+  "setup_url": "https://www.google.com/maps",
+  "success": true,
+  "steps": 9,
+  "time": 53.2,
+  "error": null,
+  "video_path": "recordings/challenges/22_google_maps_search_v2/recording.mp4",
+  "video_size_kb": 1422,
+  "speed": 3.0,
+  "attempt": 2,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "click",
+      "target": "",
+      "coords": "(240, 183)",
+      "reasoning": "I can see a Google Maps interface in Japanese. There is a search box at the top left of the screen with placeholder text 'Google マップを検索する' (Search Google Maps). I need to click on this search box firs",
+      "success": true,
+      "timestamp": 6.0
+    },
+    {
+      "step": 2,
+      "action": "click",
+      "target": "",
+      "coords": "(240, 183)",
+      "reasoning": "I can see a Google Maps interface in Japanese. There is a search box at the top left with placeholder text 'Google マップを検索する' (Search Google Maps). The previous action clicked at coordinates (240, 183)",
+      "success": true,
+      "timestamp": 11.3
+    },
+    {
+      "step": 3,
+      "action": "click",
+      "target": "",
+      "coords": "(240, 183)",
+      "reasoning": "I can see a Google Maps interface with a search box at the top. The search box has placeholder text 'Google マップを検索する' (Search Google Maps). I've been clicking at coordinates (240, 183) repeatedly with",
+      "success": true,
+      "timestamp": 17.1
+    },
+    {
+      "step": 4,
+      "action": "click",
+      "target": "",
+      "coords": "(240, 183)",
+      "reasoning": "I can see a Google Maps interface with a search box at the top left. The search box contains placeholder text 'Google マップを検索する' (Search Google Maps). I've been clicking at coordinates (240, 183) repea",
+      "success": true,
+      "timestamp": 22.8
+    },
+    {
+      "step": 5,
+      "action": "find_and_click",
+      "target": "search box with placeholder text 'Google マップを検索する' at the top of the page",
+      "coords": "(387, 199)",
+      "reasoning": "I can see a Google Maps interface with a search box at the top. The search box has placeholder text 'Google マップを検索する' (Search Google Maps). I've been clicking at coordinates (240, 183) repeatedly with",
+      "success": true,
+      "timestamp": 31.7
+    },
+    {
+      "step": 6,
+      "action": "find_and_click",
+      "target": "The search input box with placeholder text 'Google マップを検索する' at the top left of the page",
+      "coords": "(373, 201)",
+      "reasoning": "I can see the Google Maps interface with a search box at the top that says 'Google マップを検索する'. Previous attempts to click at coordinates (240, 183) have failed repeatedly. I need to try a different app",
+      "success": true,
+      "timestamp": 39.8
+    },
+    {
+      "step": 7,
+      "action": "type",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Google Maps interface with a search box at the top left that says 'Google マップを検索する'. The search box appears to be active/focused. I need to type 'Tokyo Tower' into this search box and th",
+      "success": true,
+      "timestamp": 43.9
+    },
+    {
+      "step": 8,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Google Maps interface with a search box at the top left. The search box currently shows 'Tokyo Tower' and there is a dropdown list showing several Tokyo Tower related locations. The firs",
+      "success": true,
+      "timestamp": 49.0
+    },
+    {
+      "step": 9,
+      "action": "done",
+      "target": "",
+      "coords": "",
+      "reasoning": "Looking at the screenshot, I can see that 'Tokyo Tower' has already been typed in the search box at the top left of the Google Maps interface. The search box shows 'Tokyo Tower' as the current text. A",
+      "success": true,
+      "timestamp": 54.6
+    }
+  ]
+}

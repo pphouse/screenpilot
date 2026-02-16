@@ -1,0 +1,23 @@
+1
+00:00:06,352 --> 00:00:12,246
+Step 1: click (1128, 724) [OK]\NI can see the Wordle game page from the New York Times. The page shows the Wordle logo, a description 'Get 6 chances to 
+
+2
+00:00:12,246 --> 00:00:16,541
+Step 2: click (828, 568) [OK]\NI can see the Wordle game interface with a 6x5 grid of empty tiles and a keyboard at the bottom. The keyboard shows lett
+
+3
+00:00:16,541 --> 00:00:20,387
+Step 3: click (1197, 322) [OK]\NI can see the Wordle game interface with a 'How To Play' modal dialog currently open. The modal is blocking the game boa
+
+4
+00:00:20,387 --> 00:00:24,635
+Step 4: type  [OK]\NI can see the Wordle game interface with an empty grid and a keyboard at the bottom. The previous actions were all click
+
+5
+00:00:24,635 --> 00:00:31,357
+Step 5: key  [OK]\NI can see the Wordle game interface with the letters 'CRANE' displayed in the top row of the grid. The keyboard is visib
+
+6
+00:00:31,357 --> 00:00:35,357
+Step 6: done  [OK]\NI can see the Wordle game interface with 'CANE' visible in the top row (C, A, N, E are shown in separate tiles). Looking

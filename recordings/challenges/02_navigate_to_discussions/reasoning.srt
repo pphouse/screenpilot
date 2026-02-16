@@ -1,0 +1,39 @@
+1
+00:00:07,090 --> 00:00:13,783
+Step 1: click (453, 306) [OK]\NI can see a GitHub repository page for 'pphouse/screenpilot'. At the top of the page, there is a navigation bar with sev
+
+2
+00:00:13,783 --> 00:00:23,567
+Step 2: click (453, 306) [OK]\NLooking at the screenshot, I can see the GitHub repository page for 'pphouse/screenpilot'. At the top navigation bar, th
+
+3
+00:00:23,567 --> 00:00:30,460
+Step 3: find_and_click (505, 321) [OK]\NI can see the GitHub repository page for 'pphouse/screenpilot'. Looking at the navigation tabs near the top of the page,
+
+4
+00:00:30,460 --> 00:00:39,010
+Step 4: click (453, 306) [OK]\NI can see the GitHub repository page for 'pphouse/screenpilot'. Looking at the navigation tabs at the top, I can see: Co
+
+5
+00:00:39,010 --> 00:00:47,556
+Step 5: click (453, 306) [OK]\NI can see the GitHub repository page for 'pphouse/screenpilot'. Looking at the navigation tabs at the top, I can see: Co
+
+6
+00:00:47,556 --> 00:00:57,261
+Step 6: click (453, 306) [OK]\NI can see the GitHub repository page for 'pphouse/screenpilot'. Looking at the navigation tabs at the top, I can see: Co
+
+7
+00:00:57,261 --> 00:01:04,019
+Step 7: find_and_click (498, 321) [OK]\NI can see the GitHub repository page for 'pphouse/screenpilot'. Looking at the navigation tabs at the top, I can see: Co
+
+8
+00:01:04,019 --> 00:01:11,146
+Step 8: click (453, 306) [OK]\NI can see the GitHub repository page for 'pphouse/screenpilot'. Looking at the navigation bar, I can see several tabs: C
+
+9
+00:01:11,146 --> 00:01:18,506
+Step 9: click (453, 306) [OK]\NI can see the GitHub repository page for 'pphouse/screenpilot'. Looking at the navigation bar, I can see tabs including 
+
+10
+00:01:18,506 --> 00:01:22,506
+Step 10: click (453, 306) [OK]\NI can see the GitHub repository page for 'pphouse/screenpilot'. Looking at the navigation bar, I can see tabs including 

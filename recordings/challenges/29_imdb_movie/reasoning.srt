@@ -1,0 +1,27 @@
+1
+00:00:06,479 --> 00:00:11,753
+Step 1: click (1207, 175) [OK]\NI need to search for 'Inception' on IMDb. I can see the IMDb homepage with a search box in the top navigation bar. The s
+
+2
+00:00:11,753 --> 00:00:15,653
+Step 2: click (870, 175) [OK]\NI can see the IMDb search page. At the top of the page, there is a search box in the header area. The search box appears
+
+3
+00:00:15,653 --> 00:00:20,402
+Step 3: click (885, 175) [OK]\NI can see the IMDb search page with a dropdown menu showing popular searches. The search box is visible at the top of th
+
+4
+00:00:20,402 --> 00:00:23,992
+Step 4: type  [OK]\NI can see the IMDb search page with a dropdown menu showing popular searches. I've been clicking multiple times but need
+
+5
+00:00:23,992 --> 00:00:28,319
+Step 5: key  [OK]\NI can see the IMDb search page with a search box at the top. The text 'Inception' has been typed into the search field (
+
+6
+00:00:28,319 --> 00:00:32,256
+Step 6: key  [OK]\NLooking at the screenshot, I can see that 'Inception' has been typed in the search box and a dropdown menu has appeared 
+
+7
+00:00:32,256 --> 00:00:36,256
+Step 7: done  [OK]\NLooking at the screenshot, I can see that the search for 'Inception' has already been executed and the results page is d

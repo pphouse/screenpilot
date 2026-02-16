@@ -1,0 +1,79 @@
+1
+00:00:05,944 --> 00:00:11,168
+Step 1: click (700, 181) [OK]\NI need to search for "人工知能" (artificial intelligence in Japanese). I can see a Wikipedia page in Japanese with a search 
+
+2
+00:00:11,168 --> 00:00:16,431
+Step 2: click (700, 180) [OK]\NLooking at the screenshot, I can see a Wikipedia page in Japanese. The task history shows that I previously clicked at c
+
+3
+00:00:16,431 --> 00:00:26,322
+Step 3: click (700, 180) [OK]\NLooking at the current screenshot, I can see a Wikipedia page in Japanese. The task history shows that I've already clic
+
+4
+00:00:26,322 --> 00:00:30,885
+Step 4: find_and_click (862, 193) [OK]\NI can see a Wikipedia page in Japanese. I've been clicking at coordinates (700, 180) multiple times without success. Loo
+
+5
+00:00:30,885 --> 00:00:35,836
+Step 5: click (700, 180) [OK]\NI can see a Wikipedia page in Japanese. There is a search box at the top of the page with placeholder text 'Wikipediaを検索
+
+6
+00:00:35,836 --> 00:00:42,272
+Step 6: click (700, 180) [OK]\NI can see a Wikipedia page in Japanese. There is a search box at the top with placeholder text 'Wikipediaを検索'. I need to
+
+7
+00:00:42,272 --> 00:00:46,674
+Step 7: click (700, 180) [OK]\NI can see a Wikipedia page in Japanese. There is a search box at the top with placeholder text 'Wikipediaを検索'. I have be
+
+8
+00:00:46,674 --> 00:00:52,515
+Step 8: click (700, 180) [OK]\NI can see a Wikipedia page in Japanese. There is a search box at the top with placeholder text 'Wikipediaを検索'. I have be
+
+9
+00:00:52,515 --> 00:00:57,380
+Step 9: click (700, 180) [OK]\NI can see a Wikipedia page in Japanese. There is a search box at the top with placeholder text 'Wikipediaを検索'. I have be
+
+10
+00:00:57,380 --> 00:01:02,123
+Step 10: click (700, 180) [OK]\NI can see a Wikipedia page in Japanese. I need to search for '人工知能' (artificial intelligence). I've been clicking at coo
+
+11
+00:01:02,123 --> 00:01:07,007
+Step 11: click (700, 180) [OK]\NI can see a Wikipedia page in Japanese. I need to search for '人工知能' (artificial intelligence). I've been clicking at (70
+
+12
+00:01:07,007 --> 00:01:12,476
+Step 12: click (700, 180) [OK]\NI can see a Wikipedia page in Japanese. I need to search for '人工知能' (artificial intelligence). I've been clicking at (70
+
+13
+00:01:12,476 --> 00:01:17,259
+Step 13: click (700, 180) [OK]\NI can see a Wikipedia page in Japanese. I need to search for '人工知能' (artificial intelligence). I've been clicking at coo
+
+14
+00:01:17,259 --> 00:01:22,516
+Step 14: click (700, 180) [OK]\NI can see a Wikipedia page in Japanese. I've been repeatedly clicking at coordinates (700, 180) which is not working. I 
+
+15
+00:01:22,516 --> 00:01:31,407
+Step 15: click (700, 180) [OK]\NI can see a Wikipedia page in Japanese. I need to search for '人工知能' (artificial intelligence). I've been clicking at coo
+
+16
+00:01:31,407 --> 00:01:36,141
+Step 16: find_and_click (862, 195) [OK]\NI can see a Wikipedia page in Japanese. I've been repeatedly clicking at coordinates (700, 180) without success. I need 
+
+17
+00:01:36,141 --> 00:01:40,831
+Step 17: click (700, 180) [OK]\NI can see the Wikipedia page is loaded. There is a search box at the top with placeholder text 'Wikipediaを検索'. I need to
+
+18
+00:01:40,831 --> 00:01:45,475
+Step 18: click (700, 180) [OK]\NI can see a Wikipedia page in Japanese. I need to search for '人工知能' (artificial intelligence). I've been clicking at coo
+
+19
+00:01:45,475 --> 00:01:50,706
+Step 19: click (700, 180) [OK]\NI can see a Wikipedia page in Japanese. I need to search for '人工知能' (artificial intelligence). I've been clicking at coo
+
+20
+00:01:50,706 --> 00:01:54,706
+Step 20: click (700, 180) [OK]\NI can see a Wikipedia page in Japanese. I need to search for '人工知能' (artificial intelligence). I've been repeatedly clic

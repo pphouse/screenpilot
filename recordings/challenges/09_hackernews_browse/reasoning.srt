@@ -1,0 +1,11 @@
+1
+00:00:08,249 --> 00:00:14,822
+Step 1: click (252, 234) [OK]\NI can see the Hacker News front page with a list of stories. The task is to click on the 2nd story link. Looking at the 
+
+2
+00:00:14,822 --> 00:00:20,473
+Step 2: click (252, 235) [OK]\NI can see the Hacker News front page with a list of stories. The task is to click on the 2nd story link. Looking at the 
+
+3
+00:00:20,473 --> 00:00:24,473
+Step 3: done  [OK]\NLooking at the current screenshot, I can see that I'm already on a page showing an article titled 'Suicide Linux' from g

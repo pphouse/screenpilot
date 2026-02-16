@@ -1,0 +1,19 @@
+1
+00:00:06,039 --> 00:00:10,527
+Step 1: click (960, 550) [OK]\NI can see the Google homepage with a search box in the center of the screen. The search box is located below the Google 
+
+2
+00:00:10,527 --> 00:00:15,873
+Step 2: type  [OK]\NI can see the Google homepage with a search box in the center. There's a dropdown menu showing search suggestions, which
+
+3
+00:00:15,873 --> 00:00:20,676
+Step 3: type  [OK]\NI can see the Google search page with a search box that currently contains 'ScreenPilot AI desktop automation' (visible 
+
+4
+00:00:20,676 --> 00:00:25,332
+Step 4: key  [OK]\NI can see the Google search page with a search box that currently contains 'ScreenPilot AI desktop automation' (visible 
+
+5
+00:00:25,332 --> 00:00:29,332
+Step 5: done  [OK]\NLooking at the screenshot, I can see a Google search page with the search query 'ScreenPilot AI desktop automation' alre

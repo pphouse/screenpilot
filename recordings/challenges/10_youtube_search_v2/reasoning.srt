@@ -1,0 +1,23 @@
+1
+00:00:06,409 --> 00:00:10,371
+Step 1: click (915, 175) [OK]\NI can see the YouTube homepage with a search box at the top center of the page. The search box is located in the header 
+
+2
+00:00:10,371 --> 00:00:18,645
+Step 2: click (897, 175) [OK]\NI can see the YouTube homepage with a search box at the top center. The search box is visible with placeholder text 'Sea
+
+3
+00:00:18,645 --> 00:00:23,079
+Step 3: find_and_click (1176, 190) [OK]\NLooking at the screenshot, I can see the YouTube homepage with a search box at the top center of the page. The search bo
+
+4
+00:00:23,079 --> 00:00:27,578
+Step 4: type  [OK]\NI can see the YouTube homepage with a search box at the top center of the page. The search box has placeholder text 'Sea
+
+5
+00:00:27,578 --> 00:00:33,100
+Step 5: key  [OK]\NI can see the YouTube search box at the top of the page with 'screenpilot demo' already typed in. Below the search box, 
+
+6
+00:00:33,100 --> 00:00:37,100
+Step 6: done  [OK]\NLooking at the screenshot, I can see that the search has already been executed. The URL bar shows 'youtube.com/results?s

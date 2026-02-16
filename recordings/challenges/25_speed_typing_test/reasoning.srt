@@ -1,0 +1,35 @@
+1
+00:00:06,746 --> 00:00:12,637
+Step 1: click (858, 514) [OK]\NI can see a typing test website with a dropdown menu showing different test duration options (30 Seconds Test, 1 Minute 
+
+2
+00:00:12,637 --> 00:00:20,749
+Step 2: click (855, 583) [OK]\NI can see a typing test website with a dropdown menu currently open showing different test options (Easy Text, Medium Te
+
+3
+00:00:20,749 --> 00:00:26,956
+Step 3: wait  [OK]\NI can see the '1 Minute Typing Test' page is currently loading (showing 'Loading ...' text in the center). The page show
+
+4
+00:00:26,956 --> 00:00:44,031
+Step 4: click (856, 496) [OK]\NI can see the 1 Minute Typing Test page is loaded. The typing test area shows text that needs to be typed: 'The largest 
+
+5
+00:00:44,031 --> 00:00:55,590
+Step 5: click (856, 496) [OK]\NI can see the 1 Minute Typing Test page is loaded. The test area shows text that needs to be typed: 'The largest interna
+
+6
+00:00:55,590 --> 00:01:01,406
+Step 6: click (856, 496) [OK]\NI can see the 1 Minute Typing Test page is loaded. The test area shows text that needs to be typed: 'The largest interna
+
+7
+00:01:01,406 --> 00:01:09,667
+Step 7: click (1174, 399) [OK]\NI can see a modal dialog titled 'Play the bots' is currently open on the screen, blocking the chess game interface. This
+
+8
+00:01:09,667 --> 00:01:17,464
+Step 8: key  [OK]\NI can see a chess.com website with a chess board displayed. The task mentions clicking a text area to start a typing spe
+
+9
+00:01:17,464 --> 00:01:21,464
+Step 9: fail  [FAIL]\NI can see a chess.com website with a chess board displayed. The task mentions clicking a text area and typing text for a

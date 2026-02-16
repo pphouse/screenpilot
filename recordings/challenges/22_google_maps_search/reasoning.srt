@@ -1,0 +1,31 @@
+1
+00:00:05,939 --> 00:00:12,240
+Step 1: click (247, 183) [OK]\NI can see a Google Maps interface in Japanese. There is a search box at the top left with placeholder text 'Google マップを検
+
+2
+00:00:12,240 --> 00:00:16,983
+Step 2: click (240, 183) [OK]\NI can see a Google Maps interface in Japanese. There is a search box at the top left with placeholder text 'Google マップを検
+
+3
+00:00:16,983 --> 00:00:20,924
+Step 3: key  [OK]\NI can see the Google Maps interface with a search box at the top left that currently contains 'Tokyo Tower'. There is a 
+
+4
+00:00:20,924 --> 00:00:25,072
+Step 4: key  [OK]\NI can see the Google Maps interface with a search box at the top left that currently shows 'Tokyo Tower'. The search box
+
+5
+00:00:25,072 --> 00:00:29,888
+Step 5: key  [OK]\NI can see the Google Maps interface with a search box at the top left. The search box currently shows '東京タワー' (Tokyo Tow
+
+6
+00:00:29,888 --> 00:00:33,809
+Step 6: type  [OK]\NI can see the Google Maps interface with a search box at the top left. The search box appears to be active (there's a bl
+
+7
+00:00:33,809 --> 00:00:40,909
+Step 7: key  [OK]\NI can see the Google Maps interface with a search box at the top. The URL dropdown is currently open showing suggestions
+
+8
+00:00:40,909 --> 00:00:44,909
+Step 8: fail  [FAIL]\NLooking at the current screenshot, I can see this is a CoinGecko page showing Bitcoin price information, not a Google Ma

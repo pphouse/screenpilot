@@ -1,0 +1,47 @@
+1
+00:00:08,023 --> 00:00:13,557
+Step 1: drag (300, 300) [OK]\NI can see a Kleki Paint Tool interface with a white canvas in the center-left area. The canvas appears to be a rectangul
+
+2
+00:00:13,557 --> 00:00:18,676
+Step 2: drag (525, 375) [OK]\NI can see the Kleki Paint Tool interface with a white canvas on the left side. There's already a small diagonal line vis
+
+3
+00:00:18,676 --> 00:00:23,668
+Step 3: click (1042, 198) [OK]\NI can see a dialog box with 'Leave site?' message is currently open, blocking the canvas. The dialog states 'Changes you
+
+4
+00:00:23,668 --> 00:00:29,425
+Step 4: drag (225, 420) [OK]\NI can see the Kleki Paint Tool interface with a white canvas on the left side. There's already a diagonal line drawn on 
+
+5
+00:00:29,425 --> 00:00:35,342
+Step 5: drag (525, 375) [OK]\NI can see the Kleki Paint Tool interface with a white canvas on the left side. There are already two diagonal lines draw
+
+6
+00:00:35,342 --> 00:00:40,653
+Step 6: drag (270, 270) [OK]\NI can see the Kleki Paint Tool interface with a white canvas on the left side. There are already several black lines dra
+
+7
+00:00:40,653 --> 00:00:46,254
+Step 7: drag (525, 300) [OK]\NI can see the Kleki Paint Tool interface with a white canvas on the left side. There are already several black diagonal 
+
+8
+00:00:46,254 --> 00:00:52,953
+Step 8: drag (225, 300) [OK]\NI can see the Kleki Paint Tool interface with a white canvas on the left side. There are already several black diagonal 
+
+9
+00:00:52,953 --> 00:00:57,108
+Step 9: drag (225, 300) [OK]\NI can see the Kleki Paint Tool interface with a white canvas on the left side. There are already several diagonal lines 
+
+10
+00:00:57,108 --> 00:01:02,676
+Step 10: click (1132, 234) [OK]\NI can see a 'Leave site?' dialog box is currently open in the center of the screen, blocking the canvas. The dialog has 
+
+11
+00:01:02,676 --> 00:01:10,559
+Step 11: drag (225, 375) [OK]\NI can see the Kleki Paint Tool interface with a white canvas on the left side. There are already several diagonal lines 
+
+12
+00:01:10,559 --> 00:01:14,559
+Step 12: fail  [FAIL]\NLooking at the current screenshot, I can see this is a typing test website (typingtest.com), not the Kleki Paint Tool in

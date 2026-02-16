@@ -1,0 +1,47 @@
+1
+00:00:06,619 --> 00:00:11,517
+Step 1: click (960, 550) [OK]\NI can see the Google homepage with a search box in the center of the screen. The search box is located below the Google 
+
+2
+00:00:11,517 --> 00:00:15,986
+Step 2: click (960, 549) [OK]\NI can see the Google homepage with a search box in the center. There's a dropdown menu showing trending searches below t
+
+3
+00:00:15,986 --> 00:00:21,391
+Step 3: click (960, 549) [OK]\NI can see the Google homepage with a search box in the center. There's a dropdown menu showing trending searches below t
+
+4
+00:00:21,391 --> 00:00:31,446
+Step 4: click (885, 550) [OK]\NI can see the Google homepage with a search box in the center. There's a dropdown menu showing trending searches below t
+
+5
+00:00:31,446 --> 00:00:36,457
+Step 5: find_and_click (1215, 577) [OK]\NI can see the Google homepage with a search box in the center. There's a dropdown menu showing trending searches below t
+
+6
+00:00:36,457 --> 00:00:40,734
+Step 6: type  [OK]\NI can see the Google homepage with the search box visible in the center. The search box appears to be active (there's a 
+
+7
+00:00:40,734 --> 00:00:44,904
+Step 7: type  [OK]\NI can see the Google homepage with a search box in the center. Looking at the task history, I've already typed 'ScreenPi
+
+8
+00:00:44,904 --> 00:00:49,434
+Step 8: key  [OK]\NI can see the Google homepage with a search box in the center. Looking at the task history, I've already typed 'ScreenPi
+
+9
+00:00:49,434 --> 00:00:55,060
+Step 9: key  [OK]\NLooking at the screenshot, I can see the Google homepage with a search box in the center. There's a dropdown menu showin
+
+10
+00:00:55,060 --> 00:01:00,941
+Step 10: key  [OK]\NLooking at the screenshot, I can see the Google homepage with a search box in the center. There is a dropdown menu showi
+
+11
+00:01:00,941 --> 00:01:05,222
+Step 11: click (960, 549) [OK]\NLooking at the screenshot, I can see the Google homepage with a search box in the center. There's a dropdown menu showin
+
+12
+00:01:05,222 --> 00:01:09,222
+Step 12: click (960, 550) [OK]\NLooking at the screenshot, I can see the Google homepage with a search box in the center. There's a dropdown menu showin

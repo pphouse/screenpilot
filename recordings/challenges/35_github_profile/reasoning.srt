@@ -1,0 +1,19 @@
+1
+00:00:07,187 --> 00:00:12,218
+Step 1: click (870, 268) [OK]\NI can see a GitHub profile page for user 'naoto' (pphouse). At the top of the page, there is a navigation bar with sever
+
+2
+00:00:12,218 --> 00:00:22,527
+Step 2: click (870, 268) [OK]\NI can see a GitHub profile page for user 'naoto' (pphouse). Looking at the navigation tabs near the top of the page, I c
+
+3
+00:00:22,527 --> 00:00:36,471
+Step 3: find_and_click (937, 282) [OK]\NI can see the GitHub profile page for user 'naoto' (pphouse). Looking at the navigation tabs at the top of the profile s
+
+4
+00:00:36,471 --> 00:00:42,406
+Step 4: find_and_click (936, 282) [OK]\NI can see the GitHub profile page for user 'naoto' (pphouse). Looking at the navigation tabs at the top of the page, I c
+
+5
+00:00:42,406 --> 00:00:46,406
+Step 5: done  [OK]\NLooking at the current screenshot, I can see we are already on the Repositories tab of the GitHub profile page for user 

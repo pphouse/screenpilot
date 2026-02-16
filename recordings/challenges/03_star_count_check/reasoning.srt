@@ -1,0 +1,43 @@
+1
+00:00:07,350 --> 00:00:12,444
+Step 1: click (78, 306) [OK]\NI can see the GitHub repository page for pphouse/screenpilot. The navigation tabs are visible near the top of the page. 
+
+2
+00:00:12,444 --> 00:00:16,971
+Step 2: click (90, 306) [OK]\NLooking at the screenshot, I can see the GitHub repository page for pphouse/screenpilot. The navigation tabs are visible
+
+3
+00:00:16,971 --> 00:00:25,449
+Step 3: scroll  [OK]\NLooking at the current screenshot, I can see the GitHub repository page for pphouse/screenpilot. The 'Code' tab is alrea
+
+4
+00:00:25,449 --> 00:00:34,018
+Step 4: scroll  [OK]\NLooking at the current screenshot, I can see the GitHub repository page for pphouse/screenpilot. The README is already v
+
+5
+00:00:34,018 --> 00:00:50,114
+Step 5: scroll  [OK]\NLooking at the current screenshot, I can see we are on the GitHub repository page for pphouse/screenpilot. The README is
+
+6
+00:00:50,114 --> 00:00:58,271
+Step 6: find_and_click  [FAIL]\NI can see the GitHub repository page for pphouse/screenpilot. Looking at the current screen, I can see the README is alr
+
+7
+00:00:58,271 --> 00:01:03,277
+Step 7: scroll  [OK]\NLooking at the current screenshot, I can see we are on the GitHub repository page for pphouse/screenpilot. The README is
+
+8
+00:01:03,277 --> 00:01:09,051
+Step 8: scroll  [OK]\NLooking at the current screenshot, I can see we are on the GitHub repository page for pphouse/screenpilot. The 'Code' ta
+
+9
+00:01:09,051 --> 00:01:16,277
+Step 9: scroll  [OK]\NLooking at the current screenshot, I can see we are on the GitHub repository page for pphouse/screenpilot. The README is
+
+10
+00:01:16,277 --> 00:01:25,414
+Step 10: scroll  [OK]\NLooking at the current screenshot, I can see we are on the GitHub repository page for pphouse/screenpilot. The README co
+
+11
+00:01:25,414 --> 00:01:29,414
+Step 11: done  [OK]\NI can see the GitHub repository page for pphouse/screenpilot. The README tab is currently active (visible at the top of 

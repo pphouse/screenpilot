@@ -1,0 +1,59 @@
+1
+00:00:06,461 --> 00:00:10,757
+Step 1: scroll  [OK]\NI can see a GitHub issue page for '[Demo] ScreenPilot self-marketing automation test #2'. The page shows the issue detai
+
+2
+00:00:10,757 --> 00:00:14,697
+Step 2: scroll  [OK]\NI can see a GitHub issue page. The task requires me to scroll down to find the comment box at the bottom of the issue. C
+
+3
+00:00:14,697 --> 00:00:33,020
+Step 3: scroll  [OK]\NI can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says 'Sign up for free to
+
+4
+00:00:33,020 --> 00:00:38,436
+Step 4: find_and_click (1252, 955) [OK]\NI can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says 'Sign up for free to
+
+5
+00:00:38,436 --> 00:00:43,159
+Step 5: scroll  [OK]\NLooking at the screenshot, I can see a GitHub issue page. At the bottom, there's a yellow banner that says 'Sign up for 
+
+6
+00:00:43,159 --> 00:00:47,963
+Step 6: scroll  [OK]\NI can see a GitHub issue page. At the bottom of the screen, there's a yellow banner that says 'Sign up for free to join 
+
+7
+00:00:47,963 --> 00:00:57,035
+Step 7: scroll  [OK]\NI can see a GitHub issue page. At the bottom of the screen, there's a yellow banner with 'Sign up for free' and 'Sign in
+
+8
+00:00:57,035 --> 00:01:05,956
+Step 8: find_and_click (1021, 936) [OK]\NI can see a GitHub issue page. At the bottom, there's a yellow banner that says 'Sign up for free to join this conversat
+
+9
+00:01:05,956 --> 00:01:11,347
+Step 9: scroll  [OK]\NLooking at the screenshot, I can see a GitHub issue page. At the bottom, there's a yellow banner that says 'Sign up for 
+
+10
+00:01:11,347 --> 00:01:21,200
+Step 10: scroll  [OK]\NI can see a GitHub issue page. At the bottom of the screen, there's a yellow banner that says 'Sign up for free to join 
+
+11
+00:01:21,200 --> 00:01:33,308
+Step 11: find_and_click (1021, 936) [OK]\NI can see a GitHub issue page. At the bottom of the screen, there's a yellow banner that says 'Sign up for free to join 
+
+12
+00:01:33,308 --> 00:01:39,117
+Step 12: scroll  [OK]\NLooking at the screenshot, I can see a GitHub issue page. At the bottom, there's a yellow banner that says 'Sign up for 
+
+13
+00:01:39,117 --> 00:01:46,909
+Step 13: scroll  [OK]\NI can see a GitHub issue page. At the bottom of the screen, there's a yellow banner that says 'Sign up for free to join 
+
+14
+00:01:46,909 --> 00:01:53,904
+Step 14: scroll  [OK]\NI can see a GitHub issue page. At the bottom of the screen, there's a yellow banner that says 'Sign up for free to join 
+
+15
+00:01:53,904 --> 00:01:57,904
+Step 15: scroll  [OK]\NI can see a GitHub issue page. At the bottom of the screen, there's a yellow banner that says 'Sign up for free to join 

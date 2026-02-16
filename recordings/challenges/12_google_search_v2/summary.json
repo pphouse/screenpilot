@@ -1,0 +1,62 @@
+{
+  "challenge_id": 12,
+  "name": "google_search (attempt 2)",
+  "difficulty": "medium",
+  "goal": "Type \"ScreenPilot AI desktop automation\" in the Google search box and press Enter",
+  "setup_url": "https://www.google.com",
+  "success": true,
+  "steps": 5,
+  "time": 23.9,
+  "error": null,
+  "video_path": "recordings/challenges/12_google_search_v2/recording.mp4",
+  "video_size_kb": 474,
+  "speed": 3.0,
+  "attempt": 2,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "click",
+      "target": "",
+      "coords": "(960, 550)",
+      "reasoning": "I can see the Google homepage with a search box in the center of the screen. The search box is located below the Google Doodle. I need to click on the search box first, then type the requested text an",
+      "success": true,
+      "timestamp": 6.0
+    },
+    {
+      "step": 2,
+      "action": "type",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Google homepage with a search box in the center. There's a dropdown menu showing search suggestions, which indicates the search box is active. The previous action was a click, and now I ",
+      "success": true,
+      "timestamp": 10.5
+    },
+    {
+      "step": 3,
+      "action": "type",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Google search page with a search box that currently contains 'ScreenPilot AI desktop automation' (visible in the search suggestions dropdown). The task requires me to type this text and ",
+      "success": true,
+      "timestamp": 15.9
+    },
+    {
+      "step": 4,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Google search page with a search box that currently contains 'ScreenPilot AI desktop automation' (visible in the search suggestions dropdown). The search suggestions are showing various ",
+      "success": true,
+      "timestamp": 20.7
+    },
+    {
+      "step": 5,
+      "action": "done",
+      "target": "",
+      "coords": "",
+      "reasoning": "Looking at the screenshot, I can see a Google search page with the search query 'ScreenPilot AI desktop automation' already entered in the search box at the top of the page. The search has been execut",
+      "success": true,
+      "timestamp": 25.3
+    }
+  ]
+}

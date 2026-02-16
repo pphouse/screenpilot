@@ -1,0 +1,80 @@
+{
+  "challenge_id": 29,
+  "name": "imdb_movie",
+  "difficulty": "medium",
+  "goal": "Type \"Inception\" in the search box and press Enter to look up the movie",
+  "setup_url": "https://www.imdb.com",
+  "success": true,
+  "steps": 7,
+  "time": 30.8,
+  "error": null,
+  "video_path": "recordings/challenges/29_imdb_movie/recording.mp4",
+  "video_size_kb": 818,
+  "speed": 3.0,
+  "attempt": 1,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "click",
+      "target": "",
+      "coords": "(1207, 175)",
+      "reasoning": "I need to search for 'Inception' on IMDb. I can see the IMDb homepage with a search box in the top navigation bar. The search box appears to be in the header area, to the right of the 'All' dropdown m",
+      "success": true,
+      "timestamp": 6.5
+    },
+    {
+      "step": 2,
+      "action": "click",
+      "target": "",
+      "coords": "(870, 175)",
+      "reasoning": "I can see the IMDb search page. At the top of the page, there is a search box in the header area. The search box appears to be located in the top navigation bar, to the right of the 'All' dropdown men",
+      "success": true,
+      "timestamp": 11.8
+    },
+    {
+      "step": 3,
+      "action": "click",
+      "target": "",
+      "coords": "(885, 175)",
+      "reasoning": "I can see the IMDb search page with a dropdown menu showing popular searches. The search box is visible at the top of the page. I need to click on the search box and type 'Inception' to search for the",
+      "success": true,
+      "timestamp": 15.7
+    },
+    {
+      "step": 4,
+      "action": "type",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the IMDb search page with a dropdown menu showing popular searches. I've been clicking multiple times but need to actually type in the search box. Looking at the screen, I can see there's a ",
+      "success": true,
+      "timestamp": 20.4
+    },
+    {
+      "step": 5,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the IMDb search page with a search box at the top. The text 'Inception' has been typed into the search field (visible in the search box). Now I need to press Enter to execute the search and ",
+      "success": true,
+      "timestamp": 24.0
+    },
+    {
+      "step": 6,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "Looking at the screenshot, I can see that 'Inception' has been typed in the search box and a dropdown menu has appeared showing search results. The first result is 'Inception' (2010) with Leonardo DiC",
+      "success": true,
+      "timestamp": 28.3
+    },
+    {
+      "step": 7,
+      "action": "done",
+      "target": "",
+      "coords": "",
+      "reasoning": "Looking at the screenshot, I can see that the search for 'Inception' has already been executed and the results page is displayed. The page shows multiple titles related to 'Inception', including the m",
+      "success": true,
+      "timestamp": 32.3
+    }
+  ]
+}

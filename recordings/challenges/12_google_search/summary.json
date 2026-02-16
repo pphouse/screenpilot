@@ -2,10 +2,124 @@
   "challenge_id": 12,
   "name": "google_search",
   "difficulty": "medium",
+  "goal": "Type \"ScreenPilot AI desktop automation\" in the Google search box and press Enter",
+  "setup_url": "https://www.google.com",
   "success": false,
   "steps": 12,
-  "time": 75.74840593338013,
+  "time": 63.8,
   "error": "Max steps (12) reached without completing the task",
   "video_path": "recordings/challenges/12_google_search/recording.mp4",
-  "video_size_kb": 4060.7529296875
+  "video_size_kb": 616,
+  "speed": 3.0,
+  "attempt": 1,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "click",
+      "target": "",
+      "coords": "(960, 550)",
+      "reasoning": "I can see the Google homepage with a search box in the center of the screen. The search box is located below the Google Doodle. I need to click on the search box first, then type the requested text an",
+      "success": true,
+      "timestamp": 6.6
+    },
+    {
+      "step": 2,
+      "action": "click",
+      "target": "",
+      "coords": "(960, 549)",
+      "reasoning": "I can see the Google homepage with a search box in the center. There's a dropdown menu showing trending searches below the search box. The previous action was a click at coordinates (960, 550), which ",
+      "success": true,
+      "timestamp": 11.5
+    },
+    {
+      "step": 3,
+      "action": "click",
+      "target": "",
+      "coords": "(960, 549)",
+      "reasoning": "I can see the Google homepage with a search box in the center. There's a dropdown menu showing trending searches below the search box. I need to click on the search input field to focus it, then type ",
+      "success": true,
+      "timestamp": 16.0
+    },
+    {
+      "step": 4,
+      "action": "click",
+      "target": "",
+      "coords": "(885, 550)",
+      "reasoning": "I can see the Google homepage with a search box in the center. There's a dropdown menu showing trending searches below the search box. I've been clicking at coordinates (960, 549) multiple times witho",
+      "success": true,
+      "timestamp": 21.4
+    },
+    {
+      "step": 5,
+      "action": "find_and_click",
+      "target": "Google search input box in the center of the page",
+      "coords": "(1215, 577)",
+      "reasoning": "I can see the Google homepage with a search box in the center. There's a dropdown menu showing trending searches below the search box. I've been clicking multiple times without success. Instead of cli",
+      "success": true,
+      "timestamp": 31.4
+    },
+    {
+      "step": 6,
+      "action": "type",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Google homepage with the search box visible in the center. The search box appears to be active (there's a dropdown menu showing trending searches below it). I need to type 'ScreenPilot A",
+      "success": true,
+      "timestamp": 36.5
+    },
+    {
+      "step": 7,
+      "action": "type",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Google homepage with a search box in the center. Looking at the task history, I've already typed 'ScreenPilot AI desktop automat' in step 6. Now I need to complete the text by typing 'io",
+      "success": true,
+      "timestamp": 40.7
+    },
+    {
+      "step": 8,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Google homepage with a search box in the center. Looking at the task history, I've already typed 'ScreenPilot AI desktop automat' and then 'ion', which completes the full search query 'S",
+      "success": true,
+      "timestamp": 44.9
+    },
+    {
+      "step": 9,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "Looking at the screenshot, I can see the Google homepage with a search box in the center. There's a dropdown menu showing trending searches below the search box. The task history shows that I've alrea",
+      "success": true,
+      "timestamp": 49.4
+    },
+    {
+      "step": 10,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "Looking at the screenshot, I can see the Google homepage with a search box in the center. There is a dropdown menu showing search suggestions below the search box. The task requires typing 'ScreenPilo",
+      "success": true,
+      "timestamp": 55.1
+    },
+    {
+      "step": 11,
+      "action": "click",
+      "target": "",
+      "coords": "(960, 549)",
+      "reasoning": "Looking at the screenshot, I can see the Google homepage with a search box in the center. There's a dropdown menu showing search suggestions below the search box. The task history shows that I've alre",
+      "success": true,
+      "timestamp": 60.9
+    },
+    {
+      "step": 12,
+      "action": "click",
+      "target": "",
+      "coords": "(960, 550)",
+      "reasoning": "Looking at the screenshot, I can see the Google homepage with a search box in the center. There's a dropdown menu showing trending searches below the search box. The search box appears to be empty or ",
+      "success": true,
+      "timestamp": 65.2
+    }
+  ]
 }

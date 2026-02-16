@@ -1,0 +1,47 @@
+1
+00:00:06,439 --> 00:00:10,908
+Step 1: click (969, 364) [OK]\NI can see the Amazon homepage with a 'Continue shopping' button in the center. However, I need to search for 'raspberry 
+
+2
+00:00:10,908 --> 00:00:20,827
+Step 2: click (969, 364) [OK]\NI can see the Amazon homepage with a 'Continue shopping' button in the center. The previous action was a click at coordi
+
+3
+00:00:20,827 --> 00:00:25,777
+Step 3: find_and_click (1174, 192) [OK]\NI can see the Amazon homepage with a search bar at the top. The search box is located in the header area, to the right o
+
+4
+00:00:25,777 --> 00:00:30,522
+Step 4: click (390, 292) [OK]\NI can see the Amazon homepage with a search bar at the top. There's a modal dialog box in the center about shipping to J
+
+5
+00:00:30,522 --> 00:00:35,280
+Step 5: type  [OK]\NI can see the Amazon homepage with the search bar at the top. The search input field is visible in the header area. I ne
+
+6
+00:00:35,280 --> 00:00:44,825
+Step 6: key  [OK]\NI can see the Amazon homepage with various product categories displayed. Looking at the task history, I've already typed
+
+7
+00:00:44,825 --> 00:00:52,735
+Step 7: scroll  [OK]\NLooking at the screenshot, I can see an Amazon page with various product categories displayed. The previous task history
+
+8
+00:00:52,735 --> 00:01:02,647
+Step 8: scroll  [OK]\NLooking at the current screenshot, I can see an Amazon page displaying various product categories like 'Home Essentials'
+
+9
+00:01:02,647 --> 00:01:08,434
+Step 9: find_and_click (1167, 187) [OK]\NLooking at the current screenshot, I can see the Amazon homepage with a search bar at the top. The search bar is located
+
+10
+00:01:08,434 --> 00:01:14,352
+Step 10: key  [OK]\NLooking at the screenshot, I can see the Amazon homepage with the search bar at the top. The search input field is visib
+
+11
+00:01:14,352 --> 00:01:24,181
+Step 11: click (877, 177) [OK]\NLooking at the screenshot, I can see the Amazon homepage with the search bar at the top. The search input field is visib
+
+12
+00:01:24,181 --> 00:01:28,181
+Step 12: find_and_click (1174, 192) [OK]\NLooking at the current screenshot, I can see the Amazon homepage with the search bar at the top. The search bar is locat

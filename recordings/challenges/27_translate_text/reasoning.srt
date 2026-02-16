@@ -1,0 +1,23 @@
+1
+00:00:06,534 --> 00:00:13,626
+Step 1: click (640, 390) [OK]\NI can see the Google Translate interface. There is a text input box on the left side where I need to type the text. The 
+
+2
+00:00:13,626 --> 00:00:17,934
+Step 2: type  [OK]\NLooking at the screenshot, I can see the Google Translate interface. The previous action was a click at coordinates (640
+
+3
+00:00:17,934 --> 00:00:27,919
+Step 3: click (1024, 303) [OK]\NI can see the Google Translate interface with text already typed in the source box: 'Hello, I am an AI that controls com
+
+4
+00:00:27,919 --> 00:00:34,720
+Step 4: find_and_click (895, 937) [OK]\NI can see the Google Translate interface with a language selection dropdown open. The task requires me to: 1) Type the f
+
+5
+00:00:34,720 --> 00:00:39,183
+Step 5: find_and_click (895, 936) [OK]\NI can see the Google Translate interface with a language selection dropdown menu open. The task requires me to change th
+
+6
+00:00:39,183 --> 00:00:43,183
+Step 6: done  [OK]\NLooking at the screenshot, I can see that the text 'Hello, I am an AI that controls computers by looking at the screen' 

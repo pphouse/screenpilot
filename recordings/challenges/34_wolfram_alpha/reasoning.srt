@@ -1,0 +1,27 @@
+1
+00:00:06,327 --> 00:00:11,783
+Step 1: click (961, 385) [OK]\NI can see the WolframAlpha homepage with a search input box in the center of the screen. The input box has placeholder t
+
+2
+00:00:11,783 --> 00:00:16,468
+Step 2: click (960, 385) [OK]\NI can see the WolframAlpha homepage with the main search input box in the center. The input box has placeholder text 'En
+
+3
+00:00:16,468 --> 00:00:26,152
+Step 3: click (960, 385) [OK]\NI can see the WolframAlpha homepage with the main search input box in the center of the screen. The input box has placeh
+
+4
+00:00:26,152 --> 00:00:30,264
+Step 4: find_and_type (1158, 402) [OK]\NI can see the WolframAlpha homepage with a search input box in the center. The input box has placeholder text 'Enter wha
+
+5
+00:00:30,264 --> 00:00:33,756
+Step 5: key  [OK]\NI can see the WolframAlpha page with the search input box already containing 'integral of x^2 sin(x)'. The text has been
+
+6
+00:00:33,756 --> 00:00:38,456
+Step 6: key  [OK]\NLooking at the screenshot, I can see the WolframAlpha page with the search input box containing 'integral of x^2 sin(x)'
+
+7
+00:00:38,456 --> 00:00:42,456
+Step 7: done  [OK]\NLooking at the screenshot, I can see that the query 'integral of x^2 sin(x)' has already been entered and computed. The 

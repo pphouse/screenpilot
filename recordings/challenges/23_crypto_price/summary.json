@@ -1,0 +1,53 @@
+{
+  "challenge_id": 23,
+  "name": "crypto_price",
+  "difficulty": "medium",
+  "goal": "Look at the current Bitcoin price displayed on the page and scroll down to see the price chart",
+  "setup_url": "https://www.coingecko.com/en/coins/bitcoin",
+  "success": false,
+  "steps": 4,
+  "time": 24.4,
+  "error": "I can see the current screen is showing Kleki Paint Tool, not a Bitcoin price page. The task history indicates I've been scrolling on what should be a CoinGecko page, but the current screenshot shows a completely different application (a paint tool). This suggests either the wrong tab is active or the page has changed. I need to check the browser tabs at the top - I can see there are tabs for 'Kleki - Paint Tool' and 'Wero - Digital payment'. Neither of these appears to be a Bitcoin/CoinGecko page. Since the task is to look at Bitcoin price and scroll to see the chart, but I'm currently on the wrong page/tab, I should fail this task as the required page is not accessible in the current state.",
+  "video_path": "recordings/challenges/23_crypto_price/recording.mp4",
+  "video_size_kb": 690,
+  "speed": 3.0,
+  "attempt": 1,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Bitcoin price page on CoinGecko. The current BTC price is displayed at the top as $68,560.72 with a -0.3% (24h) change. I can already see a price chart on the screen showing Bitcoin's pr",
+      "success": true,
+      "timestamp": 7.2
+    },
+    {
+      "step": 2,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Bitcoin price page on CoinGecko. The current BTC price is displayed at the top as $68,560.72 with a -0.3% (24h) change. I can see various sections including 'Recently Happened to Bitcoin",
+      "success": true,
+      "timestamp": 12.4
+    },
+    {
+      "step": 3,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Bitcoin price page on CoinGecko. The current BTC price is displayed at the top as $68,560.72 with a -0.3% (24h) change. I can see a 'BTC Converter' section and 'BTC Historical Price' sec",
+      "success": true,
+      "timestamp": 17.8
+    },
+    {
+      "step": 4,
+      "action": "fail",
+      "target": "The current screen shows Kleki Paint Tool, not a Bitcoin price page. The browser tabs visible do not show any CoinGecko or Bitcoin-related pages. The task cannot be completed as the required page is not accessible.",
+      "coords": "",
+      "reasoning": "I can see the current screen is showing Kleki Paint Tool, not a Bitcoin price page. The task history indicates I've been scrolling on what should be a CoinGecko page, but the current screenshot shows ",
+      "success": false,
+      "timestamp": 25.8
+    }
+  ]
+}

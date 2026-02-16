@@ -1,0 +1,35 @@
+1
+00:00:06,016 --> 00:00:11,322
+Step 1: click (240, 183) [OK]\NI can see a Google Maps interface in Japanese. There is a search box at the top left of the screen with placeholder text
+
+2
+00:00:11,322 --> 00:00:17,079
+Step 2: click (240, 183) [OK]\NI can see a Google Maps interface in Japanese. There is a search box at the top left with placeholder text 'Google マップを検
+
+3
+00:00:17,079 --> 00:00:22,794
+Step 3: click (240, 183) [OK]\NI can see a Google Maps interface with a search box at the top. The search box has placeholder text 'Google マップを検索する' (S
+
+4
+00:00:22,794 --> 00:00:31,655
+Step 4: click (240, 183) [OK]\NI can see a Google Maps interface with a search box at the top left. The search box contains placeholder text 'Google マッ
+
+5
+00:00:31,655 --> 00:00:39,763
+Step 5: find_and_click (387, 199) [OK]\NI can see a Google Maps interface with a search box at the top. The search box has placeholder text 'Google マップを検索する' (S
+
+6
+00:00:39,763 --> 00:00:43,924
+Step 6: find_and_click (373, 201) [OK]\NI can see the Google Maps interface with a search box at the top that says 'Google マップを検索する'. Previous attempts to click
+
+7
+00:00:43,924 --> 00:00:48,996
+Step 7: type  [OK]\NI can see the Google Maps interface with a search box at the top left that says 'Google マップを検索する'. The search box appear
+
+8
+00:00:48,996 --> 00:00:54,564
+Step 8: key  [OK]\NI can see the Google Maps interface with a search box at the top left. The search box currently shows 'Tokyo Tower' and 
+
+9
+00:00:54,564 --> 00:00:58,564
+Step 9: done  [OK]\NLooking at the screenshot, I can see that 'Tokyo Tower' has already been typed in the search box at the top left of the 
