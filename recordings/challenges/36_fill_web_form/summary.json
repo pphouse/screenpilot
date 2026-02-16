@@ -1,0 +1,152 @@
+{
+  "challenge_id": 36,
+  "name": "fill_web_form",
+  "difficulty": "hard",
+  "goal": "Fill out the sample form: type \"Taro Yamada\" in the Name field, \"taro@example.com\" in Email, select \"Japan\" from the Country dropdown, then click Submit",
+  "setup_url": "https://www.w3schools.com/html/html_forms.asp",
+  "success": false,
+  "steps": 15,
+  "time": 75.8,
+  "error": "Max steps (15) reached without completing the task",
+  "video_path": "recordings/challenges/36_fill_web_form/recording.mp4",
+  "video_size_kb": 1779,
+  "speed": 3.0,
+  "attempt": 1,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see an HTML Forms page with an example form. The form has two fields visible: 'First name:' with 'John' entered, and 'Last name:' with 'Doe' entered. However, the task requires me to fill out a ",
+      "success": true,
+      "timestamp": 7.3
+    },
+    {
+      "step": 2,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see an HTML Forms tutorial page with an example form. The form currently shows two fields: 'First name:' with value 'John' and 'Last name:' with value 'Doe', plus a Submit button. However, the t",
+      "success": true,
+      "timestamp": 12.2
+    },
+    {
+      "step": 3,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the HTML Forms tutorial page. I need to scroll down to find the sample form that I need to fill out. The current view shows the form element documentation and the <input> element section. I ",
+      "success": true,
+      "timestamp": 16.0
+    },
+    {
+      "step": 4,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the HTML Forms tutorial page. I've been scrolling multiple times but haven't found the sample form yet. Looking at the current screen, I can see a table showing different input types (text, ",
+      "success": true,
+      "timestamp": 21.1
+    },
+    {
+      "step": 5,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "I've been scrolling multiple times but haven't found the sample form yet. Looking at the current screen, I can see an HTML Forms tutorial page with code examples showing form syntax. The page shows 'T",
+      "success": true,
+      "timestamp": 26.6
+    },
+    {
+      "step": 6,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the HTML Forms tutorial page. After scrolling and pressing Home, I should now be at the top of the page. I need to scroll down to find the sample form with Name, Email, and Country fields. L",
+      "success": true,
+      "timestamp": 30.2
+    },
+    {
+      "step": 7,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the HTML Forms tutorial page is loaded. The page shows a navigation menu on the left with various HTML topics. I need to find the sample form on this page. Looking at the current view, I can",
+      "success": true,
+      "timestamp": 34.5
+    },
+    {
+      "step": 8,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the HTML Forms tutorial page. I've been scrolling multiple times but haven't found the sample form yet. Looking at the current screen, I can see the page header with navigation menu (HTML, C",
+      "success": true,
+      "timestamp": 39.4
+    },
+    {
+      "step": 9,
+      "action": "click",
+      "target": "",
+      "coords": "(1437, 307)",
+      "reasoning": "I've been scrolling multiple times without finding the sample form. Looking at the current screenshot, I can see the HTML Forms tutorial page with a navigation menu on the left side. The main content ",
+      "success": true,
+      "timestamp": 44.5
+    },
+    {
+      "step": 10,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the HTML Forms tutorial page from W3Schools. The page shows a navigation menu on the left with various HTML topics. I need to find the sample form to fill out. Looking at the current screen,",
+      "success": true,
+      "timestamp": 48.7
+    },
+    {
+      "step": 11,
+      "action": "click",
+      "target": "",
+      "coords": "(147, 609)",
+      "reasoning": "I can see the HTML Forms tutorial page from W3Schools. The page shows a 'Challenge: Form Elements' section with instructions to complete a coding challenge. I can see a code editor on the left side an",
+      "success": true,
+      "timestamp": 55.3
+    },
+    {
+      "step": 12,
+      "action": "click",
+      "target": "",
+      "coords": "(421, 1020)",
+      "reasoning": "I can see the HTML Forms tutorial page from W3Schools. There is an example form visible on the page with two input fields: 'First name:' (containing 'John') and 'Last name:' (containing 'Doe'), along ",
+      "success": true,
+      "timestamp": 61.3
+    },
+    {
+      "step": 13,
+      "action": "click",
+      "target": "",
+      "coords": "(142, 28)",
+      "reasoning": "The current screenshot shows a browser with two tabs open - 'HTML Forms' and 'Loading...'. The page appears to be blank (about:blank). Based on the task history, I was previously on the HTML Forms tut",
+      "success": true,
+      "timestamp": 66.2
+    },
+    {
+      "step": 14,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "Looking at the current screenshot, I can see the HTML Forms tutorial page from W3Schools. There is an example form visible on the page with two input fields: 'First name:' (containing 'John') and 'Las",
+      "success": true,
+      "timestamp": 72.2
+    },
+    {
+      "step": 15,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the HTML Forms page with a form on the right side. The form has two fields: 'First name:' with 'John' entered, and 'Last name:' with 'Doe' entered. There's also a Submit button. However, the",
+      "success": true,
+      "timestamp": 77.2
+    }
+  ]
+}

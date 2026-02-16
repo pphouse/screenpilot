@@ -1,0 +1,19 @@
+1
+00:00:07,654 --> 00:00:15,541
+Step 1: scroll  [OK]\NI can see the Bitcoin price page on Coinbase. The current price is displayed as ¥10,552,097.55 with a change of ¥38,529.
+
+2
+00:00:15,541 --> 00:00:20,805
+Step 2: scroll  [OK]\NI can see the Bitcoin price page on Coinbase. The current price is displayed as ₹10,051,388.82 at the top of the page. I
+
+3
+00:00:20,805 --> 00:00:27,533
+Step 3: click (1234, 361) [OK]\NI can see a modal dialog box titled 'Create your account' is currently open, blocking the view of the Bitcoin price page
+
+4
+00:00:27,533 --> 00:00:34,477
+Step 4: scroll  [OK]\NI can see the Bitcoin price page on Coinbase. The current price is displayed as ¥10,053,293.09 at the top left. I can al
+
+5
+00:00:34,477 --> 00:00:38,477
+Step 5: done  [OK]\NI can see the Bitcoin price page on Coinbase. The current price is displayed as ₹10,555,800.79 at the top of the page. I

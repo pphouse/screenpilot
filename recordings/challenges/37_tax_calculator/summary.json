@@ -1,0 +1,197 @@
+{
+  "challenge_id": 37,
+  "name": "tax_calculator",
+  "difficulty": "expert",
+  "goal": "Enter annual income of 5000000 yen in the income field, click calculate to see the estimated tax. If there are deduction fields, enter 380000 for basic deduction",
+  "setup_url": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/kakutei.htm",
+  "success": false,
+  "steps": 20,
+  "time": 155.1,
+  "error": "Max steps (20) reached without completing the task",
+  "video_path": "recordings/challenges/37_tax_calculator/recording.mp4",
+  "video_size_kb": 2270,
+  "speed": 3.0,
+  "attempt": 1,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see a Japanese National Tax Agency website page about tax filing (所得税の確定申告). The page shows information about tax returns. I need to find an income field to enter 5000000 yen and a calculate but",
+      "success": true,
+      "timestamp": 6.6
+    },
+    {
+      "step": 2,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows information about tax returns. I need to find an income field to enter 5000000 yen and a calculate button. ",
+      "success": true,
+      "timestamp": 10.9
+    },
+    {
+      "step": 3,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows information about tax filing, but I need to find an income calculator or form where I can enter the annual ",
+      "success": true,
+      "timestamp": 17.0
+    },
+    {
+      "step": 4,
+      "action": "find_and_click",
+      "target": "A link or button that contains text related to tax calculation, simulator, or calculator (計算, シミュレーション, 試算)",
+      "coords": "",
+      "reasoning": "I can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). I've been scrolling multiple times without finding an income calculator or input field. Looking at the page, I can see sev",
+      "success": false,
+      "timestamp": 36.9
+    },
+    {
+      "step": 5,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows information about tax filing for the Reiwa 7 year. On the right side, there's a navigation menu with variou",
+      "success": true,
+      "timestamp": 43.7
+    },
+    {
+      "step": 6,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows information about tax filing and has a sidebar menu on the right with various options. I need to find a tax",
+      "success": true,
+      "timestamp": 50.6
+    },
+    {
+      "step": 7,
+      "action": "find_and_click",
+      "target": "Link or button with text '税の相談' (Tax consultation) in the right sidebar menu",
+      "coords": "(1281, 558)",
+      "reasoning": "I can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows information about tax filing for the 7th year of Reiwa. I need to find a tax calculator or income entry fie",
+      "success": true,
+      "timestamp": 61.8
+    },
+    {
+      "step": 8,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows information about tax filing with several links in the right sidebar. I clicked on '税の相談' (Tax consultation",
+      "success": true,
+      "timestamp": 68.3
+    },
+    {
+      "step": 9,
+      "action": "click",
+      "target": "",
+      "coords": "(655, 607)",
+      "reasoning": "I can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows information about tax filing procedures and Q&A sections. I need to find a tax calculator or simulator to e",
+      "success": true,
+      "timestamp": 74.3
+    },
+    {
+      "step": 10,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see a Japanese National Tax Agency website about tax filing. The page shows information about 令和7年分確定申告特集 (Reiwa 7 tax filing special feature). I can see several sections including トピックス (Topics",
+      "success": true,
+      "timestamp": 82.9
+    },
+    {
+      "step": 11,
+      "action": "click",
+      "target": "",
+      "coords": "(960, 1053)",
+      "reasoning": "I can see a Japanese National Tax Agency website about tax filing. The page shows various sections including 'トピックス' (Topics) and 'よく見られているページ' (Frequently Viewed Pages). I need to find a tax calculat",
+      "success": true,
+      "timestamp": 88.9
+    },
+    {
+      "step": 12,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows various topics and links related to tax filing. I need to find a tax calculator or simulator to enter incom",
+      "success": true,
+      "timestamp": 97.5
+    },
+    {
+      "step": 13,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows several green buttons for different tax-related services. I need to find a tax calculator or simulator to e",
+      "success": true,
+      "timestamp": 105.7
+    },
+    {
+      "step": 14,
+      "action": "find_and_click",
+      "target": "Button or link with text '確定申告書等を作成する' (Create tax return documents)",
+      "coords": "(834, 580)",
+      "reasoning": "I can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows several sections including '確定申告情報' (Tax Return Information) with various options. I need to find a tax cal",
+      "success": true,
+      "timestamp": 116.0
+    },
+    {
+      "step": 15,
+      "action": "click",
+      "target": "",
+      "coords": "(961, 610)",
+      "reasoning": "I can see a Japanese National Tax Agency website for tax filing (確定申告). The page shows three main sections: 1) A large green button labeled '確定申告書等作成コーナー' (Tax Return Document Creation Corner) in the ",
+      "success": true,
+      "timestamp": 121.8
+    },
+    {
+      "step": 16,
+      "action": "find_and_click",
+      "target": "Yellow button with text '作成開始' (Start Creating) with a NEW label",
+      "coords": "(790, 672)",
+      "reasoning": "I can see the National Tax Agency website for tax filing (確定申告). The page shows options for creating tax returns. I can see two main options: '作成開始' (Start Creating) on the left and '保存データを利用して作成' (Cr",
+      "success": true,
+      "timestamp": 131.1
+    },
+    {
+      "step": 17,
+      "action": "click",
+      "target": "",
+      "coords": "(549, 399)",
+      "reasoning": "I can see a Japanese tax filing website. The current page shows '税務署への提出方法の選択' (Selection of submission method to tax office). There are two options visible: 'はい' (Yes) and 'いいえ' (No) buttons, and bel",
+      "success": true,
+      "timestamp": 137.2
+    },
+    {
+      "step": 18,
+      "action": "click",
+      "target": "",
+      "coords": "(658, 399)",
+      "reasoning": "I can see a Japanese tax filing website page titled '税務署への提出方法の選択' (Selection of submission method to tax office). The page is asking about MyNumber card and smart phone/IC card reader. There are two ",
+      "success": true,
+      "timestamp": 143.8
+    },
+    {
+      "step": 19,
+      "action": "click",
+      "target": "",
+      "coords": "(904, 558)",
+      "reasoning": "I can see a Japanese tax filing website page showing '税務署への提出方法の選択' (Selection of submission method to tax office). The page displays two main options: 'e-Tax (ID・パスワード方式)' (e-Tax with ID/Password met",
+      "success": true,
+      "timestamp": 150.5
+    },
+    {
+      "step": 20,
+      "action": "click",
+      "target": "",
+      "coords": "(1288, 709)",
+      "reasoning": "I can see a dialog box (確認) has appeared on the screen with information about e-Tax and tax filing. The dialog has two buttons at the bottom: '戻る' (Back) on the left and 'このまま次へ進む' (Continue to next) ",
+      "success": true,
+      "timestamp": 156.5
+    }
+  ]
+}

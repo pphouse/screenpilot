@@ -1,0 +1,107 @@
+{
+  "challenge_id": 39,
+  "name": "hotel_booking_search",
+  "difficulty": "expert",
+  "goal": "Search for a hotel in Kyoto for 2 adults, check-in next Friday, check-out next Saturday. Type \"Kyoto\" in the destination, set dates, and click search",
+  "setup_url": "https://www.booking.com",
+  "success": true,
+  "steps": 10,
+  "time": 60.6,
+  "error": null,
+  "video_path": "recordings/challenges/39_hotel_booking_search/recording.mp4",
+  "video_size_kb": 1079,
+  "speed": 3.0,
+  "attempt": 1,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "click",
+      "target": "",
+      "coords": "(1231, 496)",
+      "reasoning": "I can see a Booking.com page with a modal dialog box open that says 'Sign in, save money' with a 'Genius' logo. This dialog is blocking the main search interface. I need to close this modal first befo",
+      "success": true,
+      "timestamp": 6.9
+    },
+    {
+      "step": 2,
+      "action": "click",
+      "target": "",
+      "coords": "(597, 502)",
+      "reasoning": "I can see the Booking.com homepage with a search form. The task requires me to search for a hotel in Kyoto for 2 adults, checking in next Friday and checking out next Saturday. Looking at the current ",
+      "success": true,
+      "timestamp": 11.9
+    },
+    {
+      "step": 3,
+      "action": "click",
+      "target": "",
+      "coords": "(478, 718)",
+      "reasoning": "I can see the Booking.com homepage with a search form. There's a dropdown menu showing 'Trending destinations' with several Japanese cities listed, including Kyoto. I need to click on 'Kyoto' from thi",
+      "success": true,
+      "timestamp": 15.7
+    },
+    {
+      "step": 4,
+      "action": "click",
+      "target": "",
+      "coords": "(1042, 745)",
+      "reasoning": "I can see the Booking.com homepage with a calendar modal open showing February 2026 and March 2026. The task requires me to search for a hotel in Kyoto for 2 adults, checking in next Friday and checki",
+      "success": true,
+      "timestamp": 24.3
+    },
+    {
+      "step": 5,
+      "action": "click",
+      "target": "",
+      "coords": "(1042, 793)",
+      "reasoning": "I can see the Booking.com homepage with a calendar modal open showing February 2026 and March 2026. The destination field shows 'Kyoto, Japan' which is correct. I need to select check-in and check-out",
+      "success": true,
+      "timestamp": 32.3
+    },
+    {
+      "step": 6,
+      "action": "click",
+      "target": "",
+      "coords": "(1083, 793)",
+      "reasoning": "I can see the Booking.com homepage with a calendar modal open showing February 2026 and March 2026. The destination field shows 'Kyoto, Japan' which is correct. I need to select check-in and check-out",
+      "success": true,
+      "timestamp": 38.7
+    },
+    {
+      "step": 7,
+      "action": "click",
+      "target": "",
+      "coords": "(1455, 502)",
+      "reasoning": "Looking at the current screenshot, I can see the Booking.com homepage with a search form. The destination field shows 'Kyoto, Japan' which is already filled in. The date fields show 'Fri, Feb 20' and ",
+      "success": true,
+      "timestamp": 44.5
+    },
+    {
+      "step": 8,
+      "action": "click",
+      "target": "",
+      "coords": "(1455, 502)",
+      "reasoning": "Looking at the current screenshot, I can see the Booking.com homepage with a search form. The destination field shows 'Kyoto, Japan' which is already filled in. The date fields show 'Fri, Feb 20 — Sat",
+      "success": true,
+      "timestamp": 49.5
+    },
+    {
+      "step": 9,
+      "action": "click",
+      "target": "",
+      "coords": "(162, 28)",
+      "reasoning": "Looking at the current screenshot, I can see a browser with two tabs open - one for Booking.com and one showing 'Loading...'. The current active tab shows 'about:blank' in the address bar, which means",
+      "success": true,
+      "timestamp": 56.1
+    },
+    {
+      "step": 10,
+      "action": "done",
+      "target": "",
+      "coords": "",
+      "reasoning": "Looking at the current screenshot, I can see a Booking.com search results page for Kyoto. The search has already been performed with the destination 'Kyoto' filled in, dates set to 'Fri, Feb 20 — Sat,",
+      "success": true,
+      "timestamp": 62.1
+    }
+  ]
+}

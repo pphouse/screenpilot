@@ -1,0 +1,47 @@
+1
+00:00:06,827 --> 00:00:13,627
+Step 1: click (840, 393) [OK]\NI can see the Indeed.com website is currently showing an 'Additional Verification Required' page with a Cloudflare verif
+
+2
+00:00:13,627 --> 00:00:18,814
+Step 2: wait  [OK]\NThe current screen shows an 'Additional Verification Required' page on Indeed.com with a Cloudflare verification widget 
+
+3
+00:00:18,814 --> 00:00:24,082
+Step 3: click (735, 276) [OK]\NI can see the Indeed homepage with two search fields. The first field is for job title/keywords (職種、キーワード、会社名) and the s
+
+4
+00:00:24,082 --> 00:00:28,820
+Step 4: click (742, 276) [OK]\NI can see the Indeed homepage with a search interface. There are two input fields visible - one for job title/keywords (
+
+5
+00:00:28,820 --> 00:00:41,625
+Step 5: click (745, 276) [OK]\NI can see the Indeed homepage with a search interface. There are two input fields visible - one for job title/keywords (
+
+6
+00:00:41,625 --> 00:00:46,980
+Step 6: find_and_click (892, 291) [OK]\NI can see the Indeed homepage with a search interface. There are two input fields visible - one for job title/keywords (
+
+7
+00:00:46,980 --> 00:00:55,504
+Step 7: click (742, 276) [OK]\NI can see the Indeed homepage with two search fields. The first field is for job title/keywords (職種、キーワード、会社名) and the s
+
+8
+00:00:55,504 --> 00:01:00,222
+Step 8: type  [OK]\NI can see the Indeed homepage with a search interface. There are two input fields - one for job title/keywords (職種、キーワード
+
+9
+00:01:00,222 --> 00:01:06,165
+Step 9: click (1072, 276) [OK]\NI can see the Indeed homepage with a search interface. The job title field already contains 'software engineer' (visible
+
+10
+00:01:06,165 --> 00:01:11,023
+Step 10: type  [OK]\NI can see the Indeed homepage with a search interface. The job title field already contains 'software engineer' (visible
+
+11
+00:01:11,023 --> 00:01:17,933
+Step 11: click (1321, 276) [OK]\NI can see the Indeed homepage with a search interface. The job title field already contains 'software engineer' and the 
+
+12
+00:01:17,933 --> 00:01:21,933
+Step 12: done  [OK]\NThe current screenshot shows a mostly blank page with a warning message at the top about an unsupported command-line fla

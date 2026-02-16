@@ -1,0 +1,51 @@
+1
+00:00:07,798 --> 00:00:12,511
+Step 1: click (550, 565) [OK]\NI can see the Google Flights page is loaded with a flight search form. The current setup shows 'Tokyo' as the departure 
+
+2
+00:00:12,511 --> 00:00:18,745
+Step 2: click (556, 663) [OK]\NI can see the Google Flights page is loaded. Currently, the flight type dropdown shows 'Round trip' with a dropdown menu
+
+3
+00:00:18,745 --> 00:00:24,389
+Step 3: click (544, 565) [OK]\NI can see the Google Flights page is loaded with a search form. The current state shows 'Tokyo' as the departure city in
+
+4
+00:00:24,389 --> 00:00:30,512
+Step 4: click (960, 450) [OK]\NI can see the Google Flights page is loaded. Looking at the current state, I notice there's a dropdown menu visible show
+
+5
+00:00:30,512 --> 00:00:41,038
+Step 5: click (930, 619) [OK]\NLooking at the current screenshot, I can see the Google Flights page is loaded. The departure city is already set to 'To
+
+6
+00:00:41,038 --> 00:00:46,107
+Step 6: find_and_type (1078, 640) [OK]\NLooking at the current screenshot, I can see the Google Flights page with a search form. The departure city is already s
+
+7
+00:00:46,107 --> 00:00:51,945
+Step 7: click (1002, 729) [OK]\NLooking at the current screenshot, I can see that I've already typed 'New York' in the destination field, and a dropdown
+
+8
+00:00:51,945 --> 00:00:58,895
+Step 8: click (961, 693) [OK]\NLooking at the current screenshot, I can see the Google Flights page with the search form. The departure city is set to 
+
+9
+00:00:58,895 --> 00:01:06,731
+Step 9: click (1113, 721) [OK]\NLooking at the current screenshot, I can see the Google Flights page with a calendar open. The task requires me to searc
+
+10
+00:01:06,731 --> 00:01:12,325
+Step 10: click (1399, 1054) [OK]\NLooking at the current screenshot, I can see the Google Flights page with a calendar open showing February and March. Th
+
+11
+00:01:12,325 --> 00:01:22,555
+Step 11: click (961, 693) [OK]\NLooking at the current screenshot, I can see the Google Flights page is loaded with a search form. The departure city is
+
+12
+00:01:22,555 --> 00:01:28,006
+Step 12: scroll  [OK]\NLooking at the current screenshot, I can see the Google Flights page with the search form. The departure city is set to 
+
+13
+00:01:28,006 --> 00:01:32,006
+Step 13: done  [OK]\NLooking at the current screenshot, I can see the Google Flights search results page showing flights from Tokyo (HND/NRT)

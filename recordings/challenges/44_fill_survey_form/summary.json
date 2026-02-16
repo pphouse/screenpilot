@@ -1,0 +1,26 @@
+{
+  "challenge_id": 44,
+  "name": "fill_survey_form",
+  "difficulty": "hard",
+  "goal": "Answer the survey: select your age range, pick your favorite programming language, write a short comment \"AI is the future of automation\" in the text area, then click Submit",
+  "setup_url": "https://www.jotform.com/form-templates/simple-survey-form",
+  "success": false,
+  "steps": 1,
+  "time": 7.2,
+  "error": "The current screen shows a 404 error page from Jotform, indicating that the page 'jotform.com/form-templates/simple-survey-form' could not be found. The page displays a '404' graphic and a message stating 'Sorry, we couldn't find that page' with text explaining the page may be temporarily unavailable, moved, or no longer exists. There is a 'Back to Form Templates' button visible. Since the survey form is not available at this URL, I cannot complete the task of answering the survey. The page does not exist, so I cannot select an age range, pick a programming language, write a comment, or submit the form.",
+  "video_path": "recordings/challenges/44_fill_survey_form/recording.mp4",
+  "video_size_kb": 137,
+  "speed": 3.0,
+  "attempt": 1,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "fail",
+      "target": "The survey form does not exist at this URL - the page shows a 404 error indicating the form is not found, temporarily unavailable, moved, or no longer exists. Cannot complete the survey task without access to the actual form.",
+      "coords": "",
+      "reasoning": "The current screen shows a 404 error page from Jotform, indicating that the page 'jotform.com/form-templates/simple-survey-form' could not be found. The page displays a '404' graphic and a message sta",
+      "success": false,
+      "timestamp": 8.7
+    }
+  ]
+}

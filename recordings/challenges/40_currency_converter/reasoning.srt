@@ -1,0 +1,47 @@
+1
+00:00:06,554 --> 00:00:12,123
+Step 1: click (537, 661) [OK]\NI can see the Xe Currency Converter page is loaded. Currently, it shows a conversion from $1.00 USD to €0.84 EUR. To com
+
+2
+00:00:12,123 --> 00:00:18,409
+Step 2: click (720, 661) [OK]\NI can see the Xe Currency Converter page is loaded. The current conversion shows 1 USD to EUR. I need to: 1) Change the 
+
+3
+00:00:18,409 --> 00:00:29,374
+Step 3: click (510, 661) [OK]\NLooking at the current screenshot, I can see the Xe Currency Converter page is loaded. The conversion interface shows '1
+
+4
+00:00:29,374 --> 00:00:37,128
+Step 4: find_and_click (789, 679) [OK]\NI can see the Xe Currency Converter page is loaded. The current conversion shows 1 USD = 0.84376762 EUR. I need to conve
+
+5
+00:00:37,128 --> 00:00:41,995
+Step 5: click (537, 661) [OK]\NI can see the Xe Currency Converter page with a currency dropdown menu open. The current amount field shows '$1.00' and 
+
+6
+00:00:41,995 --> 00:00:50,040
+Step 6: click (720, 661) [OK]\NLooking at the screenshot, I can see the Xe Currency Converter page. The amount field currently shows '1' in the 'From' 
+
+7
+00:00:50,040 --> 00:01:01,761
+Step 7: find_and_click (784, 679) [OK]\NLooking at the screenshot, I can see the Xe Currency Converter page. The amount field currently shows '1' and the conver
+
+8
+00:01:01,761 --> 00:01:07,361
+Step 8: find_and_click (664, 679) [OK]\NI can see the Xe Currency Converter page with a currency dropdown menu open. The amount field currently shows '$1.00' in
+
+9
+00:01:07,361 --> 00:01:12,198
+Step 9: click (570, 661) [OK]\NI can see the Xe Currency Converter page. The amount field currently shows '$1.00' in the 'From' section. I need to clic
+
+10
+00:01:12,198 --> 00:01:16,955
+Step 10: click (720, 661) [OK]\NLooking at the screenshot, I can see the Xe Currency Converter page. The amount field currently shows '1' in the 'From' 
+
+11
+00:01:16,955 --> 00:01:30,314
+Step 11: click (720, 661) [OK]\NLooking at the screenshot, I can see the Xe Currency Converter page. The amount field currently shows '1' in the From se
+
+12
+00:01:30,314 --> 00:01:34,314
+Step 12: find_and_click (694, 685) [OK]\NI can see the Xe Currency Converter page. The amount field currently shows '1' in the From section. I've been clicking r

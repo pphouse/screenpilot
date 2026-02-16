@@ -1,0 +1,62 @@
+{
+  "challenge_id": 43,
+  "name": "multi_site_price_compare",
+  "difficulty": "expert",
+  "goal": "Look at the Bitcoin price shown on the page, remember it, then scroll down to check if there is a 24h change percentage displayed. Report done when you have seen both the price and the percentage change",
+  "setup_url": "https://www.coinbase.com/price/bitcoin",
+  "success": true,
+  "steps": 5,
+  "time": 33.0,
+  "error": null,
+  "video_path": "recordings/challenges/43_multi_site_price_compare/recording.mp4",
+  "video_size_kb": 893,
+  "speed": 3.0,
+  "attempt": 1,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Bitcoin price page on Coinbase. The current price is displayed as ¥10,552,097.55 with a change of ¥38,529.21 (0.37%) shown in green. This appears to be the 24h change percentage already ",
+      "success": true,
+      "timestamp": 7.7
+    },
+    {
+      "step": 2,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Bitcoin price page on Coinbase. The current price is displayed as ₹10,051,388.82 at the top of the page. I can also see a 'Performance' section on the right side that shows 'PRICE CHANGE",
+      "success": true,
+      "timestamp": 15.5
+    },
+    {
+      "step": 3,
+      "action": "click",
+      "target": "",
+      "coords": "(1234, 361)",
+      "reasoning": "I can see a modal dialog box titled 'Create your account' is currently open, blocking the view of the Bitcoin price page. Before I can complete the task of viewing the Bitcoin price and 24h change per",
+      "success": true,
+      "timestamp": 20.8
+    },
+    {
+      "step": 4,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Bitcoin price page on Coinbase. The current price is displayed as ¥10,053,293.09 at the top left. I can also see performance metrics on the right side showing 'PRICE CHANGE (1Y)' with a ",
+      "success": true,
+      "timestamp": 27.5
+    },
+    {
+      "step": 5,
+      "action": "done",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the Bitcoin price page on Coinbase. The current price is displayed as ₹10,555,800.79 at the top of the page. I can also see a 'Price history' section on the right side showing various time p",
+      "success": true,
+      "timestamp": 34.5
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+1
+00:00:06,556 --> 00:00:10,878
+Step 1: scroll  [OK]\NI can see a Japanese National Tax Agency website page about tax filing (所得税の確定申告). The page shows information about tax 
+
+2
+00:00:10,878 --> 00:00:17,040
+Step 2: scroll  [OK]\NI can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows information about tax retur
+
+3
+00:00:17,040 --> 00:00:36,906
+Step 3: scroll  [OK]\NI can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows information about tax filin
+
+4
+00:00:36,906 --> 00:00:43,664
+Step 4: find_and_click  [FAIL]\NI can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). I've been scrolling multiple times without
+
+5
+00:00:43,664 --> 00:00:50,565
+Step 5: scroll  [OK]\NI can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows information about tax filin
+
+6
+00:00:50,565 --> 00:01:01,751
+Step 6: scroll  [OK]\NI can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows information about tax filin
+
+7
+00:01:01,751 --> 00:01:08,332
+Step 7: find_and_click (1281, 558) [OK]\NI can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows information about tax filin
+
+8
+00:01:08,332 --> 00:01:14,304
+Step 8: scroll  [OK]\NI can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows information about tax filin
+
+9
+00:01:14,304 --> 00:01:22,855
+Step 9: click (655, 607) [OK]\NI can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows information about tax filin
+
+10
+00:01:22,855 --> 00:01:28,884
+Step 10: scroll  [OK]\NI can see a Japanese National Tax Agency website about tax filing. The page shows information about 令和7年分確定申告特集 (Reiwa 7
+
+11
+00:01:28,884 --> 00:01:37,451
+Step 11: click (960, 1053) [OK]\NI can see a Japanese National Tax Agency website about tax filing. The page shows various sections including 'トピックス' (To
+
+12
+00:01:37,451 --> 00:01:45,666
+Step 12: scroll  [OK]\NI can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows various topics and links re
+
+13
+00:01:45,666 --> 00:01:56,023
+Step 13: scroll  [OK]\NI can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows several green buttons for d
+
+14
+00:01:56,023 --> 00:02:01,794
+Step 14: find_and_click (834, 580) [OK]\NI can see a Japanese National Tax Agency website about tax filing (所得税の確定申告). The page shows several sections including 
+
+15
+00:02:01,794 --> 00:02:11,138
+Step 15: click (961, 610) [OK]\NI can see a Japanese National Tax Agency website for tax filing (確定申告). The page shows three main sections: 1) A large g
+
+16
+00:02:11,138 --> 00:02:17,153
+Step 16: find_and_click (790, 672) [OK]\NI can see the National Tax Agency website for tax filing (確定申告). The page shows options for creating tax returns. I can 
+
+17
+00:02:17,153 --> 00:02:23,799
+Step 17: click (549, 399) [OK]\NI can see a Japanese tax filing website. The current page shows '税務署への提出方法の選択' (Selection of submission method to tax of
+
+18
+00:02:23,799 --> 00:02:30,471
+Step 18: click (658, 399) [OK]\NI can see a Japanese tax filing website page titled '税務署への提出方法の選択' (Selection of submission method to tax office). The p
+
+19
+00:02:30,471 --> 00:02:36,497
+Step 19: click (904, 558) [OK]\NI can see a Japanese tax filing website page showing '税務署への提出方法の選択' (Selection of submission method to tax office). The 
+
+20
+00:02:36,497 --> 00:02:40,497
+Step 20: click (1288, 709) [OK]\NI can see a dialog box (確認) has appeared on the screen with information about e-Tax and tax filing. The dialog has two b

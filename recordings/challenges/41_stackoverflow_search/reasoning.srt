@@ -1,0 +1,55 @@
+1
+00:00:06,452 --> 00:00:11,183
+Step 1: click (1095, 177) [OK]\NI need to complete a task that involves searching for 'how to read csv file in python' on Stack Overflow. Looking at the
+
+2
+00:00:11,183 --> 00:00:20,012
+Step 2: click (1095, 177) [OK]\NI can see the Stack Overflow questions page is open. There is a search box at the top of the page with placeholder text 
+
+3
+00:00:20,012 --> 00:00:25,716
+Step 3: find_and_click (1269, 190) [OK]\NI can see the Stack Overflow questions page is open. There is a search box at the top of the page with placeholder text 
+
+4
+00:00:25,716 --> 00:00:30,447
+Step 4: click (1095, 177) [OK]\NI can see the Stack Overflow questions page is open. There is a search box at the top of the page with placeholder text 
+
+5
+00:00:30,447 --> 00:00:35,279
+Step 5: click (1095, 177) [OK]\NI can see the Stack Overflow questions page is open. There is a search box at the top of the page with placeholder text 
+
+6
+00:00:35,279 --> 00:00:40,341
+Step 6: click (1095, 177) [OK]\NI can see the Stack Overflow questions page is open. There is a search box at the top of the page with placeholder text 
+
+7
+00:00:40,341 --> 00:00:45,790
+Step 7: click (1095, 177) [OK]\NI can see the Stack Overflow questions page is open. There is a search box at the top of the page with placeholder text 
+
+8
+00:00:45,790 --> 00:00:51,288
+Step 8: click (1095, 177) [OK]\NI can see the Stack Overflow questions page is open with a search box at the top. The search box is visible and has plac
+
+9
+00:00:51,288 --> 00:00:56,529
+Step 9: click (1095, 177) [OK]\NI can see the Stack Overflow questions page is open with a search box at the top. The search box is visible and has plac
+
+10
+00:00:56,529 --> 00:01:02,010
+Step 10: click (1095, 177) [OK]\NI can see the Stack Overflow questions page is open. There is a search box at the top of the page with placeholder text 
+
+11
+00:01:02,010 --> 00:01:12,345
+Step 11: click (1095, 177) [OK]\NI can see the Stack Overflow questions page is open. There is a search box at the top of the page with placeholder text 
+
+12
+00:01:12,345 --> 00:01:16,405
+Step 12: find_and_type (1269, 190) [OK]\NI can see the Stack Overflow questions page is open. There is a search box at the top of the page with placeholder text 
+
+13
+00:01:16,405 --> 00:01:21,905
+Step 13: key  [OK]\NI can see the Stack Overflow questions page with a search box at the top that already contains the text 'how to read csv
+
+14
+00:01:21,905 --> 00:01:25,905
+Step 14: fail  [FAIL]\NLooking at the current screenshot, I can see we're on a Stack Overflow page showing a 'Human verification' message with 
