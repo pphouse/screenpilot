@@ -6,16 +6,20 @@ import asyncio
 import logging
 import time
 import uuid
+from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from screenpilot import __version__
 from screenpilot.agent import ScreenPilotAgent, StepResult
 from screenpilot.config import ScreenPilotConfig
 from screenpilot.planner.planner import Action, ActionType
+from screenpilot.templates.registry import TemplateRegistry
 from screenpilot.vision.capture import ScreenCapture
 
 logger = logging.getLogger(__name__)
@@ -76,9 +80,15 @@ def create_app(config: ScreenPilotConfig | None = None) -> FastAPI:
         allow_headers=["*"],
     )
 
+    # Serve static dashboard
+    static_dir = Path(__file__).parent / "static"
+    if static_dir.exists():
+        app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
+
     # State
     agent = ScreenPilotAgent(cfg)
     capture = ScreenCapture(cfg.capture)
+    template_registry = TemplateRegistry()
     running_tasks: dict[str, dict[str, Any]] = {}
     ws_clients: list[WebSocket] = []
 
@@ -95,6 +105,18 @@ def create_app(config: ScreenPilotConfig | None = None) -> FastAPI:
 
     @app.get("/")
     async def root():
+        """Serve the web dashboard."""
+        index_path = static_dir / "index.html"
+        if index_path.exists():
+            return HTMLResponse(index_path.read_text())
+        return {
+            "name": "ScreenPilot API",
+            "version": __version__,
+            "status": "running",
+        }
+
+    @app.get("/api")
+    async def api_info():
         return {
             "name": "ScreenPilot API",
             "version": __version__,
@@ -277,6 +299,70 @@ def create_app(config: ScreenPilotConfig | None = None) -> FastAPI:
             )
             for info in running_tasks.values()
         ]
+
+    @app.get("/templates")
+    async def list_templates():
+        """List all available workflow templates."""
+        return [t.to_dict() for t in template_registry.list_all()]
+
+    @app.get("/templates/{template_id}")
+    async def get_template(template_id: str):
+        """Get a specific template."""
+        template = template_registry.get(template_id)
+        if template is None:
+            raise HTTPException(status_code=404, detail="Template not found")
+        return template.to_dict()
+
+    @app.post("/templates/{template_id}/run")
+    async def run_template(template_id: str, params: dict):
+        """Run a workflow template with given parameters."""
+        template = template_registry.get(template_id)
+        if template is None:
+            raise HTTPException(status_code=404, detail="Template not found")
+
+        errors = template.validate_params(params)
+        if errors:
+            raise HTTPException(status_code=400, detail={"errors": errors})
+
+        goal = template.render_goal(params)
+
+        # Create and run task
+        task_id = str(uuid.uuid4())[:8]
+        task_info = {
+            "id": task_id,
+            "goal": goal,
+            "status": "running",
+            "current_step": 0,
+            "start_time": time.time(),
+            "result": None,
+            "template_id": template_id,
+        }
+        running_tasks[task_id] = task_info
+
+        async def run_templated_task():
+            loop = asyncio.get_event_loop()
+            result = await loop.run_in_executor(None, agent.run, goal, template.estimated_steps * 2)
+            task_info["status"] = "completed" if result.success else "failed"
+            task_info["result"] = result
+            await broadcast_ws(
+                {
+                    "type": "task_complete",
+                    "task_id": task_id,
+                    "success": result.success,
+                    "steps": result.num_steps,
+                    "time": result.total_time,
+                }
+            )
+
+        asyncio.create_task(run_templated_task())
+
+        return TaskStatus(
+            task_id=task_id,
+            goal=goal,
+            status="running",
+            current_step=0,
+            total_time=0,
+        )
 
     @app.websocket("/ws")
     async def websocket_endpoint(ws: WebSocket):

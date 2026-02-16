@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScreenPilot Dashboard</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --border: #334155;
+            --text: #e2e8f0;
+            --text-dim: #94a3b8;
+            --primary: #3b82f6;
+            --success: #22c55e;
+            --error: #ef4444;
+            --warning: #f59e0b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+        header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        header h1 { font-size: 1.25rem; font-weight: 600; }
+        header h1 span { color: var(--primary); }
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .status-connected { background: rgba(34,197,94,0.15); color: var(--success); }
+        .status-disconnected { background: rgba(239,68,68,0.15); color: var(--error); }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+        .card h2 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+
+        .task-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .task-input input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 0.875rem;
+            outline: none;
+        }
+        .task-input input:focus { border-color: var(--primary); }
+        button {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+        button:hover { opacity: 0.9; }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+        button.secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        button.danger { background: var(--error); }
+
+        .screenshot-container {
+            position: relative;
+            background: var(--bg);
+            border-radius: 8px;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .screenshot-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .screenshot-placeholder { color: var(--text-dim); font-size: 0.875rem; }
+
+        .log-container {
+            max-height: 400px;
+            overflow-y: auto;
+            background: var(--bg);
+            border-radius: 8px;
+            padding: 0.75rem;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+        .log-entry { padding: 2px 0; border-bottom: 1px solid rgba(51,65,85,0.3); }
+        .log-entry .step { color: var(--primary); font-weight: 600; }
+        .log-entry .action { color: var(--warning); }
+        .log-entry .ok { color: var(--success); }
+        .log-entry .fail { color: var(--error); }
+        .log-entry .reasoning { color: var(--text-dim); }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 0.75rem;
+        }
+        .template-card {
+            padding: 0.75rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: border-color 0.15s;
+        }
+        .template-card:hover { border-color: var(--primary); }
+        .template-card h3 { font-size: 0.875rem; margin-bottom: 0.25rem; }
+        .template-card p { font-size: 0.75rem; color: var(--text-dim); }
+        .template-card .tag {
+            display: inline-block;
+            padding: 2px 6px;
+            background: rgba(59,130,246,0.15);
+            color: var(--primary);
+            border-radius: 4px;
+            font-size: 0.65rem;
+            margin-top: 0.5rem;
+            margin-right: 4px;
+        }
+
+        .find-section { display: flex; gap: 0.5rem; margin-top: 1rem; }
+        .find-section input {
+            flex: 1;
+            padding: 0.5rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            font-size: 0.8rem;
+            outline: none;
+        }
+        .element-result {
+            margin-top: 0.75rem;
+            padding: 0.5rem;
+            background: var(--bg);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            display: none;
+        }
+        .element-result.visible { display: block; }
+
+        .stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .stat {
+            padding: 0.75rem;
+            background: var(--bg);
+            border-radius: 8px;
+            flex: 1;
+            text-align: center;
+        }
+        .stat .value { font-size: 1.5rem; font-weight: 700; }
+        .stat .label { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; }
+
+        .full-width { grid-column: 1 / -1; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><span>Screen</span>Pilot Dashboard</h1>
+        <span id="wsStatus" class="status-badge status-disconnected">Disconnected</span>
+    </header>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stat">
+                <div class="value" id="totalTasks">0</div>
+                <div class="label">Tasks Run</div>
+            </div>
+            <div class="stat">
+                <div class="value" id="totalSteps">0</div>
+                <div class="label">Steps Executed</div>
+            </div>
+            <div class="stat">
+                <div class="value" id="successRate">-</div>
+                <div class="label">Success Rate</div>
+            </div>
+            <div class="stat">
+                <div class="value" id="currentStatus">Idle</div>
+                <div class="label">Status</div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Run Task</h2>
+                <div class="task-input">
+                    <input type="text" id="goalInput" placeholder="Describe what you want to automate..." />
+                    <button id="runBtn" onclick="runTask()">Run</button>
+                    <button id="stopBtn" class="danger" onclick="stopTask()" disabled>Stop</button>
+                </div>
+                <h2>Execution Log</h2>
+                <div class="log-container" id="logContainer">
+                    <div style="color: var(--text-dim)">No actions yet. Enter a goal above to start.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Live Screen</h2>
+                <div class="screenshot-container" id="screenshotContainer">
+                    <span class="screenshot-placeholder">Click "Capture" to take a screenshot</span>
+                </div>
+                <div style="margin-top: 0.75rem; display: flex; gap: 0.5rem;">
+                    <button class="secondary" onclick="captureScreen()">Capture</button>
+                    <button class="secondary" onclick="analyzeScreen()">Analyze</button>
+                </div>
+                <div class="find-section">
+                    <input type="text" id="findInput" placeholder="Find element: 'the search bar'" />
+                    <button class="secondary" onclick="findElement()">Find</button>
+                </div>
+                <div class="element-result" id="elementResult"></div>
+            </div>
+
+            <div class="card full-width">
+                <h2>Workflow Templates</h2>
+                <div class="templates-grid" id="templatesGrid">
+                    Loading templates...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API = window.location.origin;
+        let ws = null;
+        let currentTaskId = null;
+        let stats = { tasks: 0, steps: 0, successes: 0 };
+
+        // WebSocket connection
+        function connectWS() {
+            const wsUrl = API.replace('http', 'ws') + '/ws';
+            ws = new WebSocket(wsUrl);
+
+            ws.onopen = () => {
+                document.getElementById('wsStatus').className = 'status-badge status-connected';
+                document.getElementById('wsStatus').textContent = 'Connected';
+            };
+
+            ws.onclose = () => {
+                document.getElementById('wsStatus').className = 'status-badge status-disconnected';
+                document.getElementById('wsStatus').textContent = 'Disconnected';
+                setTimeout(connectWS, 3000);
+            };
+
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                if (data.type === 'step') {
+                    addLogEntry(data);
+                    stats.steps++;
+                    updateStats();
+                } else if (data.type === 'task_complete') {
+                    stats.tasks++;
+                    if (data.success) stats.successes++;
+                    updateStats();
+                    document.getElementById('currentStatus').textContent = data.success ? 'Done' : 'Failed';
+                    document.getElementById('runBtn').disabled = false;
+                    document.getElementById('stopBtn').disabled = true;
+                }
+            };
+        }
+
+        function updateStats() {
+            document.getElementById('totalTasks').textContent = stats.tasks;
+            document.getElementById('totalSteps').textContent = stats.steps;
+            document.getElementById('successRate').textContent =
+                stats.tasks > 0 ? Math.round((stats.successes / stats.tasks) * 100) + '%' : '-';
+        }
+
+        function addLogEntry(data) {
+            const container = document.getElementById('logContainer');
+            if (container.querySelector('.screenshot-placeholder')) {
+                container.innerHTML = '';
+            }
+            const status = data.success ? '<span class="ok">OK</span>' : '<span class="fail">FAIL</span>';
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.innerHTML = `<span class="step">Step ${data.step}</span> `
+                + `<span class="action">${data.action}</span> ${status} `
+                + `<span class="reasoning">${data.reasoning || ''}</span>`;
+            container.appendChild(entry);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        async function runTask() {
+            const goal = document.getElementById('goalInput').value.trim();
+            if (!goal) return;
+
+            document.getElementById('runBtn').disabled = true;
+            document.getElementById('stopBtn').disabled = false;
+            document.getElementById('currentStatus').textContent = 'Running';
+            document.getElementById('logContainer').innerHTML = '';
+
+            try {
+                const res = await fetch(`${API}/task`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ goal, max_steps: 50 }),
+                });
+                const data = await res.json();
+                currentTaskId = data.task_id;
+            } catch (e) {
+                addLogEntry({ step: 0, action: 'error', success: false, reasoning: e.message });
+                document.getElementById('runBtn').disabled = false;
+                document.getElementById('stopBtn').disabled = true;
+            }
+        }
+
+        async function stopTask() {
+            if (currentTaskId) {
+                await fetch(`${API}/task/${currentTaskId}/stop`, { method: 'POST' });
+                document.getElementById('currentStatus').textContent = 'Stopped';
+                document.getElementById('runBtn').disabled = false;
+                document.getElementById('stopBtn').disabled = true;
+            }
+        }
+
+        async function captureScreen() {
+            const container = document.getElementById('screenshotContainer');
+            container.innerHTML = '<span class="screenshot-placeholder">Capturing...</span>';
+            try {
+                const res = await fetch(`${API}/screenshot`, { method: 'POST' });
+                const data = await res.json();
+                container.innerHTML = `<img src="data:image/png;base64,${data.image}" alt="Screenshot" />`;
+            } catch (e) {
+                container.innerHTML = `<span class="screenshot-placeholder">Error: ${e.message}</span>`;
+            }
+        }
+
+        async function analyzeScreen() {
+            const container = document.getElementById('logContainer');
+            container.innerHTML += '<div class="log-entry"><span class="action">Analyzing screen...</span></div>';
+            try {
+                const res = await fetch(`${API}/analyze`, { method: 'POST' });
+                const data = await res.json();
+                let html = `<div class="log-entry"><span class="ok">Screen: ${data.description}</span></div>`;
+                for (const el of data.elements.slice(0, 10)) {
+                    html += `<div class="log-entry">  <span class="action">${el.element_type}</span> "${el.text || el.label}" at (${el.x}, ${el.y})</div>`;
+                }
+                container.innerHTML += html;
+                container.scrollTop = container.scrollHeight;
+            } catch (e) {
+                container.innerHTML += `<div class="log-entry"><span class="fail">Error: ${e.message}</span></div>`;
+            }
+        }
+
+        async function findElement() {
+            const target = document.getElementById('findInput').value.trim();
+            if (!target) return;
+            const result = document.getElementById('elementResult');
+            result.className = 'element-result visible';
+            result.innerHTML = 'Searching...';
+            try {
+                const res = await fetch(`${API}/find`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ target }),
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    result.innerHTML = `<span class="ok">Found:</span> ${data.label} (${data.element_type}) at (${data.x}, ${data.y}) - Confidence: ${Math.round(data.confidence * 100)}%`;
+                } else {
+                    result.innerHTML = '<span class="fail">Element not found</span>';
+                }
+            } catch (e) {
+                result.innerHTML = `<span class="fail">Error: ${e.message}</span>`;
+            }
+        }
+
+        async function loadTemplates() {
+            try {
+                const res = await fetch(`${API}/templates`);
+                const templates = await res.json();
+                const grid = document.getElementById('templatesGrid');
+                grid.innerHTML = templates.map(t => `
+                    <div class="template-card" onclick="useTemplate('${t.id}', '${t.goal_template}')">
+                        <h3>${t.name}</h3>
+                        <p>${t.description}</p>
+                        <div>${t.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+                    </div>
+                `).join('');
+            } catch (e) {
+                document.getElementById('templatesGrid').innerHTML =
+                    '<p style="color: var(--text-dim)">Templates will load when server is running</p>';
+            }
+        }
+
+        function useTemplate(id, goalTemplate) {
+            document.getElementById('goalInput').value = goalTemplate;
+            document.getElementById('goalInput').focus();
+        }
+
+        // Handle Enter key
+        document.getElementById('goalInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') runTask();
+        });
+        document.getElementById('findInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') findElement();
+        });
+
+        // Init
+        connectWS();
+        loadTemplates();
+    </script>
+</body>
+</html>
