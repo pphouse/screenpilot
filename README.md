@@ -1,6 +1,13 @@
 # ScreenPilot
 
+[![GitHub Release](https://img.shields.io/github/v/release/pphouse/screenpilot)](https://github.com/pphouse/screenpilot/releases)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://python.org)
+[![Tests](https://img.shields.io/badge/tests-156%20passing-brightgreen.svg)](tests/)
+
 **AI-powered desktop automation using vision + LLM. A smarter alternative to traditional RPA.**
+
+> **[Landing Page](https://pphouse.github.io/screenpilot/)** | **[Release Notes](https://github.com/pphouse/screenpilot/releases)** | **[Discussions](https://github.com/pphouse/screenpilot/discussions)**
 
 ScreenPilot uses screenshot analysis and large language models to automate any desktop application — no brittle CSS selectors, no XPath, no accessibility APIs required. Just describe what you want to do in plain English.
 
