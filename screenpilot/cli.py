@@ -284,6 +284,139 @@ def serve(ctx: click.Context, host: str, port: int) -> None:
     uvicorn.run(app, host=host, port=port)
 
 
+@cli.command()
+@click.pass_context
+def templates(ctx: click.Context) -> None:
+    """List available workflow templates."""
+    from screenpilot.templates.registry import TemplateRegistry
+
+    registry = TemplateRegistry()
+    all_templates = registry.list_all()
+
+    table = Table(title=f"Workflow Templates ({len(all_templates)})")
+    table.add_column("ID", style="cyan")
+    table.add_column("Name", style="bold")
+    table.add_column("Category", style="green")
+    table.add_column("Steps", justify="right")
+    table.add_column("Tags", style="dim")
+
+    for t in all_templates:
+        table.add_row(
+            t.id,
+            t.name,
+            t.category,
+            str(t.estimated_steps),
+            ", ".join(t.tags),
+        )
+
+    console.print(table)
+
+
+@cli.group()
+def schedule() -> None:
+    """Manage scheduled tasks."""
+
+
+@schedule.command("list")
+@click.option("--persist", default=None, help="Path to schedule persistence file")
+def schedule_list(persist: str | None) -> None:
+    """List all scheduled tasks."""
+    from screenpilot.scheduler.scheduler import TaskScheduler
+
+    scheduler = TaskScheduler(persist_path=persist)
+
+    tasks = scheduler.list_all()
+    if not tasks:
+        console.print("[dim]No scheduled tasks.[/]")
+        return
+
+    table = Table(title=f"Scheduled Tasks ({len(tasks)})")
+    table.add_column("ID", style="cyan")
+    table.add_column("Name", style="bold")
+    table.add_column("Type", style="green")
+    table.add_column("Enabled")
+    table.add_column("Last Run", style="dim")
+    table.add_column("Next Run", style="yellow")
+    table.add_column("Runs", justify="right")
+
+    for t in tasks:
+        enabled = "[green]Yes[/]" if t.enabled else "[red]No[/]"
+        table.add_row(
+            t.id,
+            t.name,
+            t.schedule_type.value,
+            enabled,
+            t.last_run or "-",
+            t.next_run or "-",
+            str(t.run_count),
+        )
+
+    console.print(table)
+
+
+@schedule.command("add")
+@click.argument("task_id")
+@click.argument("name")
+@click.argument("goal")
+@click.option(
+    "--type",
+    "sched_type",
+    default="daily",
+    help="Schedule type: once, interval, daily, weekly, cron",
+)
+@click.option("--time", "time_of_day", default=None, help="Time of day (HH:MM) for daily/weekly")
+@click.option("--day", "day_of_week", type=int, default=None, help="Day of week (0=Mon) for weekly")
+@click.option("--interval", "interval_secs", type=int, default=3600, help="Interval in seconds")
+@click.option("--cron", default=None, help="Cron expression (5 fields)")
+@click.option("--persist", default=None, help="Persistence file path")
+def schedule_add(
+    task_id: str,
+    name: str,
+    goal: str,
+    sched_type: str,
+    time_of_day: str | None,
+    day_of_week: int | None,
+    interval_secs: int,
+    cron: str | None,
+    persist: str | None,
+) -> None:
+    """Add a scheduled task.
+
+    Example: screenpilot schedule add daily_report "Daily Report" "Generate report" --type daily --time 09:00
+    """
+    from screenpilot.scheduler.scheduler import ScheduledTask, ScheduleType, TaskScheduler
+
+    scheduler = TaskScheduler(persist_path=persist)
+    task = ScheduledTask(
+        id=task_id,
+        name=name,
+        goal=goal,
+        schedule_type=ScheduleType(sched_type),
+        time_of_day=time_of_day,
+        day_of_week=day_of_week,
+        interval_seconds=interval_secs,
+        cron_expr=cron,
+    )
+    scheduler.add(task)
+    console.print(f"[green]Scheduled task added:[/] {name} ({sched_type})")
+    if task.next_run:
+        console.print(f"[dim]Next run: {task.next_run}[/]")
+
+
+@schedule.command("remove")
+@click.argument("task_id")
+@click.option("--persist", default=None, help="Persistence file path")
+def schedule_remove(task_id: str, persist: str | None) -> None:
+    """Remove a scheduled task."""
+    from screenpilot.scheduler.scheduler import TaskScheduler
+
+    scheduler = TaskScheduler(persist_path=persist)
+    if scheduler.remove(task_id):
+        console.print(f"[green]Removed:[/] {task_id}")
+    else:
+        console.print(f"[red]Not found:[/] {task_id}")
+
+
 def main():
     """Entry point."""
     cli()
