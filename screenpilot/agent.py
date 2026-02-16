@@ -181,12 +181,25 @@ class ScreenPilotAgent:
             if action.action_type in (ActionType.FIND_AND_CLICK, ActionType.FIND_AND_TYPE):
                 if action.target and (action.x is None or action.y is None):
                     try:
-                        element = self.analyzer.find_element(screenshot, action.target)
+                        # Resize screenshot for vision analysis (same as planner)
+                        llm_screenshot = screenshot.resize(
+                            self.planner.LLM_MAX_WIDTH, self.planner.LLM_MAX_HEIGHT
+                        )
+                        scale_x = screenshot.width / llm_screenshot.width
+                        scale_y = screenshot.height / llm_screenshot.height
+
+                        element = self.analyzer.find_element(llm_screenshot, action.target)
                         if element:
-                            action.x = element.center[0]
-                            action.y = element.center[1]
+                            # Scale coordinates back to original resolution
+                            action.x = int(element.center[0] * scale_x)
+                            action.y = int(element.center[1] * scale_y)
                             logger.info(
-                                "Resolved '%s' to (%d, %d)", action.target, action.x, action.y
+                                "Resolved '%s' to (%d, %d) [scaled from (%d, %d)]",
+                                action.target,
+                                action.x,
+                                action.y,
+                                element.center[0],
+                                element.center[1],
                             )
                         else:
                             logger.warning("Could not find element: %s", action.target)

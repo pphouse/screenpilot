@@ -21,6 +21,7 @@ from screenpilot.planner.planner import Action, ActionType
 @patch("screenpilot.executor.executor.pyautogui")
 def test_click(mock_pag):
     executor = ActionExecutor()
+    executor._xdotool_available = False  # Force pyautogui path for testing
     action = Action(action_type=ActionType.CLICK, x=100, y=200)
     result = executor.execute(action)
     assert result.success

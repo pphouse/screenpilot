@@ -90,16 +90,16 @@ You receive a task goal and a screenshot of the current screen state. Your job i
 - scroll: Scroll up or down
 - drag: Drag from one point to another
 - wait: Wait for a specified duration
-- find_and_click: Describe a UI element to find and click
+- find_and_click: Describe a UI element to find and click (uses vision to locate)
 - find_and_type: Describe a UI element to find, click, and type into
 - done: Task is complete
 - fail: Task cannot be completed
 
 ## Response Format
 
-Respond with a single JSON object:
+Respond with ONLY a JSON object (no markdown, no code fences):
 {
-  "reasoning": "Step-by-step reasoning about what you see and what to do",
+  "reasoning": "Step-by-step reasoning about what you see and what to do next",
   "action_type": "click|type|key|scroll|find_and_click|find_and_type|done|fail",
   "target": "description of UI element (for find_and_* actions)",
   "x": 100,
@@ -112,24 +112,34 @@ Respond with a single JSON object:
 
 ## Guidelines
 
-1. Be PRECISE with coordinates - count pixels carefully
-2. Always explain your reasoning
-3. If you can't find a target element, try scrolling or looking elsewhere
-4. Use find_and_click/find_and_type when you need vision-based element finding
-5. Use keyboard shortcuts when they're more efficient
-6. Return "done" when the task is clearly complete
-7. Return "fail" with reasoning if the task is impossible"""
+1. Be PRECISE with coordinates. The screenshot is the full screen. Look carefully at where UI elements are positioned.
+2. Always explain your reasoning, describing what you see on screen FIRST, then what action to take.
+3. If you can't find a target element, try scrolling or looking elsewhere.
+4. Use find_and_click when you're unsure of exact coordinates — it uses vision to locate the element precisely.
+5. Use keyboard shortcuts when they're more efficient.
+6. Return "done" when the task is clearly complete (verify by examining the current screen).
+7. Return "fail" with reasoning if the task is impossible.
+
+## CRITICAL: Avoid Repeating Failed Actions
+
+- Check the task history carefully. If you already tried clicking a coordinate and the screen didn't change, DO NOT click the same coordinates again.
+- If an action didn't work, try a DIFFERENT approach: use find_and_click instead of click, try different coordinates, scroll to reveal the element, or use keyboard navigation.
+- After 2 failed attempts at the same target, switch to an entirely different strategy (keyboard shortcut, scrolling, etc.)."""
 
 
-PLANNER_USER_PROMPT = """## Current Task
+PLANNER_USER_PROMPT = """## Screen Information
+The screenshot is {screen_width}x{screen_height} pixels. Coordinates (0,0) is top-left, ({screen_max_x},{screen_max_y}) is bottom-right.
+
+## Current Task
 {goal}
 
-## Task History
+## Task History (most recent actions)
 {history}
-
+{stuck_warning}
 ## Instructions
 Look at the current screenshot and determine the NEXT SINGLE ACTION to take.
-Respond with a JSON object as specified."""
+Be very careful with Y coordinates — look at the vertical position of elements precisely.
+Respond with ONLY a JSON object (no markdown code fences)."""
 
 
 class TaskPlanner:
@@ -263,21 +273,103 @@ class TaskPlanner:
             reasoning=data.get("reasoning", ""),
         )
 
+    def _detect_stuck(self) -> str:
+        """Detect if the agent is stuck repeating the same action."""
+        if len(self.history) < 2:
+            return ""
+
+        recent = self.history[-3:]
+        # Check if last 3 actions have the same coordinates
+        coords = []
+        for h in recent:
+            x, y = h.get("x"), h.get("y")
+            if x is not None and y is not None:
+                coords.append((x, y))
+
+        if len(coords) >= 2 and len(set(coords)) == 1:
+            return (
+                "\n⚠️ WARNING: You have been clicking the same coordinates "
+                f"({coords[0][0]}, {coords[0][1]}) repeatedly without the screen changing. "
+                "This action is NOT working. You MUST try a completely different approach:\n"
+                "- Use find_and_click with a text description of the element\n"
+                "- Try keyboard navigation (Tab, Enter, arrow keys)\n"
+                "- Click at significantly different coordinates\n"
+                "- Scroll to reveal the element if it's not visible\n"
+            )
+
+        # Check if same action type repeated 3+ times
+        action_types = [h.get("action_type") for h in recent]
+        if len(action_types) >= 3 and len(set(action_types)) == 1:
+            return (
+                "\n⚠️ WARNING: You have been repeating the same action type "
+                f"'{action_types[0]}' multiple times. If the screen hasn't changed, "
+                "try a completely different approach.\n"
+            )
+
+        return ""
+
+    def _format_history(self) -> str:
+        """Format action history with coordinates and results."""
+        if not self.history:
+            return "No actions taken yet."
+
+        recent = self.history[-10:]
+        lines = []
+        for i, h in enumerate(recent):
+            action_type = h.get("action_type", "?")
+            parts = [f"Step {i + 1}: {action_type}"]
+
+            # Include coordinates if present
+            x, y = h.get("x"), h.get("y")
+            if x is not None and y is not None:
+                parts.append(f"at ({x}, {y})")
+
+            # Include target if present
+            target = h.get("target")
+            if target:
+                parts.append(f'target="{target}"')
+
+            # Include text if present
+            text = h.get("text")
+            if text:
+                parts.append(f'text="{text[:30]}"')
+
+            # Include brief reasoning
+            reasoning = h.get("reasoning", "")
+            if reasoning:
+                parts.append(f"— {reasoning[:80]}")
+
+            lines.append(" ".join(parts))
+
+        return "\n".join(lines)
+
+    # Resolution to send to LLM (smaller = more accurate coordinates)
+    LLM_MAX_WIDTH = 1280
+    LLM_MAX_HEIGHT = 720
+
     def get_next_action(self, goal: str, screenshot: Screenshot) -> Action:
         """Determine the next action to take given the current screen state."""
-        history_str = ""
-        if self.history:
-            recent = self.history[-10:]  # Keep last 10 actions for context
-            history_str = "\n".join(
-                f"Step {i + 1}: {h['action_type']} - {h.get('reasoning', '')}"
-                for i, h in enumerate(recent)
-            )
-        else:
-            history_str = "No actions taken yet."
+        history_str = self._format_history()
+        stuck_warning = self._detect_stuck()
 
-        user_prompt = PLANNER_USER_PROMPT.format(goal=goal, history=history_str)
+        # Resize screenshot for LLM (smaller images = better coordinate accuracy)
+        original_width = screenshot.width
+        original_height = screenshot.height
+        llm_screenshot = screenshot.resize(self.LLM_MAX_WIDTH, self.LLM_MAX_HEIGHT)
+        scale_x = original_width / llm_screenshot.width
+        scale_y = original_height / llm_screenshot.height
 
-        response = self._call_llm(screenshot, PLANNER_SYSTEM_PROMPT, user_prompt)
+        user_prompt = PLANNER_USER_PROMPT.format(
+            goal=goal,
+            history=history_str,
+            stuck_warning=stuck_warning,
+            screen_width=llm_screenshot.width,
+            screen_height=llm_screenshot.height,
+            screen_max_x=llm_screenshot.width - 1,
+            screen_max_y=llm_screenshot.height - 1,
+        )
+
+        response = self._call_llm(llm_screenshot, PLANNER_SYSTEM_PROMPT, user_prompt)
         logger.debug("Planner response: %s", response)
 
         try:
@@ -288,6 +380,22 @@ class TaskPlanner:
                 action_type=ActionType.FAIL,
                 reasoning=f"Failed to parse LLM response: {e}",
             )
+
+        # Scale coordinates back to original screen resolution
+        if action.x is not None:
+            action.x = int(action.x * scale_x)
+        if action.y is not None:
+            action.y = int(action.y * scale_y)
+
+        logger.debug(
+            "Coordinate scaling: LLM(%dx%d) -> Screen(%dx%d), scale=(%.2f, %.2f)",
+            llm_screenshot.width,
+            llm_screenshot.height,
+            original_width,
+            original_height,
+            scale_x,
+            scale_y,
+        )
 
         # Record in history
         self.history.append(action.to_dict())

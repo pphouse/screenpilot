@@ -79,6 +79,7 @@ class ActionExecutor:
     def __init__(self, config: ExecutorConfig | None = None):
         self.config = config or ExecutorConfig()
         self._action_log: list[ActionResult] = []
+        self._xdotool_available: bool | None = None
 
     def execute(self, action: Action) -> ActionResult:
         """Execute a single action and return the result."""
@@ -145,12 +146,48 @@ class ActionExecutor:
 
         return result
 
+    def _use_xdotool(self) -> bool:
+        """Check if xdotool should be used (Linux/Xvfb environments)."""
+        if self._xdotool_available is None:
+            import os
+            import shutil
+
+            self._xdotool_available = (
+                platform.system() == "Linux"
+                and shutil.which("xdotool") is not None
+                and os.environ.get("DISPLAY") is not None
+            )
+        return self._xdotool_available
+
+    def _xdotool_click(self, x: int, y: int, button: int = 1) -> bool:
+        """Click using xdotool (more reliable on Xvfb). Returns True if succeeded."""
+        try:
+            import subprocess
+
+            subprocess.run(
+                ["xdotool", "mousemove", str(x), str(y)],
+                check=True,
+                timeout=5,
+            )
+            time.sleep(0.1)
+            subprocess.run(
+                ["xdotool", "click", str(button)],
+                check=True,
+                timeout=5,
+            )
+            return True
+        except Exception:
+            return False
+
     def _click(self, action: Action) -> ActionResult:
         """Perform a left click."""
         if action.x is None or action.y is None:
             return ActionResult(
                 success=False, action=action, error="Click requires x and y coordinates"
             )
+        # Use xdotool on Linux/Xvfb for reliability, fallback to pyautogui
+        if self._use_xdotool() and self._xdotool_click(action.x, action.y):
+            return ActionResult(success=True, action=action)
         pyautogui.click(action.x, action.y)
         return ActionResult(success=True, action=action)
 
