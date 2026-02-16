@@ -1,0 +1,11 @@
+{
+  "challenge_id": 12,
+  "name": "google_search",
+  "difficulty": "medium",
+  "success": false,
+  "steps": 12,
+  "time": 75.74840593338013,
+  "error": "Max steps (12) reached without completing the task",
+  "video_path": "recordings/challenges/12_google_search/recording.mp4",
+  "video_size_kb": 4060.7529296875
+}

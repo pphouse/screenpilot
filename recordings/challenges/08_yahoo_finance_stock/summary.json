@@ -1,0 +1,11 @@
+{
+  "challenge_id": 8,
+  "name": "yahoo_finance_stock",
+  "difficulty": "medium",
+  "success": true,
+  "steps": 8,
+  "time": 52.565401792526245,
+  "error": null,
+  "video_path": "recordings/challenges/08_yahoo_finance_stock/recording.mp4",
+  "video_size_kb": 3172.0595703125
+}

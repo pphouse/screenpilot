@@ -1,0 +1,11 @@
+{
+  "challenge_id": 14,
+  "name": "wikipedia_jp_navigate",
+  "difficulty": "expert",
+  "success": false,
+  "steps": 20,
+  "time": 108.98566770553589,
+  "error": "Max steps (20) reached without completing the task",
+  "video_path": "recordings/challenges/14_wikipedia_jp_navigate/recording.mp4",
+  "video_size_kb": 2100.4697265625
+}

@@ -1,0 +1,11 @@
+{
+  "challenge_id": 13,
+  "name": "weather_check",
+  "difficulty": "hard",
+  "success": true,
+  "steps": 11,
+  "time": 65.32007646560669,
+  "error": null,
+  "video_path": "recordings/challenges/13_weather_check/recording.mp4",
+  "video_size_kb": 1110.888671875
+}
