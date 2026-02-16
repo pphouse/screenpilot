@@ -19,6 +19,8 @@ from screenpilot import __version__
 from screenpilot.agent import ScreenPilotAgent, StepResult
 from screenpilot.config import ScreenPilotConfig
 from screenpilot.planner.planner import Action, ActionType
+from screenpilot.reporting.report import ReportGenerator
+from screenpilot.scheduler.scheduler import ScheduledTask, ScheduleType, TaskScheduler
 from screenpilot.templates.registry import TemplateRegistry
 from screenpilot.vision.capture import ScreenCapture
 
@@ -49,6 +51,23 @@ class FindElementRequest(BaseModel):
     """Request to find a UI element."""
 
     target: str
+
+
+class ScheduleRequest(BaseModel):
+    """Request to create a scheduled task."""
+
+    id: str
+    name: str
+    goal: str
+    schedule_type: str
+    max_steps: int = 50
+    run_at: str | None = None
+    interval_seconds: int = 3600
+    time_of_day: str | None = None
+    day_of_week: int | None = None
+    cron_expr: str | None = None
+    template_id: str | None = None
+    template_params: dict = {}
 
 
 class TaskStatus(BaseModel):
@@ -89,6 +108,8 @@ def create_app(config: ScreenPilotConfig | None = None) -> FastAPI:
     agent = ScreenPilotAgent(cfg)
     capture = ScreenCapture(cfg.capture)
     template_registry = TemplateRegistry()
+    scheduler = TaskScheduler()
+    report_generator = ReportGenerator()
     running_tasks: dict[str, dict[str, Any]] = {}
     ws_clients: list[WebSocket] = []
 
@@ -363,6 +384,52 @@ def create_app(config: ScreenPilotConfig | None = None) -> FastAPI:
             current_step=0,
             total_time=0,
         )
+
+    # --- Scheduling endpoints ---
+
+    @app.get("/schedules")
+    async def list_schedules():
+        """List all scheduled tasks."""
+        return [t.to_dict() for t in scheduler.list_all()]
+
+    @app.post("/schedules")
+    async def add_schedule(req: ScheduleRequest):
+        """Add a new scheduled task."""
+        task = ScheduledTask(
+            id=req.id,
+            name=req.name,
+            goal=req.goal,
+            schedule_type=ScheduleType(req.schedule_type),
+            max_steps=req.max_steps,
+            run_at=req.run_at,
+            interval_seconds=req.interval_seconds,
+            time_of_day=req.time_of_day,
+            day_of_week=req.day_of_week,
+            cron_expr=req.cron_expr,
+            template_id=req.template_id,
+            template_params=req.template_params,
+        )
+        scheduler.add(task)
+        return task.to_dict()
+
+    @app.delete("/schedules/{schedule_id}")
+    async def remove_schedule(schedule_id: str):
+        """Remove a scheduled task."""
+        if not scheduler.remove(schedule_id):
+            raise HTTPException(status_code=404, detail="Schedule not found")
+        return {"status": "removed"}
+
+    # --- Reporting endpoints ---
+
+    @app.get("/reports")
+    async def list_reports():
+        """List execution reports."""
+        return [r.to_dict() for r in report_generator.reports]
+
+    @app.get("/reports/stats")
+    async def report_stats():
+        """Get aggregate execution statistics."""
+        return report_generator.aggregate_stats()
 
     @app.websocket("/ws")
     async def websocket_endpoint(ws: WebSocket):

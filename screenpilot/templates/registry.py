@@ -159,7 +159,9 @@ class TemplateRegistry:
                 ),
                 params=[
                     TemplateParam(name="directory", description="Directory containing files"),
-                    TemplateParam(name="pattern", description="File pattern to match (e.g., *.pdf)"),
+                    TemplateParam(
+                        name="pattern", description="File pattern to match (e.g., *.pdf)"
+                    ),
                     TemplateParam(name="new_pattern", description="New naming pattern"),
                 ],
                 step_hints=[
@@ -182,8 +184,12 @@ class TemplateRegistry:
                     "{output_action}"
                 ),
                 params=[
-                    TemplateParam(name="application", description="Application containing the data"),
-                    TemplateParam(name="location", description="Where the table is (file path, URL, etc.)"),
+                    TemplateParam(
+                        name="application", description="Application containing the data"
+                    ),
+                    TemplateParam(
+                        name="location", description="Where the table is (file path, URL, etc.)"
+                    ),
                     TemplateParam(
                         name="output_action",
                         description="What to do with the data",
@@ -211,8 +217,14 @@ class TemplateRegistry:
                 ),
                 params=[
                     TemplateParam(name="application", description="Application to screenshot"),
-                    TemplateParam(name="screens", description="Comma-separated list of screens to capture"),
-                    TemplateParam(name="output_directory", description="Directory to save screenshots", default="~/Screenshots"),
+                    TemplateParam(
+                        name="screens", description="Comma-separated list of screens to capture"
+                    ),
+                    TemplateParam(
+                        name="output_directory",
+                        description="Directory to save screenshots",
+                        default="~/Screenshots",
+                    ),
                 ],
                 step_hints=[
                     "Open the application",
@@ -263,7 +275,9 @@ class TemplateRegistry:
                     "and body to: {body}. Then send the email."
                 ),
                 params=[
-                    TemplateParam(name="email_client", description="Email client or web URL", default="Gmail"),
+                    TemplateParam(
+                        name="email_client", description="Email client or web URL", default="Gmail"
+                    ),
                     TemplateParam(name="recipient", description="Email recipient address"),
                     TemplateParam(name="subject", description="Email subject"),
                     TemplateParam(name="body", description="Email body text"),

@@ -20,10 +20,17 @@ Traditional RPA tools (UiPath, Automation Anywhere, etc.) rely on fragile UI sel
 
 - **Natural Language Tasks**: Describe tasks in plain English — "Open Chrome and search for Python tutorials"
 - **Vision-Based UI Understanding**: Uses LLM vision APIs to understand any screen, any application
+- **Set-of-Mark (SoM) Prompting**: Overlays numbered markers on screenshots for precise element grounding
+- **Hierarchical Planning**: Two-level task decomposition (high-level strategy + step execution) for complex workflows
+- **Task Memory Tree**: Structured memory for coherent long-horizon task execution
 - **Multi-LLM Support**: Works with Anthropic Claude, OpenAI GPT-4, or any LiteLLM-compatible model
+- **Workflow Templates**: Pre-built templates for common business tasks (form filling, data extraction, etc.)
 - **Workflow Recording**: Record human workflows, replay them intelligently with vision-based adaptation
-- **Adaptive Replay**: Recorded workflows adapt to UI changes using vision, unlike traditional macro replay
-- **REST API + WebSocket**: Remote control and real-time monitoring via HTTP API
+- **Error Recovery & Self-Healing**: Automatic retry with escalating strategies (relocate, scroll, dismiss dialogs, LLM recovery)
+- **Task Scheduling**: Cron-like scheduling for unattended automation (daily, weekly, interval, cron expression)
+- **Execution Reports**: JSON and HTML reports with KPIs for business stakeholders
+- **Python SDK**: Clean programmatic client for integration into existing applications and CI/CD pipelines
+- **REST API + Web Dashboard**: Real-time monitoring, live screenshots, template browser via WebSocket
 - **Cross-Platform**: Works on Linux, macOS, and Windows
 - **Safety First**: Failsafe mode, action logging, confirmation for destructive actions
 
@@ -130,24 +137,86 @@ curl -X POST http://localhost:8420/action \
   -d '{"action_type": "click", "x": 500, "y": 300}'
 ```
 
+### Python SDK
+
+```bash
+pip install screenpilot[sdk]
+```
+
+```python
+from screenpilot.sdk import ScreenPilotClient
+
+client = ScreenPilotClient("http://localhost:8420")
+
+# Run a task and wait for completion
+task = client.run_task("Open Chrome and search for 'hello'")
+task.wait(timeout=120)
+print(f"Success: {task.success}, Steps: {task.current_step}")
+
+# Direct actions
+client.click(500, 300)
+client.type_text("Hello World")
+client.press_key("enter")
+client.find_and_click("the search button")
+
+# Use workflow templates
+templates = client.list_templates()
+task = client.run_template("web_form_fill", {
+    "url": "https://example.com/form",
+    "form_data": "name=John, email=john@example.com",
+})
+```
+
+### Task Scheduling
+
+```python
+from screenpilot.scheduler import TaskScheduler, ScheduledTask
+
+scheduler = TaskScheduler(persist_path="~/.screenpilot/schedules.json")
+
+# Run daily at 9 AM
+scheduler.add(ScheduledTask(
+    id="daily_report",
+    name="Generate Daily Report",
+    goal="Open Excel, generate sales report, save as PDF",
+    schedule_type="daily",
+    time_of_day="09:00",
+))
+
+# Run every 2 hours
+scheduler.add(ScheduledTask(
+    id="health_check",
+    name="App Health Check",
+    goal="Open monitoring dashboard, check all services are green",
+    schedule_type="interval",
+    interval_seconds=7200,
+))
+
+scheduler.start()
+```
+
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────┐
-│                  ScreenPilot Agent               │
-│                                                  │
-│  ┌──────────┐  ┌──────────┐  ┌───────────────┐  │
-│  │  Screen   │  │   LLM    │  │    Action     │  │
-│  │ Capture   │─▶│ Planner  │─▶│   Executor    │  │
-│  │  (mss)    │  │(Claude/  │  │ (pyautogui)   │  │
-│  └──────────┘  │ GPT-4)   │  └───────────────┘  │
-│       │        └──────────┘         │            │
-│       │              │              │            │
-│  ┌──────────┐  ┌──────────┐  ┌───────────────┐  │
-│  │  Vision   │  │ Workflow │  │   REST API    │  │
-│  │ Analyzer  │  │ Recorder │  │  + WebSocket  │  │
-│  └──────────┘  └──────────┘  └───────────────┘  │
-└─────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                    ScreenPilot Agent                      │
+│                                                           │
+│  ┌──────────┐  ┌──────────────┐  ┌───────────────────┐   │
+│  │  Screen   │  │  Hierarchical│  │    Action          │   │
+│  │ Capture   │─▶│  Planner +   │─▶│   Executor         │   │
+│  │  (mss)    │  │  Task Memory │  │  (pyautogui)       │   │
+│  └──────────┘  └──────────────┘  └───────────────────┘   │
+│       │              │                    │               │
+│  ┌──────────┐  ┌──────────┐  ┌──────────────────────┐   │
+│  │  Vision   │  │  SoM     │  │  Error Recovery       │   │
+│  │ Analyzer  │  │ Prompting│  │  & Self-Healing       │   │
+│  └──────────┘  └──────────┘  └──────────────────────┘   │
+│       │              │                    │               │
+│  ┌──────────┐  ┌──────────┐  ┌──────────────────────┐   │
+│  │ Workflow  │  │ Template │  │  Scheduler + Reports  │   │
+│  │ Recorder  │  │ Registry │  │  + REST API + SDK     │   │
+│  └──────────┘  └──────────┘  └──────────────────────┘   │
+└──────────────────────────────────────────────────────────┘
 ```
 
 **Core Loop:**
