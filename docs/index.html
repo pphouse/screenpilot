@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScreenPilot - AI Desktop Automation That Actually Works</title>
+    <meta name="description" content="Replace brittle RPA with intelligent AI automation. ScreenPilot uses vision + LLM to automate any desktop application. No selectors. No scripting. Just describe what you want.">
+    <meta property="og:title" content="ScreenPilot - AI Desktop Automation">
+    <meta property="og:description" content="Replace brittle RPA with intelligent AI automation. Vision + LLM powered. Works with any application.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ScreenPilot - AI Desktop Automation">
+    <meta name="twitter:description" content="Replace brittle RPA with intelligent AI automation.">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg2: #12121a;
+            --bg3: #1a1a2e;
+            --surface: #16213e;
+            --border: #1e3a5f;
+            --text: #e8eaed;
+            --text-dim: #8b95a5;
+            --primary: #4f8fff;
+            --primary-glow: rgba(79, 143, 255, 0.15);
+            --accent: #00d4aa;
+            --accent-glow: rgba(0, 212, 170, 0.15);
+            --gradient: linear-gradient(135deg, #4f8fff 0%, #00d4aa 100%);
+            --error: #ff6b6b;
+            --warning: #ffd93d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(79, 143, 255, 0.1);
+            padding: 0 2rem;
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-cta {
+            background: var(--gradient) !important;
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem !important;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(79, 143, 255, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--primary-glow);
+            border: 1px solid rgba(79, 143, 255, 0.3);
+            border-radius: 999px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+        .badge .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+        h1 .highlight {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: 1.25rem;
+            color: var(--text-dim);
+            max-width: 640px;
+            margin-bottom: 2.5rem;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 20px rgba(79, 143, 255, 0.3);
+        }
+        .btn-primary:hover { box-shadow: 0 6px 30px rgba(79, 143, 255, 0.5); transform: translateY(-2px); }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); }
+        .btn svg { width: 20px; height: 20px; }
+
+        /* ===== DEMO TERMINAL ===== */
+        .demo-section {
+            max-width: 900px;
+            margin: 0 auto 6rem;
+            padding: 0 2rem;
+        }
+        .terminal {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 20px;
+            background: var(--bg3);
+            border-bottom: 1px solid var(--border);
+        }
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .terminal-dot.r { background: #ff5f57; }
+        .terminal-dot.y { background: #ffbd2e; }
+        .terminal-dot.g { background: #28c840; }
+        .terminal-title {
+            flex: 1;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            min-height: 300px;
+        }
+        .term-line { margin-bottom: 4px; }
+        .term-prompt { color: var(--accent); }
+        .term-cmd { color: var(--text); }
+        .term-comment { color: #555; }
+        .term-output { color: var(--text-dim); }
+        .term-success { color: var(--accent); }
+        .term-action { color: var(--warning); }
+        .term-step { color: var(--primary); }
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: var(--accent);
+            animation: blink 1s infinite;
+            vertical-align: text-bottom;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* ===== COMPARISON ===== */
+        .comparison {
+            max-width: 1100px;
+            margin: 0 auto 8rem;
+            padding: 0 2rem;
+        }
+        .section-label {
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .section-desc {
+            text-align: center;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-size: 1.05rem;
+        }
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        @media (max-width: 768px) { .compare-grid { grid-template-columns: 1fr; } }
+        .compare-card {
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+        .compare-card.old {
+            background: rgba(255, 107, 107, 0.03);
+            border-color: rgba(255, 107, 107, 0.2);
+        }
+        .compare-card.new {
+            background: var(--accent-glow);
+            border-color: rgba(0, 212, 170, 0.3);
+        }
+        .compare-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .compare-card.old h3 { color: var(--error); }
+        .compare-card.new h3 { color: var(--accent); }
+        .compare-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .compare-card li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+        .compare-card li .icon { flex-shrink: 0; font-size: 1rem; }
+        .compare-card.old li .icon { color: var(--error); }
+        .compare-card.new li .icon { color: var(--accent); }
+
+        /* ===== FEATURES ===== */
+        .features {
+            max-width: 1100px;
+            margin: 0 auto 8rem;
+            padding: 0 2rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 900px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .features-grid { grid-template-columns: 1fr; } }
+        .feature-card {
+            padding: 1.75rem;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            background: var(--primary-glow);
+        }
+        .feature-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .feature-card p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        .how-it-works {
+            max-width: 900px;
+            margin: 0 auto 8rem;
+            padding: 0 2rem;
+        }
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+        }
+        .steps::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 24px;
+            bottom: 24px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            opacity: 0.3;
+        }
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            padding: 1.5rem 0;
+        }
+        .step-num {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg3);
+            border: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .step-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+        .step-content p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* ===== USE CASES ===== */
+        .use-cases {
+            max-width: 1100px;
+            margin: 0 auto 8rem;
+            padding: 0 2rem;
+        }
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 768px) { .use-case-grid { grid-template-columns: 1fr; } }
+        .use-case {
+            padding: 2rem;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+        .use-case h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .use-case p { color: var(--text-dim); font-size: 0.9rem; }
+        .use-case .stat {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+        }
+        .use-case .stat strong {
+            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* ===== CODE EXAMPLE ===== */
+        .code-section {
+            max-width: 900px;
+            margin: 0 auto 8rem;
+            padding: 0 2rem;
+        }
+        .code-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: -1px;
+            position: relative;
+            z-index: 1;
+        }
+        .code-tab {
+            padding: 10px 24px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            color: var(--text-dim);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .code-tab.active {
+            background: var(--bg2);
+            color: var(--text);
+            border-color: var(--border);
+        }
+        .code-block {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 0 16px 16px 16px;
+            padding: 1.5rem;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            overflow-x: auto;
+            display: none;
+        }
+        .code-block.active { display: block; }
+        .code-kw { color: #c792ea; }
+        .code-str { color: #c3e88d; }
+        .code-fn { color: #82aaff; }
+        .code-cm { color: #546e7a; }
+        .code-num { color: #f78c6c; }
+        .code-var { color: #ffcb6b; }
+
+        /* ===== STATS ===== */
+        .stats-section {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 5rem 2rem;
+            margin-bottom: 8rem;
+        }
+        .stats-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+        .stat-item .value {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-item .label {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            text-align: center;
+            padding: 6rem 2rem 8rem;
+            position: relative;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 212, 170, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .cta-section p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-inner span { color: var(--text-dim); font-size: 0.85rem; }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .footer-links a:hover { color: var(--text); }
+
+        @media (max-width: 600px) {
+            .nav-links a:not(.nav-cta) { display: none; }
+            .footer-inner { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <div class="logo">ScreenPilot</div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#use-cases">Use Cases</a>
+            <a href="https://github.com/pphouse/screenpilot" class="nav-cta">GitHub</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="badge">
+        <span class="dot"></span>
+        Open Source &middot; Apache 2.0
+    </div>
+    <h1>
+        Stop Writing Brittle<br>
+        RPA Scripts.<br>
+        <span class="highlight">Just Describe What You Want.</span>
+    </h1>
+    <p class="hero-sub">
+        ScreenPilot uses AI vision + LLM to automate any desktop application.
+        No CSS selectors. No XPath. No scripting.
+        It sees the screen like a human and adapts to UI changes automatically.
+    </p>
+    <div class="hero-actions">
+        <a href="https://github.com/pphouse/screenpilot" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            Get Started Free
+        </a>
+        <a href="#demo" class="btn btn-secondary">
+            See It In Action
+        </a>
+    </div>
+</section>
+
+<!-- DEMO TERMINAL -->
+<section class="demo-section" id="demo">
+    <div class="terminal">
+        <div class="terminal-header">
+            <div class="terminal-dot r"></div>
+            <div class="terminal-dot y"></div>
+            <div class="terminal-dot g"></div>
+            <div class="terminal-title">screenpilot &mdash; ~/projects</div>
+        </div>
+        <div class="terminal-body" id="terminalBody">
+            <div class="term-line"><span class="term-comment"># Automate anything with natural language</span></div>
+            <div class="term-line"><span class="term-prompt">$ </span><span class="term-cmd">screenpilot run "Open Chrome, go to github.com, and star the screenpilot repo"</span></div>
+            <div class="term-line">&nbsp;</div>
+            <div class="term-line"><span class="term-output">  ScreenPilot v0.1.0 | Claude Sonnet | Ready</span></div>
+            <div class="term-line">&nbsp;</div>
+            <div class="term-line"><span class="term-step">  Step 1</span> <span class="term-action">find_and_click</span> "Chrome icon on taskbar" <span class="term-success">OK</span></div>
+            <div class="term-line"><span class="term-step">  Step 2</span> <span class="term-action">find_and_click</span> "address bar" <span class="term-success">OK</span></div>
+            <div class="term-line"><span class="term-step">  Step 3</span> <span class="term-action">type</span> "github.com/pphouse/screenpilot" <span class="term-success">OK</span></div>
+            <div class="term-line"><span class="term-step">  Step 4</span> <span class="term-action">key</span> "enter" <span class="term-success">OK</span></div>
+            <div class="term-line"><span class="term-step">  Step 5</span> <span class="term-action">wait</span> 2s for page load <span class="term-success">OK</span></div>
+            <div class="term-line"><span class="term-step">  Step 6</span> <span class="term-action">find_and_click</span> "Star button" <span class="term-success">OK</span></div>
+            <div class="term-line"><span class="term-step">  Step 7</span> <span class="term-action">done</span> <span class="term-success">Task completed!</span></div>
+            <div class="term-line">&nbsp;</div>
+            <div class="term-line"><span class="term-success">  &#10003; Completed in 7 steps (12.3s)</span></div>
+            <div class="term-line"><span class="term-prompt">$ </span><span class="cursor"></span></div>
+        </div>
+    </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison" id="comparison">
+    <div class="section-label">Why Switch?</div>
+    <h2 class="section-title">Traditional RPA Is Broken</h2>
+    <p class="section-desc">Your automations break every time the UI updates. ScreenPilot sees the screen like a human &mdash; and adapts.</p>
+
+    <div class="compare-grid">
+        <div class="compare-card old">
+            <h3>&#x2718; Traditional RPA</h3>
+            <ul>
+                <li><span class="icon">&#x2718;</span> Relies on CSS selectors & XPath that break on every UI update</li>
+                <li><span class="icon">&#x2718;</span> Days of scripting to build a single workflow</li>
+                <li><span class="icon">&#x2718;</span> Requires per-application connectors</li>
+                <li><span class="icon">&#x2718;</span> $50K+ annual license costs per enterprise</li>
+                <li><span class="icon">&#x2718;</span> Constant maintenance as UIs change</li>
+                <li><span class="icon">&#x2718;</span> Team of RPA developers needed</li>
+            </ul>
+        </div>
+        <div class="compare-card new">
+            <h3>&#x2714; ScreenPilot</h3>
+            <ul>
+                <li><span class="icon">&#x2714;</span> Vision-based &mdash; sees the screen, adapts to changes automatically</li>
+                <li><span class="icon">&#x2714;</span> Minutes to automate with plain English descriptions</li>
+                <li><span class="icon">&#x2714;</span> Works with any application &mdash; no connectors needed</li>
+                <li><span class="icon">&#x2714;</span> Open source &mdash; free forever (Apache 2.0)</li>
+                <li><span class="icon">&#x2714;</span> Self-healing with error recovery &amp; LLM re-planning</li>
+                <li><span class="icon">&#x2714;</span> Anyone can create automations &mdash; no code required</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+    <div class="section-label">Capabilities</div>
+    <h2 class="section-title">Enterprise-Grade Features</h2>
+    <p class="section-desc">Everything you need to replace brittle RPA with intelligent, adaptive automation.</p>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">&#128065;</div>
+            <h3>Vision + LLM Intelligence</h3>
+            <p>Uses Claude, GPT-4, or any LiteLLM model to understand screenshots and determine actions. No selectors needed.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#127919;</div>
+            <h3>Set-of-Mark Prompting</h3>
+            <p>Overlays numbered markers on screenshots for precise element grounding &mdash; based on cutting-edge research (SoM, OmniParser).</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#129504;</div>
+            <h3>Hierarchical Planning</h3>
+            <p>Two-level task decomposition with Task Memory Tree for coherent execution of complex, multi-step workflows.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128737;</div>
+            <h3>Self-Healing Recovery</h3>
+            <p>Automatic error recovery with escalating strategies: retry, relocate element, scroll, dismiss dialogs, LLM re-planning.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128197;</div>
+            <h3>Task Scheduling</h3>
+            <p>Cron-like scheduling for unattended automation. Run tasks daily, weekly, on intervals, or with custom cron expressions.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128196;</div>
+            <h3>Workflow Templates</h3>
+            <p>6 built-in templates for common business tasks. Create custom templates for your organization's specific workflows.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128276;</div>
+            <h3>Multi-Channel Notifications</h3>
+            <p>Get alerts via Slack, Microsoft Teams, email, or custom webhooks when automations succeed or fail.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128202;</div>
+            <h3>Execution Reports</h3>
+            <p>JSON and HTML reports with step-by-step details, success rates, and aggregate analytics for business stakeholders.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128268;</div>
+            <h3>Plugin System</h3>
+            <p>Extend ScreenPilot with custom plugins. Hook into task lifecycle events, modify actions, add integrations.</p>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Three Lines of Code. Any Application.</h2>
+    <p class="section-desc">ScreenPilot's core loop is deceptively simple. The AI does the hard work.</p>
+
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <h3>Capture Screenshot</h3>
+                <p>Cross-platform screen capture using mss. Supports multi-monitor, resolution scaling, and region capture.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <h3>LLM Analyzes Screen + Plans</h3>
+                <p>Screenshot is sent to the LLM with SoM markers. The hierarchical planner decomposes goals into concrete actions with precise coordinates.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+                <h3>Execute Action</h3>
+                <p>Click, type, scroll, drag, keyboard shortcuts &mdash; all executed via pyautogui with safety checks and action logging.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+                <h3>Verify & Adapt</h3>
+                <p>Post-action screenshot is captured and compared. If something went wrong, the self-healing system kicks in with recovery strategies.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+                <h3>Repeat Until Done</h3>
+                <p>The loop continues until the LLM determines the goal is achieved or reports it cannot be completed.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- USE CASES -->
+<section class="use-cases" id="use-cases">
+    <div class="section-label">Applications</div>
+    <h2 class="section-title">Built for Real Business Needs</h2>
+    <p class="section-desc">ScreenPilot targets the $30B+ RPA market with a fundamentally better approach.</p>
+
+    <div class="use-case-grid">
+        <div class="use-case">
+            <h3>&#128188; Business Process Automation</h3>
+            <p>Automate data entry, form filling, report generation, and file management across any desktop application.</p>
+            <div class="stat"><strong>80%</strong> reduction in manual data entry time</div>
+        </div>
+        <div class="use-case">
+            <h3>&#128269; QA & Visual Testing</h3>
+            <p>Create visual test scripts that adapt to UI changes. Capture screenshots across application states for documentation.</p>
+            <div class="stat"><strong>10x</strong> more resilient than selector-based tests</div>
+        </div>
+        <div class="use-case">
+            <h3>&#128279; Legacy System Integration</h3>
+            <p>Bridge modern systems with legacy applications that lack APIs. ScreenPilot interacts with any GUI, including mainframe terminals.</p>
+            <div class="stat"><strong>0</strong> API connectors needed</div>
+        </div>
+        <div class="use-case">
+            <h3>&#128640; DevOps & CI/CD</h3>
+            <p>Integrate desktop automation into CI/CD pipelines via the Python SDK and REST API. Run automations as pipeline steps.</p>
+            <div class="stat"><strong>156</strong> tests passing in the framework itself</div>
+        </div>
+    </div>
+</section>
+
+<!-- CODE EXAMPLES -->
+<section class="code-section">
+    <div class="section-label">Developer Experience</div>
+    <h2 class="section-title">Multiple Ways to Automate</h2>
+    <p class="section-desc">CLI, Python API, REST API, or SDK &mdash; pick what works for your workflow.</p>
+
+    <div class="code-tabs">
+        <div class="code-tab active" onclick="showTab('cli')">CLI</div>
+        <div class="code-tab" onclick="showTab('python')">Python</div>
+        <div class="code-tab" onclick="showTab('sdk')">SDK</div>
+        <div class="code-tab" onclick="showTab('api')">REST API</div>
+    </div>
+
+    <div class="code-block active" id="tab-cli">
+<span class="code-cm"># Run a task with natural language</span>
+<span class="code-var">$</span> screenpilot run <span class="code-str">"Open Excel, create a chart from column A data"</span>
+
+<span class="code-cm"># Record a workflow and replay it later</span>
+<span class="code-var">$</span> screenpilot record <span class="code-str">"daily-report"</span>
+<span class="code-var">$</span> screenpilot replay ~/.screenpilot/recordings/daily-report/workflow.json
+
+<span class="code-cm"># Schedule for daily execution</span>
+<span class="code-var">$</span> screenpilot schedule add daily_report <span class="code-str">"Daily Report"</span> \
+    <span class="code-str">"Generate sales report in Excel"</span> --type daily --time <span class="code-num">09:00</span>
+
+<span class="code-cm"># Start the web dashboard</span>
+<span class="code-var">$</span> screenpilot serve --port <span class="code-num">8420</span>
+    </div>
+
+    <div class="code-block" id="tab-python">
+<span class="code-kw">from</span> screenpilot <span class="code-kw">import</span> ScreenPilotAgent
+<span class="code-kw">from</span> screenpilot.config <span class="code-kw">import</span> ScreenPilotConfig, LLMConfig
+
+<span class="code-cm"># Configure with your preferred LLM</span>
+config = ScreenPilotConfig(
+    llm=LLMConfig(provider=<span class="code-str">"anthropic"</span>, model=<span class="code-str">"claude-sonnet-4-5-20250929"</span>)
+)
+
+<span class="code-cm"># Run an automation task</span>
+agent = ScreenPilotAgent(config)
+result = agent.<span class="code-fn">run</span>(<span class="code-str">"Open Chrome and search for 'AI automation'"</span>)
+
+<span class="code-kw">print</span>(f<span class="code-str">"Success: {result.success}"</span>)
+<span class="code-kw">print</span>(f<span class="code-str">"Steps: {result.num_steps} | Time: {result.total_time:.1f}s"</span>)
+    </div>
+
+    <div class="code-block" id="tab-sdk">
+<span class="code-kw">from</span> screenpilot.sdk <span class="code-kw">import</span> ScreenPilotClient
+
+<span class="code-cm"># Connect to running ScreenPilot server</span>
+client = ScreenPilotClient(<span class="code-str">"http://localhost:8420"</span>)
+
+<span class="code-cm"># Run task and wait for completion</span>
+task = client.<span class="code-fn">run_task</span>(<span class="code-str">"Fill out the customer form with test data"</span>)
+task.<span class="code-fn">wait</span>(timeout=<span class="code-num">120</span>)
+
+<span class="code-cm"># Direct actions</span>
+client.<span class="code-fn">find_and_click</span>(<span class="code-str">"Submit button"</span>)
+client.<span class="code-fn">type_text</span>(<span class="code-str">"john@example.com"</span>)
+
+<span class="code-cm"># Use pre-built templates</span>
+task = client.<span class="code-fn">run_template</span>(<span class="code-str">"web_form_fill"</span>, {
+    <span class="code-str">"url"</span>: <span class="code-str">"https://example.com/form"</span>,
+    <span class="code-str">"form_data"</span>: <span class="code-str">"name=John, email=john@example.com"</span>,
+})
+    </div>
+
+    <div class="code-block" id="tab-api">
+<span class="code-cm"># Start the server</span>
+<span class="code-var">$</span> screenpilot serve
+
+<span class="code-cm"># Run a task via REST API</span>
+<span class="code-var">$</span> curl -X POST http://localhost:<span class="code-num">8420</span>/task \
+    -H <span class="code-str">"Content-Type: application/json"</span> \
+    -d <span class="code-str">'{"goal": "Open calculator and compute 42 * 17", "max_steps": 20}'</span>
+
+<span class="code-cm"># Find a UI element</span>
+<span class="code-var">$</span> curl -X POST http://localhost:<span class="code-num">8420</span>/find \
+    -d <span class="code-str">'{"target": "the save button"}'</span>
+
+<span class="code-cm"># Schedule a recurring task</span>
+<span class="code-var">$</span> curl -X POST http://localhost:<span class="code-num">8420</span>/schedules \
+    -d <span class="code-str">'{"id":"daily","name":"Report","goal":"Generate report","schedule_type":"daily","time_of_day":"09:00"}'</span>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <div class="value">13</div>
+            <div class="label">Core Modules</div>
+        </div>
+        <div class="stat-item">
+            <div class="value">156</div>
+            <div class="label">Tests Passing</div>
+        </div>
+        <div class="stat-item">
+            <div class="value">7.8K</div>
+            <div class="label">Lines of Code</div>
+        </div>
+        <div class="stat-item">
+            <div class="value">3</div>
+            <div class="label">LLM Providers</div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Ready to Automate<br><span style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Without the Fragility?</span></h2>
+    <p>Open source, free forever. Start automating in minutes.</p>
+    <div class="hero-actions">
+        <a href="https://github.com/pphouse/screenpilot" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            Star on GitHub
+        </a>
+        <a href="https://github.com/pphouse/screenpilot#quick-start" class="btn btn-secondary">
+            Read the Docs
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <span>ScreenPilot &copy; 2026 &middot; Apache 2.0 License</span>
+        <div class="footer-links">
+            <a href="https://github.com/pphouse/screenpilot">GitHub</a>
+            <a href="https://github.com/pphouse/screenpilot/issues">Issues</a>
+            <a href="https://github.com/pphouse/screenpilot#quick-start">Documentation</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+function showTab(name) {
+    document.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.code-block').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
