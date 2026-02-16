@@ -1,0 +1,19 @@
+1
+00:00:06,262 --> 00:00:10,997
+Step 1: click (1642, 267) [OK]\NI can see the arXiv homepage with a search box in the upper right area. The search box appears to be located at approxim
+
+2
+00:00:10,997 --> 00:00:14,554
+Step 2: type  [OK]\NI can see the arXiv homepage with a search box in the upper right area. The search box appears to be located at approxim
+
+3
+00:00:14,554 --> 00:00:20,564
+Step 3: key  [OK]\NI can see the arXiv homepage with a search box in the upper right area. The search box already contains the text 'attent
+
+4
+00:00:20,564 --> 00:00:26,143
+Step 4: click (1869, 267) [OK]\NLooking at the screenshot, I can see the arXiv homepage. In the upper right area, there is a search box with 'attention 
+
+5
+00:00:26,143 --> 00:00:30,143
+Step 5: done  [OK]\NLooking at the screenshot, I can see that the search has already been executed and the results page is displayed. The pa

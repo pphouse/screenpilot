@@ -1,47 +1,47 @@
 1
-00:00:06,566 --> 00:00:11,926
+00:00:06,749 --> 00:00:11,778
 Step 1: click (576, 571) [OK]\NI can see the GitHub trending page is already loaded. There are several trending repositories visible on the screen. The
 
 2
-00:00:11,926 --> 00:00:17,340
+00:00:11,778 --> 00:00:17,224
 Step 2: click (576, 571) [OK]\NLooking at the current screenshot, I can see the GitHub trending page is already displayed. The task asks me to scroll d
 
 3
-00:00:17,340 --> 00:00:21,967
+00:00:17,224 --> 00:00:22,130
 Step 3: scroll  [OK]\NI can see I'm on a GitHub repository page (alibaba/zvec), not the GitHub trending page. The task asks me to scroll down 
 
 4
-00:00:21,967 --> 00:00:28,501
+00:00:22,130 --> 00:00:27,200
 Step 4: click (253, 72) [OK]\NI can see I'm currently on a GitHub repository page (alibaba/zvec), not the GitHub trending page. The task asks me to sc
 
 5
-00:00:28,501 --> 00:00:33,604
-Step 5: click (153, 72) [OK]\NI can see I'm currently on a GitHub repository page (alibaba/zvec). The task asks me to scroll down to see trending repo
+00:00:27,200 --> 00:00:33,099
+Step 5: click (153, 72) [OK]\NI can see I'm currently on the GitHub repository page for alibaba/zvec. The task asks me to scroll down to see trending 
 
 6
-00:00:33,604 --> 00:00:40,042
-Step 6: click (267, 72) [OK]\NI can see I'm currently on the GitHub repository page for alibaba/zvec. The task asks me to scroll down to see trending 
+00:00:33,099 --> 00:00:40,056
+Step 6: click (153, 72) [OK]\NI can see I'm currently on the GitHub repository page for alibaba/zvec. The task asks me to scroll down to see trending 
 
 7
-00:00:40,042 --> 00:00:45,328
-Step 7: click (1902, 121) [OK]\NI can see I'm currently on the GitHub repository page for alibaba/zvec. The task asks me to scroll down to see trending 
+00:00:40,056 --> 00:00:44,678
+Step 7: type  [OK]\NI can see I'm currently on the GitHub repository page for alibaba/zvec. The task asks me to scroll down to see trending 
 
 8
-00:00:45,328 --> 00:00:51,036
-Step 8: click (279, 72) [OK]\NI can see I'm currently on the GitHub repository page for alibaba/zvec. The task asks me to scroll down to see trending 
+00:00:44,678 --> 00:00:48,845
+Step 8: key  [OK]\NI can see that I've typed 'github.com/trending' in the address bar and there's a dropdown showing suggestions. The first
 
 9
-00:00:51,036 --> 00:00:56,507
-Step 9: click (66, 28) [OK]\NI can see I'm currently on the GitHub repository page for alibaba/zvec. The task asks me to scroll down to see trending 
+00:00:48,845 --> 00:00:53,117
+Step 9: scroll  [OK]\NI can see the GitHub trending page is now loaded (github.com/trending is in the address bar). However, I'm currently vie
 
 10
-00:00:56,507 --> 00:01:01,950
-Step 10: click (66, 28) [OK]\NI can see I'm currently on the GitHub repository page for alibaba/zvec. The task asks me to scroll down to see trending 
+00:00:53,117 --> 00:00:58,125
+Step 10: click (576, 571) [OK]\NI can see the GitHub trending page is now loaded. The page shows several trending repositories. The first repository in 
 
 11
-00:01:01,950 --> 00:01:07,764
-Step 11: click (66, 28) [OK]\NI can see I'm currently on the GitHub repository page for alibaba/zvec. The task asks me to scroll down to see trending 
+00:00:58,125 --> 00:01:07,725
+Step 11: click (576, 571) [OK]\NLooking at the current screenshot, I can see the GitHub trending page is loaded. The page displays several trending repo
 
 12
-00:01:07,764 --> 00:01:11,764
-Step 12: click (960, 72) [OK]\NI can see I'm on the GitHub repository page for alibaba/zvec. The task asks me to scroll down to see trending repositori
+00:01:07,725 --> 00:01:11,725
+Step 12: find_and_click (81, 207) [OK]\NI can see I'm currently on the GitHub repository page for alibaba/zvec, not the trending page. The previous attempts to 
