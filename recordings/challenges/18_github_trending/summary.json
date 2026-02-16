@@ -1,0 +1,124 @@
+{
+  "challenge_id": 18,
+  "name": "github_trending",
+  "difficulty": "medium",
+  "goal": "Scroll down to see trending repositories and click on the first repo name",
+  "setup_url": "https://github.com/trending",
+  "success": false,
+  "steps": 12,
+  "time": 77.1,
+  "error": "Max steps (12) reached without completing the task",
+  "video_path": "recordings/challenges/18_github_trending/recording.mp4",
+  "video_size_kb": 1576,
+  "speed": 3.0,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "click",
+      "target": "",
+      "coords": "(576, 571)",
+      "reasoning": "I can see the GitHub trending page is already loaded. The page shows a list of trending repositories. The first repository in the list is 'alibaba / zvec' which is visible on the screen. I need to cli",
+      "success": true,
+      "timestamp": 6.6
+    },
+    {
+      "step": 2,
+      "action": "click",
+      "target": "",
+      "coords": "(576, 571)",
+      "reasoning": "Looking at the current screenshot, I can see the GitHub trending page is already displayed. The page shows several trending repositories. The first repository in the list is 'alibaba / zvec' which is ",
+      "success": true,
+      "timestamp": 12.0
+    },
+    {
+      "step": 3,
+      "action": "find_and_click",
+      "target": "GitHub homepage logo in the top left corner",
+      "coords": "(81, 201)",
+      "reasoning": "I can see I'm on the GitHub repository page for alibaba/zvec, not the GitHub trending page. The task asks me to scroll down to see trending repositories and click on the first repo name. However, I'm ",
+      "success": true,
+      "timestamp": 23.1
+    },
+    {
+      "step": 4,
+      "action": "click",
+      "target": "",
+      "coords": "(57, 183)",
+      "reasoning": "I can see I'm currently on the alibaba/zvec repository page, not the GitHub trending page. The task asks me to scroll down to see trending repositories and click on the first repo name. However, I nee",
+      "success": true,
+      "timestamp": 27.5
+    },
+    {
+      "step": 5,
+      "action": "click",
+      "target": "",
+      "coords": "(57, 183)",
+      "reasoning": "I can see I'm currently on the alibaba/zvec repository page. The task is to scroll down to see trending repositories and click on the first repo name. However, I'm not on the GitHub trending page - I'",
+      "success": true,
+      "timestamp": 32.6
+    },
+    {
+      "step": 6,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see I'm on the GitHub homepage (github.com), not on a trending repositories page. The page shows 'The future of building happens together' heading and sign-up options. To access trending reposit",
+      "success": true,
+      "timestamp": 40.4
+    },
+    {
+      "step": 7,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see I'm on the GitHub homepage (github.com). The page shows the main GitHub landing page with 'The future of building happens together' heading. I need to navigate to the trending repositories p",
+      "success": true,
+      "timestamp": 46.8
+    },
+    {
+      "step": 8,
+      "action": "find_and_click",
+      "target": "Search or jump to... input field in the top navigation bar",
+      "coords": "(1708, 199)",
+      "reasoning": "I can see I'm on the GitHub homepage (github.com). The page shows the main GitHub landing page with navigation tabs for Code, Plan, Collaborate, Automate, and Secure. I need to navigate to the trendin",
+      "success": true,
+      "timestamp": 58.6
+    },
+    {
+      "step": 9,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the search input field is now active (there's a search dropdown showing options like Enterprise, Security, Copilot, and Pricing). I need to close this search dropdown first by clicking elsew",
+      "success": true,
+      "timestamp": 62.8
+    },
+    {
+      "step": 10,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see I'm on the GitHub homepage with a search dropdown visible. The task is to scroll down to see trending repositories and click on the first repo name. However, I currently have a search dropdo",
+      "success": true,
+      "timestamp": 67.1
+    },
+    {
+      "step": 11,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see I'm on the GitHub homepage (github.com) with a code example displayed in the center of the screen. The task is to scroll down to see trending repositories and click on the first repo name. I",
+      "success": true,
+      "timestamp": 73.3
+    },
+    {
+      "step": 12,
+      "action": "scroll",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see I'm on the GitHub homepage (github.com). The page shows the main GitHub landing page with company logos (Societe Generale, Spotify, Vodafone, American Airlines, Duolingo, EY, Ford) and a hea",
+      "success": true,
+      "timestamp": 78.4
+    }
+  ]
+}

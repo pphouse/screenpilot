@@ -1,0 +1,521 @@
+{
+  "results": [
+    {
+      "challenge_id": 1,
+      "name": "click_issues_tab",
+      "difficulty": "easy",
+      "success": true,
+      "steps": 6,
+      "time": 43.29241132736206,
+      "error": null,
+      "video_path": "recordings/challenges/01_click_issues_tab/recording.mp4",
+      "video_size_kb": 382.9384765625
+    },
+    {
+      "challenge_id": 2,
+      "name": "navigate_to_discussions",
+      "difficulty": "easy",
+      "success": false,
+      "steps": 10,
+      "time": 73.9488685131073,
+      "error": "Max steps (10) reached without completing the task",
+      "video_path": "recordings/challenges/02_navigate_to_discussions/recording.mp4",
+      "video_size_kb": 938.6943359375
+    },
+    {
+      "challenge_id": 3,
+      "name": "star_count_check",
+      "difficulty": "medium",
+      "success": false,
+      "steps": 15,
+      "time": 115.68019914627075,
+      "error": "Max steps (15) reached without completing the task",
+      "video_path": "recordings/challenges/03_star_count_check/recording.mp4",
+      "video_size_kb": 2007.822265625
+    },
+    {
+      "challenge_id": 4,
+      "name": "search_github",
+      "difficulty": "medium",
+      "success": false,
+      "steps": 15,
+      "time": 80.84972953796387,
+      "error": "Max steps (15) reached without completing the task",
+      "video_path": "recordings/challenges/04_search_github/recording.mp4",
+      "video_size_kb": 1602.1669921875
+    },
+    {
+      "challenge_id": 5,
+      "name": "open_file_in_repo",
+      "difficulty": "hard",
+      "success": true,
+      "steps": 17,
+      "time": 122.78627324104309,
+      "error": null,
+      "video_path": "recordings/challenges/05_open_file_in_repo/recording.mp4",
+      "video_size_kb": 2432.07421875
+    },
+    {
+      "challenge_id": 6,
+      "name": "wikipedia_search",
+      "difficulty": "hard",
+      "success": true,
+      "steps": 8,
+      "time": 41.321189880371094,
+      "error": null,
+      "video_path": "recordings/challenges/06_wikipedia_search/recording.mp4",
+      "video_size_kb": 1739.6884765625
+    },
+    {
+      "challenge_id": 7,
+      "name": "multi_step_navigation",
+      "difficulty": "expert",
+      "success": true,
+      "steps": 8,
+      "time": 62.44517278671265,
+      "error": null,
+      "video_path": "recordings/challenges/07_multi_step_navigation/recording.mp4",
+      "video_size_kb": 870.1875
+    },
+    {
+      "challenge_id": 8,
+      "name": "yahoo_finance_stock",
+      "difficulty": "medium",
+      "success": true,
+      "steps": 8,
+      "time": 52.565401792526245,
+      "error": null,
+      "video_path": "recordings/challenges/08_yahoo_finance_stock/recording.mp4",
+      "video_size_kb": 3172.0595703125
+    },
+    {
+      "challenge_id": 9,
+      "name": "hackernews_browse",
+      "difficulty": "easy",
+      "success": false,
+      "steps": 10,
+      "time": 60.117310523986816,
+      "error": "Max steps (10) reached without completing the task",
+      "video_path": "recordings/challenges/09_hackernews_browse/recording.mp4",
+      "video_size_kb": 2859.330078125
+    },
+    {
+      "challenge_id": 10,
+      "name": "youtube_search",
+      "difficulty": "hard",
+      "success": false,
+      "steps": 15,
+      "time": 88.57929992675781,
+      "error": "Max steps (15) reached without completing the task",
+      "video_path": "recordings/challenges/10_youtube_search/recording.mp4",
+      "video_size_kb": 350.9453125
+    },
+    {
+      "challenge_id": 11,
+      "name": "reddit_browse",
+      "difficulty": "medium",
+      "success": false,
+      "steps": 1,
+      "time": 5.887006521224976,
+      "error": "I can see a Reddit error page that says 'whoa there, pardner!' indicating that the request has been blocked due to a network policy. This is not a normal Reddit page with posts to scroll through. The page is showing an error message, not the programming subreddit content. Since there are no posts visible to scroll through or click on, I cannot complete the task as requested. The page appears to be blocked and doesn't show the expected content.",
+      "video_path": "recordings/challenges/11_reddit_browse/recording.mp4",
+      "video_size_kb": 111.93359375
+    },
+    {
+      "challenge_id": 12,
+      "name": "google_search",
+      "difficulty": "medium",
+      "success": false,
+      "steps": 12,
+      "time": 75.74840593338013,
+      "error": "Max steps (12) reached without completing the task",
+      "video_path": "recordings/challenges/12_google_search/recording.mp4",
+      "video_size_kb": 4060.7529296875
+    },
+    {
+      "challenge_id": 13,
+      "name": "weather_check",
+      "difficulty": "hard",
+      "success": true,
+      "steps": 11,
+      "time": 65.32007646560669,
+      "error": null,
+      "video_path": "recordings/challenges/13_weather_check/recording.mp4",
+      "video_size_kb": 1110.888671875
+    },
+    {
+      "challenge_id": 14,
+      "name": "wikipedia_jp_navigate",
+      "difficulty": "expert",
+      "success": false,
+      "steps": 20,
+      "time": 108.98566770553589,
+      "error": "Max steps (20) reached without completing the task",
+      "video_path": "recordings/challenges/14_wikipedia_jp_navigate/recording.mp4",
+      "video_size_kb": 2100.4697265625
+    },
+    {
+      "challenge_id": 15,
+      "name": "youtube_search_v2",
+      "difficulty": "hard",
+      "goal": "Use keyboard shortcut \"/\" to focus the YouTube search box, then type \"python tutorial\" and press Enter",
+      "setup_url": "https://www.youtube.com",
+      "success": true,
+      "steps": 4,
+      "time": 19.2,
+      "error": null,
+      "video_path": "recordings/challenges/15_youtube_search_v2/recording.mp4",
+      "video_size_kb": 358,
+      "speed": 3.0,
+      "step_details": [
+        {
+          "step": 1,
+          "action": "key",
+          "target": "",
+          "coords": "",
+          "reasoning": "I can see the YouTube homepage with a search box at the top center of the page. The task requires me to use the keyboard shortcut '/' to focus the search box, then type 'python tutorial' and press Ent",
+          "success": true,
+          "timestamp": 6.3
+        },
+        {
+          "step": 2,
+          "action": "type",
+          "target": "",
+          "coords": "",
+          "reasoning": "Looking at the screenshot, I can see the YouTube homepage with a search box at the top center. The task history shows that Step 1 was pressing a key (likely the '/' shortcut). Now I need to verify if ",
+          "success": true,
+          "timestamp": 11.3
+        },
+        {
+          "step": 3,
+          "action": "key",
+          "target": "",
+          "coords": "",
+          "reasoning": "I can see the YouTube search box is currently focused and contains 'python tutorial' text. A dropdown menu with search suggestions is visible below the search box. The task requires me to press Enter ",
+          "success": true,
+          "timestamp": 15.3
+        },
+        {
+          "step": 4,
+          "action": "done",
+          "target": "",
+          "coords": "",
+          "reasoning": "Looking at the screenshot, I can see that the YouTube search box already contains 'python tutorial' text. The search has been executed and the page is showing 'Try searching to get started' message, w",
+          "success": true,
+          "timestamp": 20.7
+        }
+      ]
+    },
+    {
+      "challenge_id": 16,
+      "name": "google_trends",
+      "difficulty": "hard",
+      "goal": "Click on the search/explore bar, type \"ChatGPT\", and press Enter to see the trend",
+      "setup_url": "https://trends.google.com/trending?geo=US",
+      "success": false,
+      "steps": 15,
+      "time": 86.1,
+      "error": "Max steps (15) reached without completing the task",
+      "video_path": "recordings/challenges/16_google_trends/recording.mp4",
+      "video_size_kb": 722,
+      "speed": 3.0,
+      "step_details": [
+        {
+          "step": 1,
+          "action": "click",
+          "target": "",
+          "coords": "(414, 336)",
+          "reasoning": "I can see the Google Trends page is open. I need to search for 'ChatGPT' to see its trend. Looking at the page, I can see there's a search area at the top. The 'Trends' text with '(Updated Feb 16, 8:2",
+          "success": true,
+          "timestamp": 11.2
+        },
+        {
+          "step": 2,
+          "action": "click",
+          "target": "",
+          "coords": "(591, 336)",
+          "reasoning": "I can see the Google Trends page is open. There is a search bar at the top of the trending topics list with placeholder text 'Search trends'. The previous action was a click at coordinates (414, 336),",
+          "success": true,
+          "timestamp": 16.8
+        },
+        {
+          "step": 3,
+          "action": "click",
+          "target": "",
+          "coords": "(591, 336)",
+          "reasoning": "I can see the Google Trends page is open. Looking at the screenshot, there is a search bar near the top of the page with placeholder text 'Search trends'. The search bar appears to be at coordinates a",
+          "success": true,
+          "timestamp": 21.6
+        },
+        {
+          "step": 4,
+          "action": "click",
+          "target": "",
+          "coords": "(591, 336)",
+          "reasoning": "I can see the Google Trends page is open. Looking at the screenshot, I notice there is a search bar near the top of the page with placeholder text 'Search trends'. The previous attempts have been clic",
+          "success": true,
+          "timestamp": 27.3
+        },
+        {
+          "step": 5,
+          "action": "find_and_click",
+          "target": "search trends input field with placeholder text 'Search trends'",
+          "coords": "(672, 349)",
+          "reasoning": "I can see the Google Trends page is open. I notice there is a search bar at the top of the trending topics list with placeholder text 'Search trends'. The previous attempts to click at coordinates (59",
+          "success": true,
+          "timestamp": 35.7
+        },
+        {
+          "step": 6,
+          "action": "click",
+          "target": "",
+          "coords": "(591, 336)",
+          "reasoning": "I can see the Google Trends page is open. There is a search input field with placeholder text 'Search trends' near the top of the page. Previous attempts to click at coordinates (591, 336) have failed",
+          "success": true,
+          "timestamp": 42.2
+        },
+        {
+          "step": 7,
+          "action": "click",
+          "target": "",
+          "coords": "(591, 336)",
+          "reasoning": "I can see the Google Trends page is open. There is a search input field with placeholder text 'Search trends' near the top of the page. I've been clicking at coordinates (591, 336) repeatedly without ",
+          "success": true,
+          "timestamp": 46.8
+        },
+        {
+          "step": 8,
+          "action": "click",
+          "target": "",
+          "coords": "(591, 336)",
+          "reasoning": "I can see the Google Trends page is open. I notice there is a search input field with placeholder text 'Search trends' near the top of the page. Previous attempts to click at coordinates (591, 336) ha",
+          "success": true,
+          "timestamp": 51.8
+        },
+        {
+          "step": 9,
+          "action": "click",
+          "target": "",
+          "coords": "(591, 336)",
+          "reasoning": "I can see the Google Trends page is open. I notice there is a search input field with placeholder text 'Search trends' near the top of the page. I have been clicking at coordinates (591, 336) repeated",
+          "success": true,
+          "timestamp": 56.9
+        },
+        {
+          "step": 10,
+          "action": "click",
+          "target": "",
+          "coords": "(591, 336)",
+          "reasoning": "I can see the Google Trends page is open. I notice there is a search input field with placeholder text 'Search trends' near the top of the page. Previous attempts to click at coordinates (591, 336) ha",
+          "success": true,
+          "timestamp": 62.1
+        },
+        {
+          "step": 11,
+          "action": "click",
+          "target": "",
+          "coords": "(591, 336)",
+          "reasoning": "I can see the Google Trends page is open. I notice there is a search input field with placeholder text 'Search trends' near the top of the page. I have been clicking at coordinates (591, 336) repeated",
+          "success": true,
+          "timestamp": 66.9
+        },
+        {
+          "step": 12,
+          "action": "click",
+          "target": "",
+          "coords": "(591, 336)",
+          "reasoning": "I can see the Google Trends page is open. There is a search input field with placeholder text 'Search trends' near the top of the page. I have been clicking at coordinates (591, 336) repeatedly withou",
+          "success": true,
+          "timestamp": 71.2
+        },
+        {
+          "step": 13,
+          "action": "click",
+          "target": "",
+          "coords": "(591, 336)",
+          "reasoning": "I can see the Google Trends page is open. I notice there is a search input field near the top of the page with placeholder text 'Search trends'. The previous attempts to click at coordinates (591, 336",
+          "success": true,
+          "timestamp": 76.8
+        },
+        {
+          "step": 14,
+          "action": "click",
+          "target": "",
+          "coords": "(591, 336)",
+          "reasoning": "I can see the Google Trends page is open. I notice there is a search input field near the top of the page with placeholder text 'Search trends'. The previous attempts have been clicking at coordinates",
+          "success": true,
+          "timestamp": 81.9
+        },
+        {
+          "step": 15,
+          "action": "click",
+          "target": "",
+          "coords": "(591, 336)",
+          "reasoning": "I can see the Google Trends page is open with a search input field visible at the top of the trending list. The search box has placeholder text 'Search trends' and is located near coordinates (394, 22",
+          "success": true,
+          "timestamp": 87.6
+        }
+      ]
+    },
+    {
+      "challenge_id": 17,
+      "name": "hn_top_comments",
+      "difficulty": "medium",
+      "goal": "Click on the 'comments' link of the top story to view the discussion",
+      "setup_url": "https://news.ycombinator.com",
+      "success": true,
+      "steps": 2,
+      "time": 13.6,
+      "error": null,
+      "video_path": "recordings/challenges/17_hn_top_comments/recording.mp4",
+      "video_size_kb": 326,
+      "speed": 3.0,
+      "step_details": [
+        {
+          "step": 1,
+          "action": "click",
+          "target": "",
+          "coords": "(390, 213)",
+          "reasoning": "I can see the Hacker News homepage with a list of stories. The top story is '14-year-old Miles Wu faded origami pattern that holds 10k times its own weight'. I need to click on the 'comments' link for",
+          "success": true,
+          "timestamp": 8.5
+        },
+        {
+          "step": 2,
+          "action": "done",
+          "target": "",
+          "coords": "",
+          "reasoning": "I can see the Hacker News page is already showing the comments section for the story '14-year-old Miles Wu folded origami pattern that holds 10k times its own weight'. The page shows a comment input b",
+          "success": true,
+          "timestamp": 15.0
+        }
+      ]
+    },
+    {
+      "challenge_id": 18,
+      "name": "github_trending",
+      "difficulty": "medium",
+      "goal": "Scroll down to see trending repositories and click on the first repo name",
+      "setup_url": "https://github.com/trending",
+      "success": false,
+      "steps": 12,
+      "time": 77.1,
+      "error": "Max steps (12) reached without completing the task",
+      "video_path": "recordings/challenges/18_github_trending/recording.mp4",
+      "video_size_kb": 1576,
+      "speed": 3.0,
+      "step_details": [
+        {
+          "step": 1,
+          "action": "click",
+          "target": "",
+          "coords": "(576, 571)",
+          "reasoning": "I can see the GitHub trending page is already loaded. The page shows a list of trending repositories. The first repository in the list is 'alibaba / zvec' which is visible on the screen. I need to cli",
+          "success": true,
+          "timestamp": 6.6
+        },
+        {
+          "step": 2,
+          "action": "click",
+          "target": "",
+          "coords": "(576, 571)",
+          "reasoning": "Looking at the current screenshot, I can see the GitHub trending page is already displayed. The page shows several trending repositories. The first repository in the list is 'alibaba / zvec' which is ",
+          "success": true,
+          "timestamp": 12.0
+        },
+        {
+          "step": 3,
+          "action": "find_and_click",
+          "target": "GitHub homepage logo in the top left corner",
+          "coords": "(81, 201)",
+          "reasoning": "I can see I'm on the GitHub repository page for alibaba/zvec, not the GitHub trending page. The task asks me to scroll down to see trending repositories and click on the first repo name. However, I'm ",
+          "success": true,
+          "timestamp": 23.1
+        },
+        {
+          "step": 4,
+          "action": "click",
+          "target": "",
+          "coords": "(57, 183)",
+          "reasoning": "I can see I'm currently on the alibaba/zvec repository page, not the GitHub trending page. The task asks me to scroll down to see trending repositories and click on the first repo name. However, I nee",
+          "success": true,
+          "timestamp": 27.5
+        },
+        {
+          "step": 5,
+          "action": "click",
+          "target": "",
+          "coords": "(57, 183)",
+          "reasoning": "I can see I'm currently on the alibaba/zvec repository page. The task is to scroll down to see trending repositories and click on the first repo name. However, I'm not on the GitHub trending page - I'",
+          "success": true,
+          "timestamp": 32.6
+        },
+        {
+          "step": 6,
+          "action": "scroll",
+          "target": "",
+          "coords": "",
+          "reasoning": "I can see I'm on the GitHub homepage (github.com), not on a trending repositories page. The page shows 'The future of building happens together' heading and sign-up options. To access trending reposit",
+          "success": true,
+          "timestamp": 40.4
+        },
+        {
+          "step": 7,
+          "action": "scroll",
+          "target": "",
+          "coords": "",
+          "reasoning": "I can see I'm on the GitHub homepage (github.com). The page shows the main GitHub landing page with 'The future of building happens together' heading. I need to navigate to the trending repositories p",
+          "success": true,
+          "timestamp": 46.8
+        },
+        {
+          "step": 8,
+          "action": "find_and_click",
+          "target": "Search or jump to... input field in the top navigation bar",
+          "coords": "(1708, 199)",
+          "reasoning": "I can see I'm on the GitHub homepage (github.com). The page shows the main GitHub landing page with navigation tabs for Code, Plan, Collaborate, Automate, and Secure. I need to navigate to the trendin",
+          "success": true,
+          "timestamp": 58.6
+        },
+        {
+          "step": 9,
+          "action": "key",
+          "target": "",
+          "coords": "",
+          "reasoning": "I can see the search input field is now active (there's a search dropdown showing options like Enterprise, Security, Copilot, and Pricing). I need to close this search dropdown first by clicking elsew",
+          "success": true,
+          "timestamp": 62.8
+        },
+        {
+          "step": 10,
+          "action": "key",
+          "target": "",
+          "coords": "",
+          "reasoning": "I can see I'm on the GitHub homepage with a search dropdown visible. The task is to scroll down to see trending repositories and click on the first repo name. However, I currently have a search dropdo",
+          "success": true,
+          "timestamp": 67.1
+        },
+        {
+          "step": 11,
+          "action": "scroll",
+          "target": "",
+          "coords": "",
+          "reasoning": "I can see I'm on the GitHub homepage (github.com) with a code example displayed in the center of the screen. The task is to scroll down to see trending repositories and click on the first repo name. I",
+          "success": true,
+          "timestamp": 73.3
+        },
+        {
+          "step": 12,
+          "action": "scroll",
+          "target": "",
+          "coords": "",
+          "reasoning": "I can see I'm on the GitHub homepage (github.com). The page shows the main GitHub landing page with company logos (Societe Generale, Spotify, Vodafone, American Airlines, Duolingo, EY, Ford) and a hea",
+          "success": true,
+          "timestamp": 78.4
+        }
+      ]
+    }
+  ],
+  "passed": 8,
+  "total": 18
+}

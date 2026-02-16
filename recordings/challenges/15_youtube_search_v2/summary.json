@@ -1,0 +1,52 @@
+{
+  "challenge_id": 15,
+  "name": "youtube_search_v2",
+  "difficulty": "hard",
+  "goal": "Use keyboard shortcut \"/\" to focus the YouTube search box, then type \"python tutorial\" and press Enter",
+  "setup_url": "https://www.youtube.com",
+  "success": true,
+  "steps": 4,
+  "time": 19.2,
+  "error": null,
+  "video_path": "recordings/challenges/15_youtube_search_v2/recording.mp4",
+  "video_size_kb": 358,
+  "speed": 3.0,
+  "step_details": [
+    {
+      "step": 1,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the YouTube homepage with a search box at the top center of the page. The task requires me to use the keyboard shortcut '/' to focus the search box, then type 'python tutorial' and press Ent",
+      "success": true,
+      "timestamp": 6.3
+    },
+    {
+      "step": 2,
+      "action": "type",
+      "target": "",
+      "coords": "",
+      "reasoning": "Looking at the screenshot, I can see the YouTube homepage with a search box at the top center. The task history shows that Step 1 was pressing a key (likely the '/' shortcut). Now I need to verify if ",
+      "success": true,
+      "timestamp": 11.3
+    },
+    {
+      "step": 3,
+      "action": "key",
+      "target": "",
+      "coords": "",
+      "reasoning": "I can see the YouTube search box is currently focused and contains 'python tutorial' text. A dropdown menu with search suggestions is visible below the search box. The task requires me to press Enter ",
+      "success": true,
+      "timestamp": 15.3
+    },
+    {
+      "step": 4,
+      "action": "done",
+      "target": "",
+      "coords": "",
+      "reasoning": "Looking at the screenshot, I can see that the YouTube search box already contains 'python tutorial' text. The search has been executed and the page is showing 'Try searching to get started' message, w",
+      "success": true,
+      "timestamp": 20.7
+    }
+  ]
+}

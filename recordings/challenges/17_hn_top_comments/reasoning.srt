@@ -1,0 +1,7 @@
+1
+00:00:08,499 --> 00:00:15,030
+Step 1: click (390, 213) [OK]\NI can see the Hacker News homepage with a list of stories. The top story is '14-year-old Miles Wu faded origami pattern 
+
+2
+00:00:15,030 --> 00:00:19,030
+Step 2: done  [OK]\NI can see the Hacker News page is already showing the comments section for the story '14-year-old Miles Wu folded origam

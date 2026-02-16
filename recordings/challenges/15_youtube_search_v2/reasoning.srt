@@ -1,0 +1,15 @@
+1
+00:00:06,334 --> 00:00:11,260
+Step 1: key  [OK]\NI can see the YouTube homepage with a search box at the top center of the page. The task requires me to use the keyboard
+
+2
+00:00:11,260 --> 00:00:15,297
+Step 2: type  [OK]\NLooking at the screenshot, I can see the YouTube homepage with a search box at the top center. The task history shows th
+
+3
+00:00:15,297 --> 00:00:20,690
+Step 3: key  [OK]\NI can see the YouTube search box is currently focused and contains 'python tutorial' text. A dropdown menu with search s
+
+4
+00:00:20,690 --> 00:00:24,690
+Step 4: done  [OK]\NLooking at the screenshot, I can see that the YouTube search box already contains 'python tutorial' text. The search has
