@@ -1,0 +1,78 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#12121a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4f8fff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00d4aa;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="glow" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" style="stop-color:#4f8fff;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#4f8fff;stop-opacity:0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Glow effect -->
+  <ellipse cx="600" cy="200" rx="500" ry="300" fill="url(#glow)"/>
+
+  <!-- Grid lines -->
+  <g stroke="#1e3a5f" stroke-width="0.5" opacity="0.3">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Logo text -->
+  <text x="600" y="220" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="72" font-weight="800" fill="url(#accent)" text-anchor="middle">ScreenPilot</text>
+
+  <!-- Tagline -->
+  <text x="600" y="290" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="28" fill="#8b95a5" text-anchor="middle">AI Desktop Automation Using Vision + LLM</text>
+
+  <!-- Divider line -->
+  <rect x="450" y="320" width="300" height="2" fill="url(#accent)" rx="1"/>
+
+  <!-- Feature pills -->
+  <g font-family="-apple-system, sans-serif" font-size="16" font-weight="500">
+    <!-- Row 1 -->
+    <rect x="200" y="360" width="160" height="36" rx="18" fill="rgba(79,143,255,0.15)" stroke="#4f8fff" stroke-width="1"/>
+    <text x="280" y="383" fill="#4f8fff" text-anchor="middle">Vision-Based</text>
+
+    <rect x="390" y="360" width="180" height="36" rx="18" fill="rgba(79,143,255,0.15)" stroke="#4f8fff" stroke-width="1"/>
+    <text x="480" y="383" fill="#4f8fff" text-anchor="middle">Natural Language</text>
+
+    <rect x="600" y="360" width="160" height="36" rx="18" fill="rgba(0,212,170,0.15)" stroke="#00d4aa" stroke-width="1"/>
+    <text x="680" y="383" fill="#00d4aa" text-anchor="middle">Self-Healing</text>
+
+    <rect x="790" y="360" width="180" height="36" rx="18" fill="rgba(0,212,170,0.15)" stroke="#00d4aa" stroke-width="1"/>
+    <text x="880" y="383" fill="#00d4aa" text-anchor="middle">Open Source</text>
+
+    <!-- Row 2 -->
+    <rect x="270" y="415" width="170" height="36" rx="18" fill="rgba(79,143,255,0.1)" stroke="#4f8fff" stroke-width="0.5"/>
+    <text x="355" y="438" fill="#6fa3ff" text-anchor="middle">Multi-LLM</text>
+
+    <rect x="470" y="415" width="130" height="36" rx="18" fill="rgba(79,143,255,0.1)" stroke="#4f8fff" stroke-width="0.5"/>
+    <text x="535" y="438" fill="#6fa3ff" text-anchor="middle">Scheduling</text>
+
+    <rect x="630" y="415" width="160" height="36" rx="18" fill="rgba(0,212,170,0.1)" stroke="#00d4aa" stroke-width="0.5"/>
+    <text x="710" y="438" fill="#5fe8c8" text-anchor="middle">Python SDK</text>
+  </g>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="530" width="1200" height="100" fill="#0d0d14"/>
+  <text x="600" y="575" font-family="'SF Mono', 'Fira Code', monospace" font-size="18" fill="#555" text-anchor="middle">pip install screenpilot    |    github.com/pphouse/screenpilot</text>
+
+  <!-- Border -->
+  <rect x="0" y="0" width="1200" height="630" fill="none" stroke="#1e3a5f" stroke-width="2"/>
+</svg>
