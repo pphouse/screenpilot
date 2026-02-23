@@ -403,17 +403,20 @@ def run_challenge(challenge: Challenge, speed: float = 2.0) -> dict:
 # HTML Viewer generation
 # ---------------------------------------------------------------------------
 
-def generate_viewer(results: list[dict]) -> Path:
+def generate_viewer(results: list[dict], recordings_dir: Path | None = None) -> Path:
     """Generate an HTML viewer for all challenge results."""
-    viewer_path = RECORDINGS_DIR / "viewer.html"
+    rec_dir = recordings_dir or RECORDINGS_DIR
+    viewer_path = rec_dir / "viewer.html"
 
     # Build challenge cards
     cards_html = ""
     for r in results:
         status_class = "pass" if r["success"] else "fail"
         status_text = "PASS" if r["success"] else "FAIL"
-        video_rel = Path(r["video_path"]).name if "/" not in r["video_path"] else \
-            str(Path(r["video_path"]).relative_to(RECORDINGS_DIR))
+        try:
+            video_rel = str(Path(r["video_path"]).relative_to(rec_dir))
+        except ValueError:
+            video_rel = Path(r["video_path"]).name
 
         # Step timeline
         steps_html = ""

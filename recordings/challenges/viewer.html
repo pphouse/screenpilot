@@ -64,9 +64,9 @@ summary { cursor: pointer; color: #58a6ff; font-size: 13px; }
 <p class="subtitle">AI agent attempting real browser tasks — vision + LLM, no scripting</p>
 
 <div class="summary-bar">
-    <div class="summary-stat"><div class="value">29/56</div><div class="label">Passed</div></div>
-    <div class="summary-stat"><div class="value">56</div><div class="label">Total</div></div>
-    <div class="summary-stat"><div class="value">52%</div><div class="label">Pass Rate</div></div>
+    <div class="summary-stat"><div class="value">42/87</div><div class="label">Passed</div></div>
+    <div class="summary-stat"><div class="value">87</div><div class="label">Total</div></div>
+    <div class="summary-stat"><div class="value">48%</div><div class="label">Pass Rate</div></div>
 </div>
 
 <div class="filters">
@@ -1155,12 +1155,12 @@ summary { cursor: pointer; color: #58a6ff; font-size: 13px; }
                 <span>Goal: Search for "人工知能" (artificial intelligence in Japanese), then click the first link in the article body</span>
             </div>
             <div class="card-stats">
-                <span>20 steps</span>
-                <span>117.4s</span>
+                <span>0 steps</span>
+                <span>0.3s</span>
                 <span>3.0x speed</span>
-                <span>1398 KB</span>
+                <span>2226 KB</span>
             </div>
-            <div class="error">Max steps (20) reached without completing the task</div>
+            <div class="error">Planning failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CYDAkmBCJNvp2aDCmSBsF'}</div>
             <div class="video-container">
                 <video controls preload="metadata" width="100%">
                     <source src="14_wikipedia_jp_navigate_v2/recording.mp4" type="video/mp4">
@@ -1173,108 +1173,42 @@ summary { cursor: pointer; color: #58a6ff; font-size: 13px; }
                 </div>
             </div>
             <details class="steps-detail">
-                <summary>Step-by-step reasoning (20 steps)</summary>
-                <div class="steps-timeline"><div class="step step-ok" title="I need to search for "人工知能" (artificial intelligence in Japanese). I can see a Wikipedia page in Jap">
-                <span class="step-num">#1</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(715, 181)</span>
-                <span class="step-time">6.1s</span>
-            </div><div class="step step-ok" title="I can see the Wikipedia homepage in Japanese. In the task history, I see that Step 1 was a click at ">
-                <span class="step-num">#2</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(700, 180)</span>
-                <span class="step-time">11.8s</span>
-            </div><div class="step step-ok" title="Looking at the screenshot, I can see the Wikipedia Japanese homepage. The task history shows I've cl">
-                <span class="step-num">#3</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(715, 180)</span>
-                <span class="step-time">15.8s</span>
-            </div><div class="step step-ok" title="I can see the Wikipedia Japanese homepage. Looking at the task history, I've been clicking at coordi">
-                <span class="step-num">#4</span>
-                <span class="step-action">find_and_click</span>
-                <span class="step-coords">(855, 195)</span>
-                <span class="step-time">25.1s</span>
-            </div><div class="step step-ok" title="Looking at the screenshot, I can see the Wikipedia Japanese homepage. The search box is visible at t">
-                <span class="step-num">#5</span>
-                <span class="step-action">type</span>
-                <span class="step-coords"></span>
-                <span class="step-time">29.3s</span>
-            </div><div class="step step-ok" title="I can see the Wikipedia Japanese homepage with the search box visible at the top. The search box con">
-                <span class="step-num">#6</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(937, 180)</span>
-                <span class="step-time">34.3s</span>
-            </div><div class="step step-ok" title="Looking at the screenshot, I can see a Wikipedia search page in Japanese. The search box in the cent">
-                <span class="step-num">#7</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(949, 348)</span>
-                <span class="step-time">40.2s</span>
-            </div><div class="step step-ok" title="Looking at the screenshot, I can see a Wikipedia search page in Japanese. The search box at the top ">
-                <span class="step-num">#8</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(945, 180)</span>
-                <span class="step-time">45.8s</span>
-            </div><div class="step step-ok" title="Looking at the screenshot, I can see a Wikipedia search page in Japanese. The task history shows I'v">
-                <span class="step-num">#9</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(720, 180)</span>
-                <span class="step-time">51.2s</span>
-            </div><div class="step step-ok" title="Looking at the screenshot, I can see a Wikipedia search page in Japanese. The task history shows I'v">
-                <span class="step-num">#10</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(949, 348)</span>
-                <span class="step-time">57.6s</span>
-            </div><div class="step step-ok" title="Looking at the screenshot, I can see a Wikipedia search page in Japanese. The search box at the top ">
-                <span class="step-num">#11</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(585, 346)</span>
-                <span class="step-time">62.8s</span>
-            </div><div class="step step-ok" title="Looking at the screenshot, I can see a Wikipedia search page in Japanese. The search box at the top ">
-                <span class="step-num">#12</span>
-                <span class="step-action">find_and_click</span>
-                <span class="step-coords">(840, 192)</span>
-                <span class="step-time">72.1s</span>
-            </div><div class="step step-ok" title="Looking at the screenshot, I can see a Wikipedia search page in Japanese. The search box at the top ">
-                <span class="step-num">#13</span>
-                <span class="step-action">type</span>
-                <span class="step-coords"></span>
-                <span class="step-time">76.1s</span>
-            </div><div class="step step-ok" title="Looking at the screenshot, I can see a Wikipedia search page in Japanese. The search box at the top ">
-                <span class="step-num">#14</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(945, 180)</span>
-                <span class="step-time">80.1s</span>
-            </div><div class="step step-ok" title="Looking at the screenshot, I can see a Wikipedia search page in Japanese. The search box at the top ">
-                <span class="step-num">#15</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(945, 180)</span>
-                <span class="step-time">86.5s</span>
-            </div><div class="step step-ok" title="I can see the Wikipedia search page in Japanese. Looking at the screen, I notice there's a search in">
-                <span class="step-num">#16</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(949, 348)</span>
-                <span class="step-time">92.0s</span>
-            </div><div class="step step-ok" title="Looking at the current screenshot, I can see a Wikipedia search page in Japanese. The search input f">
-                <span class="step-num">#17</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(943, 180)</span>
-                <span class="step-time">97.7s</span>
-            </div><div class="step step-ok" title="Looking at the screenshot, I can see a Wikipedia search page in Japanese. The search input field at ">
-                <span class="step-num">#18</span>
-                <span class="step-action">find_and_click</span>
-                <span class="step-coords">(840, 195)</span>
-                <span class="step-time">107.9s</span>
-            </div><div class="step step-ok" title="Looking at the screenshot, I can see a Wikipedia search page in Japanese. The search input box at th">
-                <span class="step-num">#19</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(943, 180)</span>
-                <span class="step-time">113.6s</span>
-            </div><div class="step step-ok" title="I can see a Wikipedia search page in Japanese. Looking at the screen, I notice there's a search inpu">
-                <span class="step-num">#20</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(949, 348)</span>
-                <span class="step-time">118.8s</span>
-            </div></div>
+                <summary>Step-by-step reasoning (0 steps)</summary>
+                <div class="steps-timeline"></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#14</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>wikipedia_jp_navigate (attempt 3)</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Search for "人工知能" (artificial intelligence in Japanese), then click the first link in the article body</span>
+            </div>
+            <div class="card-stats">
+                <span>0 steps</span>
+                <span>0.4s</span>
+                <span>3.0x speed</span>
+                <span>2733 KB</span>
+            </div>
+            <div class="error">Planning failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CYDAqG5sQ3EUfoDE5NNsT'}</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="14_wikipedia_jp_navigate_v3/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (0 steps)</summary>
+                <div class="steps-timeline"></div>
             </details>
         </div>
         
@@ -1524,23 +1458,23 @@ summary { cursor: pointer; color: #58a6ff; font-size: 13px; }
             </details>
         </div>
         
-        <div class="card fail">
+        <div class="card pass">
             <div class="card-header">
                 <span class="challenge-id">#18</span>
                 <span class="difficulty medium">MEDIUM</span>
-                <span class="status-badge fail">FAIL</span>
+                <span class="status-badge pass">PASS</span>
                 <h3>github_trending (attempt 2)</h3>
             </div>
             <div class="card-meta">
                 <span>Goal: Scroll down to see trending repositories and click on the first repo name</span>
             </div>
             <div class="card-stats">
-                <span>12 steps</span>
-                <span>66.3s</span>
+                <span>4 steps</span>
+                <span>29.6s</span>
                 <span>3.0x speed</span>
-                <span>1038 KB</span>
+                <span>424 KB</span>
             </div>
-            <div class="error">Max steps (12) reached without completing the task</div>
+            
             <div class="video-container">
                 <video controls preload="metadata" width="100%">
                     <source src="18_github_trending_v2/recording.mp4" type="video/mp4">
@@ -1553,67 +1487,27 @@ summary { cursor: pointer; color: #58a6ff; font-size: 13px; }
                 </div>
             </div>
             <details class="steps-detail">
-                <summary>Step-by-step reasoning (12 steps)</summary>
-                <div class="steps-timeline"><div class="step step-ok" title="I can see the GitHub trending page is already loaded. There are several trending repositories visibl">
+                <summary>Step-by-step reasoning (4 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="The task is to scroll down to see trending repositories and click on the first repo name. I can alre">
                 <span class="step-num">#1</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(576, 571)</span>
-                <span class="step-time">6.7s</span>
-            </div><div class="step step-ok" title="Looking at the current screenshot, I can see the GitHub trending page is already displayed. The task">
+                <span class="step-action">find_and_click</span>
+                <span class="step-coords">(895, 585)</span>
+                <span class="step-time">11.8s</span>
+            </div><div class="step step-ok" title="The previous action was to click on 'alibaba / zvec' but the page hasn't changed. I should try click">
                 <span class="step-num">#2</span>
                 <span class="step-action">click</span>
                 <span class="step-coords">(576, 571)</span>
-                <span class="step-time">11.8s</span>
-            </div><div class="step step-ok" title="I can see I'm on a GitHub repository page (alibaba/zvec), not the GitHub trending page. The task ask">
+                <span class="step-time">17.3s</span>
+            </div><div class="step step-ok" title="The previous click action at coordinates (576, 571) did not navigate to the repository page. Looking">
                 <span class="step-num">#3</span>
-                <span class="step-action">scroll</span>
-                <span class="step-coords"></span>
-                <span class="step-time">17.2s</span>
-            </div><div class="step step-ok" title="I can see I'm currently on a GitHub repository page (alibaba/zvec), not the GitHub trending page. Th">
+                <span class="step-action">click</span>
+                <span class="step-coords">(576, 571)</span>
+                <span class="step-time">24.5s</span>
+            </div><div class="step step-ok" title="The task has been completed. I was asked to scroll down to see trending repositories and click on th">
                 <span class="step-num">#4</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(253, 72)</span>
-                <span class="step-time">22.1s</span>
-            </div><div class="step step-ok" title="I can see I'm currently on the GitHub repository page for alibaba/zvec. The task asks me to scroll d">
-                <span class="step-num">#5</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(153, 72)</span>
-                <span class="step-time">27.2s</span>
-            </div><div class="step step-ok" title="I can see I'm currently on the GitHub repository page for alibaba/zvec. The task asks me to scroll d">
-                <span class="step-num">#6</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(153, 72)</span>
-                <span class="step-time">33.1s</span>
-            </div><div class="step step-ok" title="I can see I'm currently on the GitHub repository page for alibaba/zvec. The task asks me to scroll d">
-                <span class="step-num">#7</span>
-                <span class="step-action">type</span>
+                <span class="step-action">done</span>
                 <span class="step-coords"></span>
-                <span class="step-time">40.1s</span>
-            </div><div class="step step-ok" title="I can see that I've typed 'github.com/trending' in the address bar and there's a dropdown showing su">
-                <span class="step-num">#8</span>
-                <span class="step-action">key</span>
-                <span class="step-coords"></span>
-                <span class="step-time">44.7s</span>
-            </div><div class="step step-ok" title="I can see the GitHub trending page is now loaded (github.com/trending is in the address bar). Howeve">
-                <span class="step-num">#9</span>
-                <span class="step-action">scroll</span>
-                <span class="step-coords"></span>
-                <span class="step-time">48.8s</span>
-            </div><div class="step step-ok" title="I can see the GitHub trending page is now loaded. The page shows several trending repositories. The ">
-                <span class="step-num">#10</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(576, 571)</span>
-                <span class="step-time">53.1s</span>
-            </div><div class="step step-ok" title="Looking at the current screenshot, I can see the GitHub trending page is loaded. The page displays s">
-                <span class="step-num">#11</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(576, 571)</span>
-                <span class="step-time">58.1s</span>
-            </div><div class="step step-ok" title="I can see I'm currently on the GitHub repository page for alibaba/zvec, not the trending page. The p">
-                <span class="step-num">#12</span>
-                <span class="step-action">find_and_click</span>
-                <span class="step-coords">(81, 207)</span>
-                <span class="step-time">67.7s</span>
+                <span class="step-time">31.1s</span>
             </div></div>
             </details>
         </div>
@@ -1776,23 +1670,23 @@ summary { cursor: pointer; color: #58a6ff; font-size: 13px; }
             </details>
         </div>
         
-        <div class="card fail">
+        <div class="card pass">
             <div class="card-header">
                 <span class="challenge-id">#21</span>
                 <span class="difficulty medium">MEDIUM</span>
-                <span class="status-badge fail">FAIL</span>
+                <span class="status-badge pass">PASS</span>
                 <h3>use_calculator (attempt 2)</h3>
             </div>
             <div class="card-meta">
                 <span>Goal: Click the buttons to calculate 42 × 7: click 4, then 2, then ×, then 7, then =</span>
             </div>
             <div class="card-stats">
-                <span>15 steps</span>
-                <span>104.8s</span>
+                <span>8 steps</span>
+                <span>61.4s</span>
                 <span>3.0x speed</span>
-                <span>1368 KB</span>
+                <span>1072 KB</span>
             </div>
-            <div class="error">Max steps (15) reached without completing the task</div>
+            
             <div class="video-container">
                 <video controls preload="metadata" width="100%">
                     <source src="21_use_calculator_v2/recording.mp4" type="video/mp4">
@@ -1805,82 +1699,47 @@ summary { cursor: pointer; color: #58a6ff; font-size: 13px; }
                 </div>
             </div>
             <details class="steps-detail">
-                <summary>Step-by-step reasoning (15 steps)</summary>
-                <div class="steps-timeline"><div class="step step-ok" title="I can see an online calculator interface in the center of the screen. The calculator has a display s">
+                <summary>Step-by-step reasoning (8 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="I need to calculate 42 × 7. The task requires clicking buttons in sequence: 4, 2, ×, 7, =. I can see">
                 <span class="step-num">#1</span>
                 <span class="step-action">click</span>
-                <span class="step-coords">(861, 780)</span>
-                <span class="step-time">6.8s</span>
-            </div><div class="step step-ok" title="I can see an online calculator interface in the center of the screen. The calculator shows a display">
+                <span class="step-coords">(228, 243)</span>
+                <span class="step-time">8.7s</span>
+            </div><div class="step step-ok" title="The popup is blocking access to the calculator interface. I need to close this popup first before I ">
                 <span class="step-num">#2</span>
                 <span class="step-action">click</span>
-                <span class="step-coords">(861, 780)</span>
-                <span class="step-time">12.6s</span>
-            </div><div class="step step-ok" title="I can see an online calculator interface in the center of the screen. The calculator shows '44' in t">
+                <span class="step-coords">(1012, 687)</span>
+                <span class="step-time">14.1s</span>
+            </div><div class="step step-ok" title="I need to calculate 42 × 7. The first step is to click the '4' button. Looking at the calculator lay">
                 <span class="step-num">#3</span>
-                <span class="step-action">find_and_click</span>
-                <span class="step-coords">(885, 802)</span>
-                <span class="step-time">22.6s</span>
-            </div><div class="step step-ok" title="I can see the calculator interface in the center of the screen. The task is to calculate 42 × 7. Loo">
+                <span class="step-action">click</span>
+                <span class="step-coords">(861, 780)</span>
+                <span class="step-time">19.9s</span>
+            </div><div class="step step-ok" title="I successfully clicked '4' and it's now displayed. The next step in calculating 42 × 7 is to click '">
                 <span class="step-num">#4</span>
                 <span class="step-action">click</span>
-                <span class="step-coords">(862, 780)</span>
-                <span class="step-time">28.1s</span>
-            </div><div class="step step-ok" title="Looking at the calculator interface in the center of the screen, I can see the number buttons. The t">
+                <span class="step-coords">(910, 829)</span>
+                <span class="step-time">25.7s</span>
+            </div><div class="step step-ok" title="I have successfully entered '42'. The next step in the sequence is to click the multiplication (×) b">
                 <span class="step-num">#5</span>
                 <span class="step-action">click</span>
-                <span class="step-coords">(910, 828)</span>
-                <span class="step-time">33.5s</span>
-            </div><div class="step step-ok" title="Looking at the calculator interface in the center of the screen, I can see the display shows '4 442'">
+                <span class="step-coords">(1011, 780)</span>
+                <span class="step-time">31.2s</span>
+            </div><div class="step step-ok" title="I have successfully entered '42' and clicked the multiplication (×) button. The next step in the seq">
                 <span class="step-num">#6</span>
                 <span class="step-action">click</span>
-                <span class="step-coords">(1011, 780)</span>
-                <span class="step-time">38.8s</span>
-            </div><div class="step step-ok" title="Looking at the calculator interface in the center of the screen, I can see the display shows '4 442'">
+                <span class="step-coords">(861, 730)</span>
+                <span class="step-time">36.3s</span>
+            </div><div class="step step-ok" title="I have successfully entered the complete expression: 42 × 7. The display shows '7' which is the seco">
                 <span class="step-num">#7</span>
                 <span class="step-action">click</span>
-                <span class="step-coords">(1011, 780)</span>
-                <span class="step-time">44.9s</span>
-            </div><div class="step step-ok" title="Looking at the calculator interface in the center of the screen, I can see the display shows '4 442'">
+                <span class="step-coords">(1060, 879)</span>
+                <span class="step-time">41.9s</span>
+            </div><div class="step step-ok" title="The task has been completed successfully. I was asked to calculate 42 × 7 by clicking the buttons in">
                 <span class="step-num">#8</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(910, 829)</span>
-                <span class="step-time">50.3s</span>
-            </div><div class="step step-ok" title="Looking at the calculator interface in the center of the screen, I can see a calculator with buttons">
-                <span class="step-num">#9</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(1011, 780)</span>
-                <span class="step-time">55.8s</span>
-            </div><div class="step step-ok" title="Looking at the calculator interface in the center of the screen, I can see a calculator with a displ">
-                <span class="step-num">#10</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(862, 780)</span>
-                <span class="step-time">62.7s</span>
-            </div><div class="step step-ok" title="Looking at the calculator interface in the center of the screen, I can see a calculator with buttons">
-                <span class="step-num">#11</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(912, 829)</span>
-                <span class="step-time">70.4s</span>
-            </div><div class="step step-fail" title="Looking at the calculator interface in the center of the screen, I can see it currently displays '42">
-                <span class="step-num">#12</span>
-                <span class="step-action">find_and_click</span>
+                <span class="step-action">done</span>
                 <span class="step-coords"></span>
-                <span class="step-time">88.2s</span>
-            </div><div class="step step-ok" title="Looking at the calculator interface in the center of the screen, I can see it currently displays '42">
-                <span class="step-num">#13</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(1011, 780)</span>
-                <span class="step-time">92.7s</span>
-            </div><div class="step step-ok" title="Looking at the calculator interface in the center of the screen, I can see it currently displays '37">
-                <span class="step-num">#14</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(861, 780)</span>
-                <span class="step-time">99.7s</span>
-            </div><div class="step step-ok" title="Looking at the calculator interface in the center of the screen, I can see a calculator with number ">
-                <span class="step-num">#15</span>
-                <span class="step-action">click</span>
-                <span class="step-coords">(861, 780)</span>
-                <span class="step-time">106.1s</span>
+                <span class="step-time">62.9s</span>
             </div></div>
             </details>
         </div>
@@ -3185,12 +3044,12 @@ summary { cursor: pointer; color: #58a6ff; font-size: 13px; }
                 <span>Goal: Scroll down to the comment box at the bottom of the issue, click it, and type "This issue was automatically found and commented by ScreenPilot AI agent"</span>
             </div>
             <div class="card-stats">
-                <span>15 steps</span>
-                <span>99.8s</span>
+                <span>0 steps</span>
+                <span>0.3s</span>
                 <span>3.0x speed</span>
-                <span>1061 KB</span>
+                <span>1732 KB</span>
             </div>
-            <div class="error">Max steps (15) reached without completing the task</div>
+            <div class="error">Planning failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CYDAmeyAViS8MSfjYkCF9'}</div>
             <div class="video-container">
                 <video controls preload="metadata" width="100%">
                     <source src="32_github_create_issue_comment_v2/recording.mp4" type="video/mp4">
@@ -3203,83 +3062,42 @@ summary { cursor: pointer; color: #58a6ff; font-size: 13px; }
                 </div>
             </div>
             <details class="steps-detail">
-                <summary>Step-by-step reasoning (15 steps)</summary>
-                <div class="steps-timeline"><div class="step step-ok" title="I can see a GitHub issue page for '[Demo] ScreenPilot self-marketing automation test #2'. The page s">
-                <span class="step-num">#1</span>
-                <span class="step-action">scroll</span>
-                <span class="step-coords"></span>
-                <span class="step-time">7.0s</span>
-            </div><div class="step step-ok" title="I can see a GitHub issue page. The task requires me to scroll down to find the comment box at the bo">
-                <span class="step-num">#2</span>
-                <span class="step-action">scroll</span>
-                <span class="step-coords"></span>
-                <span class="step-time">11.1s</span>
-            </div><div class="step step-ok" title="I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says ">
-                <span class="step-num">#3</span>
-                <span class="step-action">scroll</span>
-                <span class="step-coords"></span>
-                <span class="step-time">15.3s</span>
-            </div><div class="step step-ok" title="I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says ">
-                <span class="step-num">#4</span>
-                <span class="step-action">find_and_click</span>
-                <span class="step-coords">(1461, 936)</span>
-                <span class="step-time">24.3s</span>
-            </div><div class="step step-ok" title="I can see a GitHub issue page. At the bottom, there's a yellow banner that says 'Sign up for free to">
-                <span class="step-num">#5</span>
-                <span class="step-action">scroll</span>
-                <span class="step-coords"></span>
-                <span class="step-time">32.4s</span>
-            </div><div class="step step-ok" title="I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says ">
-                <span class="step-num">#6</span>
-                <span class="step-action">scroll</span>
-                <span class="step-coords"></span>
-                <span class="step-time">36.5s</span>
-            </div><div class="step step-ok" title="I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says ">
-                <span class="step-num">#7</span>
-                <span class="step-action">scroll</span>
-                <span class="step-coords"></span>
-                <span class="step-time">40.8s</span>
-            </div><div class="step step-ok" title="I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says ">
-                <span class="step-num">#8</span>
-                <span class="step-action">find_and_click</span>
-                <span class="step-coords">(1021, 934)</span>
-                <span class="step-time">49.5s</span>
-            </div><div class="step step-ok" title="I can see a GitHub issue page. At the bottom, there's a yellow banner that says 'Sign up for free to">
-                <span class="step-num">#9</span>
-                <span class="step-action">scroll</span>
-                <span class="step-coords"></span>
-                <span class="step-time">56.1s</span>
-            </div><div class="step step-ok" title="I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says ">
-                <span class="step-num">#10</span>
-                <span class="step-action">scroll</span>
-                <span class="step-coords"></span>
-                <span class="step-time">62.4s</span>
-            </div><div class="step step-ok" title="I can see a GitHub issue page. Looking at the current screenshot, I can see the issue details with a">
-                <span class="step-num">#11</span>
-                <span class="step-action">scroll</span>
-                <span class="step-coords"></span>
-                <span class="step-time">68.7s</span>
-            </div><div class="step step-fail" title="I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says ">
-                <span class="step-num">#12</span>
-                <span class="step-action">find_and_click</span>
-                <span class="step-coords"></span>
-                <span class="step-time">81.5s</span>
-            </div><div class="step step-ok" title="Looking at the current screenshot, I can see a GitHub issue page. At the bottom, there's a yellow ba">
-                <span class="step-num">#13</span>
-                <span class="step-action">scroll</span>
-                <span class="step-coords"></span>
-                <span class="step-time">86.8s</span>
-            </div><div class="step step-ok" title="I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says ">
-                <span class="step-num">#14</span>
-                <span class="step-action">scroll</span>
-                <span class="step-coords"></span>
-                <span class="step-time">93.2s</span>
-            </div><div class="step step-ok" title="Looking at the current screenshot, I can see a GitHub issue page. At the bottom, there's a yellow ba">
-                <span class="step-num">#15</span>
-                <span class="step-action">scroll</span>
-                <span class="step-coords"></span>
-                <span class="step-time">101.2s</span>
-            </div></div>
+                <summary>Step-by-step reasoning (0 steps)</summary>
+                <div class="steps-timeline"></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#32</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>github_create_issue_comment (attempt 3)</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Scroll down to the comment box at the bottom of the issue, click it, and type "This issue was automatically found and commented by ScreenPilot AI agent"</span>
+            </div>
+            <div class="card-stats">
+                <span>0 steps</span>
+                <span>0.3s</span>
+                <span>3.0x speed</span>
+                <span>177 KB</span>
+            </div>
+            <div class="error">Planning failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CYDArAH9Kk4joTjFLYP1y'}</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="32_github_create_issue_comment_v3/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (0 steps)</summary>
+                <div class="steps-timeline"></div>
             </details>
         </div>
         
@@ -3343,6 +3161,60 @@ summary { cursor: pointer; color: #58a6ff; font-size: 13px; }
                 <span class="step-action">fail</span>
                 <span class="step-coords"></span>
                 <span class="step-time">41.2s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card pass">
+            <div class="card-header">
+                <span class="challenge-id">#33</span>
+                <span class="difficulty easy">EASY</span>
+                <span class="status-badge pass">PASS</span>
+                <h3>news_headline (attempt 2)</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Scroll down to see more headlines and click on any news article to read it</span>
+            </div>
+            <div class="card-stats">
+                <span>4 steps</span>
+                <span>27.8s</span>
+                <span>3.0x speed</span>
+                <span>660 KB</span>
+            </div>
+            
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="33_news_headline_v2/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (4 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="The task is to scroll down to see more headlines and then click on any news article to read it. Curr">
+                <span class="step-num">#1</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">7.7s</span>
+            </div><div class="step step-ok" title="I have successfully scrolled down to see more headlines as requested. Now I need to click on any new">
+                <span class="step-num">#2</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(376, 228)</span>
+                <span class="step-time">14.8s</span>
+            </div><div class="step step-ok" title="The click action was executed and the URL changed, indicating the link was clicked successfully. How">
+                <span class="step-num">#3</span>
+                <span class="step-action">wait</span>
+                <span class="step-coords"></span>
+                <span class="step-time">23.1s</span>
+            </div><div class="step step-ok" title="The task was to scroll down to see more headlines and click on any news article to read it. I have s">
+                <span class="step-num">#4</span>
+                <span class="step-action">done</span>
+                <span class="step-coords"></span>
+                <span class="step-time">29.2s</span>
             </div></div>
             </details>
         </div>
@@ -3586,6 +3458,74 @@ summary { cursor: pointer; color: #58a6ff; font-size: 13px; }
         
         <div class="card fail">
             <div class="card-header">
+                <span class="challenge-id">#36</span>
+                <span class="difficulty hard">HARD</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>fill_web_form (attempt 2)</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Fill out the sample form: type "Taro Yamada" in the Name field, "taro@example.com" in Email, select "Japan" from the Country dropdown, then click Submit</span>
+            </div>
+            <div class="card-stats">
+                <span>0 steps</span>
+                <span>0.4s</span>
+                <span>3.0x speed</span>
+                <span>1943 KB</span>
+            </div>
+            <div class="error">Planning failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CYDAnZ9CpnZj4cJQfx4g2'}</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="36_fill_web_form_v2/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (0 steps)</summary>
+                <div class="steps-timeline"></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#36</span>
+                <span class="difficulty hard">HARD</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>fill_web_form (attempt 3)</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Fill out the sample form: type "Taro Yamada" in the Name field, "taro@example.com" in Email, select "Japan" from the Country dropdown, then click Submit</span>
+            </div>
+            <div class="card-stats">
+                <span>0 steps</span>
+                <span>0.3s</span>
+                <span>3.0x speed</span>
+                <span>402 KB</span>
+            </div>
+            <div class="error">Planning failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CYDAs4QD1bhriX5iD96hm'}</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="36_fill_web_form_v3/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (0 steps)</summary>
+                <div class="steps-timeline"></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
                 <span class="challenge-id">#37</span>
                 <span class="difficulty expert">EXPERT</span>
                 <span class="status-badge fail">FAIL</span>
@@ -3715,6 +3655,74 @@ summary { cursor: pointer; color: #58a6ff; font-size: 13px; }
                 <span class="step-coords">(1288, 709)</span>
                 <span class="step-time">156.5s</span>
             </div></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#37</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>tax_calculator (attempt 2)</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Enter annual income of 5000000 yen in the income field, click calculate to see the estimated tax. If there are deduction fields, enter 380000 for basic deduction</span>
+            </div>
+            <div class="card-stats">
+                <span>0 steps</span>
+                <span>0.3s</span>
+                <span>3.0x speed</span>
+                <span>282 KB</span>
+            </div>
+            <div class="error">Planning failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CYDAoTYP3XMURk9p2h8Xi'}</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="37_tax_calculator_v2/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (0 steps)</summary>
+                <div class="steps-timeline"></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#37</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>tax_calculator (attempt 3)</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Enter annual income of 5000000 yen in the income field, click calculate to see the estimated tax. If there are deduction fields, enter 380000 for basic deduction</span>
+            </div>
+            <div class="card-stats">
+                <span>0 steps</span>
+                <span>0.3s</span>
+                <span>3.0x speed</span>
+                <span>282 KB</span>
+            </div>
+            <div class="error">Planning failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CYDAsxiRshAtJ7duPm3tC'}</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="37_tax_calculator_v3/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (0 steps)</summary>
+                <div class="steps-timeline"></div>
             </details>
         </div>
         
@@ -3997,6 +4005,74 @@ summary { cursor: pointer; color: #58a6ff; font-size: 13px; }
         
         <div class="card fail">
             <div class="card-header">
+                <span class="challenge-id">#40</span>
+                <span class="difficulty medium">MEDIUM</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>currency_converter (attempt 2)</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Convert 100 USD to JPY: enter 100 in the amount field, select USD as source currency and JPY as target, then observe the result</span>
+            </div>
+            <div class="card-stats">
+                <span>0 steps</span>
+                <span>0.4s</span>
+                <span>3.0x speed</span>
+                <span>195 KB</span>
+            </div>
+            <div class="error">Planning failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CYDApMmQ8RztyR1GToafw'}</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="40_currency_converter_v2/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (0 steps)</summary>
+                <div class="steps-timeline"></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#40</span>
+                <span class="difficulty medium">MEDIUM</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>currency_converter (attempt 3)</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Convert 100 USD to JPY: enter 100 in the amount field, select USD as source currency and JPY as target, then observe the result</span>
+            </div>
+            <div class="card-stats">
+                <span>0 steps</span>
+                <span>0.4s</span>
+                <span>3.0x speed</span>
+                <span>195 KB</span>
+            </div>
+            <div class="error">Planning failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CYDAtsKktJAapKWsDCZpz'}</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="40_currency_converter_v3/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (0 steps)</summary>
+                <div class="steps-timeline"></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
                 <span class="challenge-id">#41</span>
                 <span class="difficulty medium">MEDIUM</span>
                 <span class="status-badge fail">FAIL</span>
@@ -4135,6 +4211,40 @@ summary { cursor: pointer; color: #58a6ff; font-size: 13px; }
                 <span class="step-coords"></span>
                 <span class="step-time">10.1s</span>
             </div></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#42</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>google_sheets_create (attempt 2)</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Click on "Blank spreadsheet" to create a new sheet, then type "Income" in cell A1, press Tab, type "Amount" in B1, press Enter, type "Salary" in A2, press Tab, type "5000000" in B2</span>
+            </div>
+            <div class="card-stats">
+                <span>0 steps</span>
+                <span>0.3s</span>
+                <span>3.0x speed</span>
+                <span>102 KB</span>
+            </div>
+            <div class="error">Planning failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CYDAumVJVyFJbGyCbY2FV'}</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="42_google_sheets_create_v2/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (0 steps)</summary>
+                <div class="steps-timeline"></div>
             </details>
         </div>
         
@@ -4327,6 +4437,1835 @@ summary { cursor: pointer; color: #58a6ff; font-size: 13px; }
                 <span class="step-coords"></span>
                 <span class="step-time">77.9s</span>
             </div></div>
+            </details>
+        </div>
+        
+        <div class="card pass">
+            <div class="card-header">
+                <span class="challenge-id">#50</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge pass">PASS</span>
+                <h3>flight_sort_cheapest</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Search for one-way flights from Tokyo to New York departing March 15. After results load, click "Price" or sort by price to find the cheapest option, then scroll down to see results.</span>
+            </div>
+            <div class="card-stats">
+                <span>14 steps</span>
+                <span>166.3s</span>
+                <span>3.0x speed</span>
+                <span>1616 KB</span>
+            </div>
+            
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="50_flight_sort_cheapest/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (14 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="1) Progress: The page is loaded with Tokyo as departure city. I need to: change to one-way, enter Ne">
+                <span class="step-num">#1</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(550, 565)</span>
+                <span class="step-time">9.4s</span>
+            </div><div class="step step-ok" title="1) Progress: The trip type dropdown is now open. I need to select 'One way' to change from round tri">
+                <span class="step-num">#2</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(555, 663)</span>
+                <span class="step-time">14.1s</span>
+            </div><div class="step step-ok" title="1) Progress: Successfully changed to one-way trip. Now I need to enter 'New York' as the destination">
+                <span class="step-num">#3</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(922, 619)</span>
+                <span class="step-time">20.3s</span>
+            </div><div class="step step-ok" title="1) Progress: Changed to one-way, clicked destination field which opened a dropdown. Now I need to ty">
+                <span class="step-num">#4</span>
+                <span class="step-action">type</span>
+                <span class="step-coords"></span>
+                <span class="step-time">27.3s</span>
+            </div><div class="step step-ok" title="1) Progress: I've typed 'New York' and the dropdown is showing relevant options. I need to select on">
+                <span class="step-num">#5</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(883, 678)</span>
+                <span class="step-time">34.3s</span>
+            </div><div class="step step-ok" title="1) Progress: Successfully set one-way trip from Tokyo to New York. Now I need to set the departure d">
+                <span class="step-num">#6</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1252, 619)</span>
+                <span class="step-time">39.5s</span>
+            </div><div class="step step-ok" title="1) Progress: The date picker is now open and showing March 2025. I can see March 15 in the calendar.">
+                <span class="step-num">#7</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1113, 825)</span>
+                <span class="step-time">44.8s</span>
+            </div><div class="step step-ok" title="1) Progress: I've successfully selected March 15 as the departure date. The date is highlighted and ">
+                <span class="step-num">#8</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1399, 1054)</span>
+                <span class="step-time">50.8s</span>
+            </div><div class="step step-ok" title="1) Progress: All search parameters are set correctly (one-way, Tokyo to New York, March 15). Now I n">
+                <span class="step-num">#9</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(960, 693)</span>
+                <span class="step-time">56.2s</span>
+            </div><div class="step step-ok" title="1) Progress: The search has been initiated and the page is loading results. 2) I should wait for the">
+                <span class="step-num">#10</span>
+                <span class="step-action">wait</span>
+                <span class="step-coords"></span>
+                <span class="step-time">84.1s</span>
+            </div><div class="step step-ok" title="1) Progress: The search results have loaded. I can see the 'Cheapest' tab at the top showing ¥81,975">
+                <span class="step-num">#11</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1153, 421)</span>
+                <span class="step-time">91.4s</span>
+            </div><div class="step step-ok" title="1) Progress: I've successfully clicked on the 'Cheapest' tab to sort by price. The page is now loadi">
+                <span class="step-num">#12</span>
+                <span class="step-action">wait</span>
+                <span class="step-coords"></span>
+                <span class="step-time">126.6s</span>
+            </div><div class="step step-ok" title="1) Progress: Successfully sorted by price and can see the cheapest flights. The task requires scroll">
+                <span class="step-num">#13</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">133.4s</span>
+            </div><div class="step step-ok" title="1) Progress: I have successfully searched for one-way flights from Tokyo to New York on March 15, so">
+                <span class="step-num">#14</span>
+                <span class="step-action">done</span>
+                <span class="step-coords"></span>
+                <span class="step-time">167.8s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#51</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>wikipedia_deep_nav</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Search for "Transformer (deep learning model)" on Wikipedia. After the article loads, scroll down to find the "Architecture" section. Then click the "Attention" link to navigate to the Attention mechanism page.</span>
+            </div>
+            <div class="card-stats">
+                <span>20 steps</span>
+                <span>349.6s</span>
+                <span>3.0x speed</span>
+                <span>5482 KB</span>
+            </div>
+            <div class="error">Max steps (20) reached without completing the task</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="51_wikipedia_deep_nav/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (20 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="The task is to search for 'Transformer (deep learning model)' on Wikipedia. The first step is to int">
+                <span class="step-num">#1</span>
+                <span class="step-action">find_and_click</span>
+                <span class="step-coords">(825, 192)</span>
+                <span class="step-time">11.4s</span>
+            </div><div class="step step-ok" title="The search box is now active and ready for input. The next step is to type the search query 'Transfo">
+                <span class="step-num">#2</span>
+                <span class="step-action">type</span>
+                <span class="step-coords"></span>
+                <span class="step-time">16.5s</span>
+            </div><div class="step step-ok" title="I have typed the search query into the search box. Now I need to submit the search to navigate to th">
+                <span class="step-num">#3</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">21.5s</span>
+            </div><div class="step step-ok" title="The Enter key was pressed but the page is still loading or hasn't responded yet. I should wait for t">
+                <span class="step-num">#4</span>
+                <span class="step-action">wait</span>
+                <span class="step-coords"></span>
+                <span class="step-time">27.8s</span>
+            </div><div class="step step-ok" title="I can see the search results page has loaded successfully. The first result 'Transformer (deep learn">
+                <span class="step-num">#5</span>
+                <span class="step-action">find_and_click</span>
+                <span class="step-coords">(690, 658)</span>
+                <span class="step-time">37.8s</span>
+            </div><div class="step step-ok" title="The previous find_and_click action failed to navigate to the article. I need to try a different appr">
+                <span class="step-num">#6</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(424, 648)</span>
+                <span class="step-time">43.1s</span>
+            </div><div class="step step-ok" title="My previous clicks haven't successfully navigated to the article page. I need to click directly on t">
+                <span class="step-num">#7</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(424, 648)</span>
+                <span class="step-time">68.3s</span>
+            </div><div class="step step-ok" title="The article has loaded successfully. I can see in the table of contents on the left that there is an">
+                <span class="step-num">#8</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">74.6s</span>
+            </div><div class="step step-ok" title="I need to continue scrolling down to reach the 'Architecture' section. The current view shows the Hi">
+                <span class="step-num">#9</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">102.2s</span>
+            </div><div class="step step-ok" title="I'm still in the History section and haven't reached the Architecture section yet. I can see 'Archit">
+                <span class="step-num">#10</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">107.8s</span>
+            </div><div class="step step-ok" title="I'm currently viewing the 'Attention with seq2seq' section, which is still part of the History secti">
+                <span class="step-num">#11</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">142.4s</span>
+            </div><div class="step step-ok" title="I'm still in the History section (subsections about attention mechanisms). I can see 'Architecture' ">
+                <span class="step-num">#12</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">147.1s</span>
+            </div><div class="step step-ok" title="I'm still in the History section (specifically the 'Parallelizing attention' subsection). The Archit">
+                <span class="step-num">#13</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">185.4s</span>
+            </div><div class="step step-ok" title="I'm still in the History section (now in the 'AI boom era' subsection). The Architecture section sho">
+                <span class="step-num">#14</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">206.1s</span>
+            </div><div class="step step-ok" title="I'm now in the Training section, which means I've passed the History section. Looking at the table o">
+                <span class="step-num">#15</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">230.8s</span>
+            </div><div class="step step-ok" title="Looking at the table of contents, the order is: History, Training, Architecture, Full transformer ar">
+                <span class="step-num">#16</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">254.0s</span>
+            </div><div class="step step-ok" title="I'm now in the Training section. According to the table of contents, Architecture should be the next">
+                <span class="step-num">#17</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">276.2s</span>
+            </div><div class="step step-ok" title="I'm still in the Training section. According to the table of contents, Architecture should be the ne">
+                <span class="step-num">#18</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">302.2s</span>
+            </div><div class="step step-ok" title="I'm still in the Training section (now in the Tasks subsection). According to the table of contents,">
+                <span class="step-num">#19</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">325.2s</span>
+            </div><div class="step step-ok" title="Great! I've found the Architecture section. Now I need to scroll down a bit more to see the content ">
+                <span class="step-num">#20</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">351.0s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card pass">
+            <div class="card-header">
+                <span class="challenge-id">#52</span>
+                <span class="difficulty hard">HARD</span>
+                <span class="status-badge pass">PASS</span>
+                <h3>translate_long_text</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Type "Artificial intelligence agents can now control computers by looking at screenshots and clicking buttons, just like humans do." in the source text box. Then change the target language to Japanese.</span>
+            </div>
+            <div class="card-stats">
+                <span>4 steps</span>
+                <span>24.2s</span>
+                <span>3.0x speed</span>
+                <span>287 KB</span>
+            </div>
+            
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="52_translate_long_text/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (4 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="I need to type the given text into the source text box. The text input area is visible on the left s">
+                <span class="step-num">#1</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(640, 390)</span>
+                <span class="step-time">8.0s</span>
+            </div><div class="step step-ok" title="The text box is now focused and ready for input. I need to type the required text: 'Artificial intel">
+                <span class="step-num">#2</span>
+                <span class="step-action">type</span>
+                <span class="step-coords"></span>
+                <span class="step-time">14.6s</span>
+            </div><div class="step step-ok" title="The text has been successfully typed into the source text box. The target language is already set to">
+                <span class="step-num">#3</span>
+                <span class="step-action">wait</span>
+                <span class="step-coords"></span>
+                <span class="step-time">20.5s</span>
+            </div><div class="step step-ok" title="The task has been completed successfully. The text has been typed into the source text box, and the ">
+                <span class="step-num">#4</span>
+                <span class="step-action">done</span>
+                <span class="step-coords"></span>
+                <span class="step-time">25.7s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card pass">
+            <div class="card-header">
+                <span class="challenge-id">#53</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge pass">PASS</span>
+                <h3>github_deep_code_nav</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Navigate into the "screenpilot" folder, then click the "planner" subfolder, then open "planner.py" to view the code. Scroll down to see the system prompt.</span>
+            </div>
+            <div class="card-stats">
+                <span>11 steps</span>
+                <span>118.2s</span>
+                <span>3.0x speed</span>
+                <span>1327 KB</span>
+            </div>
+            
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="53_github_deep_code_nav/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (11 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="I need to navigate into the 'screenpilot' folder first, then find the 'planner' subfolder, and final">
+                <span class="step-num">#1</span>
+                <span class="step-action">find_and_click</span>
+                <span class="step-coords">(663, 649)</span>
+                <span class="step-time">11.4s</span>
+            </div><div class="step step-ok" title="The previous click action didn't navigate into the screenpilot folder. I need to try a different app">
+                <span class="step-num">#2</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(430, 640)</span>
+                <span class="step-time">17.1s</span>
+            </div><div class="step step-ok" title="The page has successfully navigated into the screenpilot folder based on the URL change, but the con">
+                <span class="step-num">#3</span>
+                <span class="step-action">wait</span>
+                <span class="step-coords"></span>
+                <span class="step-time">24.0s</span>
+            </div><div class="step step-ok" title="I successfully navigated into the screenpilot folder. Now I need to click on the 'planner' folder to">
+                <span class="step-num">#4</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(412, 681)</span>
+                <span class="step-time">30.2s</span>
+            </div><div class="step step-ok" title="I've successfully navigated to the planner folder. Now I need to click on 'planner.py' to open it an">
+                <span class="step-num">#5</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(421, 681)</span>
+                <span class="step-time">35.6s</span>
+            </div><div class="step step-ok" title="The previous click didn't open the file to view its code. I need to click on the 'planner.py' link a">
+                <span class="step-num">#6</span>
+                <span class="step-action">find_and_click</span>
+                <span class="step-coords">(453, 690)</span>
+                <span class="step-time">47.2s</span>
+            </div><div class="step step-ok" title="The file is successfully opened. I can see the top of the file with imports and initial code. The ta">
+                <span class="step-num">#7</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">54.7s</span>
+            </div><div class="step step-ok" title="I'm viewing the middle section of the file with action type definitions and data classes. System pro">
+                <span class="step-num">#8</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">61.3s</span>
+            </div><div class="step step-ok" title="I'm viewing the Plan class definition and its methods. System prompts are usually defined as large m">
+                <span class="step-num">#9</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">88.9s</span>
+            </div><div class="step step-ok" title="Perfect! I found the system prompt starting at line 95. The prompt is visible and describes ScreenPi">
+                <span class="step-num">#10</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">112.1s</span>
+            </div><div class="step step-ok" title="I have successfully navigated to the planner.py file and scrolled down to view the system prompt. Th">
+                <span class="step-num">#11</span>
+                <span class="step-action">done</span>
+                <span class="step-coords"></span>
+                <span class="step-time">119.6s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#54</span>
+                <span class="difficulty hard">HARD</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>arxiv_read_abstract</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Search for "attention is all you need", click the first result to open the paper page, then scroll down to read the abstract.</span>
+            </div>
+            <div class="card-stats">
+                <span>15 steps</span>
+                <span>244.7s</span>
+                <span>3.0x speed</span>
+                <span>3311 KB</span>
+            </div>
+            <div class="error">Max steps (15) reached without completing the task</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="54_arxiv_read_abstract/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (15 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="I need to search for 'attention is all you need' on arXiv. I can see a search box in the top right c">
+                <span class="step-num">#1</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1651, 265)</span>
+                <span class="step-time">8.1s</span>
+            </div><div class="step step-ok" title="My previous click at coordinates (1651, 265) did not appear to activate the search box, as the page ">
+                <span class="step-num">#2</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1651, 265)</span>
+                <span class="step-time">13.5s</span>
+            </div><div class="step step-ok" title="Since clicking at (1651, 265) twice failed to activate the search box, I need a different approach. ">
+                <span class="step-num">#3</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1582, 265)</span>
+                <span class="step-time">20.4s</span>
+            </div><div class="step step-fail" title="I've clicked multiple times without success. Instead of continuing to click, I should try a differen">
+                <span class="step-num">#4</span>
+                <span class="step-action">find_and_click</span>
+                <span class="step-coords"></span>
+                <span class="step-time">36.4s</span>
+            </div><div class="step step-ok" title="My previous attempts to click on the search box have not worked. I should try a different approach. ">
+                <span class="step-num">#5</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">42.0s</span>
+            </div><div class="step step-ok" title="Good! The '/' keyboard shortcut successfully focused the search box. Now I can see the cursor is act">
+                <span class="step-num">#6</span>
+                <span class="step-action">type</span>
+                <span class="step-coords"></span>
+                <span class="step-time">65.0s</span>
+            </div><div class="step step-ok" title="I can see that the text 'attention' is visible in the search box, but it appears the full query 'att">
+                <span class="step-num">#7</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">71.0s</span>
+            </div><div class="step step-ok" title="The Enter key press did not trigger the search. The page remains on the homepage without showing sea">
+                <span class="step-num">#8</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(355, 453)</span>
+                <span class="step-time">99.8s</span>
+            </div><div class="step step-ok" title="The search results are showing papers with 'attention' and 'all you need' in them, but not the speci">
+                <span class="step-num">#9</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">109.1s</span>
+            </div><div class="step step-ok" title="I need to continue scrolling to find the original 'Attention Is All You Need' paper. The famous tran">
+                <span class="step-num">#10</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">137.1s</span>
+            </div><div class="step step-ok" title="I'm now viewing results 3-7 out of 78 total results. The famous 'Attention Is All You Need' paper fr">
+                <span class="step-num">#11</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">145.2s</span>
+            </div><div class="step step-ok" title="I'm now viewing results 5-9 out of 78 total results. The famous 'Attention Is All You Need' paper fr">
+                <span class="step-num">#12</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">178.0s</span>
+            </div><div class="step step-ok" title="I'm now viewing results 8-12 out of 78 total results. The famous 'Attention Is All You Need' paper f">
+                <span class="step-num">#13</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">183.9s</span>
+            </div><div class="step step-ok" title="I'm now viewing results 15-19 out of 78 total results. The famous 'Attention Is All You Need' paper ">
+                <span class="step-num">#14</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">222.5s</span>
+            </div><div class="step step-ok" title="I'm now viewing results 20-24 out of 78 total results. The famous 'Attention Is All You Need' paper ">
+                <span class="step-num">#15</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">246.1s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card pass">
+            <div class="card-header">
+                <span class="challenge-id">#55</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge pass">PASS</span>
+                <h3>multi_tab_comparison</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Look at the current Bitcoin price on this page. Note the price, then scroll down to see the 24-hour price change and the 7-day chart. After reviewing, report done.</span>
+            </div>
+            <div class="card-stats">
+                <span>2 steps</span>
+                <span>16.1s</span>
+                <span>3.0x speed</span>
+                <span>530 KB</span>
+            </div>
+            
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="55_multi_tab_comparison/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (2 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="I can already see the current Bitcoin price ($68,314.00) and the 24-hour price change (-0.2% in 24h)">
+                <span class="step-num">#1</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">10.4s</span>
+            </div><div class="step step-ok" title="I have now reviewed all the key information requested in the task: 1) The current Bitcoin price ($68">
+                <span class="step-num">#2</span>
+                <span class="step-action">done</span>
+                <span class="step-coords"></span>
+                <span class="step-time">17.5s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card pass">
+            <div class="card-header">
+                <span class="challenge-id">#56</span>
+                <span class="difficulty hard">HARD</span>
+                <span class="status-badge pass">PASS</span>
+                <h3>form_fill_w3schools</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Scroll down to the "Try it Yourself" section and click the "Try it Yourself" button. In the new page, find the form with First name and Last name fields. Type "Taro" in First name and "Yamada" in Last name, then click Submit.</span>
+            </div>
+            <div class="card-stats">
+                <span>10 steps</span>
+                <span>75.1s</span>
+                <span>3.0x speed</span>
+                <span>702 KB</span>
+            </div>
+            
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="56_form_fill_w3schools/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (10 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="The task requires me to: 1) Scroll to the 'Try it Yourself' section (which is already visible), 2) C">
+                <span class="step-num">#1</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(421, 1020)</span>
+                <span class="step-time">9.1s</span>
+            </div><div class="step step-ok" title="The page is still loading after clicking the 'Try it Yourself' button. I need to wait for the page t">
+                <span class="step-num">#2</span>
+                <span class="step-action">wait</span>
+                <span class="step-coords"></span>
+                <span class="step-time">14.8s</span>
+            </div><div class="step step-ok" title="I need to interact with the form on the right side of the screen. First, I should clear the 'First n">
+                <span class="step-num">#3</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(942, 237)</span>
+                <span class="step-time">20.6s</span>
+            </div><div class="step step-ok" title="I need to clear the current value 'John' from the First name field and type 'Taro'. Since the field ">
+                <span class="step-num">#4</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">26.3s</span>
+            </div><div class="step step-ok" title="The text in the First name field is now selected after pressing Ctrl+A. Now I need to type 'Taro' to">
+                <span class="step-num">#5</span>
+                <span class="step-action">type</span>
+                <span class="step-coords"></span>
+                <span class="step-time">31.4s</span>
+            </div><div class="step step-ok" title="I have successfully entered 'Taro' in the First name field. Now I need to move to the Last name fiel">
+                <span class="step-num">#6</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">35.6s</span>
+            </div><div class="step step-ok" title="The Last name field is now focused and the text 'Doe' is selected. I need to replace it with 'Yamada">
+                <span class="step-num">#7</span>
+                <span class="step-action">type</span>
+                <span class="step-coords"></span>
+                <span class="step-time">39.9s</span>
+            </div><div class="step step-ok" title="I have successfully entered 'Taro' in the First name field and 'Yamada' in the Last name field. The ">
+                <span class="step-num">#8</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(877, 315)</span>
+                <span class="step-time">44.5s</span>
+            </div><div class="step step-ok" title="The previous click didn't successfully hit the Submit button. Looking at the form, I can see the Sub">
+                <span class="step-num">#9</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(877, 315)</span>
+                <span class="step-time">71.3s</span>
+            </div><div class="step step-ok" title="The task has been completed successfully. I was able to: 1) Navigate to the Try it Yourself editor, ">
+                <span class="step-num">#10</span>
+                <span class="step-action">done</span>
+                <span class="step-coords"></span>
+                <span class="step-time">76.5s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card pass">
+            <div class="card-header">
+                <span class="challenge-id">#57</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge pass">PASS</span>
+                <h3>chess_play_3_moves</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Play 3 chess moves: First move e2 to e4 (click e2 pawn then e4), wait for the computer to respond, then move d2 to d4 (click d2 pawn then d4), wait again, then move knight from g1 to f3 (click g1 then f3).</span>
+            </div>
+            <div class="card-stats">
+                <span>6 steps</span>
+                <span>58.9s</span>
+                <span>3.0x speed</span>
+                <span>533 KB</span>
+            </div>
+            
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="57_chess_play_3_moves/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (6 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="Looking at the board, I can see that e4 has already been played (there's a white pawn on e4 and the ">
+                <span class="step-num">#1</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(496, 862)</span>
+                <span class="step-time">10.9s</span>
+            </div><div class="step step-ok" title="I successfully selected the d2 pawn as indicated by the highlighting and the move indicators. Now I ">
+                <span class="step-num">#2</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(496, 667)</span>
+                <span class="step-time">17.8s</span>
+            </div><div class="step step-ok" title="I have successfully completed the second move (d2-d4). According to the task, I need to wait for the">
+                <span class="step-num">#3</span>
+                <span class="step-action">wait</span>
+                <span class="step-coords"></span>
+                <span class="step-time">25.6s</span>
+            </div><div class="step step-ok" title="Black has made its response (Nc6), so I can now proceed with the third and final move of the task: m">
+                <span class="step-num">#4</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(897, 973)</span>
+                <span class="step-time">33.4s</span>
+            </div><div class="step step-ok" title="I've successfully selected the g1 knight, and the board is showing me the valid moves (f3 and h3). N">
+                <span class="step-num">#5</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(798, 765)</span>
+                <span class="step-time">53.4s</span>
+            </div><div class="step step-ok" title="I have successfully completed all three chess moves as requested in the task: 1) e2 to e4 (which was">
+                <span class="step-num">#6</span>
+                <span class="step-action">done</span>
+                <span class="step-coords"></span>
+                <span class="step-time">60.3s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#60</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>multi_city_flight</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Search for flights from Tokyo to London. After results appear, change the departure date to April 15 by clicking the date field and selecting it. Then sort by "Best" or look at the first result and note the price and airline.</span>
+            </div>
+            <div class="card-stats">
+                <span>25 steps</span>
+                <span>433.2s</span>
+                <span>3.0x speed</span>
+                <span>2757 KB</span>
+            </div>
+            <div class="error">Max steps (25) reached without completing the task</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="60_multi_city_flight/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (25 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="The task requires searching for flights from Tokyo to London. Tokyo is already filled in as the depa">
+                <span class="step-num">#1</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(922, 619)</span>
+                <span class="step-time">8.2s</span>
+            </div><div class="step step-ok" title="The dropdown menu is showing destination options. I can see 'London, United Kingdom' in the list. I ">
+                <span class="step-num">#2</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(919, 859)</span>
+                <span class="step-time">14.2s</span>
+            </div><div class="step step-ok" title="I have successfully entered Tokyo as the departure city and London as the destination. Now I need to">
+                <span class="step-num">#3</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1153, 619)</span>
+                <span class="step-time">19.1s</span>
+            </div><div class="step step-ok" title="The calendar is showing February and March, but I need to select April 15. I should click the right ">
+                <span class="step-num">#4</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1456, 813)</span>
+                <span class="step-time">24.1s</span>
+            </div><div class="step step-ok" title="I can see the April calendar is displayed. April 15 is visible in the calendar. I need to click on t">
+                <span class="step-num">#5</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1257, 825)</span>
+                <span class="step-time">28.6s</span>
+            </div><div class="step step-ok" title="April 15 has been successfully selected as the departure date. Now I need to close this calendar by ">
+                <span class="step-num">#6</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1399, 1054)</span>
+                <span class="step-time">34.2s</span>
+            </div><div class="step step-ok" title="The form is now properly filled with Tokyo to London and the departure date of April 15. I need to c">
+                <span class="step-num">#7</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(960, 693)</span>
+                <span class="step-time">39.4s</span>
+            </div><div class="step step-ok" title="The calendar opened again instead of proceeding to search. I need to close this calendar by clicking">
+                <span class="step-num">#8</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1399, 1054)</span>
+                <span class="step-time">45.1s</span>
+            </div><div class="step step-ok" title="The form is properly configured with all required information: Tokyo to London on April 15. Now I ne">
+                <span class="step-num">#9</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">50.0s</span>
+            </div><div class="step step-ok" title="The calendar opened again instead of searching. I notice the destination field might not be properly">
+                <span class="step-num">#10</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1399, 1054)</span>
+                <span class="step-time">79.6s</span>
+            </div><div class="step step-ok" title="I've been clicking the Done button repeatedly without success. Now the calendar is closed and the fo">
+                <span class="step-num">#11</span>
+                <span class="step-action">find_and_click</span>
+                <span class="step-coords">(988, 709)</span>
+                <span class="step-time">108.5s</span>
+            </div><div class="step step-ok" title="The calendar keeps opening instead of proceeding to search. I notice the destination field might not">
+                <span class="step-num">#12</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">116.0s</span>
+            </div><div class="step step-ok" title="Good! The Escape key successfully closed the calendar. Now I can see the form is properly configured">
+                <span class="step-num">#13</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(960, 693)</span>
+                <span class="step-time">145.2s</span>
+            </div><div class="step step-ok" title="The calendar keeps opening when I try to search. I notice the destination field might not be properl">
+                <span class="step-num">#14</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1399, 1054)</span>
+                <span class="step-time">167.9s</span>
+            </div><div class="step step-ok" title="The form is now properly configured with all the required information: Tokyo to London on April 15. ">
+                <span class="step-num">#15</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">191.0s</span>
+            </div><div class="step step-ok" title="The Tab key moved focus to the 'Explore deals' button instead of the Search button. I need to contin">
+                <span class="step-num">#16</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">214.6s</span>
+            </div><div class="step step-ok" title="I've been trying various methods to click the Search button without success. The form is properly fi">
+                <span class="step-num">#17</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(960, 693)</span>
+                <span class="step-time">240.6s</span>
+            </div><div class="step step-ok" title="The calendar opened again when I clicked. I can see April 15 is already selected. However, I notice ">
+                <span class="step-num">#18</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1399, 1054)</span>
+                <span class="step-time">246.4s</span>
+            </div><div class="step step-ok" title="The form is now properly configured with all the required information: Tokyo to London on April 15. ">
+                <span class="step-num">#19</span>
+                <span class="step-action">find_and_click</span>
+                <span class="step-coords">(988, 709)</span>
+                <span class="step-time">296.0s</span>
+            </div><div class="step step-ok" title="The calendar keeps opening instead of searching. I notice that April 15 is already selected. The iss">
+                <span class="step-num">#20</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">300.9s</span>
+            </div><div class="step step-ok" title="The form is now properly configured with all the required information: Tokyo to London on April 15. ">
+                <span class="step-num">#21</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">336.0s</span>
+            </div><div class="step step-ok" title="The calendar keeps opening instead of searching. I can see April 15 is already selected. I need to c">
+                <span class="step-num">#22</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1399, 1054)</span>
+                <span class="step-time">364.0s</span>
+            </div><div class="step step-ok" title="The form is now properly configured with all the required information: Tokyo to London on April 15. ">
+                <span class="step-num">#23</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">387.5s</span>
+            </div><div class="step step-ok" title="The form is now properly configured with all the required information: Tokyo to London on April 15. ">
+                <span class="step-num">#24</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(960, 453)</span>
+                <span class="step-time">411.2s</span>
+            </div><div class="step step-ok" title="The calendar is open and April 15 is already selected. I need to close this calendar by clicking the">
+                <span class="step-num">#25</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1399, 870)</span>
+                <span class="step-time">434.6s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#61</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>zillow_property_search</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Type "San Francisco, CA" in the search box and press Enter. After results load, click "Price" filter and set maximum price to $1,000,000. Then scroll down to see at least 3 listings.</span>
+            </div>
+            <div class="card-stats">
+                <span>8 steps</span>
+                <span>60.8s</span>
+                <span>3.0x speed</span>
+                <span>764 KB</span>
+            </div>
+            <div class="error">I've exhausted multiple approaches to interact with this CAPTCHA-like verification modal without success. The 'Press & Hold' mechanism likely requires specific JavaScript events or timing that I cannot simulate with my available actions. Since this is a bot-detection mechanism and I cannot bypass it through normal interaction methods, and the task requires accessing the main Zillow search functionality which is blocked by this modal, I should acknowledge that this task cannot be completed in the current state.</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="61_zillow_property_search/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (8 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="The task requires typing 'San Francisco, CA' in the search box and pressing Enter. However, there is">
+                <span class="step-num">#1</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(969, 675)</span>
+                <span class="step-time">9.3s</span>
+            </div><div class="step step-ok" title="The previous click at coordinates (969, 675) did not work - the modal is still present. I need to cl">
+                <span class="step-num">#2</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(969, 675)</span>
+                <span class="step-time">15.2s</span>
+            </div><div class="step step-ok" title="I've clicked the same coordinates twice with no effect, which means that approach is not working. Th">
+                <span class="step-num">#3</span>
+                <span class="step-action">find_and_click</span>
+                <span class="step-coords">(1090, 696)</span>
+                <span class="step-time">24.4s</span>
+            </div><div class="step step-ok" title="The modal requires a 'Press & Hold' action, which is different from a simple click. This type of CAP">
+                <span class="step-num">#4</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">31.7s</span>
+            </div><div class="step step-ok" title="Since this is a 'Press & Hold' verification button, it likely requires a mouse-down event held for a">
+                <span class="step-num">#5</span>
+                <span class="step-action">drag</span>
+                <span class="step-coords">(969, 675)</span>
+                <span class="step-time">39.8s</span>
+            </div><div class="step step-ok" title="This verification modal is blocking progress and none of my standard actions are working. The 'Press">
+                <span class="step-num">#6</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">46.7s</span>
+            </div><div class="step step-ok" title="The Tab key moved focus to browser UI elements instead of the modal button. I need to try a differen">
+                <span class="step-num">#7</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(969, 675)</span>
+                <span class="step-time">53.4s</span>
+            </div><div class="step step-fail" title="I've exhausted multiple approaches to interact with this CAPTCHA-like verification modal without suc">
+                <span class="step-num">#8</span>
+                <span class="step-action">fail</span>
+                <span class="step-coords"></span>
+                <span class="step-time">62.2s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card pass">
+            <div class="card-header">
+                <span class="challenge-id">#62</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge pass">PASS</span>
+                <h3>linkedin_job_details</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Type "machine learning engineer" in the search box at the top and press Enter. Then click "Jobs" tab to see job listings. Click on the first job result to see details.</span>
+            </div>
+            <div class="card-stats">
+                <span>19 steps</span>
+                <span>334.1s</span>
+                <span>3.0x speed</span>
+                <span>2171 KB</span>
+            </div>
+            
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="62_linkedin_job_details/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (19 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="The task requires searching for 'machine learning engineer' and accessing job listings, but I'm curr">
+                <span class="step-num">#1</span>
+                <span class="step-action">find_and_click</span>
+                <span class="step-coords">(1068, 850)</span>
+                <span class="step-time">13.7s</span>
+            </div><div class="step step-ok" title="I'm on the LinkedIn sign-in page, but the task requires me to search for 'machine learning engineer'">
+                <span class="step-num">#2</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(457, 186)</span>
+                <span class="step-time">21.7s</span>
+            </div><div class="step step-ok" title="I need to find a search box to type 'machine learning engineer', but I don't see one on the current ">
+                <span class="step-num">#3</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1137, 186)</span>
+                <span class="step-time">28.7s</span>
+            </div><div class="step step-ok" title="I need to access LinkedIn's search functionality to search for 'machine learning engineer'. However,">
+                <span class="step-num">#4</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1137, 186)</span>
+                <span class="step-time">34.3s</span>
+            </div><div class="step step-ok" title="Good! I successfully navigated to the LinkedIn Jobs page. Now I can see the search box at the top wh">
+                <span class="step-num">#5</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(726, 186)</span>
+                <span class="step-time">41.6s</span>
+            </div><div class="step step-ok" title="I need to click on the search box and type 'machine learning engineer'. The search box is visible at">
+                <span class="step-num">#6</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(726, 186)</span>
+                <span class="step-time">46.4s</span>
+            </div><div class="step step-ok" title="I've been clicking repeatedly without success. The search box is visible at the top of the page. Ins">
+                <span class="step-num">#7</span>
+                <span class="step-action">find_and_type</span>
+                <span class="step-coords">(858, 198)</span>
+                <span class="step-time">78.9s</span>
+            </div><div class="step step-ok" title="The find_and_type action appears to have worked - I can see the search box now has an 'x' button nex">
+                <span class="step-num">#8</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">85.6s</span>
+            </div><div class="step step-ok" title="The Enter key press didn't seem to trigger the search. The page hasn't changed and still shows gener">
+                <span class="step-num">#9</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(726, 186)</span>
+                <span class="step-time">115.6s</span>
+            </div><div class="step step-ok" title="Previous attempts to type in the search box and press Enter haven't worked. The search box appears e">
+                <span class="step-num">#10</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(726, 186)</span>
+                <span class="step-time">123.3s</span>
+            </div><div class="step step-ok" title="I've been clicking on the same coordinates repeatedly without success. The search box is not respond">
+                <span class="step-num">#11</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">157.7s</span>
+            </div><div class="step step-ok" title="I've been struggling to interact with the search box through clicking. The Tab key was pressed in th">
+                <span class="step-num">#12</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">165.3s</span>
+            </div><div class="step step-ok" title="The Ctrl+A command selected all page content instead of just the search box text. This is not what I">
+                <span class="step-num">#13</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(726, 186)</span>
+                <span class="step-time">204.0s</span>
+            </div><div class="step step-ok" title="I've been struggling to get the search to work. Looking at the current state, the search box appears">
+                <span class="step-num">#14</span>
+                <span class="step-action">double_click</span>
+                <span class="step-coords">(726, 186)</span>
+                <span class="step-time">209.6s</span>
+            </div><div class="step step-ok" title="I've been clicking on the same area repeatedly without success. The search box appears to have focus">
+                <span class="step-num">#15</span>
+                <span class="step-action">type</span>
+                <span class="step-coords"></span>
+                <span class="step-time">249.5s</span>
+            </div><div class="step step-ok" title="Great progress! The text 'machine learning engineer' has been successfully typed into the search box">
+                <span class="step-num">#16</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">274.2s</span>
+            </div><div class="step step-ok" title="The Enter key was pressed but the search didn't execute - the job listings haven't changed to show m">
+                <span class="step-num">#17</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1206, 186)</span>
+                <span class="step-time">301.4s</span>
+            </div><div class="step step-ok" title="Great! The search for 'machine learning engineer' has been executed successfully and I can see the j">
+                <span class="step-num">#18</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(649, 510)</span>
+                <span class="step-time">328.7s</span>
+            </div><div class="step step-ok" title="The task has been completed successfully. I have: 1) Typed 'machine learning engineer' in the search">
+                <span class="step-num">#19</span>
+                <span class="step-action">done</span>
+                <span class="step-coords"></span>
+                <span class="step-time">335.5s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card pass">
+            <div class="card-header">
+                <span class="challenge-id">#63</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge pass">PASS</span>
+                <h3>github_pr_review</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Click on "Pull requests" tab. Then click on the most recent pull request to open it. Scroll down to see the file changes or comments.</span>
+            </div>
+            <div class="card-stats">
+                <span>6 steps</span>
+                <span>56.2s</span>
+                <span>3.0x speed</span>
+                <span>912 KB</span>
+            </div>
+            
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="63_github_pr_review/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (6 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="The task requires clicking on the 'Pull requests' tab first. I can see the tab clearly in the naviga">
+                <span class="step-num">#1</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(333, 306)</span>
+                <span class="step-time">8.4s</span>
+            </div><div class="step step-ok" title="The previous action clicked on coordinates (333, 306), which doesn't appear to have navigated to the">
+                <span class="step-num">#2</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(333, 306)</span>
+                <span class="step-time">13.6s</span>
+            </div><div class="step step-ok" title="I successfully navigated to the Pull requests tab. Now I need to click on the most recent pull reque">
+                <span class="step-num">#3</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(526, 477)</span>
+                <span class="step-time">20.0s</span>
+            </div><div class="step step-ok" title="I need to click on the most recent pull request to open it. The most recent PR is 'Bump xterm to ena">
+                <span class="step-num">#4</span>
+                <span class="step-action">find_and_click</span>
+                <span class="step-coords">(856, 489)</span>
+                <span class="step-time">28.2s</span>
+            </div><div class="step step-ok" title="I have successfully navigated to the most recent pull request. Now I need to scroll down to see the ">
+                <span class="step-num">#5</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">34.4s</span>
+            </div><div class="step step-ok" title="The task asked to scroll down to see file changes or comments. I have successfully navigated to the ">
+                <span class="step-num">#6</span>
+                <span class="step-action">done</span>
+                <span class="step-coords"></span>
+                <span class="step-time">57.6s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#64</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>google_docs_create</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Create a document by clicking "Blank" or the + button. Type the title "Meeting Notes - AI Project" at the top, press Enter twice, then type "Attendees: Taro, Hanako, AI Agent" and press Enter, then type "Agenda: 1. Review progress 2. Next steps"</span>
+            </div>
+            <div class="card-stats">
+                <span>9 steps</span>
+                <span>115.0s</span>
+                <span>3.0x speed</span>
+                <span>809 KB</span>
+            </div>
+            <div class="error">Google Docs requires authentication to create documents. Every attempt to access Google Docs or create a document redirects to the sign-in page. Without valid credentials, I cannot proceed with the task. The task requires creating a document and typing specific content, which is impossible without being signed in. I should fail the task and explain that authentication is required.</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="64_google_docs_create/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (9 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="I need to create a Google Docs document, but I'm currently on the sign-in page. Since the task is to">
+                <span class="step-num">#1</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1897, 120)</span>
+                <span class="step-time">9.5s</span>
+            </div><div class="step step-ok" title="I need to create a Google Docs document, but I'm currently on the sign-in page. To proceed with the ">
+                <span class="step-num">#2</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">16.8s</span>
+            </div><div class="step step-ok" title="The address bar is now active after pressing Ctrl+L. I need to navigate to docs.google.com to try to">
+                <span class="step-num">#3</span>
+                <span class="step-action">type</span>
+                <span class="step-coords"></span>
+                <span class="step-time">22.4s</span>
+            </div><div class="step step-ok" title="I've typed 'docs.google.com' in the address bar and autocomplete suggestions have appeared. The firs">
+                <span class="step-num">#4</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">27.9s</span>
+            </div><div class="step step-ok" title="I attempted to navigate to docs.google.com but was redirected to the sign-in page. Google Docs requi">
+                <span class="step-num">#5</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1210, 682)</span>
+                <span class="step-time">36.7s</span>
+            </div><div class="step step-ok" title="My previous click on the 'Learn more about using Guest mode' link didn't navigate to a new page or o">
+                <span class="step-num">#6</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">61.2s</span>
+            </div><div class="step step-ok" title="I've focused the address bar. Since Google Docs requires authentication and I cannot proceed without">
+                <span class="step-num">#7</span>
+                <span class="step-action">type</span>
+                <span class="step-coords"></span>
+                <span class="step-time">67.6s</span>
+            </div><div class="step step-ok" title="I've typed the URL for creating a new document. The autocomplete has shown the exact URL I want. I s">
+                <span class="step-num">#8</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">92.7s</span>
+            </div><div class="step step-fail" title="Google Docs requires authentication to create documents. Every attempt to access Google Docs or crea">
+                <span class="step-num">#9</span>
+                <span class="step-action">fail</span>
+                <span class="step-coords"></span>
+                <span class="step-time">116.4s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#65</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>weather_week_forecast</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Type "Tokyo weather" in the search box and press Enter. After the weather card appears, look for a "7-day forecast" or "10-day" link and click it. Then scroll down to see the full week forecast.</span>
+            </div>
+            <div class="card-stats">
+                <span>20 steps</span>
+                <span>361.2s</span>
+                <span>3.0x speed</span>
+                <span>2943 KB</span>
+            </div>
+            <div class="error">Max steps (20) reached without completing the task</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="65_weather_week_forecast/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (20 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="The task is to search for 'Tokyo weather'. The search box is visible and empty, ready for input. I s">
+                <span class="step-num">#1</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(960, 550)</span>
+                <span class="step-time">7.7s</span>
+            </div><div class="step step-ok" title="The search box is now focused and ready for input. I need to type 'Tokyo weather' to proceed with th">
+                <span class="step-num">#2</span>
+                <span class="step-action">type</span>
+                <span class="step-coords"></span>
+                <span class="step-time">12.0s</span>
+            </div><div class="step step-ok" title="I have typed 'Tokyo weather' in the search box and can see the autocomplete suggestions. Now I need ">
+                <span class="step-num">#3</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">17.1s</span>
+            </div><div class="step step-ok" title="I can see the weather card with a basic forecast. The task requires me to find and click on a '7-day">
+                <span class="step-num">#4</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(642, 741)</span>
+                <span class="step-time">26.2s</span>
+            </div><div class="step step-ok" title="I clicked on the wrong link. I should go back to the Google search results page and look for a link ">
+                <span class="step-num">#5</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">32.6s</span>
+            </div><div class="step step-ok" title="Looking at the weather card more carefully, I can see the daily forecast row showing days of the wee">
+                <span class="step-num">#6</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">39.6s</span>
+            </div><div class="step step-ok" title="Looking at the weather card, I can see the daily forecast for the week is already displayed. However">
+                <span class="step-num">#7</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">61.9s</span>
+            </div><div class="step step-ok" title="The weather card is showing a basic 8-day forecast in the row of days. The task asks me to find a '7">
+                <span class="step-num">#8</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(859, 412)</span>
+                <span class="step-time">71.0s</span>
+            </div><div class="step step-ok" title="My previous click didn't work. Looking more carefully at the weather card, I can see there's a row s">
+                <span class="step-num">#9</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(276, 667)</span>
+                <span class="step-time">96.1s</span>
+            </div><div class="step step-ok" title="I've tried clicking on different parts of the weather card without success. Looking at the visible e">
+                <span class="step-num">#10</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(735, 741)</span>
+                <span class="step-time">101.8s</span>
+            </div><div class="step step-ok" title="I clicked on the wrong link and ended up on a help page. I need to go back to the Google search resu">
+                <span class="step-num">#11</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">136.0s</span>
+            </div><div class="step step-ok" title="I've been trying to find a '7-day forecast' or '10-day forecast' link but haven't found one yet. Loo">
+                <span class="step-num">#12</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(870, 390)</span>
+                <span class="step-time">161.7s</span>
+            </div><div class="step step-ok" title="I've been trying multiple clicks without success. Looking at the weather card more carefully, I noti">
+                <span class="step-num">#13</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">168.9s</span>
+            </div><div class="step step-ok" title="Looking at the current state, the weather card with the 8-day forecast is visible at the top. The ta">
+                <span class="step-num">#14</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">209.9s</span>
+            </div><div class="step step-ok" title="I've been searching for a '7-day forecast' or '10-day' link but haven't found one explicitly labeled">
+                <span class="step-num">#15</span>
+                <span class="step-action">find_and_click</span>
+                <span class="step-coords">(787, 631)</span>
+                <span class="step-time">245.3s</span>
+            </div><div class="step step-ok" title="I've tried multiple approaches to find a '7-day forecast' or '10-day' link but haven't been successf">
+                <span class="step-num">#16</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(412, 732)</span>
+                <span class="step-time">252.2s</span>
+            </div><div class="step step-ok" title="The AccuWeather page is loading. I can see navigation tabs at the top, including 'DAILY' which would">
+                <span class="step-num">#17</span>
+                <span class="step-action">wait</span>
+                <span class="step-coords"></span>
+                <span class="step-time">287.2s</span>
+            </div><div class="step step-ok" title="The page has loaded and I can see the navigation tabs. To complete the task of finding a 7-day or 10">
+                <span class="step-num">#18</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(177, 955)</span>
+                <span class="step-time">293.9s</span>
+            </div><div class="step step-ok" title="The task requires finding a 7-day or 10-day forecast. The DAILY tab on AccuWeather typically shows a">
+                <span class="step-num">#19</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(660, 264)</span>
+                <span class="step-time">338.9s</span>
+            </div><div class="step step-ok" title="An advertisement popup is blocking the view of the weather forecast page. I need to close this popup">
+                <span class="step-num">#20</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1012, 687)</span>
+                <span class="step-time">362.6s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card pass">
+            <div class="card-header">
+                <span class="challenge-id">#66</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge pass">PASS</span>
+                <h3>amazon_compare_prices</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Search for "wireless mouse" on Amazon. After results load, scroll down to see at least 3 products. Click on the first product to see its price and details. Then go back and click the second product to compare.</span>
+            </div>
+            <div class="card-stats">
+                <span>10 steps</span>
+                <span>109.0s</span>
+                <span>3.0x speed</span>
+                <span>2400 KB</span>
+            </div>
+            
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="66_amazon_compare_prices/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (10 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="I need to search for 'wireless mouse' on Amazon. The sign-in popup is currently overlaying the page,">
+                <span class="step-num">#1</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(885, 178)</span>
+                <span class="step-time">8.8s</span>
+            </div><div class="step step-ok" title="The search bar is now focused and ready for input. I need to clear any existing text and type 'wirel">
+                <span class="step-num">#2</span>
+                <span class="step-action">type</span>
+                <span class="step-coords">(0, 0)</span>
+                <span class="step-time">13.9s</span>
+            </div><div class="step step-ok" title="I have typed 'wireless mouse' in the search bar and suggestions have appeared. To proceed with the s">
+                <span class="step-num">#3</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1470, 178)</span>
+                <span class="step-time">19.4s</span>
+            </div><div class="step step-ok" title="The search was successful and results are loading. I need to scroll down to see the actual product l">
+                <span class="step-num">#4</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">25.4s</span>
+            </div><div class="step step-ok" title="I have successfully scrolled down and can now see at least 3 products as required. The first product">
+                <span class="step-num">#5</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(516, 375)</span>
+                <span class="step-time">33.3s</span>
+            </div><div class="step step-ok" title="The page is loading after clicking the first product. I should wait for the page to fully load befor">
+                <span class="step-num">#6</span>
+                <span class="step-action">wait</span>
+                <span class="step-coords"></span>
+                <span class="step-time">39.6s</span>
+            </div><div class="step step-ok" title="I have successfully viewed the first product and can see its details. The price is hidden behind 'Se">
+                <span class="step-num">#7</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">47.4s</span>
+            </div><div class="step step-ok" title="I successfully went back to the search results page. Now I need to click on the second product to co">
+                <span class="step-num">#8</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1558, 589)</span>
+                <span class="step-time">69.9s</span>
+            </div><div class="step step-ok" title="My previous click at coordinates (1558, 589) didn't work - I'm still on the same search results page">
+                <span class="step-num">#9</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1117, 660)</span>
+                <span class="step-time">77.1s</span>
+            </div><div class="step step-ok" title="I have successfully completed the task. I searched for 'wireless mouse' on Amazon, scrolled to see a">
+                <span class="step-num">#10</span>
+                <span class="step-action">done</span>
+                <span class="step-coords"></span>
+                <span class="step-time">110.5s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#67</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>google_calendar_event</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Click the "+" or "Create" button to add a new event. Type "Team Standup" as the event title. Set the date to next Monday. Set time to 10:00 AM. Click Save.</span>
+            </div>
+            <div class="card-stats">
+                <span>2 steps</span>
+                <span>14.4s</span>
+                <span>3.0x speed</span>
+                <span>272 KB</span>
+            </div>
+            <div class="error">I clicked 'Sign in' from the previous page, which brought me to the Google authentication page. To proceed with creating a calendar event, I need to sign in with a Google account. However, since I don't have credentials provided for this task, I cannot proceed with the sign-in. The task requires accessing Google Calendar to create an event, but I'm blocked at the authentication step. I should report that the task cannot be completed without valid credentials.</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="67_google_calendar_event/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (2 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="The task requires me to create a new calendar event, but I'm currently on the Google Calendar market">
+                <span class="step-num">#1</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(432, 666)</span>
+                <span class="step-time">10.4s</span>
+            </div><div class="step step-fail" title="I clicked 'Sign in' from the previous page, which brought me to the Google authentication page. To p">
+                <span class="step-num">#2</span>
+                <span class="step-action">fail</span>
+                <span class="step-coords">(0, 0)</span>
+                <span class="step-time">15.9s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card pass">
+            <div class="card-header">
+                <span class="challenge-id">#68</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge pass">PASS</span>
+                <h3>npm_package_research</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Type "express" in the search box and press Enter. Click on the "express" package (the first result). Scroll down to see the weekly downloads count and the README description.</span>
+            </div>
+            <div class="card-stats">
+                <span>10 steps</span>
+                <span>80.0s</span>
+                <span>3.0x speed</span>
+                <span>1003 KB</span>
+            </div>
+            
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="68_npm_package_research/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (10 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="The task requires searching for 'express' on npmjs.com, but first I need to pass the security verifi">
+                <span class="step-num">#1</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(541, 484)</span>
+                <span class="step-time">6.9s</span>
+            </div><div class="step step-ok" title="The security verification is processing. I need to wait for it to complete before I can access the n">
+                <span class="step-num">#2</span>
+                <span class="step-action">wait</span>
+                <span class="step-coords"></span>
+                <span class="step-time">12.9s</span>
+            </div><div class="step step-ok" title="The security verification has completed and the page is now fully loaded. I can see the search box c">
+                <span class="step-num">#3</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(840, 321)</span>
+                <span class="step-time">19.6s</span>
+            </div><div class="step step-ok" title="The search box is now active and ready for input. I need to type 'express' into this search box. Thi">
+                <span class="step-num">#4</span>
+                <span class="step-action">type</span>
+                <span class="step-coords"></span>
+                <span class="step-time">24.9s</span>
+            </div><div class="step step-ok" title="I've typed 'express' and the autocomplete dropdown is showing. I can either press Enter to search or">
+                <span class="step-num">#5</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">31.8s</span>
+            </div><div class="step step-ok" title="I pressed Enter but the page hasn't changed to show search results. This could mean the page is load">
+                <span class="step-num">#6</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1408, 321)</span>
+                <span class="step-time">37.6s</span>
+            </div><div class="step step-ok" title="The search was successful and I can see the express package as the first result. I can already see t">
+                <span class="step-num">#7</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(358, 462)</span>
+                <span class="step-time">44.3s</span>
+            </div><div class="step step-ok" title="I clicked on the express package but the page is still loading. I should wait for the page to fully ">
+                <span class="step-num">#8</span>
+                <span class="step-action">wait</span>
+                <span class="step-coords"></span>
+                <span class="step-time">50.0s</span>
+            </div><div class="step step-ok" title="Perfect! I have successfully navigated to the express package page. I can already see the weekly dow">
+                <span class="step-num">#9</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">72.3s</span>
+            </div><div class="step step-ok" title="I have successfully completed the task. I can now see both the weekly downloads count (68,692,845) p">
+                <span class="step-num">#10</span>
+                <span class="step-action">done</span>
+                <span class="step-coords"></span>
+                <span class="step-time">81.5s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#69</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>multi_step_data_entry</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: In the Try-it editor, clear the existing HTML and type a complete form: <form><label>Name:</label><input type="text" value="AI Agent"><br><label>Email:</label><input type="email" value="ai@screenpilot.dev"><br><input type="submit" value="Send"></form>. Then click "Run" to see the result.</span>
+            </div>
+            <div class="card-stats">
+                <span>20 steps</span>
+                <span>357.8s</span>
+                <span>3.0x speed</span>
+                <span>2072 KB</span>
+            </div>
+            <div class="error">Max steps (20) reached without completing the task</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="69_multi_step_data_entry/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (20 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="The task requires me to: 1) Clear the existing HTML code, 2) Type a new complete form with specific ">
+                <span class="step-num">#1</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(420, 375)</span>
+                <span class="step-time">9.1s</span>
+            </div><div class="step step-ok" title="I clicked in the editor area, but now I need to select all the existing HTML code to delete it. I sh">
+                <span class="step-num">#2</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">14.0s</span>
+            </div><div class="step step-ok" title="Good progress - the text is now selected. Next, I need to delete this selected text and then type th">
+                <span class="step-num">#3</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">18.8s</span>
+            </div><div class="step step-ok" title="Perfect! The existing HTML has been cleared. Now I need to type the new form HTML code as specified ">
+                <span class="step-num">#4</span>
+                <span class="step-action">type</span>
+                <span class="step-coords"></span>
+                <span class="step-time">29.4s</span>
+            </div><div class="step step-ok" title="The HTML form code has been successfully typed into the editor. Now I need to click the green 'Run' ">
+                <span class="step-num">#5</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(349, 171)</span>
+                <span class="step-time">35.2s</span>
+            </div><div class="step step-ok" title="The form code was entered but it appears to have been rendered as plain text rather than as HTML. Lo">
+                <span class="step-num">#6</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">61.6s</span>
+            </div><div class="step step-ok" title="I need to select the code in the left editor panel, not the output panel. Let me click in the left c">
+                <span class="step-num">#7</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(352, 225)</span>
+                <span class="step-time">67.6s</span>
+            </div><div class="step step-ok" title="The issue is that the HTML I entered is being displayed as text rather than being rendered as HTML. ">
+                <span class="step-num">#8</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">92.9s</span>
+            </div><div class="step step-ok" title="I need to click directly in the code editor area on the left to focus it, then select all the text. ">
+                <span class="step-num">#9</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(352, 226)</span>
+                <span class="step-time">99.5s</span>
+            </div><div class="step step-ok" title="The problem is that the HTML tags are being escaped (< becomes &lt;, > becomes &gt;). This is why th">
+                <span class="step-num">#10</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">132.2s</span>
+            </div><div class="step step-ok" title="I've been trying to select the code but it's not working as expected. Let me try a different approac">
+                <span class="step-num">#11</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">140.1s</span>
+            </div><div class="step step-ok" title="Good! The code has been cleared. Now I need to type a complete HTML document structure with the form">
+                <span class="step-num">#12</span>
+                <span class="step-action">type</span>
+                <span class="step-coords"></span>
+                <span class="step-time">182.6s</span>
+            </div><div class="step step-ok" title="Perfect! The HTML code is now complete and properly structured. Now I need to click the green 'Run' ">
+                <span class="step-num">#13</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(349, 171)</span>
+                <span class="step-time">188.9s</span>
+            </div><div class="step step-ok" title="The HTML is still being displayed as escaped text in the output panel. This is the same issue as bef">
+                <span class="step-num">#14</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(352, 270)</span>
+                <span class="step-time">224.6s</span>
+            </div><div class="step step-ok" title="The HTML is being displayed as text because the angle brackets are being escaped. This is a persiste">
+                <span class="step-num">#15</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">247.2s</span>
+            </div><div class="step step-ok" title="Good! The page has reloaded with the original template that works correctly. Now I can see the prope">
+                <span class="step-num">#16</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(352, 375)</span>
+                <span class="step-time">276.8s</span>
+            </div><div class="step step-ok" title="I need to select all the code in the left editor panel and replace it with the required form. Let me">
+                <span class="step-num">#17</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">282.4s</span>
+            </div><div class="step step-ok" title="Good! All the code is selected. Now I need to delete it and type the new form code as specified in t">
+                <span class="step-num">#18</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">322.6s</span>
+            </div><div class="step step-ok" title="Perfect! The editor is now empty. Now I need to type the complete HTML document with the new form as">
+                <span class="step-num">#19</span>
+                <span class="step-action">type</span>
+                <span class="step-coords"></span>
+                <span class="step-time">352.9s</span>
+            </div><div class="step step-ok" title="The HTML code has been successfully typed into the editor. Now I need to click the green 'Run' butto">
+                <span class="step-num">#20</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(349, 171)</span>
+                <span class="step-time">359.2s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#70</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>youtube_playlist_browse</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Type "lofi hip hop" in the search box and press Enter. After results load, click on a playlist (not a video) from the results. Then scroll down in the playlist to see at least 5 videos listed.</span>
+            </div>
+            <div class="card-stats">
+                <span>12 steps</span>
+                <span>185.6s</span>
+                <span>3.0x speed</span>
+                <span>2208 KB</span>
+            </div>
+            <div class="error">Planning failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CYDAPwkMjfi5JBZwdE8LK'}</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="70_youtube_playlist_browse/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (12 steps)</summary>
+                <div class="steps-timeline"><div class="step step-ok" title="The task requires me to: 1) Type 'lofi hip hop' in the search box, 2) Press Enter, 3) Click on a pla">
+                <span class="step-num">#1</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(913, 175)</span>
+                <span class="step-time">10.3s</span>
+            </div><div class="step step-ok" title="The search box is now focused and ready for input. The next step is to type 'lofi hip hop' into the ">
+                <span class="step-num">#2</span>
+                <span class="step-action">type</span>
+                <span class="step-coords"></span>
+                <span class="step-time">15.0s</span>
+            </div><div class="step step-ok" title="I have successfully typed 'lofi hip hop' in the search box. Now I need to press Enter to execute the">
+                <span class="step-num">#3</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">21.1s</span>
+            </div><div class="step step-ok" title="The search was executed (URL changed to results page), but the results haven't loaded yet. I should ">
+                <span class="step-num">#4</span>
+                <span class="step-action">wait</span>
+                <span class="step-coords"></span>
+                <span class="step-time">27.5s</span>
+            </div><div class="step step-ok" title="I need to find and click on a playlist, not a video. Looking at the results, I can see on the right ">
+                <span class="step-num">#5</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">36.3s</span>
+            </div><div class="step step-ok" title="I need to click on a playlist, not a video. I can see 'Playlist Tokyo Lo-fi Hiphop 🎧 Chill Beats for">
+                <span class="step-num">#6</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(651, 990)</span>
+                <span class="step-time">60.1s</span>
+            </div><div class="step step-ok" title="I clicked on what I thought was a playlist, but the URL suggests this is a radio/mix (start_radio=1)">
+                <span class="step-num">#7</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">66.9s</span>
+            </div><div class="step step-ok" title="I need to click on an actual playlist. The result at the bottom clearly shows 'Playlist' in the titl">
+                <span class="step-num">#8</span>
+                <span class="step-action">scroll</span>
+                <span class="step-coords"></span>
+                <span class="step-time">91.6s</span>
+            </div><div class="step step-ok" title="I can see a clear playlist option: 'Playlist Tokyo Lo-fi Hiphop 🎧 Chill Beats for Study & Relax' wit">
+                <span class="step-num">#9</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(651, 790)</span>
+                <span class="step-time">98.0s</span>
+            </div><div class="step step-ok" title="I clicked on what appeared to be a playlist, but it opened as a radio/mix again (start_radio=1 in UR">
+                <span class="step-num">#10</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">131.9s</span>
+            </div><div class="step step-ok" title="I need to click on the actual playlist, not just anywhere on the result. I should click specifically">
+                <span class="step-num">#11</span>
+                <span class="step-action">click</span>
+                <span class="step-coords">(1056, 699)</span>
+                <span class="step-time">138.1s</span>
+            </div><div class="step step-ok" title="I keep ending up on a radio/mix page instead of a proper playlist page. The URL contains 'start_radi">
+                <span class="step-num">#12</span>
+                <span class="step-action">key</span>
+                <span class="step-coords"></span>
+                <span class="step-time">170.3s</span>
+            </div></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#71</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>google_scholar_cite</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Type "deep learning" in the search box and press Enter. After results load, click the "Cite" button (quotation mark icon) under the first result. Read the citation in APA format that appears.</span>
+            </div>
+            <div class="card-stats">
+                <span>0 steps</span>
+                <span>0.3s</span>
+                <span>3.0x speed</span>
+                <span>62 KB</span>
+            </div>
+            <div class="error">Planning failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CYDARbLpgVncinKsKCn2o'}</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="71_google_scholar_cite/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (0 steps)</summary>
+                <div class="steps-timeline"></div>
+            </details>
+        </div>
+        
+        <div class="card fail">
+            <div class="card-header">
+                <span class="challenge-id">#72</span>
+                <span class="difficulty expert">EXPERT</span>
+                <span class="status-badge fail">FAIL</span>
+                <h3>trello_style_kanban</h3>
+            </div>
+            <div class="card-meta">
+                <span>Goal: Click on "Add a card" or "+" in the first column. Type "Implement login feature" and press Enter. Then add another card "Write unit tests". Then drag or add a card in the second column "Design database schema".</span>
+            </div>
+            <div class="card-stats">
+                <span>0 steps</span>
+                <span>0.7s</span>
+                <span>3.0x speed</span>
+                <span>155 KB</span>
+            </div>
+            <div class="error">Planning failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CYDAjs58B9Z7Vup4AsjgF'}</div>
+            <div class="video-container">
+                <video controls preload="metadata" width="100%">
+                    <source src="72_trello_style_kanban/recording.mp4" type="video/mp4">
+                </video>
+                <div class="video-controls">
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=0.5">0.5x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=1">1x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=2">2x</button>
+                    <button onclick="this.closest('.card').querySelector('video').playbackRate=4">4x</button>
+                </div>
+            </div>
+            <details class="steps-detail">
+                <summary>Step-by-step reasoning (0 steps)</summary>
+                <div class="steps-timeline"></div>
             </details>
         </div>
         

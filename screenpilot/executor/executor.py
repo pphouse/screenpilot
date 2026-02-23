@@ -261,6 +261,12 @@ class ActionExecutor:
     def _wait(self, action: Action) -> ActionResult:
         """Wait for a specified duration."""
         duration = action.duration or 1.0
+        # LLMs often return duration in milliseconds (e.g. 2000);
+        # convert to seconds if the value looks like ms (> 10).
+        if duration > 10:
+            duration = duration / 1000.0
+        # Cap wait to 5 seconds max to avoid hangs
+        duration = min(duration, 5.0)
         time.sleep(duration)
         return ActionResult(success=True, action=action)
 

@@ -13,18 +13,24 @@ from typing import Literal
 class LLMConfig:
     """LLM provider configuration."""
 
-    provider: Literal["anthropic", "openai", "litellm"] = "anthropic"
+    provider: Literal["anthropic", "openai", "azure", "gemini", "claude_code", "litellm"] = "anthropic"
     model: str = "claude-sonnet-4-5-20250929"
     api_key: str | None = None
     base_url: str | None = None
     max_tokens: int = 4096
-    temperature: float = 0.0
+    temperature: float | None = 0.0
+    # Azure-specific
+    azure_endpoint: str | None = None
+    azure_api_version: str = "2024-12-01-preview"
+    azure_deployment: str | None = None
 
     def __post_init__(self):
         if self.api_key is None:
             env_map = {
                 "anthropic": "ANTHROPIC_API_KEY",
                 "openai": "OPENAI_API_KEY",
+                "azure": "AZURE_OPENAI_API_KEY",
+                "gemini": "GEMINI_API_KEY",
             }
             env_var = env_map.get(self.provider, "LITELLM_API_KEY")
             self.api_key = os.environ.get(env_var, "")

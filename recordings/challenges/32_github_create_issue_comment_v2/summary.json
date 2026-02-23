@@ -5,148 +5,15 @@
   "goal": "Scroll down to the comment box at the bottom of the issue, click it, and type \"This issue was automatically found and commented by ScreenPilot AI agent\"",
   "setup_url": "https://github.com/pphouse/screenpilot/issues/2",
   "success": false,
-  "steps": 15,
-  "time": 99.8,
-  "error": "Max steps (15) reached without completing the task",
+  "steps": 0,
+  "time": 0.3,
+  "error": "Planning failed: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CYDAmeyAViS8MSfjYkCF9'}",
   "video_path": "recordings/challenges/32_github_create_issue_comment_v2/recording.mp4",
-  "video_size_kb": 1061,
+  "video_size_kb": 1732,
   "speed": 3.0,
   "attempt": 2,
-  "step_details": [
-    {
-      "step": 1,
-      "action": "scroll",
-      "target": "",
-      "coords": "",
-      "reasoning": "I can see a GitHub issue page for '[Demo] ScreenPilot self-marketing automation test #2'. The page shows the issue details including a table of screenshots captured. To complete the task, I need to sc",
-      "success": true,
-      "timestamp": 7.0
-    },
-    {
-      "step": 2,
-      "action": "scroll",
-      "target": "",
-      "coords": "",
-      "reasoning": "I can see a GitHub issue page. The task requires me to scroll down to find the comment box at the bottom of the issue. Currently, I can see the issue details including 'Screenshots Captured' table and",
-      "success": true,
-      "timestamp": 11.1
-    },
-    {
-      "step": 3,
-      "action": "scroll",
-      "target": "",
-      "coords": "",
-      "reasoning": "I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says 'Sign up for free to join this conversation on GitHub. Already have an account? Sign in to comment'.",
-      "success": true,
-      "timestamp": 15.3
-    },
-    {
-      "step": 4,
-      "action": "find_and_click",
-      "target": "Sign in to comment link",
-      "coords": "(1461, 936)",
-      "reasoning": "I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says 'Sign up for free to join this conversation on GitHub. Already have an account? Sign in to comment'.",
-      "success": true,
-      "timestamp": 24.3
-    },
-    {
-      "step": 5,
-      "action": "scroll",
-      "target": "",
-      "coords": "",
-      "reasoning": "I can see a GitHub issue page. At the bottom, there's a yellow banner that says 'Sign up for free to join this conversation on GitHub. Already have an account? Sign in to comment'. The previous action",
-      "success": true,
-      "timestamp": 32.4
-    },
-    {
-      "step": 6,
-      "action": "scroll",
-      "target": "",
-      "coords": "",
-      "reasoning": "I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says 'Sign up for free to join this conversation on GitHub. Already have an account? Sign in to comment'.",
-      "success": true,
-      "timestamp": 36.5
-    },
-    {
-      "step": 7,
-      "action": "scroll",
-      "target": "",
-      "coords": "",
-      "reasoning": "I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says 'Sign up for free to join this conversation on GitHub. Already have an account? Sign in to comment'.",
-      "success": true,
-      "timestamp": 40.8
-    },
-    {
-      "step": 8,
-      "action": "find_and_click",
-      "target": "Sign in to comment",
-      "coords": "(1021, 934)",
-      "reasoning": "I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says 'Sign up for free to join this conversation on GitHub. Already have an account? Sign in to comment'.",
-      "success": true,
-      "timestamp": 49.5
-    },
-    {
-      "step": 9,
-      "action": "scroll",
-      "target": "",
-      "coords": "",
-      "reasoning": "I can see a GitHub issue page. At the bottom, there's a yellow banner that says 'Sign up for free to join this conversation on GitHub. Already have an account? Sign in to comment'. The previous action",
-      "success": true,
-      "timestamp": 56.1
-    },
-    {
-      "step": 10,
-      "action": "scroll",
-      "target": "",
-      "coords": "",
-      "reasoning": "I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says 'Sign up for free to join this conversation on GitHub. Already have an account? Sign in to comment'.",
-      "success": true,
-      "timestamp": 62.4
-    },
-    {
-      "step": 11,
-      "action": "scroll",
-      "target": "",
-      "coords": "",
-      "reasoning": "I can see a GitHub issue page. Looking at the current screenshot, I can see the issue details with a table of screenshots captured and automation stats at the bottom. The task requires me to scroll do",
-      "success": true,
-      "timestamp": 68.7
-    },
-    {
-      "step": 12,
-      "action": "find_and_click",
-      "target": "comment text area or comment input box",
-      "coords": "",
-      "reasoning": "I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says 'Sign up for free to join this conversation on GitHub. Already have an account? Sign in to comment'.",
-      "success": false,
-      "timestamp": 81.5
-    },
-    {
-      "step": 13,
-      "action": "scroll",
-      "target": "",
-      "coords": "",
-      "reasoning": "Looking at the current screenshot, I can see a GitHub issue page. At the bottom, there's a yellow banner that says 'Sign up for free to join this conversation on GitHub. Already have an account? Sign ",
-      "success": true,
-      "timestamp": 86.8
-    },
-    {
-      "step": 14,
-      "action": "scroll",
-      "target": "",
-      "coords": "",
-      "reasoning": "I can see a GitHub issue page. At the bottom of the visible area, there's a yellow banner that says 'Sign up for free to join this conversation on GitHub. Already have an account? Sign in to comment'.",
-      "success": true,
-      "timestamp": 93.2
-    },
-    {
-      "step": 15,
-      "action": "scroll",
-      "target": "",
-      "coords": "",
-      "reasoning": "Looking at the current screenshot, I can see a GitHub issue page. At the bottom, there's a yellow banner that says 'Sign up for free to join this conversation on GitHub. Already have an account? Sign ",
-      "success": true,
-      "timestamp": 101.2
-    }
-  ]
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "cost_usd": 0.0,
+  "step_details": []
 }

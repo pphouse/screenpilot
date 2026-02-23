@@ -138,7 +138,9 @@ You MUST respond with ONLY a JSON object (no markdown, no code fences, no explan
    - Tab to move between form fields
    - Enter to submit forms
 
-6. COMPLETION: Return "done" ONLY when you can visually confirm the task is complete. Return "fail" with explanation if the task is impossible (wrong page, login required, etc.)."""
+6. AVOID GOOGLE LENS: NEVER click the camera/lens icon in Chrome's address bar or search boxes. If Google Lens overlay appears ("Select any text or image to search with Google Lens"), press Escape immediately to dismiss it, then use keyboard (Ctrl+L) to focus the address bar instead.
+
+7. COMPLETION: Return "done" ONLY when you can visually confirm the task is complete. Return "fail" with explanation if the task is impossible (wrong page, login required, etc.)."""
 
 
 # =============================================================================
@@ -181,9 +183,39 @@ class TaskPlanner:
         self._messages: list[dict] = []
         self._step_num: int = 0
         self._max_steps: int = 50
+        # Token usage tracking for cost estimation
+        self.total_input_tokens: int = 0
+        self.total_output_tokens: int = 0
+
+        # For non-Anthropic providers, strip find_and_* from system prompt
+        # (they require Anthropic ScreenAnalyzer for coordinate resolution)
+        if self.config.provider != "anthropic":
+            self._system_prompt = PLANNER_SYSTEM_PROMPT.replace(
+                "Vision: find_and_click (describe element to locate), find_and_type (find element and type into it)\n", ""
+            ).replace(
+                "find_and_click|find_and_type|", ""
+            ).replace(
+                '   - Try find_and_click with a text description of the element\n', ""
+            ).replace(
+                "When unsure, prefer find_and_click over guessing coordinates.",
+                "Look carefully at element positions in the screenshot."
+            ).replace(
+                "- Use find_and_click with a text description\n", ""
+            )
+        else:
+            self._system_prompt = PLANNER_SYSTEM_PROMPT
+
+        # Claude Code subprocess: temp dir for screenshots
+        if self.config.provider == "claude_code":
+            import tempfile
+            self._cc_tmpdir = tempfile.mkdtemp(prefix="screenpilot_cc_")
+            self._cc_model = self.config.model or "sonnet"
 
     def _get_client(self):
         """Lazy-initialize the LLM client."""
+        if self.config.provider == "claude_code":
+            return None  # No API client needed; uses subprocess
+
         if self._client is not None:
             return self._client
 
@@ -191,6 +223,18 @@ class TaskPlanner:
             import anthropic
 
             self._client = anthropic.Anthropic(api_key=self.config.api_key)
+        elif self.config.provider == "azure":
+            import openai
+
+            self._client = openai.AzureOpenAI(
+                azure_endpoint=self.config.azure_endpoint,
+                api_key=self.config.api_key,
+                api_version=self.config.azure_api_version,
+            )
+        elif self.config.provider == "gemini":
+            from google import genai
+
+            self._client = genai.Client(api_key=self.config.api_key)
         elif self.config.provider == "openai":
             import openai
 
@@ -216,8 +260,13 @@ class TaskPlanner:
         can "remember" previous screenshots and compare them with current state.
         """
         client = self._get_client()
-        img_b64 = screenshot.to_base64(format="png")
         temp = temperature if temperature is not None else self.config.temperature
+
+        # ── Claude Code subprocess path ──────────────────────────────
+        if self.config.provider == "claude_code":
+            return self._call_claude_code(screenshot, user_text)
+
+        img_b64 = screenshot.to_base64(format="png")
 
         # Build current user message with screenshot
         user_content = [
@@ -242,10 +291,15 @@ class TaskPlanner:
                 model=self.config.model,
                 max_tokens=self.config.max_tokens,
                 temperature=temp,
-                system=PLANNER_SYSTEM_PROMPT,
+                system=self._system_prompt,
                 messages=messages,
             )
             response_text = response.content[0].text
+
+            # Track token usage
+            if hasattr(response, "usage"):
+                self.total_input_tokens += getattr(response.usage, "input_tokens", 0)
+                self.total_output_tokens += getattr(response.usage, "output_tokens", 0)
 
             # Save to conversation history
             self._messages.append({"role": "user", "content": user_content})
@@ -258,31 +312,94 @@ class TaskPlanner:
 
             return response_text
 
-        elif self.config.provider == "openai":
-            # OpenAI format
+        elif self.config.provider in ("openai", "azure"):
+            # OpenAI / Azure OpenAI format
             user_content_oai = [
                 {
                     "type": "image_url",
-                    "image_url": {"url": f"data:image/png;base64,{img_b64}"},
+                    "image_url": {"url": f"data:image/png;base64,{img_b64}", "detail": "auto"},
                 },
                 {"type": "text", "text": user_text},
             ]
 
             messages = (
-                [{"role": "system", "content": PLANNER_SYSTEM_PROMPT}]
+                [{"role": "system", "content": self._system_prompt}]
                 + list(self._messages)
                 + [{"role": "user", "content": user_content_oai}]
             )
 
-            response = client.chat.completions.create(
-                model=self.config.model,
-                max_tokens=self.config.max_tokens,
-                temperature=temp,
-                messages=messages,
-            )
-            response_text = response.choices[0].message.content
+            # Azure OpenAI: max_completion_tokens instead of max_tokens
+            if self.config.provider == "azure":
+                model = self.config.azure_deployment or self.config.model
+                kwargs = dict(
+                    model=model,
+                    max_completion_tokens=self.config.max_tokens,
+                    messages=messages,
+                )
+                # GPT-5.2 supports temperature; GPT-5 doesn't
+                if temp is not None and self.config.temperature is not None:
+                    kwargs["temperature"] = temp
+                response = client.chat.completions.create(**kwargs)
+            else:
+                response = client.chat.completions.create(
+                    model=self.config.model,
+                    max_tokens=self.config.max_tokens,
+                    temperature=temp,
+                    messages=messages,
+                )
+            response_text = response.choices[0].message.content or ""
+
+            # Track tokens
+            if hasattr(response, "usage") and response.usage:
+                self.total_input_tokens += getattr(response.usage, "prompt_tokens", 0) or 0
+                self.total_output_tokens += getattr(response.usage, "completion_tokens", 0) or 0
 
             self._messages.append({"role": "user", "content": user_content_oai})
+            self._messages.append(
+                {"role": "assistant", "content": response_text}
+            )
+            self._trim_messages()
+
+            return response_text
+
+        elif self.config.provider == "gemini":
+            # Google Gemini format
+            from google.genai import types
+            import PIL.Image
+
+            contents = []
+            # Add conversation history as text
+            for msg in self._messages:
+                role = "user" if msg["role"] == "user" else "model"
+                text = msg["content"] if isinstance(msg["content"], str) else "(previous step)"
+                contents.append(types.Content(role=role, parts=[types.Part.from_text(text=text)]))
+
+            # Add current screenshot + text
+            contents.append(types.Content(
+                role="user",
+                parts=[
+                    types.Part.from_image(image=screenshot.image),
+                    types.Part.from_text(text=user_text),
+                ],
+            ))
+
+            response = client.models.generate_content(
+                model=self.config.model,
+                contents=contents,
+                config=types.GenerateContentConfig(
+                    system_instruction=self._system_prompt,
+                    max_output_tokens=self.config.max_tokens,
+                    temperature=temp if temp is not None else 1.0,
+                ),
+            )
+            response_text = response.text or ""
+
+            # Track tokens
+            if hasattr(response, "usage_metadata") and response.usage_metadata:
+                self.total_input_tokens += getattr(response.usage_metadata, "prompt_token_count", 0) or 0
+                self.total_output_tokens += getattr(response.usage_metadata, "candidates_token_count", 0) or 0
+
+            self._messages.append({"role": "user", "content": user_text})
             self._messages.append(
                 {"role": "assistant", "content": response_text}
             )
@@ -303,7 +420,7 @@ class TaskPlanner:
             ]
 
             messages = (
-                [{"role": "system", "content": PLANNER_SYSTEM_PROMPT}]
+                [{"role": "system", "content": self._system_prompt}]
                 + list(self._messages)
                 + [{"role": "user", "content": user_content_oai}]
             )
@@ -323,6 +440,101 @@ class TaskPlanner:
             self._trim_messages()
 
             return response_text
+
+    def _call_claude_code(self, screenshot: Screenshot, user_text: str) -> str:
+        """Call Claude Code CLI (`claude -p`) with session resume.
+
+        Uses the user's Claude Code subscription (no API key needed).
+        - First call: --session-id + --system-prompt to establish context
+        - Subsequent calls: --resume to continue with full conversation history
+        This gives the model memory of previous screenshots and actions.
+        """
+        import os
+        import subprocess
+
+        # Save screenshot to temp file
+        img_path = os.path.join(self._cc_tmpdir, f"step_{self._step_num:03d}.png")
+        screenshot.image.save(img_path, "PNG")
+
+        # User prompt: read screenshot + step instructions
+        prompt = f"Read the screenshot at {img_path} and analyze it carefully.\n\n{user_text}"
+
+        # Build command
+        env = os.environ.copy()
+        env.pop("CLAUDECODE", None)
+
+        is_first_call = not hasattr(self, "_cc_session_id") or self._cc_session_id is None
+
+        if is_first_call:
+            import uuid
+            self._cc_session_id = str(uuid.uuid4())
+            cmd = [
+                "claude", "-p", prompt,
+                "--session-id", self._cc_session_id,
+                "--system-prompt", self._system_prompt,
+                "--allowedTools", "Read",
+                "--model", self._cc_model,
+                "--output-format", "text",
+            ]
+        else:
+            cmd = [
+                "claude", "-p", prompt,
+                "--resume", self._cc_session_id,
+                "--allowedTools", "Read",
+                "--model", self._cc_model,
+                "--output-format", "text",
+            ]
+
+        try:
+            # Use temp files for stdout/stderr to avoid pipe inheritance hang.
+            # When `claude` spawns background processes that inherit pipe FDs,
+            # subprocess.run with capture_output=True blocks forever.
+            import tempfile
+            stdout_file = os.path.join(self._cc_tmpdir, f"stdout_{self._step_num:03d}.txt")
+            stderr_file = os.path.join(self._cc_tmpdir, f"stderr_{self._step_num:03d}.txt")
+            with open(stdout_file, "w") as fout, open(stderr_file, "w") as ferr:
+                proc = subprocess.Popen(
+                    cmd,
+                    stdout=fout,
+                    stderr=ferr,
+                    env=env,
+                    start_new_session=True,
+                )
+                try:
+                    proc.wait(timeout=120)
+                except subprocess.TimeoutExpired:
+                    import signal
+                    os.killpg(os.getpgid(proc.pid), signal.SIGTERM)
+                    try:
+                        proc.wait(timeout=5)
+                    except subprocess.TimeoutExpired:
+                        os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+                        proc.wait(timeout=5)
+                    raise
+
+            with open(stdout_file, "r") as f:
+                response_text = f.read().strip()
+            if proc.returncode != 0 and not response_text:
+                with open(stderr_file, "r") as f:
+                    response_text = f.read().strip()
+                logger.error("claude -p error (step %d): %s", self._step_num, response_text)
+                # If resume fails, fall back to fresh session
+                if not is_first_call and ("session" in response_text.lower() or "error" in response_text.lower()):
+                    logger.warning("Session resume failed, falling back to fresh session")
+                    self._cc_session_id = None
+                    return self._call_claude_code(screenshot, user_text)
+        except subprocess.TimeoutExpired:
+            logger.error("claude -p timed out after 120s at step %d", self._step_num)
+            response_text = '{"action_type": "wait", "observation": "timeout", "thought": "Claude Code subprocess timed out"}'
+        except Exception as e:
+            logger.error("claude -p exception at step %d: %s", self._step_num, e)
+            response_text = '{"action_type": "wait", "observation": "error", "thought": "Claude Code subprocess error: ' + str(e).replace('"', "'") + '"}'
+
+        # Rough token estimation
+        self.total_input_tokens += 2000 + len(prompt) // 4
+        self.total_output_tokens += len(response_text) // 4
+
+        return response_text
 
     def _trim_messages(self) -> None:
         """Trim conversation history to manage token budget.
@@ -374,13 +586,35 @@ class TaskPlanner:
 
         data = json.loads(cleaned.strip())
 
+        # Normalize common action_type aliases
+        action_type_raw = data["action_type"].lower().strip()
+        action_aliases = {
+            "success": "done", "complete": "done", "finished": "done",
+            "failure": "fail", "error": "fail",
+            "press": "key", "keypress": "key", "keyboard": "key",
+            "enter": "key", "hotkey": "key",
+            "left_click": "click", "single_click": "click",
+            "find_and_click": "click", "find_and_type": "type",
+            "none": "wait", "observe": "wait", "noop": "wait",
+            "bash_command": "fail", "command": "fail", "execute": "fail",
+            "navigate": "click", "open_url": "key",
+            "triple_click": "click", "select_all": "key",
+        }
+        action_type_str = action_aliases.get(action_type_raw, action_type_raw)
+
+        # For key actions, ensure keys field is present
+        keys = data.get("keys")
+        if action_type_str == "key" and not keys:
+            # Try to extract from text or target field
+            keys = data.get("text") or data.get("target") or "enter"
+
         return Action(
-            action_type=ActionType(data["action_type"]),
+            action_type=ActionType(action_type_str),
             target=data.get("target"),
             x=data.get("x"),
             y=data.get("y"),
             text=data.get("text"),
-            keys=data.get("keys"),
+            keys=keys,
             direction=data.get("direction"),
             amount=data.get("amount"),
             duration=data.get("duration"),
@@ -480,12 +714,21 @@ class TaskPlanner:
         scale_x = original_width / llm_screenshot.width
         scale_y = original_height / llm_screenshot.height
 
+        # Add completion nudge when approaching step limit
+        completion_nudge = ""
+        if self._step_num >= max_steps - 2:
+            completion_nudge = (
+                "\n⚠️ APPROACHING STEP LIMIT. If the task goal appears achieved "
+                "(even partially), return action_type \"done\" NOW. "
+                "Do NOT continue exploring — declare completion or failure.\n"
+            )
+
         user_prompt = PLANNER_USER_PROMPT.format(
             step_num=self._step_num,
             max_steps=max_steps,
             goal=goal,
             history=history_str,
-            stuck_warning=stuck_warning,
+            stuck_warning=stuck_warning + completion_nudge,
             screen_width=llm_screenshot.width,
             screen_height=llm_screenshot.height,
         )
@@ -493,7 +736,10 @@ class TaskPlanner:
         # Try up to 3 times with increasing temperature (OSWorld pattern)
         last_error = None
         for attempt in range(3):
-            temp = None if attempt == 0 else min(0.5 + attempt * 0.3, 1.0)
+            if self.config.temperature is None:
+                temp = None  # Model doesn't support temperature (e.g. GPT-5)
+            else:
+                temp = None if attempt == 0 else min(0.5 + attempt * 0.3, 1.0)
             try:
                 response = self._call_llm_multiturn(
                     llm_screenshot, user_prompt, temperature=temp
@@ -531,11 +777,32 @@ class TaskPlanner:
 
         return action
 
+    @property
+    def estimated_cost_usd(self) -> float:
+        """Estimate API cost in USD based on token usage."""
+        # Pricing per provider (per 1M tokens)
+        pricing = {
+            "anthropic": (3.0, 15.0),    # Claude Sonnet 4.5
+            "azure": (2.0, 10.0),         # GPT-5 (estimate)
+            "gemini": (1.25, 10.0),       # Gemini 2.5 Pro
+            "openai": (2.5, 10.0),        # GPT-4o
+            "claude_code": (0.0, 0.0),   # Subscription-based, no per-token cost
+        }
+        inp_price, out_price = pricing.get(self.config.provider, (3.0, 15.0))
+        input_cost = self.total_input_tokens * inp_price / 1_000_000
+        output_cost = self.total_output_tokens * out_price / 1_000_000
+        return input_cost + output_cost
+
     def reset(self) -> None:
         """Reset the planner state for a new task."""
         self.history = []
         self._messages = []
         self._step_num = 0
+        self.total_input_tokens = 0
+        self.total_output_tokens = 0
+        # Reset Claude Code session for fresh conversation
+        if self.config.provider == "claude_code":
+            self._cc_session_id = None
 
     def create_plan(self, goal: str, screenshot: Screenshot) -> Plan:
         """Create a full plan for completing a task (multi-step)."""
