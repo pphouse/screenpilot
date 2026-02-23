@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X Market Intelligence</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #242836;
+  --border: #2e3348;
+  --text: #e4e6f0;
+  --text2: #8b8fa8;
+  --accent: #6c5ce7;
+  --accent2: #a29bfe;
+  --green: #00b894;
+  --red: #e17055;
+  --orange: #fdcb6e;
+  --blue: #74b9ff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background:var(--bg); color:var(--text); display:flex; min-height:100vh; }
+
+/* Sidebar */
+.sidebar { width:340px; background:var(--surface); border-right:1px solid var(--border); padding:20px; overflow-y:auto; flex-shrink:0; }
+.sidebar h1 { font-size:18px; margin-bottom:4px; }
+.sidebar .subtitle { font-size:12px; color:var(--text2); margin-bottom:20px; }
+.sidebar label { display:block; font-size:12px; color:var(--text2); margin-bottom:4px; margin-top:12px; }
+.sidebar input, .sidebar textarea, .sidebar select {
+  width:100%; padding:8px 10px; background:var(--surface2); border:1px solid var(--border);
+  border-radius:6px; color:var(--text); font-size:13px; outline:none;
+}
+.sidebar input:focus, .sidebar textarea:focus { border-color:var(--accent); }
+.sidebar textarea { resize:vertical; min-height:60px; font-family:monospace; font-size:11px; }
+
+.preset-btns { display:flex; gap:6px; margin:12px 0; flex-wrap:wrap; }
+.preset-btn {
+  padding:5px 12px; border-radius:16px; border:1px solid var(--border);
+  background:var(--surface2); color:var(--text); font-size:12px; cursor:pointer; transition:.2s;
+}
+.preset-btn:hover { border-color:var(--accent); color:var(--accent2); }
+.preset-btn.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+
+.query-list { margin:8px 0; }
+.query-item {
+  display:flex; gap:6px; align-items:center; margin-bottom:6px; padding:6px 8px;
+  background:var(--surface2); border-radius:6px; border:1px solid var(--border);
+}
+.query-item input { flex:1; border:none; background:transparent; color:var(--text); font-size:12px; padding:2px; }
+.query-item input:first-child { max-width:90px; color:var(--accent2); }
+.query-item .del-btn { cursor:pointer; color:var(--red); font-size:16px; padding:0 4px; border:none; background:none; }
+.add-query-btn {
+  width:100%; padding:6px; border:1px dashed var(--border); border-radius:6px;
+  background:transparent; color:var(--text2); font-size:12px; cursor:pointer; margin-top:4px;
+}
+.add-query-btn:hover { border-color:var(--accent); color:var(--accent2); }
+
+.slider-row { display:flex; align-items:center; gap:10px; margin-top:4px; }
+.slider-row input[type=range] { flex:1; accent-color:var(--accent); }
+.slider-row span { font-size:13px; min-width:24px; text-align:right; }
+
+.toggle-row { display:flex; align-items:center; gap:10px; margin-top:8px; }
+.toggle { position:relative; width:40px; height:22px; }
+.toggle input { opacity:0; width:0; height:0; }
+.toggle .slider {
+  position:absolute; inset:0; background:var(--surface2); border-radius:12px;
+  border:1px solid var(--border); cursor:pointer; transition:.3s;
+}
+.toggle .slider:before {
+  content:''; position:absolute; width:16px; height:16px; left:2px; top:2px;
+  background:var(--text2); border-radius:50%; transition:.3s;
+}
+.toggle input:checked+.slider { background:var(--accent); border-color:var(--accent); }
+.toggle input:checked+.slider:before { transform:translateX(18px); background:#fff; }
+
+.run-btn {
+  width:100%; margin-top:16px; padding:12px; border:none; border-radius:8px;
+  background:var(--accent); color:#fff; font-size:14px; font-weight:600;
+  cursor:pointer; transition:.2s;
+}
+.run-btn:hover { background:var(--accent2); }
+.run-btn:disabled { opacity:.5; cursor:not-allowed; }
+
+.progress-box {
+  margin-top:12px; padding:10px; background:var(--surface2); border-radius:6px;
+  font-size:12px; display:none;
+}
+.progress-bar { height:4px; background:var(--border); border-radius:2px; margin-top:6px; overflow:hidden; }
+.progress-bar .fill { height:100%; background:var(--accent); transition:width .3s; width:0; }
+
+.pain-kw-section { margin-top:12px; }
+.pain-kw-toggle { font-size:12px; color:var(--accent2); cursor:pointer; border:none; background:none; padding:0; }
+.pain-kw-area { display:none; margin-top:6px; }
+
+/* Main */
+.main { flex:1; padding:24px; overflow-y:auto; }
+
+.run-selector { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.run-selector select { max-width:400px; }
+.run-selector .refresh-btn {
+  padding:6px 12px; border:1px solid var(--border); border-radius:6px;
+  background:var(--surface2); color:var(--text); cursor:pointer; font-size:12px;
+}
+
+.stats-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:12px; margin-bottom:20px; }
+.stat-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px;
+}
+.stat-card .value { font-size:28px; font-weight:700; color:var(--accent2); }
+.stat-card .label { font-size:12px; color:var(--text2); margin-top:4px; }
+
+.charts-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:20px; }
+.chart-box {
+  background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px;
+}
+.chart-box h3 { font-size:13px; color:var(--text2); margin-bottom:10px; }
+
+.tabs { display:flex; gap:0; margin-bottom:0; border-bottom:1px solid var(--border); }
+.tab {
+  padding:8px 16px; font-size:13px; color:var(--text2); cursor:pointer;
+  border-bottom:2px solid transparent; transition:.2s;
+}
+.tab:hover { color:var(--text); }
+.tab.active { color:var(--accent2); border-bottom-color:var(--accent); }
+
+.table-container {
+  background:var(--surface); border:1px solid var(--border); border-radius:0 0 10px 10px;
+  overflow-x:auto; margin-bottom:20px;
+}
+table { width:100%; border-collapse:collapse; font-size:12px; }
+th { background:var(--surface2); padding:8px 10px; text-align:left; color:var(--text2); font-weight:600; position:sticky; top:0; }
+td { padding:8px 10px; border-top:1px solid var(--border); max-width:300px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+tr:hover td { background:var(--surface2); }
+.pain-badge {
+  display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:600;
+}
+.pain-high { background:rgba(225,112,85,.2); color:var(--red); }
+.pain-mid { background:rgba(253,203,110,.2); color:var(--orange); }
+.pain-low { background:rgba(0,184,148,.2); color:var(--green); }
+.trust-badge { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:600; }
+.rank-A { background:rgba(108,92,231,.2); color:var(--accent2); }
+.rank-B { background:rgba(0,184,148,.2); color:var(--green); }
+.rank-C { background:rgba(253,203,110,.2); color:var(--orange); }
+.rank-D { background:rgba(225,112,85,.2); color:var(--red); }
+a { color:var(--blue); text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+.empty-state { text-align:center; padding:60px 20px; color:var(--text2); }
+.empty-state h2 { font-size:20px; margin-bottom:8px; color:var(--text); }
+
+/* Main tabs */
+.main-tabs { display:flex; gap:0; border-bottom:2px solid var(--border); margin-bottom:20px; }
+.main-tab {
+  padding:10px 20px; font-size:14px; font-weight:600; color:var(--text2); cursor:pointer;
+  border-bottom:2px solid transparent; margin-bottom:-2px; transition:.2s;
+}
+.main-tab:hover { color:var(--text); }
+.main-tab.active { color:var(--accent2); border-bottom-color:var(--accent); }
+.view-panel { display:none; }
+.view-panel.active { display:block; }
+
+/* Trends */
+.trends-toolbar { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+.trends-toolbar .refresh-btn { padding:8px 16px; border:1px solid var(--accent); border-radius:6px; background:transparent; color:var(--accent2); cursor:pointer; font-size:13px; }
+.trends-toolbar .refresh-btn:hover { background:var(--accent); color:#fff; }
+.trends-count { font-size:13px; color:var(--text2); }
+.trend-cards { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin-bottom:20px; }
+.trend-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px;
+  transition:.2s;
+}
+.trend-card:hover { border-color:var(--accent); }
+.trend-card .kw { font-size:15px; font-weight:600; margin-bottom:4px; }
+.trend-card .meta { font-size:11px; color:var(--text2); display:flex; gap:8px; flex-wrap:wrap; }
+.trend-card .vol { color:var(--accent2); font-weight:600; }
+.trend-card .growth { color:var(--green); }
+.trend-card .topic { color:var(--orange); font-size:11px; margin-top:4px; }
+.trend-card .related { font-size:11px; color:var(--text2); margin-top:4px; }
+.trends-filter { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+.trends-filter .filter-btn {
+  padding:4px 12px; border-radius:16px; border:1px solid var(--border);
+  background:var(--surface2); color:var(--text2); font-size:11px; cursor:pointer;
+}
+.trends-filter .filter-btn.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+
+/* Tweet detail slide panel */
+.tweet-overlay { position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:100; opacity:0; pointer-events:none; transition:opacity .25s; }
+.tweet-overlay.open { opacity:1; pointer-events:auto; }
+.tweet-panel {
+  position:fixed; top:0; right:-480px; width:480px; height:100vh; background:var(--surface);
+  border-left:1px solid var(--border); z-index:101; transition:right .3s ease;
+  display:flex; flex-direction:column; overflow:hidden;
+}
+.tweet-panel.open { right:0; }
+.tweet-panel-header {
+  display:flex; align-items:center; justify-content:space-between; padding:16px 20px;
+  border-bottom:1px solid var(--border); flex-shrink:0;
+}
+.tweet-panel-header h3 { font-size:15px; }
+.tweet-panel-close {
+  background:none; border:none; color:var(--text2); font-size:22px; cursor:pointer;
+  padding:4px 8px; border-radius:4px;
+}
+.tweet-panel-close:hover { background:var(--surface2); color:var(--text); }
+.tweet-panel-body { flex:1; overflow-y:auto; padding:20px; }
+.tweet-panel-body .tp-author { font-size:14px; font-weight:600; color:var(--accent2); margin-bottom:4px; }
+.tweet-panel-body .tp-time { font-size:12px; color:var(--text2); margin-bottom:12px; }
+.tweet-panel-body .tp-text { font-size:14px; line-height:1.7; white-space:pre-wrap; word-break:break-word; margin-bottom:16px; }
+.tweet-panel-body .tp-metrics { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.tweet-panel-body .tp-metric { text-align:center; }
+.tweet-panel-body .tp-metric .num { font-size:20px; font-weight:700; color:var(--accent2); }
+.tweet-panel-body .tp-metric .lbl { font-size:11px; color:var(--text2); }
+.tweet-panel-body .tp-meta { font-size:12px; color:var(--text2); margin-bottom:8px; }
+.tweet-panel-body .tp-link { display:inline-block; margin-top:8px; padding:8px 16px; background:var(--accent); color:#fff; border-radius:6px; font-size:13px; }
+.tweet-panel-body .tp-link:hover { background:var(--accent2); text-decoration:none; }
+tr.clickable { cursor:pointer; }
+
+@media (max-width:1200px) { .charts-row { grid-template-columns:1fr; } }
+@media (max-width:900px) { .sidebar { width:280px; } }
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <h1>X Market Intelligence</h1>
+  <div class="subtitle">任意キーワードでXをスクレイプ & 分析</div>
+
+  <label>実行名</label>
+  <input type="text" id="runName" placeholder="例: 医療AI調査 2月">
+
+  <label>プリセット</label>
+  <div class="preset-btns" id="presetBtns"></div>
+
+  <label>検索クエリ</label>
+  <div class="query-list" id="queryList"></div>
+  <button class="add-query-btn" onclick="addQuery()">+ クエリ追加</button>
+
+  <label>最大ツイート / クエリ</label>
+  <div class="slider-row">
+    <input type="range" id="maxTweets" min="5" max="30" value="10" oninput="document.getElementById('maxVal').textContent=this.value">
+    <span id="maxVal">10</span>
+  </div>
+
+  <div class="toggle-row">
+    <label class="toggle">
+      <input type="checkbox" id="runTrust">
+      <span class="slider"></span>
+    </label>
+    <span style="font-size:13px;">Trust分析 (時間がかかります)</span>
+  </div>
+
+  <div class="pain-kw-section">
+    <button class="pain-kw-toggle" onclick="togglePainKw()">Pain Keywords カスタマイズ ▼</button>
+    <div class="pain-kw-area" id="painKwArea">
+      <textarea id="painKwText" rows="6" placeholder='{"乗り換え": 5, "不満": 3, ...}'></textarea>
+      <div style="font-size:11px;color:var(--text2);margin-top:4px;">JSON形式。空欄でデフォルト使用。</div>
+    </div>
+  </div>
+
+  <button class="run-btn" id="runBtn" onclick="startScrape()">スクレイプ実行</button>
+
+  <div class="progress-box" id="progressBox">
+    <div id="progressText">準備中...</div>
+    <div class="progress-bar"><div class="fill" id="progressFill"></div></div>
+  </div>
+</div>
+
+<!-- Main -->
+<div class="main" id="mainArea">
+  <div class="main-tabs">
+    <div class="main-tab active" onclick="switchMainTab('x')">X Intelligence</div>
+    <div class="main-tab" onclick="switchMainTab('trends')">Google Trends</div>
+  </div>
+
+  <!-- X Intelligence Panel -->
+  <div class="view-panel active" id="panelX">
+    <div class="run-selector">
+      <select id="runSelect" onchange="loadRun(this.value)">
+        <option value="">-- 実行を選択 --</option>
+      </select>
+      <button class="refresh-btn" onclick="loadRuns()">更新</button>
+    </div>
+    <div id="content">
+      <div class="empty-state">
+        <h2>まだ結果がありません</h2>
+        <p>左のパネルからプリセットを選択、またはカスタムクエリを入力してスクレイプを実行してください。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Trends Panel -->
+  <div class="view-panel" id="panelTrends">
+    <div class="trends-toolbar">
+      <button class="refresh-btn" onclick="refreshTrends()">最新データ取得</button>
+      <span class="trends-count" id="trendsCount"></span>
+      <span class="trends-count" id="trendsFile"></span>
+    </div>
+    <div class="trends-filter" id="trendsFilter"></div>
+    <div class="trend-cards" id="trendsCards">
+      <div class="empty-state">
+        <h2>Google Trends</h2>
+        <p>「最新データ取得」をクリックするか、保存済みデータを読み込みます。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tweet detail slide panel -->
+<div class="tweet-overlay" id="tweetOverlay" onclick="closeTweetDetail()"></div>
+<div class="tweet-panel" id="tweetPanel">
+  <div class="tweet-panel-header">
+    <h3>Tweet Detail</h3>
+    <button class="tweet-panel-close" onclick="closeTweetDetail()">&times;</button>
+  </div>
+  <div class="tweet-panel-body" id="tweetPanelBody"></div>
+</div>
+
+<script>
+// ============================================================================
+// プリセット
+// ============================================================================
+const PRESETS = {
+  "医療": [
+    {label: "電子カルテ不満", query: "電子カルテ 使いにくい OR 不満 OR 困った"},
+    {label: "医療DX課題", query: "医療DX 課題 OR 進まない"},
+    {label: "ベンダーロック", query: "ベンダーロック 医療 OR 電子カルテ"},
+    {label: "競合メドレー", query: "メドレー 電子カルテ OR CLINICS"},
+    {label: "診療報酬AI", query: "診療報酬 AI OR 情報通信機器"},
+  ],
+  "SaaS": [
+    {label: "SaaS解約", query: "SaaS 解約 OR やめた OR 乗り換え"},
+    {label: "SaaS不満", query: "SaaS 使いにくい OR 不満 OR 高い"},
+    {label: "SaaS比較", query: "SaaS 比較 OR おすすめ"},
+  ],
+  "AI": [
+    {label: "AI導入課題", query: "AI 導入 課題 OR 失敗 OR 難しい"},
+    {label: "生成AI活用", query: "生成AI 活用 OR 導入事例"},
+    {label: "AI人材不足", query: "AI 人材 不足 OR 採用"},
+  ],
+};
+
+let queries = [];
+let activePreset = null;
+let pollTimer = null;
+
+// Charts
+let chartQuery = null, chartViews = null, chartPain = null;
+
+// ============================================================================
+// Init
+// ============================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  renderPresets();
+  loadRuns();
+  // Load default pain keywords hint
+  document.getElementById('painKwText').placeholder = JSON.stringify(
+    {"乗り換え":5,"不満":3,"困った":3,"使いにくい":3,"大変":2,"高い":2}, null, 2
+  );
+});
+
+function renderPresets() {
+  const el = document.getElementById('presetBtns');
+  el.innerHTML = '';
+  for (const name of Object.keys(PRESETS)) {
+    const btn = document.createElement('button');
+    btn.className = 'preset-btn';
+    btn.textContent = name;
+    btn.onclick = () => applyPreset(name);
+    el.appendChild(btn);
+  }
+}
+
+function applyPreset(name) {
+  activePreset = name;
+  queries = PRESETS[name].map(q => ({...q}));
+  renderQueries();
+  document.querySelectorAll('.preset-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent === name);
+  });
+  document.getElementById('runName').value = name + '調査 ' + new Date().toLocaleDateString('ja');
+}
+
+// ============================================================================
+// Query management
+// ============================================================================
+function renderQueries() {
+  const el = document.getElementById('queryList');
+  el.innerHTML = '';
+  queries.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'query-item';
+    div.innerHTML = `
+      <input type="text" value="${esc(q.label)}" placeholder="ラベル" onchange="queries[${i}].label=this.value">
+      <input type="text" value="${esc(q.query)}" placeholder="検索クエリ" onchange="queries[${i}].query=this.value" style="flex:2">
+      <button class="del-btn" onclick="removeQuery(${i})">&times;</button>
+    `;
+    el.appendChild(div);
+  });
+}
+
+function addQuery(label='', query='') {
+  queries.push({label, query});
+  renderQueries();
+}
+
+function removeQuery(i) {
+  queries.splice(i, 1);
+  renderQueries();
+}
+
+function esc(s) { return s.replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+
+function togglePainKw() {
+  const area = document.getElementById('painKwArea');
+  area.style.display = area.style.display === 'none' || !area.style.display ? 'block' : 'none';
+}
+
+// ============================================================================
+// Scrape
+// ============================================================================
+async function startScrape() {
+  if (queries.length === 0) { alert('クエリを追加してください'); return; }
+  const validQ = queries.filter(q => q.query.trim());
+  if (validQ.length === 0) { alert('有効なクエリがありません'); return; }
+
+  const body = {
+    name: document.getElementById('runName').value || 'Untitled',
+    queries: validQ,
+    max_tweets: parseInt(document.getElementById('maxTweets').value),
+    run_trust: document.getElementById('runTrust').checked,
+  };
+
+  // Pain keywords
+  const pkText = document.getElementById('painKwText').value.trim();
+  if (pkText) {
+    try { body.pain_keywords = JSON.parse(pkText); }
+    catch(e) { alert('Pain Keywords の JSON が不正です'); return; }
+  }
+
+  document.getElementById('runBtn').disabled = true;
+  document.getElementById('progressBox').style.display = 'block';
+  document.getElementById('progressText').textContent = '送信中...';
+
+  try {
+    const resp = await fetch('/api/scrape', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
+    const data = await resp.json();
+    if (!resp.ok) { alert(data.error || 'エラー'); document.getElementById('runBtn').disabled = false; return; }
+    pollProgress();
+  } catch(e) {
+    alert('通信エラー: ' + e);
+    document.getElementById('runBtn').disabled = false;
+  }
+}
+
+function pollProgress() {
+  if (pollTimer) clearInterval(pollTimer);
+  pollTimer = setInterval(async () => {
+    try {
+      const resp = await fetch('/api/scrape/status');
+      const s = await resp.json();
+      document.getElementById('progressText').textContent = s.progress || '...';
+      const pct = s.total_steps > 0 ? (s.step / s.total_steps * 100) : 0;
+      document.getElementById('progressFill').style.width = pct + '%';
+
+      if (!s.running) {
+        clearInterval(pollTimer);
+        pollTimer = null;
+        document.getElementById('runBtn').disabled = false;
+        if (s.error) {
+          document.getElementById('progressText').textContent = 'エラー: ' + s.error;
+        } else {
+          document.getElementById('progressText').textContent = '完了!';
+          setTimeout(() => { document.getElementById('progressBox').style.display = 'none'; }, 2000);
+          loadRuns(s.run_id);
+        }
+      }
+    } catch(e) {}
+  }, 1500);
+}
+
+// ============================================================================
+// Load runs
+// ============================================================================
+async function loadRuns(selectId) {
+  try {
+    const resp = await fetch('/api/runs');
+    const runs = await resp.json();
+    const sel = document.getElementById('runSelect');
+    const prev = sel.value;
+    sel.innerHTML = '<option value="">-- 実行を選択 --</option>';
+    runs.forEach(r => {
+      const opt = document.createElement('option');
+      opt.value = r.run_id;
+      const date = r.created_at ? new Date(r.created_at).toLocaleString('ja') : '';
+      opt.textContent = `${r.name} (${r.total_tweets}件) - ${date}`;
+      sel.appendChild(opt);
+    });
+    sel.value = selectId || prev || '';
+    if (sel.value) loadRun(sel.value);
+  } catch(e) {}
+}
+
+// ============================================================================
+// Load run data
+// ============================================================================
+let currentSummary = null;
+let currentTweets = [];
+let currentLeads = [];
+let currentInfluencers = [];
+
+async function loadRun(runId) {
+  if (!runId) return;
+  try {
+    const [sumResp, twResp, ldResp, infResp] = await Promise.all([
+      fetch(`/api/runs/${runId}/summary`),
+      fetch(`/api/runs/${runId}/tweets`),
+      fetch(`/api/runs/${runId}/leads`),
+      fetch(`/api/runs/${runId}/influencers`),
+    ]);
+    currentSummary = await sumResp.json();
+    currentTweets = await twResp.json();
+    currentLeads = await ldResp.json();
+    currentInfluencers = await infResp.json();
+    renderResults();
+  } catch(e) {
+    document.getElementById('content').innerHTML = '<div class="empty-state"><h2>読み込みエラー</h2></div>';
+  }
+}
+
+// ============================================================================
+// Render
+// ============================================================================
+function renderResults() {
+  const s = currentSummary;
+  if (!s) return;
+
+  const queryLabels = Object.keys(s.query_counts || {});
+
+  document.getElementById('content').innerHTML = `
+    <!-- Stats -->
+    <div class="stats-cards">
+      <div class="stat-card"><div class="value">${s.total_tweets}</div><div class="label">総ツイート</div></div>
+      <div class="stat-card"><div class="value">${s.unique_authors}</div><div class="label">ユニーク著者</div></div>
+      <div class="stat-card"><div class="value">${s.pain_leads_count}</div><div class="label">Pain Pointリード</div></div>
+      <div class="stat-card"><div class="value">${s.avg_views.toLocaleString()}</div><div class="label">平均views</div></div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-row">
+      <div class="chart-box"><h3>クエリ別件数</h3><canvas id="chartQuery"></canvas></div>
+      <div class="chart-box"><h3>Views分布</h3><canvas id="chartViews"></canvas></div>
+      <div class="chart-box"><h3>Pain Score分布</h3><canvas id="chartPain"></canvas></div>
+    </div>
+
+    <!-- Leads table -->
+    <h3 style="margin-bottom:8px;font-size:14px;">Pain Point リード (${currentLeads.length}件)</h3>
+    <div class="table-container" style="max-height:350px;overflow-y:auto;border-radius:10px;">
+      <table>
+        <thead><tr><th>Score</th><th>Author</th><th>Query</th><th>Tweet</th><th>Time</th><th>Views</th><th>Likes</th><th>Link</th></tr></thead>
+        <tbody id="leadsBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Influencers table -->
+    <h3 style="margin:16px 0 8px;font-size:14px;">インフルエンサー (${currentInfluencers.length}件)</h3>
+    <div class="table-container" style="max-height:300px;overflow-y:auto;border-radius:10px;">
+      <table>
+        <thead><tr><th>Trust</th><th>Rank</th><th>Handle</th><th>Name</th><th>Followers</th><th>Engagement</th><th>Bio</th></tr></thead>
+        <tbody id="infBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Tweets tabs -->
+    <h3 style="margin:16px 0 8px;font-size:14px;">全ツイート (${currentTweets.length}件)</h3>
+    <div class="tabs" id="tweetTabs"></div>
+    <div class="table-container" style="max-height:400px;overflow-y:auto;border-radius:0 0 10px 10px;">
+      <table>
+        <thead><tr><th>Author</th><th>Tweet</th><th>Pain</th><th>Views</th><th>Likes</th><th>RT</th><th>Time</th><th>Link</th></tr></thead>
+        <tbody id="tweetsBody"></tbody>
+      </table>
+    </div>
+  `;
+
+  renderCharts(s);
+  renderLeads();
+  renderInfluencers();
+  renderTweetTabs(queryLabels);
+  renderTweets('all');
+}
+
+// ============================================================================
+// Charts
+// ============================================================================
+function renderCharts(s) {
+  const colors = ['#6c5ce7','#00b894','#fdcb6e','#e17055','#74b9ff','#a29bfe','#55efc4','#fab1a0'];
+
+  // Query counts bar
+  if (chartQuery) chartQuery.destroy();
+  const qLabels = Object.keys(s.query_counts || {});
+  const qData = Object.values(s.query_counts || {});
+  chartQuery = new Chart(document.getElementById('chartQuery'), {
+    type: 'bar',
+    data: { labels: qLabels, datasets: [{ data: qData, backgroundColor: colors.slice(0, qLabels.length), borderRadius: 4 }] },
+    options: { responsive:true, plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true,ticks:{color:'#8b8fa8'}},x:{ticks:{color:'#8b8fa8',maxRotation:45}}} }
+  });
+
+  // Views distribution bar
+  if (chartViews) chartViews.destroy();
+  const vLabels = ["0","1-99","100-999","1K-9.9K","10K-99K","100K+"];
+  const vData = vLabels.map(l => (s.views_distribution || {})[l] || 0);
+  chartViews = new Chart(document.getElementById('chartViews'), {
+    type: 'bar',
+    data: { labels: vLabels, datasets: [{ data: vData, backgroundColor: '#74b9ff', borderRadius: 4 }] },
+    options: { responsive:true, plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true,ticks:{color:'#8b8fa8'}},x:{ticks:{color:'#8b8fa8'}}} }
+  });
+
+  // Pain distribution doughnut
+  if (chartPain) chartPain.destroy();
+  const pLabels = ["0","1-3","4-6","7-10","11+"];
+  const pData = pLabels.map(l => (s.pain_distribution || {})[l] || 0);
+  chartPain = new Chart(document.getElementById('chartPain'), {
+    type: 'doughnut',
+    data: { labels: pLabels, datasets: [{ data: pData, backgroundColor: ['#2e3348','#00b894','#fdcb6e','#e17055','#d63031'] }] },
+    options: { responsive:true, plugins:{legend:{position:'bottom',labels:{color:'#8b8fa8',font:{size:11}}}} }
+  });
+}
+
+// ============================================================================
+// Tables
+// ============================================================================
+function painBadge(score) {
+  if (score >= 7) return `<span class="pain-badge pain-high">${score}</span>`;
+  if (score >= 3) return `<span class="pain-badge pain-mid">${score}</span>`;
+  return `<span class="pain-badge pain-low">${score}</span>`;
+}
+
+function trustBadge(rank, score) {
+  const cls = rank === 'A' ? 'rank-A' : rank === 'B' ? 'rank-B' : rank === 'C' ? 'rank-C' : 'rank-D';
+  return `<span class="trust-badge ${cls}">${rank} (${score})</span>`;
+}
+
+function truncate(s, n) { return s && s.length > n ? s.substring(0, n) + '...' : (s || ''); }
+
+function formatTime(ts) {
+  if (!ts) return '';
+  try {
+    const d = new Date(ts);
+    return d.toLocaleString('ja', {month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+  } catch(e) { return ''; }
+}
+
+function openTweetDetail(t) {
+  const body = document.getElementById('tweetPanelBody');
+  body.innerHTML = `
+    <div class="tp-author">@${esc(t.author_handle)}${t.author_name ? ' / ' + esc(t.author_name) : ''}</div>
+    <div class="tp-time">${t.timestamp ? new Date(t.timestamp).toLocaleString('ja') : ''} ${t.query_label ? '| ' + esc(t.query_label) : ''}</div>
+    <div class="tp-text">${esc(t.tweet_text)}</div>
+    <div class="tp-metrics">
+      <div class="tp-metric"><div class="num">${(t.views||0).toLocaleString()}</div><div class="lbl">Views</div></div>
+      <div class="tp-metric"><div class="num">${(t.likes||0).toLocaleString()}</div><div class="lbl">Likes</div></div>
+      <div class="tp-metric"><div class="num">${(t.retweets||0).toLocaleString()}</div><div class="lbl">RT</div></div>
+      <div class="tp-metric"><div class="num">${(t.replies||0).toLocaleString()}</div><div class="lbl">Replies</div></div>
+      ${t.pain_score ? '<div class="tp-metric"><div class="num">' + t.pain_score + '</div><div class="lbl">Pain Score</div></div>' : ''}
+    </div>
+    ${t.tweet_url ? '<a class="tp-link" href="' + t.tweet_url + '" target="_blank">Xで開く</a>' : ''}
+  `;
+  document.getElementById('tweetOverlay').classList.add('open');
+  document.getElementById('tweetPanel').classList.add('open');
+}
+
+function closeTweetDetail() {
+  document.getElementById('tweetOverlay').classList.remove('open');
+  document.getElementById('tweetPanel').classList.remove('open');
+}
+
+// Close on Escape key
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeTweetDetail(); });
+
+function renderLeads() {
+  const tbody = document.getElementById('leadsBody');
+  tbody.innerHTML = currentLeads.map((t,i) => `<tr class="clickable" onclick="openTweetDetail(currentLeads[${i}])">
+    <td>${painBadge(t.pain_score)}</td>
+    <td>@${esc(t.author_handle)}</td>
+    <td>${esc(t.query_label)}</td>
+    <td title="${esc(t.tweet_text)}">${esc(truncate(t.tweet_text, 80))}</td>
+    <td>${formatTime(t.timestamp)}</td>
+    <td>${(t.views||0).toLocaleString()}</td>
+    <td>${(t.likes||0).toLocaleString()}</td>
+    <td>${t.tweet_url ? `<a href="${t.tweet_url}" target="_blank" onclick="event.stopPropagation()">開く</a>` : ''}</td>
+  </tr>`).join('');
+}
+
+function renderInfluencers() {
+  const tbody = document.getElementById('infBody');
+  tbody.innerHTML = currentInfluencers.map(t => `<tr>
+    <td>${trustBadge(t.trust_rank, t.trust_score)}</td>
+    <td>${t.trust_rank}</td>
+    <td>@${esc(t.handle)}</td>
+    <td>${esc(t.display_name || '')}</td>
+    <td>${(t.followers||0).toLocaleString()}</td>
+    <td>${t.engagement_rate}%</td>
+    <td title="${esc(t.bio || '')}">${esc(truncate(t.bio || '', 50))}</td>
+  </tr>`).join('');
+}
+
+function renderTweetTabs(labels) {
+  const tabs = document.getElementById('tweetTabs');
+  tabs.innerHTML = `<div class="tab active" onclick="selectTweetTab(this,'all')">All</div>`;
+  labels.forEach(l => {
+    tabs.innerHTML += `<div class="tab" onclick="selectTweetTab(this,'${esc(l)}')">${esc(l)}</div>`;
+  });
+}
+
+function selectTweetTab(el, label) {
+  document.querySelectorAll('#tweetTabs .tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderTweets(label);
+}
+
+let filteredTweets = [];
+function renderTweets(filterLabel) {
+  const tbody = document.getElementById('tweetsBody');
+  filteredTweets = currentTweets;
+  if (filterLabel !== 'all') filteredTweets = filteredTweets.filter(t => t.query_label === filterLabel);
+  tbody.innerHTML = filteredTweets.map((t,i) => `<tr class="clickable" onclick="openTweetDetail(filteredTweets[${i}])">
+    <td>@${esc(t.author_handle)}</td>
+    <td title="${esc(t.tweet_text)}">${esc(truncate(t.tweet_text, 80))}</td>
+    <td>${painBadge(t.pain_score || 0)}</td>
+    <td>${(t.views||0).toLocaleString()}</td>
+    <td>${(t.likes||0).toLocaleString()}</td>
+    <td>${(t.retweets||0).toLocaleString()}</td>
+    <td>${formatTime(t.timestamp)}</td>
+    <td>${t.tweet_url ? `<a href="${t.tweet_url}" target="_blank" onclick="event.stopPropagation()">開く</a>` : ''}</td>
+  </tr>`).join('');
+}
+
+// ============================================================================
+// Main tab switching
+// ============================================================================
+function switchMainTab(tab) {
+  document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+  if (tab === 'trends') {
+    document.querySelectorAll('.main-tab')[1].classList.add('active');
+    document.getElementById('panelTrends').classList.add('active');
+    if (!trendsData.length) loadTrendsLatest();
+  } else {
+    document.querySelectorAll('.main-tab')[0].classList.add('active');
+    document.getElementById('panelX').classList.add('active');
+  }
+}
+
+// ============================================================================
+// Google Trends
+// ============================================================================
+let trendsData = [];
+let trendsFilterTopic = 'all';
+
+async function loadTrendsLatest() {
+  try {
+    const resp = await fetch('/api/trends/latest');
+    if (!resp.ok) { renderTrendsEmpty('データなし'); return; }
+    const result = await resp.json();
+    trendsData = result.data || [];
+    document.getElementById('trendsCount').textContent = `${result.count || trendsData.length}件`;
+    document.getElementById('trendsFile').textContent = result.file || '';
+    renderTrendsFilter();
+    renderTrendsCards();
+  } catch(e) {
+    renderTrendsEmpty('読み込みエラー');
+  }
+}
+
+async function refreshTrends() {
+  const btn = document.querySelector('.trends-toolbar .refresh-btn');
+  btn.textContent = '取得中...';
+  btn.disabled = true;
+  try {
+    const resp = await fetch('/api/trends/refresh', {method:'POST'});
+    const result = await resp.json();
+    if (resp.ok) {
+      btn.textContent = '最新データ取得';
+      await loadTrendsLatest();
+    } else {
+      btn.textContent = 'エラー: ' + (result.error || '');
+      setTimeout(() => { btn.textContent = '最新データ取得'; }, 3000);
+    }
+  } catch(e) {
+    btn.textContent = '通信エラー';
+    setTimeout(() => { btn.textContent = '最新データ取得'; }, 3000);
+  }
+  btn.disabled = false;
+}
+
+function renderTrendsEmpty(msg) {
+  document.getElementById('trendsCards').innerHTML = `<div class="empty-state"><h2>${msg}</h2></div>`;
+}
+
+function renderTrendsFilter() {
+  const topics = new Set();
+  trendsData.forEach(d => {
+    (d.topic_names || '').split('; ').forEach(t => { if (t.trim()) topics.add(t.trim()); });
+  });
+  const sorted = [...topics].sort();
+  const el = document.getElementById('trendsFilter');
+  el.innerHTML = `<button class="filter-btn ${trendsFilterTopic==='all'?'active':''}" onclick="filterTrends('all')">All</button>`;
+  sorted.slice(0, 15).forEach(t => {
+    el.innerHTML += `<button class="filter-btn ${trendsFilterTopic===t?'active':''}" onclick="filterTrends('${esc(t)}')">${esc(t)}</button>`;
+  });
+}
+
+function filterTrends(topic) {
+  trendsFilterTopic = topic;
+  renderTrendsFilter();
+  renderTrendsCards();
+}
+
+function renderTrendsCards() {
+  let data = trendsData;
+  if (trendsFilterTopic !== 'all') {
+    data = data.filter(d => (d.topic_names || '').includes(trendsFilterTopic));
+  }
+  // Sort by volume desc
+  data.sort((a, b) => (parseInt(b.volume) || 0) - (parseInt(a.volume) || 0));
+
+  const el = document.getElementById('trendsCards');
+  if (!data.length) { renderTrendsEmpty('該当データなし'); return; }
+
+  el.innerHTML = data.slice(0, 100).map(d => {
+    const vol = parseInt(d.volume) || 0;
+    const growth = d.volume_growth_pct || d.growth || '';
+    const topics = d.topic_names || '';
+    const related = d.related_keywords || '';
+    const started = d.started_timestamp || '';
+    const timeAgo = started ? timeSince(started) : (d.time_ago || '');
+    return `<div class="trend-card">
+      <div class="kw">${esc(d.keyword)}</div>
+      <div class="meta">
+        <span class="vol">${vol >= 10000 ? (vol/10000).toFixed(0)+'万+' : vol.toLocaleString()+'+'}</span>
+        ${growth ? `<span class="growth">${growth}%</span>` : ''}
+        ${timeAgo ? `<span>${timeAgo}</span>` : ''}
+      </div>
+      ${topics ? `<div class="topic">${esc(topics)}</div>` : ''}
+      ${related ? `<div class="related">${esc(truncate(related, 80))}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function timeSince(ts) {
+  try {
+    const d = new Date(ts);
+    const now = new Date();
+    const hrs = Math.floor((now - d) / 3600000);
+    if (hrs < 1) return '1時間以内';
+    if (hrs < 24) return hrs + '時間前';
+    return Math.floor(hrs / 24) + '日前';
+  } catch(e) { return ''; }
+}
+</script>
+</body>
+</html>
