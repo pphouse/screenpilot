@@ -314,7 +314,7 @@ COPILOT_HTML = r"""
 
       <div id="pauseReason" class="pause-reason"></div>
 
-      <h2>TASKS</h2>
+      <h2>X TASKS</h2>
       <div class="task-grid">
         <button class="btn btn-task" onclick="runTask('x_reply_viral')">💬 バズリプ</button>
         <button class="btn btn-task" onclick="runTask('x_tweet')">📝 ツイート</button>
@@ -324,6 +324,16 @@ COPILOT_HTML = r"""
         <button class="btn btn-task" onclick="runTask('x_patrol')">🛡️ パトロール</button>
         <button class="btn btn-task" onclick="runTask('x_quote_viral')">🔄 引用RT</button>
         <button class="btn btn-task" onclick="runTask('room_like')">🏠 ROOM</button>
+      </div>
+
+      <h2>THREADS TASKS</h2>
+      <div class="task-grid">
+        <button class="btn btn-task" style="border-color:#a371f7" onclick="runTask('threads_reply')">💬 Tリプ</button>
+        <button class="btn btn-task" style="border-color:#a371f7" onclick="runTask('threads_post')">📝 T投稿</button>
+        <button class="btn btn-task" style="border-color:#a371f7" onclick="runTask('threads_like')">❤️ Tいいね</button>
+        <button class="btn btn-task" style="border-color:#a371f7" onclick="runTask('threads_follow')">👤 Tフォロー</button>
+        <button class="btn btn-task" style="border-color:#a371f7" onclick="runTask('threads_search_engage')">🔍 T検索</button>
+        <button class="btn btn-task" style="border-color:#a371f7" onclick="runTask('threads_repost')">🔄 Tリポスト</button>
       </div>
     </div>
 
@@ -660,6 +670,13 @@ def api_run_task():
         "x_quote_viral": 1,
         "room_like": 5,
         "room_collect": 1,
+        # Threads
+        "threads_reply": 2,
+        "threads_post": 1,
+        "threads_like": 5,
+        "threads_follow": 3,
+        "threads_search_engage": 2,
+        "threads_repost": 1,
     }
     count = count_map.get(task, 1)
 

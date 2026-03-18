@@ -40,13 +40,20 @@ LAST_RUN_FILE = Path(__file__).parent / "lisa_growth_last_run.json"
 # スケジュール設定 (分)
 # リプに全振り。引用RTとオリジナルツイートは控えめ
 SCHEDULE = {
-    "x_reply_viral":  {"interval_min": 90,  "jitter_min": 30},
-    "x_like":         {"interval_min": 120, "jitter_min": 30},
-    "x_follow":       {"interval_min": 240, "jitter_min": 60},
-    "x_tweet":        {"interval_min": 360, "jitter_min": 60},
-    "x_quote_viral":  {"interval_min": 360, "jitter_min": 60},
-    "room_like":      {"interval_min": 180, "jitter_min": 30},
-    "room_collect":   {"interval_min": 480, "jitter_min": 60},
+    "x_reply_viral":         {"interval_min": 90,  "jitter_min": 30},
+    "x_like":                {"interval_min": 120, "jitter_min": 30},
+    "x_follow":              {"interval_min": 240, "jitter_min": 60},
+    "x_tweet":               {"interval_min": 360, "jitter_min": 60},
+    "x_quote_viral":         {"interval_min": 360, "jitter_min": 60},
+    "room_like":             {"interval_min": 180, "jitter_min": 30},
+    "room_collect":          {"interval_min": 480, "jitter_min": 60},
+    # Threads — リプライ最優先
+    "threads_reply":         {"interval_min": 60,  "jitter_min": 20},
+    "threads_like":          {"interval_min": 90,  "jitter_min": 30},
+    "threads_search_engage": {"interval_min": 120, "jitter_min": 30},
+    "threads_post":          {"interval_min": 360, "jitter_min": 60},
+    "threads_follow":        {"interval_min": 360, "jitter_min": 60},
+    "threads_repost":        {"interval_min": 480, "jitter_min": 60},
 }
 
 CHECK_INTERVAL = 300  # 5分ごとにチェック
@@ -252,7 +259,10 @@ def show_status():
     print("本日の実行回数:")
     for task, limit in [("x_reply_viral", 8), ("x_quote_viral", 2),
                          ("x_tweet", 3), ("x_like", 20), ("x_follow", 5),
-                         ("room_like", 20), ("room_collect", 2)]:
+                         ("room_like", 20), ("room_collect", 2),
+                         ("threads_reply", 10), ("threads_like", 20),
+                         ("threads_search_engage", 8), ("threads_post", 3),
+                         ("threads_follow", 5), ("threads_repost", 2)]:
         count = state.get("daily_counts", {}).get(task, 0)
         print(f"  {task:15s}: {count}/{limit}")
 

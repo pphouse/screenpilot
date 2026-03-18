@@ -62,6 +62,13 @@ DAILY_LIMITS = {
     "x_quote_viral": 2,
     "room_like": 20,
     "room_collect": 2,
+    # Threads
+    "threads_post": 3,
+    "threads_reply": 10,
+    "threads_like": 20,
+    "threads_follow": 5,
+    "threads_search_engage": 8,
+    "threads_repost": 2,
 }
 
 # 活動時間 (JST)
@@ -1639,7 +1646,15 @@ TASK_FUNCTIONS = {
     "room_collect": task_room_collect,
 }
 
+# Threads タスクを追加 (lisa_threads_bot.py から)
+try:
+    from lisa_threads_bot import THREADS_TASK_FUNCTIONS as _threads_fns
+    TASK_FUNCTIONS.update(_threads_fns)
+except ImportError:
+    pass
+
 X_TASKS = {"x_tweet", "x_like", "x_follow", "x_reply_viral", "x_reply_lonely", "x_patrol", "x_quote_viral"}
+THREADS_TASKS = {"threads_post", "threads_reply", "threads_like", "threads_follow", "threads_search_engage", "threads_repost"}
 
 
 def run_task(task_name: str, dry_run=False, count=None) -> bool:
@@ -1679,6 +1694,16 @@ def run_task(task_name: str, dry_run=False, count=None) -> bool:
 
     # Copilot一時停止チェック
     check_copilot_pause()
+
+    # Threads系タスクは lisa_threads_bot.run_task に委譲
+    if task_name in THREADS_TASKS:
+        try:
+            from lisa_threads_bot import run_task as threads_run_task
+            logger.info(f"タスク開始: {task_name} (Threads)")
+            return threads_run_task(task_name, dry_run=dry_run, count=count)
+        except ImportError:
+            logger.error("lisa_threads_bot が見つかりません")
+            return False
 
     # X系タスクはログイン必要 (dry_runでも検索は実行するのでログイン必須)
     if task_name in X_TASKS:
