@@ -21,3 +21,6 @@ screenshot*.png
 *.pyc
 htmlcov/
 .coverage
+
+# Local X intel scrape outputs (third-party scraped data, kept local only)
+recordings/x_intel_runs/
