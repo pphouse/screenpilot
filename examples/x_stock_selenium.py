@@ -41,8 +41,8 @@ from x_stock_config import AI_STOCKS, CSV_COLUMNS, classify_sentiment
 OUTPUT_DIR = Path("recordings/x_stock_data")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-AUTH_TOKEN = "9d093cbffdc2ffcf8652c9b7bd34f4862b0351fb"
-CT0 = "9146228da1e4fb4e13a55406c15a8e3ef3c69ec9b1f7b301e24a65e5e0db654ab5e4c2c073e3f8a3e50ec61f3e87aa9b43a8fdfef57f9ad0fb8fd3c5a2f3e8c0fa60ad618c41553c3a775ff02b4af08b80d5e0fdd28b2d29d7a6ba02f8e4db3e28cc9c7e"
+AUTH_TOKEN = os.environ.get("X_AUTH_TOKEN", "")
+CT0 = os.environ.get("X_CT0", "")
 
 MAX_TWEETS_PER_QUERY = 20
 SCROLL_PAUSE_MIN = 2.0

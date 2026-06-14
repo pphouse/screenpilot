@@ -46,13 +46,8 @@ from x_trust_lib import TrustScorer
 # 定数
 # ============================================================================
 
-AUTH_TOKEN = "9d093cbffdc2ffcf8652c9b7bd34f4862b0351fb"
-CT0 = (
-    "9146228da1e4fb4e13a55406c15a8e3ef3c69ec9b1f7b301e24a65e5e0db654a"
-    "b5e4c2c073e3f8a3e50ec61f3e87aa9b43a8fdfef57f9ad0fb8fd3c5a2f3e8c0"
-    "fa60ad618c41553c3a775ff02b4af08b80d5e0fdd28b2d29d7a6ba02f8e4db3e2"
-    "8cc9c7e"
-)
+AUTH_TOKEN = os.environ.get("X_AUTH_TOKEN", "")
+CT0 = os.environ.get("X_CT0", "")
 
 OUTPUT_DIR = Path("recordings/x_medical_intel")
 
