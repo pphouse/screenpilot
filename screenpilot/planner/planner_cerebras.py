@@ -106,9 +106,11 @@ Analyze the OCR text and elements, then determine the NEXT SINGLE ACTION. Respon
 # Chandra/Datalab OCR client
 # =============================================================================
 
+
 @dataclass
 class ChandraOCRResult:
     """Result from Chandra OCR."""
+
     text: str
     raw_json: dict
     cost_cents: float
@@ -205,9 +207,11 @@ class ChandraOCR:
 # Local pytesseract OCR for element coordinates
 # =============================================================================
 
+
 @dataclass
 class ScreenElement:
     """A text element on screen with its coordinates."""
+
     index: int
     text: str
     x: int  # center x
@@ -248,26 +252,30 @@ def pytesseract_elements(image) -> list[ScreenElement]:
         word_y = data["top"][i]
         # Same line if y-coordinate is close
         if current_line and abs(word_y - current_line_y) < 10:
-            current_line.append({
-                "text": text,
-                "left": data["left"][i],
-                "top": data["top"][i],
-                "width": data["width"][i],
-                "height": data["height"][i],
-                "conf": conf,
-            })
+            current_line.append(
+                {
+                    "text": text,
+                    "left": data["left"][i],
+                    "top": data["top"][i],
+                    "width": data["width"][i],
+                    "height": data["height"][i],
+                    "conf": conf,
+                }
+            )
         else:
             if current_line:
                 elements.append(_merge_words(current_line, idx))
                 idx += 1
-            current_line = [{
-                "text": text,
-                "left": data["left"][i],
-                "top": data["top"][i],
-                "width": data["width"][i],
-                "height": data["height"][i],
-                "conf": conf,
-            }]
+            current_line = [
+                {
+                    "text": text,
+                    "left": data["left"][i],
+                    "top": data["top"][i],
+                    "width": data["width"][i],
+                    "height": data["height"][i],
+                    "conf": conf,
+                }
+            ]
             current_line_y = word_y
 
     if current_line:
@@ -302,7 +310,7 @@ def format_elements(elements: list[ScreenElement], max_elements: int = 60) -> st
 
     lines = []
     for e in elements[:max_elements]:
-        lines.append(f"[{e.index}] \"{e.text}\" at ({e.x}, {e.y})")
+        lines.append(f'[{e.index}] "{e.text}" at ({e.x}, {e.y})')
 
     if len(elements) > max_elements:
         lines.append(f"... and {len(elements) - max_elements} more elements")
@@ -313,6 +321,7 @@ def format_elements(elements: list[ScreenElement], max_elements: int = 60) -> st
 # =============================================================================
 # Cerebras Planner
 # =============================================================================
+
 
 class CerebrasPlanner:
     """Task planner using Cerebras GPT-OSS-120B + Chandra OCR.
@@ -345,7 +354,9 @@ class CerebrasPlanner:
         if backend == "azure":
             self.azure_endpoint = azure_endpoint or os.environ.get("AZURE_OPENAI_ENDPOINT", "")
             self.azure_api_key = azure_api_key or os.environ.get("AZURE_OPENAI_API_KEY", "")
-            self.azure_deployment = azure_deployment or os.environ.get("AZURE_OPENAI_DEPLOYMENT", "")
+            self.azure_deployment = azure_deployment or os.environ.get(
+                "AZURE_OPENAI_DEPLOYMENT", ""
+            )
             self.azure_api_version = azure_api_version
             self.cerebras_api_keys = []
         else:
@@ -382,19 +393,24 @@ class CerebrasPlanner:
     def _get_llm_client(self):
         """Get LLM client (Cerebras or Azure OpenAI)."""
         import openai
+
         if not self._llm_clients:
             if self.backend == "azure":
-                self._llm_clients.append(openai.AzureOpenAI(
-                    azure_endpoint=self.azure_endpoint,
-                    api_key=self.azure_api_key,
-                    api_version=self.azure_api_version,
-                ))
+                self._llm_clients.append(
+                    openai.AzureOpenAI(
+                        azure_endpoint=self.azure_endpoint,
+                        api_key=self.azure_api_key,
+                        api_version=self.azure_api_version,
+                    )
+                )
             else:
                 for key in self.cerebras_api_keys:
-                    self._llm_clients.append(openai.OpenAI(
-                        base_url="https://api.cerebras.ai/v1",
-                        api_key=key,
-                    ))
+                    self._llm_clients.append(
+                        openai.OpenAI(
+                            base_url="https://api.cerebras.ai/v1",
+                            api_key=key,
+                        )
+                    )
         if not self._llm_clients:
             raise RuntimeError("No API keys configured")
         client = self._llm_clients[self._key_index % len(self._llm_clients)]
@@ -427,7 +443,9 @@ class CerebrasPlanner:
                 self.total_ocr_time += result.runtime_seconds
                 logger.debug(
                     "Chandra OCR: %.1fs, %d cents, %d chars",
-                    result.runtime_seconds, result.cost_cents, len(chandra_text),
+                    result.runtime_seconds,
+                    result.cost_cents,
+                    len(chandra_text),
                 )
             except Exception as e:
                 logger.warning("Chandra OCR failed, using pytesseract only: %s", e)
@@ -438,7 +456,9 @@ class CerebrasPlanner:
 
         logger.debug(
             "OCR: pytesseract %.2fs (%d elements), chandra text %d chars",
-            tess_time, len(elements), len(chandra_text),
+            tess_time,
+            len(elements),
+            len(chandra_text),
         )
 
         return chandra_text, elements
@@ -511,7 +531,9 @@ class CerebrasPlanner:
                     delay = min(5 + retry * 5 + retry * retry, 60)
                     logger.warning(
                         "Rate limited (key #%d), retry %d/8, waiting %ds...",
-                        key_num, retry + 1, delay,
+                        key_num,
+                        retry + 1,
+                        delay,
                     )
                     print(f"    Rate limited (key #{key_num}), waiting {delay}s...")
                     self._rotate_key()
@@ -587,7 +609,9 @@ class CerebrasPlanner:
         action_types = [h.get("action_type") for h in recent]
         if len(action_types) >= 3 and len(set(action_types)) == 1:
             if action_types[0] in ("click",):
-                return "\n⚠️ WARNING: Repeated same action 3 times. Try keyboard shortcuts or scroll.\n"
+                return (
+                    "\n⚠️ WARNING: Repeated same action 3 times. Try keyboard shortcuts or scroll.\n"
+                )
 
         return ""
 
@@ -607,7 +631,7 @@ class CerebrasPlanner:
 
         # Sometimes the model outputs extra text before/after JSON
         # Try to find the JSON object
-        match = re.search(r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}', cleaned)
+        match = re.search(r"\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}", cleaned)
         if match:
             cleaned = match.group()
 
@@ -637,9 +661,7 @@ class CerebrasPlanner:
             observation=data.get("observation", ""),
         )
 
-    def get_next_action(
-        self, goal: str, screenshot: Screenshot, max_steps: int = 50
-    ) -> Action:
+    def get_next_action(self, goal: str, screenshot: Screenshot, max_steps: int = 50) -> Action:
         """Determine the next action given current screen state.
 
         Same interface as TaskPlanner.get_next_action().
@@ -679,7 +701,8 @@ class CerebrasPlanner:
                 last_error = e
                 logger.warning(
                     "Parse attempt %d failed: %s. Retrying.",
-                    attempt + 1, e,
+                    attempt + 1,
+                    e,
                 )
                 # Remove failed messages
                 if self._messages and self._messages[-1]["role"] == "assistant":

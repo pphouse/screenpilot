@@ -13,7 +13,9 @@ from typing import Literal
 class LLMConfig:
     """LLM provider configuration."""
 
-    provider: Literal["anthropic", "openai", "azure", "gemini", "claude_code", "litellm"] = "anthropic"
+    provider: Literal["anthropic", "openai", "azure", "gemini", "claude_code", "litellm"] = (
+        "anthropic"
+    )
     model: str = "claude-sonnet-4-5-20250929"
     api_key: str | None = None
     base_url: str | None = None

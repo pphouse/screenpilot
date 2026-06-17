@@ -190,17 +190,18 @@ class TaskPlanner:
         # For non-Anthropic providers, strip find_and_* from system prompt
         # (they require Anthropic ScreenAnalyzer for coordinate resolution)
         if self.config.provider != "anthropic":
-            self._system_prompt = PLANNER_SYSTEM_PROMPT.replace(
-                "Vision: find_and_click (describe element to locate), find_and_type (find element and type into it)\n", ""
-            ).replace(
-                "find_and_click|find_and_type|", ""
-            ).replace(
-                '   - Try find_and_click with a text description of the element\n', ""
-            ).replace(
-                "When unsure, prefer find_and_click over guessing coordinates.",
-                "Look carefully at element positions in the screenshot."
-            ).replace(
-                "- Use find_and_click with a text description\n", ""
+            self._system_prompt = (
+                PLANNER_SYSTEM_PROMPT.replace(
+                    "Vision: find_and_click (describe element to locate), find_and_type (find element and type into it)\n",
+                    "",
+                )
+                .replace("find_and_click|find_and_type|", "")
+                .replace("   - Try find_and_click with a text description of the element\n", "")
+                .replace(
+                    "When unsure, prefer find_and_click over guessing coordinates.",
+                    "Look carefully at element positions in the screenshot.",
+                )
+                .replace("- Use find_and_click with a text description\n", "")
             )
         else:
             self._system_prompt = PLANNER_SYSTEM_PROMPT
@@ -208,6 +209,7 @@ class TaskPlanner:
         # Claude Code subprocess: temp dir for screenshots
         if self.config.provider == "claude_code":
             import tempfile
+
             self._cc_tmpdir = tempfile.mkdtemp(prefix="screenpilot_cc_")
             self._cc_model = self.config.model or "sonnet"
 
@@ -283,9 +285,7 @@ class TaskPlanner:
 
         if self.config.provider == "anthropic":
             # Build message list: old messages + current
-            messages = list(self._messages) + [
-                {"role": "user", "content": user_content}
-            ]
+            messages = list(self._messages) + [{"role": "user", "content": user_content}]
 
             response = client.messages.create(
                 model=self.config.model,
@@ -303,9 +303,7 @@ class TaskPlanner:
 
             # Save to conversation history
             self._messages.append({"role": "user", "content": user_content})
-            self._messages.append(
-                {"role": "assistant", "content": response_text}
-            )
+            self._messages.append({"role": "assistant", "content": response_text})
 
             # Sliding window: keep conversation manageable
             self._trim_messages()
@@ -355,9 +353,7 @@ class TaskPlanner:
                 self.total_output_tokens += getattr(response.usage, "completion_tokens", 0) or 0
 
             self._messages.append({"role": "user", "content": user_content_oai})
-            self._messages.append(
-                {"role": "assistant", "content": response_text}
-            )
+            self._messages.append({"role": "assistant", "content": response_text})
             self._trim_messages()
 
             return response_text
@@ -374,13 +370,15 @@ class TaskPlanner:
                 contents.append(types.Content(role=role, parts=[types.Part.from_text(text=text)]))
 
             # Add current screenshot + text
-            contents.append(types.Content(
-                role="user",
-                parts=[
-                    types.Part.from_image(image=screenshot.image),
-                    types.Part.from_text(text=user_text),
-                ],
-            ))
+            contents.append(
+                types.Content(
+                    role="user",
+                    parts=[
+                        types.Part.from_image(image=screenshot.image),
+                        types.Part.from_text(text=user_text),
+                    ],
+                )
+            )
 
             response = client.models.generate_content(
                 model=self.config.model,
@@ -395,13 +393,15 @@ class TaskPlanner:
 
             # Track tokens
             if hasattr(response, "usage_metadata") and response.usage_metadata:
-                self.total_input_tokens += getattr(response.usage_metadata, "prompt_token_count", 0) or 0
-                self.total_output_tokens += getattr(response.usage_metadata, "candidates_token_count", 0) or 0
+                self.total_input_tokens += (
+                    getattr(response.usage_metadata, "prompt_token_count", 0) or 0
+                )
+                self.total_output_tokens += (
+                    getattr(response.usage_metadata, "candidates_token_count", 0) or 0
+                )
 
             self._messages.append({"role": "user", "content": user_text})
-            self._messages.append(
-                {"role": "assistant", "content": response_text}
-            )
+            self._messages.append({"role": "assistant", "content": response_text})
             self._trim_messages()
 
             return response_text
@@ -433,9 +433,7 @@ class TaskPlanner:
             response_text = response.choices[0].message.content
 
             self._messages.append({"role": "user", "content": user_content_oai})
-            self._messages.append(
-                {"role": "assistant", "content": response_text}
-            )
+            self._messages.append({"role": "assistant", "content": response_text})
             self._trim_messages()
 
             return response_text
@@ -466,22 +464,36 @@ class TaskPlanner:
 
         if is_first_call:
             import uuid
+
             self._cc_session_id = str(uuid.uuid4())
             cmd = [
-                "claude", "-p", prompt,
-                "--session-id", self._cc_session_id,
-                "--system-prompt", self._system_prompt,
-                "--allowedTools", "Read",
-                "--model", self._cc_model,
-                "--output-format", "text",
+                "claude",
+                "-p",
+                prompt,
+                "--session-id",
+                self._cc_session_id,
+                "--system-prompt",
+                self._system_prompt,
+                "--allowedTools",
+                "Read",
+                "--model",
+                self._cc_model,
+                "--output-format",
+                "text",
             ]
         else:
             cmd = [
-                "claude", "-p", prompt,
-                "--resume", self._cc_session_id,
-                "--allowedTools", "Read",
-                "--model", self._cc_model,
-                "--output-format", "text",
+                "claude",
+                "-p",
+                prompt,
+                "--resume",
+                self._cc_session_id,
+                "--allowedTools",
+                "Read",
+                "--model",
+                self._cc_model,
+                "--output-format",
+                "text",
             ]
 
         try:
@@ -502,6 +514,7 @@ class TaskPlanner:
                     proc.wait(timeout=120)
                 except subprocess.TimeoutExpired:
                     import signal
+
                     os.killpg(os.getpgid(proc.pid), signal.SIGTERM)
                     try:
                         proc.wait(timeout=5)
@@ -517,7 +530,9 @@ class TaskPlanner:
                     response_text = f.read().strip()
                 logger.error("claude -p error (step %d): %s", self._step_num, response_text)
                 # If resume fails, fall back to fresh session
-                if not is_first_call and ("session" in response_text.lower() or "error" in response_text.lower()):
+                if not is_first_call and (
+                    "session" in response_text.lower() or "error" in response_text.lower()
+                ):
                     logger.warning("Session resume failed, falling back to fresh session")
                     self._cc_session_id = None
                     return self._call_claude_code(screenshot, user_text)
@@ -526,7 +541,11 @@ class TaskPlanner:
             response_text = '{"action_type": "wait", "observation": "timeout", "thought": "Claude Code subprocess timed out"}'
         except Exception as e:
             logger.error("claude -p exception at step %d: %s", self._step_num, e)
-            response_text = '{"action_type": "wait", "observation": "error", "thought": "Claude Code subprocess error: ' + str(e).replace('"', "'") + '"}'
+            response_text = (
+                '{"action_type": "wait", "observation": "error", "thought": "Claude Code subprocess error: '
+                + str(e).replace('"', "'")
+                + '"}'
+            )
 
         # Rough token estimation
         self.total_input_tokens += 2000 + len(prompt) // 4
@@ -559,11 +578,17 @@ class TaskPlanner:
                 for block in msg["content"]:
                     if isinstance(block, dict) and block.get("type") == "image":
                         new_content.append(
-                            {"type": "text", "text": "[Previous screenshot — see action history for details]"}
+                            {
+                                "type": "text",
+                                "text": "[Previous screenshot — see action history for details]",
+                            }
                         )
                     elif isinstance(block, dict) and block.get("type") == "image_url":
                         new_content.append(
-                            {"type": "text", "text": "[Previous screenshot — see action history for details]"}
+                            {
+                                "type": "text",
+                                "text": "[Previous screenshot — see action history for details]",
+                            }
                         )
                     else:
                         new_content.append(block)
@@ -587,16 +612,30 @@ class TaskPlanner:
         # Normalize common action_type aliases
         action_type_raw = data["action_type"].lower().strip()
         action_aliases = {
-            "success": "done", "complete": "done", "finished": "done",
-            "failure": "fail", "error": "fail",
-            "press": "key", "keypress": "key", "keyboard": "key",
-            "enter": "key", "hotkey": "key",
-            "left_click": "click", "single_click": "click",
-            "find_and_click": "click", "find_and_type": "type",
-            "none": "wait", "observe": "wait", "noop": "wait",
-            "bash_command": "fail", "command": "fail", "execute": "fail",
-            "navigate": "click", "open_url": "key",
-            "triple_click": "click", "select_all": "key",
+            "success": "done",
+            "complete": "done",
+            "finished": "done",
+            "failure": "fail",
+            "error": "fail",
+            "press": "key",
+            "keypress": "key",
+            "keyboard": "key",
+            "enter": "key",
+            "hotkey": "key",
+            "left_click": "click",
+            "single_click": "click",
+            "find_and_click": "click",
+            "find_and_type": "type",
+            "none": "wait",
+            "observe": "wait",
+            "noop": "wait",
+            "bash_command": "fail",
+            "command": "fail",
+            "execute": "fail",
+            "navigate": "click",
+            "open_url": "key",
+            "triple_click": "click",
+            "select_all": "key",
         }
         action_type_str = action_aliases.get(action_type_raw, action_type_raw)
 
@@ -691,9 +730,7 @@ class TaskPlanner:
 
         return "\n".join(lines)
 
-    def get_next_action(
-        self, goal: str, screenshot: Screenshot, max_steps: int = 50
-    ) -> Action:
+    def get_next_action(self, goal: str, screenshot: Screenshot, max_steps: int = 50) -> Action:
         """Determine the next action given current screen state.
 
         v2: Uses multi-turn conversation so LLM can compare current
@@ -717,7 +754,7 @@ class TaskPlanner:
         if self._step_num >= max_steps - 2:
             completion_nudge = (
                 "\n⚠️ APPROACHING STEP LIMIT. If the task goal appears achieved "
-                "(even partially), return action_type \"done\" NOW. "
+                '(even partially), return action_type "done" NOW. '
                 "Do NOT continue exploring — declare completion or failure.\n"
             )
 
@@ -739,9 +776,7 @@ class TaskPlanner:
             else:
                 temp = None if attempt == 0 else min(0.5 + attempt * 0.3, 1.0)
             try:
-                response = self._call_llm_multiturn(
-                    llm_screenshot, user_prompt, temperature=temp
-                )
+                response = self._call_llm_multiturn(llm_screenshot, user_prompt, temperature=temp)
                 logger.debug("Planner response (attempt %d): %s", attempt + 1, response)
                 action = self._parse_action(response)
                 break
@@ -749,7 +784,8 @@ class TaskPlanner:
                 last_error = e
                 logger.warning(
                     "Parse attempt %d failed: %s. Retrying with higher temperature.",
-                    attempt + 1, e,
+                    attempt + 1,
+                    e,
                 )
                 # Remove the failed assistant message from history
                 if self._messages and self._messages[-1]["role"] == "assistant":
@@ -780,11 +816,11 @@ class TaskPlanner:
         """Estimate API cost in USD based on token usage."""
         # Pricing per provider (per 1M tokens)
         pricing = {
-            "anthropic": (3.0, 15.0),    # Claude Sonnet 4.5
-            "azure": (2.0, 10.0),         # GPT-5 (estimate)
-            "gemini": (1.25, 10.0),       # Gemini 2.5 Pro
-            "openai": (2.5, 10.0),        # GPT-4o
-            "claude_code": (0.0, 0.0),   # Subscription-based, no per-token cost
+            "anthropic": (3.0, 15.0),  # Claude Sonnet 4.5
+            "azure": (2.0, 10.0),  # GPT-5 (estimate)
+            "gemini": (1.25, 10.0),  # Gemini 2.5 Pro
+            "openai": (2.5, 10.0),  # GPT-4o
+            "claude_code": (0.0, 0.0),  # Subscription-based, no per-token cost
         }
         inp_price, out_price = pricing.get(self.config.provider, (3.0, 15.0))
         input_cost = self.total_input_tokens * inp_price / 1_000_000
@@ -876,6 +912,7 @@ Return JSON:
                 response_text = resp.choices[0].message.content
             else:
                 import litellm
+
                 resp = litellm.completion(
                     model=self.config.model,
                     max_tokens=self.config.max_tokens,
