@@ -365,7 +365,6 @@ class TaskPlanner:
         elif self.config.provider == "gemini":
             # Google Gemini format
             from google.genai import types
-            import PIL.Image
 
             contents = []
             # Add conversation history as text
@@ -489,7 +488,6 @@ class TaskPlanner:
             # Use temp files for stdout/stderr to avoid pipe inheritance hang.
             # When `claude` spawns background processes that inherit pipe FDs,
             # subprocess.run with capture_output=True blocks forever.
-            import tempfile
             stdout_file = os.path.join(self._cc_tmpdir, f"stdout_{self._step_num:03d}.txt")
             stderr_file = os.path.join(self._cc_tmpdir, f"stderr_{self._step_num:03d}.txt")
             with open(stdout_file, "w") as fout, open(stderr_file, "w") as ferr:
