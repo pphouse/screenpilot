@@ -24,3 +24,4 @@ htmlcov/
 
 # Local X intel scrape outputs (third-party scraped data, kept local only)
 recordings/x_intel_runs/
+recordings/x_creator_analysis/
