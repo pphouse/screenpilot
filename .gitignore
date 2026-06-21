@@ -25,3 +25,6 @@ htmlcov/
 # Local X intel scrape outputs (third-party scraped data, kept local only)
 recordings/x_intel_runs/
 recordings/x_creator_analysis/
+# Confidential business strategy / research (kept local only)
+recordings/tokyofans_market_research.md
+recordings/tokyofans_competitor_implementation.md
