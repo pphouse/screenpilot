@@ -1,0 +1,3 @@
+[submodule "foreign_trend_reaserch"]
+	path = foreign_trend_reaserch
+	url = https://github.com/pphouse/foreign_trend_reaserch
