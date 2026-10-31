@@ -231,6 +231,17 @@ h1 .z { color: var(--accent); }
 .post .foot a { color: var(--accent); margin-left: auto; text-decoration: none; font-weight: 500; }
 .note { font-size: 12px; color: var(--ink-2); margin: 0; }
 
+.linkish { border: 0; background: none; padding: 0; text-align: left; cursor: pointer; color: var(--ink); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; font-size: inherit; }
+.linkish:hover { text-decoration-color: var(--accent); }
+.trail { border-top: 1px solid var(--line); padding-top: 14px; }
+.trail summary { cursor: pointer; font-weight: 500; }
+.trail ol { margin: 12px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 12.5px; max-height: 420px; overflow-y: auto; }
+.trail li { display: grid; grid-template-columns: 6.5em minmax(0, 1.2fr) minmax(0, 1fr) 3em; gap: 10px; padding: 4px 0; border-bottom: 1px dashed var(--line); }
+.trail .kind { color: var(--accent); }
+.trail .tg, .trail .why { overflow-wrap: anywhere; min-width: 0; }
+.trail .why { color: var(--ink-2); }
+.trail .n { text-align: right; }
+@media (max-width: 560px) { .trail li { grid-template-columns: 5.5em minmax(0, 1fr) 2.5em; } .trail .why { display: none; } }
 footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; font-size: 12.5px; color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 16px; }
 .filebtn { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 6px 12px; cursor: pointer; }
 .filebtn input { display: none; }
@@ -263,10 +274,16 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
         <option value="recent">最近投稿した順</option>
       </select>
       <span class="count mono" id="count"></span>
+      <button class="filebtn" id="cleartopic" hidden>話題の絞り込みを外す</button>
     </div>
   </section>
 
   <section class="wall" id="wall" aria-label="アカウント"></section>
+
+  <details class="trail" id="trailbox" hidden>
+    <summary>探索の道すじ <span class="note" id="trailcount"></span></summary>
+    <ol id="trail"></ol>
+  </details>
 
   <footer class="foot">
     <span id="source"></span>
@@ -299,7 +316,7 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
     verified: ["認証", 10], bio_completeness: ["プロフ充実", 10], engagement: ["反応率", 15], icon: ["アイコン", 5], activity: ["投稿活動", 10] };
 
   var data = { accounts: [] };
-  var state = { cat: "", tone: "", q: "", sort: "posts", open: null };
+  var state = { cat: "", tone: "", q: "", topic: "", sort: "posts", open: null };
   var lastFocus = null;
   var $ = function (id) { return document.getElementById(id); };
 
@@ -321,6 +338,17 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
     try {
       return new Intl.DateTimeFormat("ja-JP", { timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).format(d);
     } catch (e) { return d.toISOString().slice(0, 16).replace("T", " "); }
+  }
+  var AD_RE = /広告|ＣＭ|\bCM\b|プロモ|宣伝/;
+  var AD_INAPP = /広告(?:見|を見|スキップ|消|除去|なし|無し|長|挟|入|多すぎ|が多|が流れ|ばっか|ばかり)|動画広告|途中|毎回|返信|トーク中|会話中|チャット中|\d+秒|pass|パス|課金|ピース/;
+  var AD_PROMO = /漫画|マンガ|まんが|流れてく|出てく|表示され|TL|タイムライン|YouTube|ユーチューブ|TikTok|インスタ|Instagram|ゲーム中|他のアプリ|アプリの広告で|広告で見|広告で知|宣伝|プロモ|PR|CM|ＣＭ|広告主|広告の(?:絵|内容|表現|キャラ)/;
+  function adTypes(t) {
+    t = t || "";
+    if (!AD_RE.test(t)) return [];
+    var r = [];
+    if (AD_INAPP.test(t)) r.push("アプリ内広告");
+    if (AD_PROMO.test(t)) r.push("宣伝広告");
+    return r.length ? r : ["広告(種類不明)"];
   }
   function catOf(a) { return CATS.find(function (c) { return c.key === a.category; }) || CATS[4]; }
   function hue(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; }
@@ -345,6 +373,7 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
     var list = data.accounts.filter(function (a) {
       if (state.cat && a.category !== state.cat) return false;
       if (state.tone && a.tone !== state.tone) return false;
+      if (state.topic && (a.topics || []).indexOf(state.topic) === -1) return false;
       if (!q) return true;
       var blob = [a.name, a.handle, a.profile && a.profile.bio].concat((a.posts || []).map(function (p) { return p.text; })).join(" ").toLowerCase();
       return blob.indexOf(q) !== -1;
@@ -376,6 +405,7 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
     var html = '<div class="sumbox"><h2>収集した範囲</h2><div class="bignums">' +
       '<div class="bignum"><b class="mono">' + acc.length + '</b><span>アカウント</span></div>' +
       '<div class="bignum"><b class="mono">' + (data.total_posts || posts) + '</b><span>zeta関連の投稿</span></div>' +
+      '<div class="bignum"><b class="mono">' + num(data.total_views || acc.reduce(function (s, a) { return s + (a.total_views || 0); }, 0)) + '</b><span>合計表示回数</span></div>' +
       '<div class="bignum"><b class="mono">' + acc.filter(function (a) { return a.profile; }).length + '</b><span>プロフィール取得済</span></div>' +
       "</div></div>";
 
@@ -385,12 +415,24 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
       '</div><div class="legend">' +
       Object.keys(tones).map(function (k) { return '<span><i class="dot" style="background:var(' + TONE[k] + ')"></i>' + k + ' <b class="mono">' + tones[k] + "</b></span>"; }).join("") +
       '</div><p class="note">アイコンの枠の色がこの論調です。</p></div>';
+    html += "";
 
     html += '<div class="sumbox"><h2>よく出る話題（言及アカウント数）</h2><div class="topicbars">' +
       (top.length ? top.map(function (t) {
-        return '<div class="topicbar"><span>' + esc(t[0]) + '</span><span class="track"><span class="fill" style="display:block;width:' + (t[1] / max * 100) + '%"></span></span><span class="n mono">' + t[1] + "</span></div>";
+        return '<div class="topicbar"><button class="linkish" data-topic="' + esc(t[0]) + '">' + esc(t[0]) + '</button><span class="track"><span class="fill" style="display:block;width:' + (t[1] / max * 100) + '%"></span></span><span class="n mono">' + t[1] + "</span></div>";
       }).join("") : '<p class="note">話題データがありません。</p>') + "</div></div>";
 
+    var ADS = ["アプリ内広告", "宣伝広告", "広告(種類不明)"];
+    var adPosts = [];
+    acc.forEach(function (a) { (a.posts || []).forEach(function (p) { var t = adTypes(p.text); if (t.length) adPosts.push({ a: a, p: p, t: t }); }); });
+    if (adPosts.length) {
+      html += '<div class="sumbox"><h2>広告への言及（投稿数 · 表示回数）</h2><div class="topicbars">' +
+        ADS.map(function (k) {
+          var ps = adPosts.filter(function (x) { return x.t.indexOf(k) !== -1; });
+          var v = ps.reduce(function (s, x) { return s + (x.p.views || 0); }, 0);
+          return '<div class="topicbar" style="grid-template-columns:7.5em 1fr 6.5em"><button class="linkish" data-topic="' + esc(k) + '">' + esc(k) + '</button><span class="track"><span class="fill" style="display:block;width:' + (ps.length / adPosts.length * 100) + '%"></span></span><span class="n mono">' + ps.length + "件 · " + num(v) + "</span></div>";
+        }).join("") + '<p class="note">アプリ内広告 = 会話の途中に流れる広告 / 宣伝広告 = TLや他アプリに流れる zeta の広告。項目を押すとそのアカウントに絞り込みます。</p></div></div>';
+    }
     if (data.insights && data.insights.length) {
       html += '<div class="sumbox" style="grid-column:1/-1"><h2>読み取れること</h2><ul class="insights">' +
         data.insights.map(function (s) { return "<li><span>" + esc(s) + "</span></li>"; }).join("") + "</ul></div>";
@@ -411,7 +453,8 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
 
   function renderWall() {
     var list = filtered();
-    $("count").textContent = list.length + " / " + data.accounts.length + " 件";
+    $("count").textContent = list.length + " / " + data.accounts.length + " 件" + (state.topic ? " · 話題「" + state.topic + "」" : "");
+    $("cleartopic").hidden = !state.topic;
     if (!data.accounts.length) {
       $("wall").innerHTML = '<div class="empty" style="grid-column:1/-1">まだデータがありません。<br>screenpilot の <code>examples/x_zeta_intel.py</code> を実行するか、下の「別の収集結果（JSON）を開く」から読み込んでください。</div>';
       return;
@@ -513,13 +556,26 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
     $("eyebrow").textContent = "X 調査 · screenpilot" + (data.generated_at ? " · " + fmtDate(data.generated_at).slice(0, 10) : "");
   }
 
+  function renderTrail() {
+    var t = data.trail || [];
+    $("trailbox").hidden = !t.length;
+    if (!t.length) return;
+    var KIND = { search: "検索", post: "投稿を開く", quotes: "引用を見る", user: "投稿者を掘る" };
+    $("trailcount").textContent = t.length + "ページ";
+    $("trail").innerHTML = t.map(function (s) {
+      return '<li><span class="kind">' + esc(KIND[s.kind] || s.kind) + '</span><span class="tg">' + esc(s.target) + '</span><span class="why">' + esc(s.reason) + '</span><span class="mono n">+' + (s.new || 0) + "</span></li>";
+    }).join("");
+  }
+
   function renderAll() {
-    renderSummary(); renderTabs(); renderWall(); renderSource();
+    renderSummary(); renderTabs(); renderWall(); renderSource(); renderTrail();
   }
 
   function load(obj) {
     data = obj && Array.isArray(obj.accounts) ? obj : { accounts: [] };
     state.open = null;
+    state.topic = "";
+    if (data.default_sort) { state.sort = data.default_sort; $("sort").value = data.default_sort; }
     renderAll();
   }
 
@@ -534,6 +590,12 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
   $("q").addEventListener("input", function (e) { state.q = e.target.value; renderWall(); });
   $("tone").addEventListener("change", function (e) { state.tone = e.target.value; renderWall(); });
   $("sort").addEventListener("change", function (e) { state.sort = e.target.value; renderWall(); });
+  $("summary").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-topic]"); if (!b) return;
+    state.topic = b.getAttribute("data-topic"); renderWall();
+    $("wall").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  $("cleartopic").addEventListener("click", function () { state.topic = ""; renderWall(); });
   $("close").addEventListener("click", closeSheet);
   $("scrim").addEventListener("click", closeSheet);
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });

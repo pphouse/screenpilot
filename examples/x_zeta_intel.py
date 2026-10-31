@@ -74,13 +74,18 @@ QUERIES = [
     {"label": "zeta AIチャット", "query": "zeta AIチャット -DIVISION", "mode": "live"},
     {"label": "zeta AIチャット (話題)", "query": "zeta AIチャット -DIVISION", "mode": "top"},
     {"label": "zeta アプリ", "query": "zeta アプリ -DIVISION -Global", "mode": "live"},
-    {"label": "zeta 課金", "query": "zeta 課金 OR ピース OR zetapass", "mode": "live"},
+    {"label": "zeta 課金", "query": "zeta (課金 OR ピース OR pass)", "mode": "live"},
     {"label": "zeta プロット", "query": "zeta プロット", "mode": "live"},
     {"label": "zeta キャラ", "query": "zeta キャラ -DIVISION", "mode": "live"},
     {"label": "zeta 推し", "query": "zeta 推し -DIVISION", "mode": "live"},
-    {"label": "zeta ナレーター", "query": "zeta ナレーター OR トークプロフィール", "mode": "live"},
-    {"label": "zeta 規制・削除", "query": "zeta 削除 OR 規制 OR アンリミテッド", "mode": "live"},
-    {"label": "zeta バグ", "query": "zeta バグ OR 不具合", "mode": "live"},
+    {"label": "zeta ナレーター", "query": "zeta (ナレーター OR トークプロフィール)", "mode": "live"},
+    {"label": "zeta 規制・削除", "query": "zeta (削除 OR 規制 OR アンリミテッド)", "mode": "live"},
+    {"label": "zeta バグ", "query": "zeta (バグ OR 不具合)", "mode": "live"},
+    {"label": "zeta 広告", "query": "zeta 広告 -DIVISION", "mode": "live"},
+    {"label": "zeta 広告 (話題)", "query": "zeta 広告 -DIVISION", "mode": "top"},
+    {"label": "zeta 広告 批判", "query": "zeta 広告 (うざい OR 不快 OR 気持ち悪い OR きもい OR 多すぎ OR 通報 OR ひどい)", "mode": "live"},
+    {"label": "zeta アプリ内広告", "query": "zeta 広告 (長い OR スキップ OR 消したい OR 見ないと OR 途中 OR 毎回 OR 動画)", "mode": "live"},
+    {"label": "zeta 宣伝広告", "query": "zeta 広告 (漫画 OR 流れてくる OR 出てくる OR YouTube OR TL OR 宣伝)", "mode": "live"},
 ]
 
 # zeta (アプリ) への言及かどうかの判定
@@ -120,8 +125,33 @@ NEGATIVE = [
 CATEGORY_ORDER = ["公式・運営", "攻略・TIPS", "ニュース・論評", "創作・交流", "ユーザーの声"]
 
 
+# 広告は2種類を分ける:
+#   宣伝広告   = zeta 自体のプロモーション (X の TL / YouTube / 他アプリに流れる漫画広告など)
+#   アプリ内広告 = zeta の中で会話の途中に流れる収益化のための広告
+AD_RE = re.compile(r"広告|ＣＭ|\bCM\b|プロモ")
+AD_INAPP_RE = re.compile(
+    r"広告(?:見|を見|スキップ|消|除去|なし|無し|長|挟|入|多すぎ|が多|が流れ|ばっか|ばかり)|動画広告|"
+    r"途中|毎回|返信|トーク中|会話中|チャット中|\d+秒|pass|パス|課金|ピース"
+)
+AD_PROMO_RE = re.compile(
+    r"漫画|マンガ|まんが|流れてく|出てく|表示され|TL|タイムライン|YouTube|ユーチューブ|TikTok|インスタ|"
+    r"Instagram|ゲーム中|他のアプリ|アプリの広告で|広告で見|広告で知|宣伝|プロモ|PR|CM|ＣＭ|広告主|広告の(?:絵|内容|表現|キャラ)"
+)
+
+
+def ad_types(text: str) -> list[str]:
+    if not AD_RE.search(text) and "宣伝" not in text:
+        return []
+    types = []
+    if AD_INAPP_RE.search(text):
+        types.append("アプリ内広告")
+    if AD_PROMO_RE.search(text):
+        types.append("宣伝広告")
+    return types or ["広告(種類不明)"]
+
+
 def topics_of(text: str) -> list[str]:
-    return [t for t, kws in TOPIC_KEYWORDS.items() if any(k.lower() in text.lower() for k in kws)]
+    return ad_types(text) + [t for t, kws in TOPIC_KEYWORDS.items() if any(k.lower() in text.lower() for k in kws)]
 
 
 def tone_score(text: str) -> int:
