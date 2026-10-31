@@ -1,0 +1,639 @@
+<title>zeta アカウント図鑑</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=IBM+Plex+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Layout: a sticker-sheet wall of account icons (ring = tone, badge = category);
+   tapping one slides a profile sheet in from the right (bottom-up full sheet on phones). */
+:root {
+  --paper: #f5f2f7;
+  --surface: #ffffff;
+  --ink: #241b2b;
+  --ink-2: #625869;
+  --line: #e2dbe6;
+  --accent: #c8336f;
+  --accent-soft: #fbe4ee;
+  --pos: #1d8a6c;
+  --neu: #9a92a3;
+  --neg: #d0473a;
+  --c-official: #3656c9;
+  --c-tips: #b86e00;
+  --c-news: #6a4dbd;
+  --c-social: #c8336f;
+  --c-voice: #2a7c84;
+  --shadow: 0 12px 40px rgba(36, 27, 43, .18);
+  --scrim: rgba(36, 27, 43, .38);
+  --f-display: "Dela Gothic One", "Hiragino Kaku Gothic StdN", "Noto Sans JP", sans-serif;
+  --f-body: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #16111a; --surface: #211a26; --ink: #f1eaf4; --ink-2: #b2a7b9; --line: #362c3c;
+    --accent: #f06a9f; --accent-soft: #3a1f2e; --pos: #4cc39f; --neu: #8d8598; --neg: #f07566;
+    --c-official: #7d97ff; --c-tips: #f0a640; --c-news: #a993ff; --c-social: #f06a9f; --c-voice: #5cc2c9;
+    --shadow: 0 12px 40px rgba(0, 0, 0, .55); --scrim: rgba(0, 0, 0, .55);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #16111a; --surface: #211a26; --ink: #f1eaf4; --ink-2: #b2a7b9; --line: #362c3c;
+  --accent: #f06a9f; --accent-soft: #3a1f2e; --pos: #4cc39f; --neu: #8d8598; --neg: #f07566;
+  --c-official: #7d97ff; --c-tips: #f0a640; --c-news: #a993ff; --c-social: #f06a9f; --c-voice: #5cc2c9;
+  --shadow: 0 12px 40px rgba(0, 0, 0, .55); --scrim: rgba(0, 0, 0, .55);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 15px;
+  line-height: 1.65;
+}
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  gap: 22px;
+}
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+
+/* ---------- header ---------- */
+.masthead { display: grid; gap: 10px; }
+.eyebrow {
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--ink-2);
+}
+h1 {
+  font-family: var(--f-display); font-weight: 400;
+  font-size: clamp(30px, 6vw, 52px); line-height: 1.1; margin: 0;
+  text-wrap: balance;
+}
+h1 .z { color: var(--accent); }
+.lede { margin: 0; max-width: 62ch; color: var(--ink-2); }
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.sumbox {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 14px 16px; display: grid; gap: 8px; min-width: 0; align-content: start;
+}
+.sumbox h2 { margin: 0; font-size: 12px; font-weight: 500; color: var(--ink-2); letter-spacing: .06em; }
+.bignums { display: flex; gap: 22px; flex-wrap: wrap; }
+.bignum b { font-family: var(--f-display); font-weight: 400; font-size: 30px; line-height: 1; display: block; }
+.bignum span { font-size: 12px; color: var(--ink-2); }
+.tonebar { display: flex; height: 12px; border-radius: 99px; overflow: hidden; background: var(--line); }
+.tonebar i { display: block; height: 100%; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex: none; }
+.topicbars { display: grid; gap: 5px; }
+.topicbar { display: grid; grid-template-columns: 6.5em 1fr 2.5em; gap: 8px; align-items: center; font-size: 12.5px; }
+.topicbar .track { height: 7px; background: var(--paper); border-radius: 99px; overflow: hidden; }
+.topicbar .fill { height: 100%; background: var(--accent); border-radius: 99px; }
+.topicbar .n { text-align: right; color: var(--ink-2); }
+
+.insights { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.insights li { display: grid; grid-template-columns: 18px 1fr; gap: 6px; font-size: 14px; }
+.insights li::before { content: "›"; color: var(--accent); font-weight: 700; }
+
+/* ---------- controls ---------- */
+.controls { display: grid; gap: 12px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.tab {
+  border: 1px solid var(--line); background: var(--surface); border-radius: 99px;
+  padding: 5px 12px; cursor: pointer; font-size: 13px; display: inline-flex; align-items: center; gap: 7px;
+}
+.tab .n { font-family: var(--f-mono); font-size: 11.5px; color: var(--ink-2); }
+.tab[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.tab[aria-pressed="true"] .n { color: inherit; opacity: .75; }
+.row2 { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.search {
+  flex: 1 1 240px; min-width: 0; border: 1px solid var(--line); background: var(--surface);
+  border-radius: 10px; padding: 8px 12px;
+}
+.select { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 8px 10px; }
+.count { font-size: 13px; color: var(--ink-2); }
+
+/* ---------- icon wall ---------- */
+.wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 6px;
+}
+.cell {
+  border: 0; background: transparent; border-radius: 14px; cursor: pointer;
+  padding: 12px 6px 10px; display: grid; justify-items: center; gap: 6px; text-align: center; min-width: 0;
+  transition: background .15s;
+}
+.cell:hover { background: var(--surface); }
+.cell[aria-current="true"] { background: var(--accent-soft); }
+.av {
+  position: relative; width: 68px; height: 68px; border-radius: 50%;
+  padding: 3px; background: var(--ring, var(--neu));
+  transition: transform .15s;
+}
+.cell:hover .av { transform: translateY(-2px) rotate(-3deg); }
+.av img, .av .ini {
+  width: 100%; height: 100%; border-radius: 50%; display: block; object-fit: cover;
+  border: 2px solid var(--paper); background: var(--surface);
+}
+.ini {
+  display: grid !important; place-items: center; font-family: var(--f-display); font-size: 22px;
+  color: #fff; background: var(--ini, var(--neu)) !important;
+}
+.badge {
+  position: absolute; right: -4px; bottom: -2px; min-width: 22px; height: 22px; padding: 0 5px;
+  border-radius: 99px; background: var(--cat, var(--ink)); color: #fff; border: 2px solid var(--paper);
+  font-family: var(--f-mono); font-size: 11px; display: grid; place-items: center; line-height: 1;
+}
+.cell .nm {
+  font-size: 12.5px; font-weight: 500; line-height: 1.3; max-width: 100%;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.cell .hd { font-family: var(--f-mono); font-size: 10.5px; color: var(--ink-2); max-width: 100%;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-top: -6px; }
+.empty {
+  border: 1px dashed var(--line); border-radius: 14px; padding: 28px 18px; text-align: center; color: var(--ink-2);
+}
+
+/* ---------- detail sheet ---------- */
+.scrim { position: fixed; inset: 0; background: var(--scrim); z-index: 20; }
+.sheet {
+  position: fixed; z-index: 21; top: 0; right: 0; bottom: 0;
+  width: min(460px, 100%);
+  background: var(--surface); box-shadow: var(--shadow);
+  display: grid; grid-template-rows: auto 1fr; overflow: hidden;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  animation: slide .22s ease-out;
+}
+@keyframes slide { from { transform: translateX(24px); opacity: .4; } to { transform: none; opacity: 1; } }
+@media (max-width: 560px) {
+  .sheet { top: auto; height: 92%; width: 100%; border-radius: 18px 18px 0 0;
+    padding-left: env(safe-area-inset-left, 0px); animation-name: rise; }
+  @keyframes rise { from { transform: translateY(30px); opacity: .4; } to { transform: none; opacity: 1; } }
+}
+@media (prefers-reduced-motion: reduce) { .sheet, .av, .cell { animation: none; transition: none; } }
+.sheet-top { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px 0 18px; }
+.sheet-top .eyebrow { font-size: 11px; }
+.x {
+  width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--paper);
+  cursor: pointer; font-size: 18px; line-height: 1;
+}
+.sheet-body { overflow-y: auto; padding: 8px 18px calc(28px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 18px; align-content: start; }
+.who { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; }
+.who .av { width: 92px; height: 92px; }
+.who .ini { font-size: 30px; }
+.who h3 { margin: 0; font-size: 20px; line-height: 1.3; overflow-wrap: anywhere; }
+.who .hd { font-family: var(--f-mono); font-size: 13px; color: var(--ink-2); overflow-wrap: anywhere; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.chip {
+  font-size: 12px; padding: 2px 9px; border-radius: 99px; border: 1px solid var(--line);
+  display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+}
+.xlink {
+  display: inline-flex; align-items: center; gap: 6px; justify-self: start;
+  background: var(--ink); color: var(--paper); text-decoration: none; border-radius: 99px;
+  padding: 7px 14px; font-size: 13px; font-weight: 500;
+}
+.bio { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.meta { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12.5px; color: var(--ink-2); }
+.meta a { color: var(--accent); overflow-wrap: anywhere; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.stat { background: var(--paper); border-radius: 10px; padding: 8px 10px; min-width: 0; }
+.stat b { display: block; font-family: var(--f-mono); font-size: 16px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 11px; color: var(--ink-2); }
+.section-h { margin: 0 0 -8px; font-size: 12px; font-weight: 500; letter-spacing: .06em; color: var(--ink-2); }
+.trust { display: grid; gap: 6px; }
+.trust-head { display: flex; align-items: baseline; gap: 10px; }
+.trust-head b { font-family: var(--f-display); font-weight: 400; font-size: 34px; line-height: 1; }
+.rank { font-family: var(--f-mono); font-size: 13px; padding: 1px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+.tb { display: grid; grid-template-columns: 7.5em 1fr 3.4em; gap: 8px; align-items: center; font-size: 12px; }
+.tb .track { height: 6px; background: var(--paper); border-radius: 99px; overflow: hidden; }
+.tb .fill { height: 100%; background: var(--ink-2); border-radius: 99px; }
+.tb .v { font-family: var(--f-mono); text-align: right; color: var(--ink-2); }
+.posts { display: grid; gap: 10px; }
+.post { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 8px; min-width: 0; }
+.post p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; }
+.post .foot { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; font-size: 12px; color: var(--ink-2); }
+.post .foot a { color: var(--accent); margin-left: auto; text-decoration: none; font-weight: 500; }
+.note { font-size: 12px; color: var(--ink-2); margin: 0; }
+
+.linkish { border: 0; background: none; padding: 0; text-align: left; cursor: pointer; color: var(--ink); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; font-size: inherit; }
+.linkish:hover { text-decoration-color: var(--accent); }
+.trail { border-top: 1px solid var(--line); padding-top: 14px; }
+.trail summary { cursor: pointer; font-weight: 500; }
+.trail ol { margin: 12px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 12.5px; max-height: 420px; overflow-y: auto; }
+.trail li { display: grid; grid-template-columns: 6.5em minmax(0, 1.2fr) minmax(0, 1fr) 3em; gap: 10px; padding: 4px 0; border-bottom: 1px dashed var(--line); }
+.trail .kind { color: var(--accent); }
+.trail .tg, .trail .why { overflow-wrap: anywhere; min-width: 0; }
+.trail .why { color: var(--ink-2); }
+.trail .n { text-align: right; }
+@media (max-width: 560px) { .trail li { grid-template-columns: 5.5em minmax(0, 1fr) 2.5em; } .trail .why { display: none; } }
+footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; font-size: 12.5px; color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 16px; }
+.filebtn { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 6px 12px; cursor: pointer; }
+.filebtn input { display: none; }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="eyebrow" id="eyebrow">X 調査 · screenpilot</div>
+    <h1><span class="z">zeta</span> アカウント図鑑</h1>
+    <p class="lede" id="lede">AIキャラチャットアプリ「zeta」について X で話しているアカウントの一覧です。アイコンを押すと、そのアカウントのプロフィールと zeta に関する投稿が開きます。</p>
+  </header>
+
+  <section class="summary" id="summary" aria-label="概要"></section>
+
+  <section class="controls" aria-label="絞り込み">
+    <div class="tabs" id="tabs" role="group" aria-label="区分"></div>
+    <div class="row2">
+      <input class="search" id="q" type="search" placeholder="名前・@ID・投稿内容で検索" aria-label="検索">
+      <select class="select" id="tone" aria-label="論調">
+        <option value="">論調: すべて</option>
+        <option value="ポジティブ">ポジティブ</option>
+        <option value="中立">中立</option>
+        <option value="ネガティブ">ネガティブ</option>
+      </select>
+      <select class="select" id="sort" aria-label="並び順">
+        <option value="posts">zeta投稿数が多い順</option>
+        <option value="views">表示回数が多い順</option>
+        <option value="followers">フォロワーが多い順</option>
+        <option value="trust">信頼度が高い順</option>
+        <option value="recent">最近投稿した順</option>
+      </select>
+      <span class="count mono" id="count"></span>
+      <button class="filebtn" id="cleartopic" hidden>話題の絞り込みを外す</button>
+    </div>
+  </section>
+
+  <section class="wall" id="wall" aria-label="アカウント"></section>
+
+  <details class="trail" id="trailbox" hidden>
+    <summary>探索の道すじ <span class="note" id="trailcount"></span></summary>
+    <ol id="trail"></ol>
+  </details>
+
+  <footer class="foot">
+    <span id="source"></span>
+    <label class="filebtn">別の収集結果（JSON）を開く<input type="file" id="file" accept="application/json,.json"></label>
+  </footer>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-name" hidden>
+  <div class="sheet-top">
+    <span class="eyebrow">アカウント詳細</span>
+    <button class="x" id="close" aria-label="閉じる">×</button>
+  </div>
+  <div class="sheet-body" id="sheet-body"></div>
+</aside>
+
+<script id="zeta-data" type="application/json">{}</script>
+<script>
+(function () {
+  "use strict";
+  var CATS = [
+    { key: "公式・運営", color: "--c-official", short: "公" },
+    { key: "攻略・TIPS", color: "--c-tips", short: "攻" },
+    { key: "ニュース・論評", color: "--c-news", short: "論" },
+    { key: "創作・交流", color: "--c-social", short: "創" },
+    { key: "ユーザーの声", color: "--c-voice", short: "声" }
+  ];
+  var TONE = { "ポジティブ": "--pos", "中立": "--neu", "ネガティブ": "--neg" };
+  var TRUST_MAX = { account_age: ["アカウント歴", 15], followers: ["フォロワー", 20], ff_ratio: ["FF比", 15],
+    verified: ["認証", 10], bio_completeness: ["プロフ充実", 10], engagement: ["反応率", 15], icon: ["アイコン", 5], activity: ["投稿活動", 10] };
+
+  var data = { accounts: [] };
+  var state = { cat: "", tone: "", q: "", topic: "", comp: "", sort: "posts", open: null };
+  var lastFocus = null;
+  var $ = function (id) { return document.getElementById(id); };
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function num(n) {
+    n = Number(n) || 0;
+    if (n >= 1e8) return (n / 1e8).toFixed(1).replace(/\.0$/, "") + "億";
+    if (n >= 1e4) return (n / 1e4).toFixed(1).replace(/\.0$/, "") + "万";
+    return n.toLocaleString("ja-JP");
+  }
+  function fmtDate(iso) {
+    if (!iso) return "";
+    var d = new Date(iso);
+    if (isNaN(d)) return "";
+    try {
+      return new Intl.DateTimeFormat("ja-JP", { timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).format(d);
+    } catch (e) { return d.toISOString().slice(0, 16).replace("T", " "); }
+  }
+  var AD_RE = /広告|ＣＭ|\bCM\b|プロモ|宣伝/;
+  var AD_INAPP = /頻度|喋|話し|話す|打っ|打つ|文字|送信|会話|トーク|チャット|返信|途中|毎回|広告(?:見|を見|スキップ|消|除去|なし|無し|長|挟|入|多すぎ|が多|ばっか|ばかり)|動画広告|\d+秒|pass|パス|課金|ピース/;
+  var AD_PROMO = /漫画|マンガ|まんが|TL|タイムライン|YouTube|ユーチューブ|TikTok|インスタ|Instagram|他のアプリ|別のアプリ|ゲーム中|アプリの広告で|広告で見|広告で知|宣伝|プロモ|PR|CM|ＣＭ|広告主|広告の(?:絵|内容|表現|キャラ|漫画)/;
+  var AD_PROMO_WEAK = /流れてく|出てく|表示され/;
+  function adTypes(t) {
+    t = t || "";
+    if (!AD_RE.test(t)) return [];
+    var r = [];
+    if (AD_INAPP.test(t)) r.push("アプリ内広告");
+    if (AD_PROMO.test(t) || (!r.length && AD_PROMO_WEAK.test(t))) r.push("宣伝広告");
+    return r.length ? r : ["広告(種類不明)"];
+  }
+  function catOf(a) { return CATS.find(function (c) { return c.key === a.category; }) || CATS[4]; }
+  function hue(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; }
+  var INI_COLORS = ["--c-official", "--c-tips", "--c-news", "--c-social", "--c-voice"];
+
+  function avatarHTML(a) {
+    var cat = catOf(a);
+    var ring = "var(" + (TONE[a.tone] || "--neu") + ")";
+    var inner = a.avatar
+      ? '<img src="' + esc(a.avatar) + '" alt="" loading="lazy">'
+      : '<span class="ini" style="--ini:var(' + INI_COLORS[hue(a.handle) % INI_COLORS.length] + ')">' +
+        esc(Array.from((a.name || a.handle || "?").replace(/^[@\s]+/, ""))[0] || "?") + "</span>";
+    return '<span class="av" style="--ring:' + ring + '">' + inner +
+      '<span class="badge" style="--cat:var(' + cat.color + ')" title="' + esc(cat.key) + '">' + cat.short + "</span></span>";
+  }
+
+  function followers(a) { return (a.profile && a.profile.followers) || 0; }
+  function trust(a) { return (a.profile && a.profile.trust_score) || 0; }
+
+  function filtered() {
+    var q = state.q.trim().toLowerCase();
+    var list = data.accounts.filter(function (a) {
+      if (state.cat && a.category !== state.cat) return false;
+      if (state.tone && a.tone !== state.tone) return false;
+      if (state.topic && (a.topics || []).indexOf(state.topic) === -1) return false;
+      if (state.comp && (a.competitors || []).indexOf(state.comp) === -1) return false;
+      if (!q) return true;
+      var blob = [a.name, a.handle, a.profile && a.profile.bio].concat((a.posts || []).map(function (p) { return p.text; })).join(" ").toLowerCase();
+      return blob.indexOf(q) !== -1;
+    });
+    var key = {
+      posts: function (a) { return [a.post_count, a.total_views]; },
+      views: function (a) { return [a.total_views, a.post_count]; },
+      followers: function (a) { return [followers(a), a.post_count]; },
+      trust: function (a) { return [trust(a), followers(a)]; },
+      recent: function (a) { return [Date.parse(a.last_post) || 0, 0]; }
+    }[state.sort];
+    return list.sort(function (x, y) {
+      var a = key(x), b = key(y);
+      return (b[0] - a[0]) || (b[1] - a[1]) || String(x.handle).localeCompare(String(y.handle));
+    });
+  }
+
+  function renderSummary() {
+    var acc = data.accounts;
+    var posts = acc.reduce(function (s, a) { return s + (a.post_count || 0); }, 0);
+    var tones = { "ポジティブ": 0, "中立": 0, "ネガティブ": 0 };
+    acc.forEach(function (a) { if (tones[a.tone] != null) tones[a.tone]++; });
+    var topics = {};
+    acc.forEach(function (a) { (a.topics || []).forEach(function (t) { topics[t] = (topics[t] || 0) + 1; }); });
+    var top = Object.keys(topics).map(function (k) { return [k, topics[k]]; }).sort(function (a, b) { return b[1] - a[1]; }).slice(0, 6);
+    var max = top.length ? top[0][1] : 1;
+    var total = acc.length || 1;
+
+    var html = '<div class="sumbox"><h2>収集した範囲</h2><div class="bignums">' +
+      '<div class="bignum"><b class="mono">' + acc.length + '</b><span>アカウント</span></div>' +
+      '<div class="bignum"><b class="mono">' + (data.total_posts || posts) + '</b><span>zeta関連の投稿</span></div>' +
+      '<div class="bignum"><b class="mono">' + num(data.total_views || acc.reduce(function (s, a) { return s + (a.total_views || 0); }, 0)) + '</b><span>合計表示回数</span></div>' +
+      '<div class="bignum"><b class="mono">' + acc.filter(function (a) { return a.profile; }).length + '</b><span>プロフィール取得済</span></div>' +
+      "</div></div>";
+
+    html += '<div class="sumbox"><h2>論調（アカウント単位・キーワード判定）</h2><div class="tonebar" role="img" aria-label="' +
+      Object.keys(tones).map(function (k) { return k + " " + tones[k]; }).join("、") + '">' +
+      Object.keys(tones).map(function (k) { return '<i style="width:' + (tones[k] / total * 100) + "%;background:var(" + TONE[k] + ')"></i>'; }).join("") +
+      '</div><div class="legend">' +
+      Object.keys(tones).map(function (k) { return '<span><i class="dot" style="background:var(' + TONE[k] + ')"></i>' + k + ' <b class="mono">' + tones[k] + "</b></span>"; }).join("") +
+      '</div><p class="note">アイコンの枠の色がこの論調です。</p></div>';
+    html += "";
+
+    html += '<div class="sumbox"><h2>よく出る話題（言及アカウント数）</h2><div class="topicbars">' +
+      (top.length ? top.map(function (t) {
+        return '<div class="topicbar"><button class="linkish" data-topic="' + esc(t[0]) + '">' + esc(t[0]) + '</button><span class="track"><span class="fill" style="display:block;width:' + (t[1] / max * 100) + '%"></span></span><span class="n mono">' + t[1] + "</span></div>";
+      }).join("") : '<p class="note">話題データがありません。</p>') + "</div></div>";
+
+    var ADS = ["アプリ内広告", "宣伝広告", "広告(種類不明)"];
+    var adPosts = [];
+    acc.forEach(function (a) { (a.posts || []).forEach(function (p) { var t = adTypes(p.text); if (t.length) adPosts.push({ a: a, p: p, t: t }); }); });
+    if (adPosts.length) {
+      html += '<div class="sumbox"><h2>広告への言及（投稿数 · 表示回数）</h2><div class="topicbars">' +
+        ADS.map(function (k) {
+          var ps = adPosts.filter(function (x) { return x.t.indexOf(k) !== -1; });
+          var v = ps.reduce(function (s, x) { return s + (x.p.views || 0); }, 0);
+          return '<div class="topicbar" style="grid-template-columns:7.5em 1fr 6.5em"><button class="linkish" data-topic="' + esc(k) + '">' + esc(k) + '</button><span class="track"><span class="fill" style="display:block;width:' + (ps.length / adPosts.length * 100) + '%"></span></span><span class="n mono">' + ps.length + "件 · " + num(v) + "</span></div>";
+        }).join("") + '<p class="note">アプリ内広告 = 会話の途中に流れる広告 / 宣伝広告 = TLや他アプリに流れる zeta の広告。項目を押すとそのアカウントに絞り込みます。</p></div></div>';
+    }
+    var pats = data.competitor_patterns || {};
+    var rx = Object.keys(pats).map(function (k) { try { return [k, new RegExp(pats[k], "i")]; } catch (e) { return null; } }).filter(Boolean);
+    if (rx.length) {
+      var comp = {};
+      acc.forEach(function (a) { (a.posts || []).forEach(function (p) {
+        rx.forEach(function (r) { if (r[1].test(p.text || "")) { comp[r[0]] = comp[r[0]] || { n: 0, v: 0, acc: {} }; comp[r[0]].n++; comp[r[0]].v += p.views || 0; comp[r[0]].acc[a.handle] = 1; } });
+      }); });
+      var switchers = acc.filter(function (a) { return (a.topics || []).indexOf("乗り換え") !== -1; });
+      var ck = Object.keys(comp).sort(function (a, b) { return comp[b].n - comp[a].n; }).slice(0, 8);
+      var cmax = ck.length ? comp[ck[0]].n : 1;
+      html += '<div class="sumbox"><h2>乗り換え・他アプリへの言及</h2>' +
+        '<div class="bignums"><div class="bignum"><b class="mono">' + switchers.length + '</b><span><button class="linkish" data-topic="乗り換え">乗り換え・離脱を話すアカウント</button></span></div></div>' +
+        '<div class="topicbars">' + (ck.length ? ck.map(function (k) {
+          return '<div class="topicbar" style="grid-template-columns:7.5em 1fr 6.5em"><button class="linkish" data-comp="' + esc(k) + '">' + esc(k) + '</button><span class="track"><span class="fill" style="display:block;width:' + (comp[k].n / cmax * 100) + '%"></span></span><span class="n mono">' + comp[k].n + "件 · " + num(comp[k].v) + "</span></div>";
+        }).join("") : '<p class="note">他アプリ名の言及はまだありません。</p>') +
+        '</div><p class="note">zeta の話の中で名前が出た他のAIチャット（投稿数 · 表示回数）。押すとそのアカウントに絞り込みます。</p></div>';
+    }
+    if (data.insights && data.insights.length) {
+      html += '<div class="sumbox" style="grid-column:1/-1"><h2>読み取れること</h2><ul class="insights">' +
+        data.insights.map(function (s) { return "<li><span>" + esc(s) + "</span></li>"; }).join("") + "</ul></div>";
+    }
+    $("summary").innerHTML = html;
+  }
+
+  function renderTabs() {
+    var counts = {};
+    data.accounts.forEach(function (a) { counts[a.category] = (counts[a.category] || 0) + 1; });
+    var html = '<button class="tab" data-cat="" aria-pressed="' + (state.cat === "") + '">すべて <span class="n">' + data.accounts.length + "</span></button>";
+    CATS.forEach(function (c) {
+      html += '<button class="tab" data-cat="' + esc(c.key) + '" aria-pressed="' + (state.cat === c.key) + '"><i class="dot" style="background:var(' + c.color + ')"></i>' +
+        esc(c.key) + ' <span class="n">' + (counts[c.key] || 0) + "</span></button>";
+    });
+    $("tabs").innerHTML = html;
+  }
+
+  function renderWall() {
+    var list = filtered();
+    $("count").textContent = list.length + " / " + data.accounts.length + " 件" + (state.topic ? " · 話題「" + state.topic + "」" : "") + (state.comp ? " · 「" + state.comp + "」に言及" : "");
+    $("cleartopic").hidden = !(state.topic || state.comp);
+    if (!data.accounts.length) {
+      $("wall").innerHTML = '<div class="empty" style="grid-column:1/-1">まだデータがありません。<br>screenpilot の <code>examples/x_zeta_intel.py</code> を実行するか、下の「別の収集結果（JSON）を開く」から読み込んでください。</div>';
+      return;
+    }
+    if (!list.length) {
+      $("wall").innerHTML = '<div class="empty" style="grid-column:1/-1">条件に合うアカウントがありません。絞り込みを外してください。</div>';
+      return;
+    }
+    $("wall").innerHTML = list.map(function (a) {
+      return '<button class="cell" data-h="' + esc(a.handle) + '"' + (state.open === a.handle ? ' aria-current="true"' : "") +
+        ' title="' + esc(a.name) + " @" + esc(a.handle) + '">' + avatarHTML(a) +
+        '<span class="nm">' + esc(a.name || a.handle) + '</span><span class="hd">@' + esc(a.handle) + "</span></button>";
+    }).join("");
+  }
+
+  function openSheet(handle) {
+    var a = data.accounts.find(function (x) { return x.handle === handle; });
+    if (!a) return;
+    state.open = handle;
+    lastFocus = document.activeElement;
+    var p = a.profile || null;
+    var cat = catOf(a);
+    var h = '<div class="who">' + avatarHTML(a) + '<div style="min-width:0"><h3 id="sheet-name">' + esc((p && p.display_name) || a.name || a.handle) +
+      '</h3><div class="hd">@' + esc(a.handle) + '</div><div class="chips">' +
+      '<span class="chip"><i class="dot" style="background:var(' + cat.color + ')"></i>' + esc(cat.key) + "</span>" +
+      '<span class="chip"><i class="dot" style="background:var(' + (TONE[a.tone] || "--neu") + ')"></i>' + esc(a.tone || "中立") + "</span>" +
+      (p && p.verified ? '<span class="chip">認証済み</span>' : "") + "</div></div></div>";
+
+    h += '<a class="xlink" href="https://x.com/' + encodeURIComponent(a.handle) + '" target="_blank" rel="noopener">X でプロフィールを開く ↗</a>';
+
+    if (p) {
+      if (p.bio) h += '<p class="bio">' + esc(p.bio) + "</p>";
+      var meta = [];
+      if (p.location) meta.push(esc(p.location));
+      if (p.website) meta.push('<a href="' + esc(p.website) + '" target="_blank" rel="noopener">' + esc(p.website.replace(/^https?:\/\//, "")) + "</a>");
+      if (p.joined) meta.push(esc(p.joined));
+      if (meta.length) h += '<div class="meta">' + meta.map(function (m) { return "<span>" + m + "</span>"; }).join("") + "</div>";
+      h += '<div class="stats">' +
+        '<div class="stat"><b>' + num(p.followers) + '</b><span>フォロワー</span></div>' +
+        '<div class="stat"><b>' + num(p.following) + '</b><span>フォロー中</span></div>' +
+        '<div class="stat"><b>' + num(p.avg_likes) + '</b><span>平均いいね</span></div>' +
+        '<div class="stat"><b>' + num(p.avg_views) + '</b><span>平均表示</span></div></div>';
+      if (p.trust_score != null) {
+        h += '<h4 class="section-h">信頼度スコア（screenpilot TrustScorer）</h4><div class="trust"><div class="trust-head"><b>' +
+          esc(p.trust_score) + '</b><span class="note">/ 100</span><span class="rank">ランク ' + esc(p.trust_rank || "?") + "</span></div>";
+        var br = p.trust_breakdown || {};
+        Object.keys(TRUST_MAX).forEach(function (k) {
+          var v = Number(br[k]) || 0, m = TRUST_MAX[k][1];
+          h += '<div class="tb"><span>' + TRUST_MAX[k][0] + '</span><span class="track"><span class="fill" style="display:block;width:' + Math.min(100, v / m * 100) + '%"></span></span><span class="v">' + v + "/" + m + "</span></div>";
+        });
+        h += "</div>";
+      }
+    } else {
+      h += '<p class="note">このアカウントはプロフィール未取得です（投稿数の多い上位のみ取得しています）。</p>';
+    }
+
+    if (a.competitors && a.competitors.length) {
+      h += '<h4 class="section-h">名前を出している他のAIチャット</h4><div class="chips">' + a.competitors.map(function (t) { return '<span class="chip">' + esc(t) + "</span>"; }).join("") + "</div>";
+    }
+    if (a.topics && a.topics.length) {
+      h += '<h4 class="section-h">話題</h4><div class="chips">' + a.topics.map(function (t) { return '<span class="chip">' + esc(t) + "</span>"; }).join("") + "</div>";
+    }
+
+    var posts = a.posts || [];
+    h += '<h4 class="section-h">zeta に関する投稿（' + posts.length + "件）</h4><div class=\"posts\">" +
+      posts.map(function (q) {
+        return '<article class="post"><p>' + (q.text ? esc(q.text) : '<span class="note">（本文なし・画像のみ）</span>') + '</p><div class="foot">' +
+          '<span class="mono">' + esc(fmtDate(q.date)) + "</span>" +
+          '<span class="mono">♥ ' + num(q.likes) + "</span>" +
+          '<span class="mono">⟳ ' + num(q.retweets) + "</span>" +
+          (q.views ? '<span class="mono">表示 ' + num(q.views) + "</span>" : "") +
+          (q.url ? '<a href="' + esc(q.url) + '" target="_blank" rel="noopener">投稿を開く ↗</a>' : "") + "</div>" +
+          (q.queries && q.queries.length ? '<div class="note">検索語: ' + q.queries.map(esc).join(" / ") + "</div>" : "") + "</article>";
+      }).join("") + "</div>";
+
+    $("sheet-body").innerHTML = h;
+    $("sheet-body").scrollTop = 0;
+    $("sheet").hidden = false;
+    $("scrim").hidden = false;
+    renderWall();
+    $("close").focus();
+  }
+
+  function closeSheet() {
+    if ($("sheet").hidden) return;
+    $("sheet").hidden = true;
+    $("scrim").hidden = true;
+    var h = state.open;
+    state.open = null;
+    renderWall();
+    var el = h && document.querySelector('.cell[data-h="' + CSS.escape(h) + '"]');
+    var tgt = el || lastFocus;
+    if (tgt && tgt.focus) tgt.focus();
+  }
+
+  function renderSource() {
+    var bits = [];
+    if (data.generated_at) bits.push("収集日時 " + fmtDate(data.generated_at));
+    if (data.queries) bits.push("検索クエリ " + data.queries.length + "本");
+    if (data.source) bits.push(data.source);
+    $("source").textContent = bits.join(" · ");
+    $("eyebrow").textContent = "X 調査 · screenpilot" + (data.generated_at ? " · " + fmtDate(data.generated_at).slice(0, 10) : "");
+  }
+
+  function renderTrail() {
+    var t = data.trail || [];
+    $("trailbox").hidden = !t.length;
+    if (!t.length) return;
+    var KIND = { search: "検索", post: "投稿を開く", quotes: "引用を見る", user: "投稿者を掘る" };
+    $("trailcount").textContent = t.length + "ページ";
+    $("trail").innerHTML = t.map(function (s) {
+      return '<li><span class="kind">' + esc(KIND[s.kind] || s.kind) + '</span><span class="tg">' + esc(s.target) + '</span><span class="why">' + esc(s.reason) + '</span><span class="mono n">+' + (s.new || 0) + "</span></li>";
+    }).join("");
+  }
+
+  function renderAll() {
+    renderSummary(); renderTabs(); renderWall(); renderSource(); renderTrail();
+  }
+
+  function load(obj) {
+    data = obj && Array.isArray(obj.accounts) ? obj : { accounts: [] };
+    state.open = null;
+    state.topic = ""; state.comp = "";
+    if (data.default_sort) { state.sort = data.default_sort; $("sort").value = data.default_sort; }
+    renderAll();
+  }
+
+  // events
+  $("tabs").addEventListener("click", function (e) {
+    var b = e.target.closest(".tab"); if (!b) return;
+    state.cat = b.getAttribute("data-cat"); renderTabs(); renderWall();
+  });
+  $("wall").addEventListener("click", function (e) {
+    var b = e.target.closest(".cell"); if (b) openSheet(b.getAttribute("data-h"));
+  });
+  $("q").addEventListener("input", function (e) { state.q = e.target.value; renderWall(); });
+  $("tone").addEventListener("change", function (e) { state.tone = e.target.value; renderWall(); });
+  $("sort").addEventListener("change", function (e) { state.sort = e.target.value; renderWall(); });
+  $("summary").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-topic],[data-comp]"); if (!b) return;
+    state.topic = b.getAttribute("data-topic") || "";
+    state.comp = b.getAttribute("data-comp") || "";
+    renderWall();
+    $("wall").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  $("cleartopic").addEventListener("click", function () { state.topic = ""; state.comp = ""; renderWall(); });
+  $("close").addEventListener("click", closeSheet);
+  $("scrim").addEventListener("click", closeSheet);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });
+  $("file").addEventListener("change", function (e) {
+    var f = e.target.files && e.target.files[0]; if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      try { load(JSON.parse(r.result)); }
+      catch (err) { $("count").textContent = "JSONを読み込めませんでした: " + err.message; }
+    };
+    r.readAsText(f);
+  });
+
+  try { load(JSON.parse($("zeta-data").textContent || "{}")); }
+  catch (e) { load({ accounts: [] }); }
+})();
+</script>
