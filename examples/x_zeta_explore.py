@@ -54,6 +54,14 @@ SEED_SEARCHES = [
     ("zeta (課金 OR ピース OR pass)", "top"),
     ("zeta (バグ OR 不具合)", "top"),
     ("zeta min_faves:100 -DIVISION", "top"),
+    # 乗り換え・離脱 (マーケ用の重点テーマ)
+    ("zeta (乗り換え OR 乗りかえ OR 移行 OR 引っ越し)", "live"),
+    ("zeta (乗り換え OR 乗りかえ OR 移行 OR 引っ越し)", "top"),
+    ("zeta (代わり OR 代替 OR 似てる OR 似た) アプリ", "live"),
+    ("zeta (やめた OR 辞めた OR 卒業 OR 難民 OR 退会 OR アンインストール)", "live"),
+    ("zeta以外 (AIチャット OR アプリ)", "live"),
+    ("zeta (MooX OR Talkie OR Tipsy OR PolyBuzz OR キャラクターAI OR SynClub)", "live"),
+    ("zeta (MooX OR Talkie OR Tipsy OR PolyBuzz OR キャラクターAI OR SynClub)", "top"),
 ]
 
 BUZZ_VIEWS = 10_000      # この表示回数以上を「伸びている」とみなす
@@ -146,6 +154,13 @@ class Explorer:
     def react(self, t: dict):
         """気になる投稿を見つけたら、次に何を見るか決める。"""
         views = t.get("views") or t.get("likes", 0) * 40
+        rivals = zi.competitors_in(t["text"])
+        switching = "乗り換え" in zi.topics_of(t["text"])
+        if (rivals or switching) and views >= 300:
+            # 乗り換えの話題も重点テーマ。リプライに「自分は○○に移った」が集まりやすい
+            self.push("post", t["url"], views * 3, f"乗り換えの話題{('(' + '/'.join(rivals) + ')') if rivals else ''} ({views:,} 表示)")
+        for r in rivals:
+            self.push("search", f"zeta {r}\tlive", views * 0.5 + 5000, f"乗り換え先候補 {r} が登場")
         if zi.ad_types(t["text"]) and views >= 500:
             # 広告への反応は重点テーマなので、小さめの投稿でもリプライ・関連ポストを見に行く
             self.push("post", t["url"], views * 3, f"広告の話題 ({views:,} 表示)")
@@ -267,6 +282,7 @@ def main():
         "total_posts": len(tweets),
         "total_views": sum(t.get("views", 0) for t in tweets),
         "default_sort": "views",
+        "competitor_patterns": zi.COMPETITORS,
         "trail": ex.trail,
         "accounts": accounts,
     }

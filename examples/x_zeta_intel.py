@@ -82,6 +82,9 @@ QUERIES = [
     {"label": "zeta 広告", "query": "zeta 広告 -DIVISION", "mode": "live"},
     {"label": "zeta 広告 (話題)", "query": "zeta 広告 -DIVISION", "mode": "top"},
     {"label": "zeta 広告 批判", "query": "zeta 広告 (うざい OR 不快 OR 気持ち悪い OR きもい OR 多すぎ OR 通報 OR ひどい)", "mode": "live"},
+    {"label": "zeta 乗り換え", "query": "zeta (乗り換え OR 乗りかえ OR 移行 OR 引っ越し)", "mode": "live"},
+    {"label": "zeta 代わりのアプリ", "query": "zeta (代わり OR 代替 OR 似てる OR 似た) アプリ", "mode": "live"},
+    {"label": "zeta 離脱", "query": "zeta (やめた OR 辞めた OR 卒業 OR 難民 OR 退会 OR アンインストール)", "mode": "live"},
     {"label": "zeta アプリ内広告", "query": "zeta 広告 (長い OR スキップ OR 消したい OR 見ないと OR 途中 OR 毎回 OR 動画)", "mode": "live"},
     {"label": "zeta 宣伝広告", "query": "zeta 広告 (漫画 OR 流れてくる OR 出てくる OR YouTube OR TL OR 宣伝)", "mode": "live"},
 ]
@@ -98,6 +101,8 @@ NOISE_RE = re.compile(
 # ============================================================================
 
 TOPIC_KEYWORDS = {
+    "乗り換え": ["乗り換え", "乗りかえ", "移行", "引っ越し", "移住", "代わり", "代替", "似てる", "似た", "他のアプリ",
+              "別のアプリ", "やめた", "辞めた", "卒業", "難民", "退会", "アンインストール", "消した", "以外のAI", "おすすめのAI"],
     "課金": ["課金", "zeta pass", "zetapass", "パス", "ピース", "返金", "値上", "円"],
     "不具合": ["バグ", "不具合", "エラー", "落ちる", "起動しない", "重い", "反映されない"],
     "規制・削除": ["削除", "規制", "ペナルティ", "不適切", "アンリミ", "凍結", "BAN", "制限"],
@@ -130,6 +135,35 @@ AD_RE = re.compile(r"広告|ＣＭ|\bCM\b|プロモ")
 AD_INAPP_RE = re.compile(r"頻度|喋|話し|話す|打っ|打つ|文字|送信|会話|トーク|チャット|返信|途中|毎回|広告(?:見|を見|スキップ|消|除去|なし|無し|長|挟|入|多すぎ|が多|ばっか|ばかり)|動画広告|\d+秒|pass|パス|課金|ピース")
 AD_PROMO_RE = re.compile(r"漫画|マンガ|まんが|TL|タイムライン|YouTube|ユーチューブ|TikTok|インスタ|Instagram|他のアプリ|別のアプリ|ゲーム中|アプリの広告で|広告で見|広告で知|宣伝|プロモ|PR|CM|ＣＭ|広告主|広告の(?:絵|内容|表現|キャラ|漫画)")
 AD_PROMO_WEAK_RE = re.compile(r"流れてく|出てく|表示され")
+
+
+# 乗り換え先として名前が挙がる他のAIチャットサービス (表記ゆれ込み)
+COMPETITORS = {
+    "MooX": r"moo\s*x|ムークス",
+    "Talkie": r"talkie|トーキー",
+    "Tipsy": r"tipsy|ティプシー",
+    "Character.AI": r"character\.?\s*ai|キャラクターAI|キャラクター\.ai|c\.ai|cai\b",
+    "PolyBuzz": r"polybuzz|ポリバズ",
+    "SynClub": r"synclub|シンクラブ",
+    "Chai": r"\bchai\b",
+    "Nomi": r"\bnomi\b",
+    "Replika": r"replika|レプリカ",
+    "Kindroid": r"kindroid",
+    "Saylo": r"saylo",
+    "Linky": r"\blinky\b",
+    "JanitorAI": r"janitor\s*ai",
+    "SillyTavern": r"silly\s*tavern|シリタバ",
+    "Cotomo": r"cotomo|コトモ",
+    "ChatGPT": r"chat\s*gpt|チャットgpt|gpt-?\d",
+    "Claude": r"\bclaude\b|クロード",
+    "Gemini": r"\bgemini\b|ジェミニ",
+    "Grok": r"\bgrok\b|グロック",
+}
+COMPETITOR_RES = {k: re.compile(v, re.IGNORECASE) for k, v in COMPETITORS.items()}
+
+
+def competitors_in(text: str) -> list[str]:
+    return [k for k, rx in COMPETITOR_RES.items() if rx.search(text or "")]
 
 
 def ad_types(text: str) -> list[str]:
@@ -390,6 +424,7 @@ def aggregate(tweets: list[dict]) -> list[dict]:
             "total_retweets": sum(p["retweets"] for p in posts),
             "last_post": posts[0].get("date"),
             "topics": [t for t, _ in topic_counter.most_common()],
+            "competitors": sorted({c for p in posts for c in competitors_in(p["text"])}),
             "tone_score": tone,
             "tone": "ポジティブ" if tone > 0 else "ネガティブ" if tone < 0 else "中立",
             "posts": [

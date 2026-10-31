@@ -316,7 +316,7 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
     verified: ["認証", 10], bio_completeness: ["プロフ充実", 10], engagement: ["反応率", 15], icon: ["アイコン", 5], activity: ["投稿活動", 10] };
 
   var data = { accounts: [] };
-  var state = { cat: "", tone: "", q: "", topic: "", sort: "posts", open: null };
+  var state = { cat: "", tone: "", q: "", topic: "", comp: "", sort: "posts", open: null };
   var lastFocus = null;
   var $ = function (id) { return document.getElementById(id); };
 
@@ -375,6 +375,7 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
       if (state.cat && a.category !== state.cat) return false;
       if (state.tone && a.tone !== state.tone) return false;
       if (state.topic && (a.topics || []).indexOf(state.topic) === -1) return false;
+      if (state.comp && (a.competitors || []).indexOf(state.comp) === -1) return false;
       if (!q) return true;
       var blob = [a.name, a.handle, a.profile && a.profile.bio].concat((a.posts || []).map(function (p) { return p.text; })).join(" ").toLowerCase();
       return blob.indexOf(q) !== -1;
@@ -434,6 +435,23 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
           return '<div class="topicbar" style="grid-template-columns:7.5em 1fr 6.5em"><button class="linkish" data-topic="' + esc(k) + '">' + esc(k) + '</button><span class="track"><span class="fill" style="display:block;width:' + (ps.length / adPosts.length * 100) + '%"></span></span><span class="n mono">' + ps.length + "件 · " + num(v) + "</span></div>";
         }).join("") + '<p class="note">アプリ内広告 = 会話の途中に流れる広告 / 宣伝広告 = TLや他アプリに流れる zeta の広告。項目を押すとそのアカウントに絞り込みます。</p></div></div>';
     }
+    var pats = data.competitor_patterns || {};
+    var rx = Object.keys(pats).map(function (k) { try { return [k, new RegExp(pats[k], "i")]; } catch (e) { return null; } }).filter(Boolean);
+    if (rx.length) {
+      var comp = {};
+      acc.forEach(function (a) { (a.posts || []).forEach(function (p) {
+        rx.forEach(function (r) { if (r[1].test(p.text || "")) { comp[r[0]] = comp[r[0]] || { n: 0, v: 0, acc: {} }; comp[r[0]].n++; comp[r[0]].v += p.views || 0; comp[r[0]].acc[a.handle] = 1; } });
+      }); });
+      var switchers = acc.filter(function (a) { return (a.topics || []).indexOf("乗り換え") !== -1; });
+      var ck = Object.keys(comp).sort(function (a, b) { return comp[b].n - comp[a].n; }).slice(0, 8);
+      var cmax = ck.length ? comp[ck[0]].n : 1;
+      html += '<div class="sumbox"><h2>乗り換え・他アプリへの言及</h2>' +
+        '<div class="bignums"><div class="bignum"><b class="mono">' + switchers.length + '</b><span><button class="linkish" data-topic="乗り換え">乗り換え・離脱を話すアカウント</button></span></div></div>' +
+        '<div class="topicbars">' + (ck.length ? ck.map(function (k) {
+          return '<div class="topicbar" style="grid-template-columns:7.5em 1fr 6.5em"><button class="linkish" data-comp="' + esc(k) + '">' + esc(k) + '</button><span class="track"><span class="fill" style="display:block;width:' + (comp[k].n / cmax * 100) + '%"></span></span><span class="n mono">' + comp[k].n + "件 · " + num(comp[k].v) + "</span></div>";
+        }).join("") : '<p class="note">他アプリ名の言及はまだありません。</p>') +
+        '</div><p class="note">zeta の話の中で名前が出た他のAIチャット（投稿数 · 表示回数）。押すとそのアカウントに絞り込みます。</p></div>';
+    }
     if (data.insights && data.insights.length) {
       html += '<div class="sumbox" style="grid-column:1/-1"><h2>読み取れること</h2><ul class="insights">' +
         data.insights.map(function (s) { return "<li><span>" + esc(s) + "</span></li>"; }).join("") + "</ul></div>";
@@ -454,8 +472,8 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
 
   function renderWall() {
     var list = filtered();
-    $("count").textContent = list.length + " / " + data.accounts.length + " 件" + (state.topic ? " · 話題「" + state.topic + "」" : "");
-    $("cleartopic").hidden = !state.topic;
+    $("count").textContent = list.length + " / " + data.accounts.length + " 件" + (state.topic ? " · 話題「" + state.topic + "」" : "") + (state.comp ? " · 「" + state.comp + "」に言及" : "");
+    $("cleartopic").hidden = !(state.topic || state.comp);
     if (!data.accounts.length) {
       $("wall").innerHTML = '<div class="empty" style="grid-column:1/-1">まだデータがありません。<br>screenpilot の <code>examples/x_zeta_intel.py</code> を実行するか、下の「別の収集結果（JSON）を開く」から読み込んでください。</div>';
       return;
@@ -512,6 +530,9 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
       h += '<p class="note">このアカウントはプロフィール未取得です（投稿数の多い上位のみ取得しています）。</p>';
     }
 
+    if (a.competitors && a.competitors.length) {
+      h += '<h4 class="section-h">名前を出している他のAIチャット</h4><div class="chips">' + a.competitors.map(function (t) { return '<span class="chip">' + esc(t) + "</span>"; }).join("") + "</div>";
+    }
     if (a.topics && a.topics.length) {
       h += '<h4 class="section-h">話題</h4><div class="chips">' + a.topics.map(function (t) { return '<span class="chip">' + esc(t) + "</span>"; }).join("") + "</div>";
     }
@@ -575,7 +596,7 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
   function load(obj) {
     data = obj && Array.isArray(obj.accounts) ? obj : { accounts: [] };
     state.open = null;
-    state.topic = "";
+    state.topic = ""; state.comp = "";
     if (data.default_sort) { state.sort = data.default_sort; $("sort").value = data.default_sort; }
     renderAll();
   }
@@ -592,11 +613,13 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
   $("tone").addEventListener("change", function (e) { state.tone = e.target.value; renderWall(); });
   $("sort").addEventListener("change", function (e) { state.sort = e.target.value; renderWall(); });
   $("summary").addEventListener("click", function (e) {
-    var b = e.target.closest("[data-topic]"); if (!b) return;
-    state.topic = b.getAttribute("data-topic"); renderWall();
+    var b = e.target.closest("[data-topic],[data-comp]"); if (!b) return;
+    state.topic = b.getAttribute("data-topic") || "";
+    state.comp = b.getAttribute("data-comp") || "";
+    renderWall();
     $("wall").scrollIntoView({ behavior: "smooth", block: "start" });
   });
-  $("cleartopic").addEventListener("click", function () { state.topic = ""; renderWall(); });
+  $("cleartopic").addEventListener("click", function () { state.topic = ""; state.comp = ""; renderWall(); });
   $("close").addEventListener("click", closeSheet);
   $("scrim").addEventListener("click", closeSheet);
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });
