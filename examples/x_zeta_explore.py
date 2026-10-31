@@ -234,6 +234,8 @@ def main():
         ex = Explorer(d, args.max_pages, args.minutes)
         for i, (q, mode) in enumerate(SEED_SEARCHES):
             ex.push("search", f"{q}\t{mode}", 1e9 - i, "起点の検索")
+        for i, q in enumerate(zi.QUERIES):
+            ex.push("search", f"{q['query']}\t{q['mode']}", 1e8 - i, "基本の検索")
         if args.seed_tweets:
             seed = json.loads(Path(args.seed_tweets).read_text(encoding="utf-8"))
             n = ex.ingest(seed, "前回の検索収集")

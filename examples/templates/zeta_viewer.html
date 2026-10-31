@@ -340,14 +340,15 @@ footer.foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: cente
     } catch (e) { return d.toISOString().slice(0, 16).replace("T", " "); }
   }
   var AD_RE = /広告|ＣＭ|\bCM\b|プロモ|宣伝/;
-  var AD_INAPP = /広告(?:見|を見|スキップ|消|除去|なし|無し|長|挟|入|多すぎ|が多|が流れ|ばっか|ばかり)|動画広告|途中|毎回|返信|トーク中|会話中|チャット中|\d+秒|pass|パス|課金|ピース/;
-  var AD_PROMO = /漫画|マンガ|まんが|流れてく|出てく|表示され|TL|タイムライン|YouTube|ユーチューブ|TikTok|インスタ|Instagram|ゲーム中|他のアプリ|アプリの広告で|広告で見|広告で知|宣伝|プロモ|PR|CM|ＣＭ|広告主|広告の(?:絵|内容|表現|キャラ)/;
+  var AD_INAPP = /頻度|喋|話し|話す|打っ|打つ|文字|送信|会話|トーク|チャット|返信|途中|毎回|広告(?:見|を見|スキップ|消|除去|なし|無し|長|挟|入|多すぎ|が多|ばっか|ばかり)|動画広告|\d+秒|pass|パス|課金|ピース/;
+  var AD_PROMO = /漫画|マンガ|まんが|TL|タイムライン|YouTube|ユーチューブ|TikTok|インスタ|Instagram|他のアプリ|別のアプリ|ゲーム中|アプリの広告で|広告で見|広告で知|宣伝|プロモ|PR|CM|ＣＭ|広告主|広告の(?:絵|内容|表現|キャラ|漫画)/;
+  var AD_PROMO_WEAK = /流れてく|出てく|表示され/;
   function adTypes(t) {
     t = t || "";
     if (!AD_RE.test(t)) return [];
     var r = [];
     if (AD_INAPP.test(t)) r.push("アプリ内広告");
-    if (AD_PROMO.test(t)) r.push("宣伝広告");
+    if (AD_PROMO.test(t) || (!r.length && AD_PROMO_WEAK.test(t))) r.push("宣伝広告");
     return r.length ? r : ["広告(種類不明)"];
   }
   function catOf(a) { return CATS.find(function (c) { return c.key === a.category; }) || CATS[4]; }

@@ -41,8 +41,6 @@ os.environ.setdefault("DISPLAY", ":99")
 import requests
 from selenium import webdriver
 from selenium.common.exceptions import (
-    NoSuchElementException,
-    StaleElementReferenceException,
     TimeoutException,
 )
 from selenium.webdriver.chrome.options import Options
@@ -129,14 +127,9 @@ CATEGORY_ORDER = ["公式・運営", "攻略・TIPS", "ニュース・論評", "
 #   宣伝広告   = zeta 自体のプロモーション (X の TL / YouTube / 他アプリに流れる漫画広告など)
 #   アプリ内広告 = zeta の中で会話の途中に流れる収益化のための広告
 AD_RE = re.compile(r"広告|ＣＭ|\bCM\b|プロモ")
-AD_INAPP_RE = re.compile(
-    r"広告(?:見|を見|スキップ|消|除去|なし|無し|長|挟|入|多すぎ|が多|が流れ|ばっか|ばかり)|動画広告|"
-    r"途中|毎回|返信|トーク中|会話中|チャット中|\d+秒|pass|パス|課金|ピース"
-)
-AD_PROMO_RE = re.compile(
-    r"漫画|マンガ|まんが|流れてく|出てく|表示され|TL|タイムライン|YouTube|ユーチューブ|TikTok|インスタ|"
-    r"Instagram|ゲーム中|他のアプリ|アプリの広告で|広告で見|広告で知|宣伝|プロモ|PR|CM|ＣＭ|広告主|広告の(?:絵|内容|表現|キャラ)"
-)
+AD_INAPP_RE = re.compile(r"頻度|喋|話し|話す|打っ|打つ|文字|送信|会話|トーク|チャット|返信|途中|毎回|広告(?:見|を見|スキップ|消|除去|なし|無し|長|挟|入|多すぎ|が多|ばっか|ばかり)|動画広告|\d+秒|pass|パス|課金|ピース")
+AD_PROMO_RE = re.compile(r"漫画|マンガ|まんが|TL|タイムライン|YouTube|ユーチューブ|TikTok|インスタ|Instagram|他のアプリ|別のアプリ|ゲーム中|アプリの広告で|広告で見|広告で知|宣伝|プロモ|PR|CM|ＣＭ|広告主|広告の(?:絵|内容|表現|キャラ|漫画)")
+AD_PROMO_WEAK_RE = re.compile(r"流れてく|出てく|表示され")
 
 
 def ad_types(text: str) -> list[str]:
@@ -145,7 +138,7 @@ def ad_types(text: str) -> list[str]:
     types = []
     if AD_INAPP_RE.search(text):
         types.append("アプリ内広告")
-    if AD_PROMO_RE.search(text):
+    if AD_PROMO_RE.search(text) or (not types and AD_PROMO_WEAK_RE.search(text)):
         types.append("宣伝広告")
     return types or ["広告(種類不明)"]
 
@@ -238,67 +231,69 @@ def login(d: webdriver.Chrome, manual_wait: int = 300) -> bool:
 # 投稿収集
 # ============================================================================
 
+SHOW_ORIGINAL_JS = r"""
+var n = 0;
+document.querySelectorAll('article[data-testid="tweet"] button, article[data-testid="tweet"] [role="button"], article[data-testid="tweet"] span').forEach(function (el) {
+  var t = (el.innerText || '').trim();
+  if ((t === 'Show original' || t === '原文を表示') && !el.dataset.spOrig) {
+    el.dataset.spOrig = '1';
+    (el.closest('button,[role="button"]') || el).click();
+    n++;
+  }
+});
+return n;
+"""
+
+EXTRACT_JS = r"""
+return Array.from(document.querySelectorAll('article[data-testid="tweet"]')).map(function (art) {
+  var q = function (s) { return art.querySelector(s); };
+  var textEl = q('div[data-testid="tweetText"]');
+  var links = art.querySelectorAll('div[data-testid="User-Name"] a');
+  var handle = '', name = links.length ? links[0].innerText.trim() : '';
+  for (var i = 0; i < links.length; i++) {
+    var h = links[i].getAttribute('href') || '';
+    if (/^\/[^/]+$/.test(h)) { handle = h.slice(1); break; }
+  }
+  var t = q('time[datetime]');
+  var a = t && t.closest('a');
+  var av = q('div[data-testid="Tweet-User-Avatar"] img');
+  var g = q('div[role="group"]');
+  var labels = '';
+  if (g) {
+    labels = g.getAttribute('aria-label') || Array.from(g.querySelectorAll('button, a'))
+      .map(function (e) { return e.getAttribute('aria-label') || ''; }).join(', ');
+  }
+  return {
+    text: textEl ? textEl.innerText.trim() : '', handle: handle, name: name,
+    ts: t ? t.getAttribute('datetime') : '', href: a ? a.href : '',
+    avatar: av ? av.src : '', media: !!q('div[data-testid="tweetPhoto"], video'), labels: labels
+  };
+});
+"""
+
+
 def extract_tweets(d: webdriver.Chrome) -> list[dict]:
-    """検索結果の投稿を抽出 (アイコンURL付き)。"""
+    """表示中の投稿を抽出 (アイコンURL付き)。1回の JS 実行でまとめて読む。"""
     out = []
-    for art in d.find_elements(By.CSS_SELECTOR, 'article[data-testid="tweet"]'):
-        try:
-            try:
-                text = art.find_element(By.CSS_SELECTOR, 'div[data-testid="tweetText"]').text.strip()
-            except NoSuchElementException:
-                text = ""
-
-            handle, name = "", ""
-            links = art.find_elements(By.CSS_SELECTOR, 'div[data-testid="User-Name"] a')
-            if links:
-                name = links[0].text.strip()
-                for lnk in links:
-                    href = lnk.get_attribute("href") or ""
-                    if href.startswith("https://x.com/") and "/status/" not in href:
-                        handle = href.rstrip("/").split("/")[-1]
-                        break
-
-            ts, url = "", ""
-            try:
-                t = art.find_element(By.CSS_SELECTOR, "time[datetime]")
-                ts = t.get_attribute("datetime") or ""
-                url = t.find_element(By.XPATH, "./..").get_attribute("href") or ""
-            except NoSuchElementException:
-                pass
-
-            avatar = ""
-            for img in art.find_elements(By.CSS_SELECTOR, 'div[data-testid="Tweet-User-Avatar"] img'):
-                src = img.get_attribute("src") or ""
-                if "profile_images" in src or "default_profile" in src:
-                    avatar = src
-                    break
-
-            has_media = bool(art.find_elements(By.CSS_SELECTOR, 'div[data-testid="tweetPhoto"], video'))
-
-            eng = {"replies": 0, "retweets": 0, "likes": 0, "views": 0}
-            try:
-                group = art.find_element(By.CSS_SELECTOR, 'div[role="group"]')
-                label = group.get_attribute("aria-label") or ""
-                if label:
-                    eng = parse_engagement(label)
-                else:
-                    for el in group.find_elements(By.CSS_SELECTOR, "button, a"):
-                        for k, v in parse_engagement(el.get_attribute("aria-label") or "").items():
-                            if v:
-                                eng[k] = v
-            except NoSuchElementException:
-                pass
-
-            m = re.search(r"/status/(\d+)", url)
-            if not handle or not m:
-                continue
-            out.append({
-                "id": m.group(1), "url": url.split("?")[0], "handle": handle, "name": name,
-                "text": text, "date": ts or snowflake_to_iso(m.group(1)), "avatar": avatar,
-                "has_media": has_media, **eng,
-            })
-        except StaleElementReferenceException:
+    try:
+        # X が自動翻訳した投稿は原文に戻してから読む (アカウントの言語設定は変えない)
+        if d.execute_script(SHOW_ORIGINAL_JS):
+            time.sleep(1.2)
+        raw = d.execute_script(EXTRACT_JS) or []
+    except Exception:
+        return out
+    for r in raw:
+        m = re.search(r"/status/(\d+)", r.get("href") or "")
+        if not r.get("handle") or not m:
             continue
+        avatar = r.get("avatar") or ""
+        if "profile_images" not in avatar and "default_profile" not in avatar:
+            avatar = ""
+        out.append({
+            "id": m.group(1), "url": r["href"].split("?")[0], "handle": r["handle"], "name": r["name"],
+            "text": r["text"], "date": r["ts"] or snowflake_to_iso(m.group(1)), "avatar": avatar,
+            "has_media": bool(r["media"]), **parse_engagement(r.get("labels") or ""),
+        })
     return out
 
 
