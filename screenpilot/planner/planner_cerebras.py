@@ -14,23 +14,19 @@ Cost comparison vs Claude:
 
 from __future__ import annotations
 
-import base64
 import io
 import json
 import logging
 import os
 import re
 import time
-from dataclasses import dataclass, field
-from typing import Any
+from dataclasses import dataclass
 
 import requests
 
 from screenpilot.planner.planner import (
     Action,
     ActionType,
-    Plan,
-    PLANNER_USER_PROMPT,
 )
 from screenpilot.vision.capture import Screenshot
 
@@ -496,7 +492,7 @@ class CerebrasPlanner:
                 # Empty response (e.g. GPT-5 used all tokens for reasoning)
                 if not text.strip():
                     logger.warning("Empty LLM response (retry %d), retrying...", retry + 1)
-                    print(f"    Empty response, retrying...")
+                    print("    Empty response, retrying...")
                     time.sleep(1)
                     continue
 
